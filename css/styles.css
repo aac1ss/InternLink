@@ -184,7 +184,7 @@ nav {
     flex-wrap: wrap;
 }
 
-.location-item, .category-item {`
+.location-item, .category-item {
     text-align: center;
     width: 200px;
     display: flex;
