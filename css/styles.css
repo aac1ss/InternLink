@@ -1,4 +1,5 @@
 /* Color Variables */
+
 :root {
     --primary-color: #00b3ff; /* Main accent color */
     --secondary-color: #18232d; /* Background color for header and footer */
@@ -183,7 +184,7 @@ nav {
     flex-wrap: wrap;
 }
 
-.location-item, .category-item {
+.location-item, .category-item {`
     text-align: center;
     width: 200px;
     display: flex;
