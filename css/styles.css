@@ -1,0 +1,281 @@
+/* Color Variables */
+:root {
+    --primary-color: #00b3ff; /* Main accent color */
+    --secondary-color: #18232d; /* Background color for header and footer */
+    --text-color: #fff; /* Text color */
+    --bg-color: #f4f4f4; /* Background color for body and sections */
+    --border-color: #00b3ff; /* Border color for buttons */
+}
+
+/* Global Reset and Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow-x: hidden;
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-color);
+}
+
+/* Navigation Bar Styling */
+header {
+    background-color: var(--secondary-color);
+    padding: 20px 0;
+    color: var(--text-color);
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 40px;
+    margin-right: 10px;
+}
+
+.logo h1 {
+    font-size: 24px;
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    margin-right: 20px;
+}
+
+.nav-links li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 20px;
+}
+.nav-buttons>h1{
+    color: #00b3ff;
+}
+
+ .login-btn, .register-btn {
+    padding: 8px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.login-btn {
+    border: 1px solid var(--border-color);
+    background-color: transparent;
+    color: var(--border-color);
+}
+.login-btn:hover {
+    color: var(--text-color);
+    background-color: var(--primary-color);
+    transition-duration: 0.3s;
+    
+}
+.register-btn {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    border: none;
+}
+
+/* Hover effect for Register Button */
+.register-btn:hover {
+    /* Set the hover styles to make it look like Login */
+    border: 0.2px solid var(--border-color); /* Add border */
+    background-color: transparent; /* Set to transparent background */
+    color: var(--border-color); /* Change text color to border color */
+    transition-duration: 0.3s;
+}
+
+.admin-btn {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    border: none;
+}   
+
+
+/* Hero Section */
+.hero {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 87vh; /* Full viewport height */
+    text-align: center;
+    flex-direction: column;
+    width: 100vw; /* Full viewport width */
+}
+
+.hero-content h2 {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.hero-content p {
+    font-size: 18px;
+    margin: 20px 0;
+}
+
+.search-box input {
+    padding: 12px;
+    width: 50%;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+.internships-categories {
+    width: 100%;
+    height: 100vh;
+    background-color: var(--bg-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.internships, .categories {
+    width: 100%;
+    max-width: 1200px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.internships h3, .categories h3 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: var(--secondary-color);
+}
+
+.locations, .category-list {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.location-item, .category-item {
+    text-align: center;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.location-item img {
+    width: 200%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.category-item img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.location-item p, .category-item p {
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--secondary-color);
+}
+
+
+
+/* Footer Section */
+footer {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    padding: 40px 0;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    max-width: 1200px; /* Ensures the footer stays contained */
+    margin: 0 auto;
+    gap: 30px; /* Ensures some spacing between items */
+}
+
+.footer-logo {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer-logo h3 {
+    font-size: 24px;
+}
+
+.footer-logo img {
+    width: 150px;
+}
+
+.footer-details p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: space-between;
+    flex: 2;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 150px;
+}
+
+.footer-column h4 {
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.footer-column ul {
+    list-style: none;
+}
+
+.footer-column ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 14px;
+}
+
