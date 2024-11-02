@@ -74,50 +74,69 @@ nav {
 .nav-buttons {
     display: flex;
     gap: 20px;
-}
-.nav-buttons>h1{
-    color: #00b3ff;
+    align-items: center; /* Ensure buttons and separator align properly */
 }
 
- .login-btn, .register-btn {
+.nav-buttons h1 {
+    color: var(--primary-color);
+    font-size: 24px; /* Adjusted for a larger and more prominent separator */
+    margin-left: 15px;
+    margin-right: 15px;
+    line-height: 1; /* Ensures alignment with the buttons */
+}
+
+/* Button styles */
+button {
     padding: 8px 20px;
     border-radius: 5px;
     font-size: 14px;
     font-weight: bold;
     cursor: pointer;
+    transition: all 0.3s ease-in-out; /* Smooth transitions for hover effects */
 }
 
+/* Specific button styles */
 .login-btn {
     border: 1px solid var(--border-color);
     background-color: transparent;
     color: var(--border-color);
 }
+
 .login-btn:hover {
-    color: var(--text-color);
     background-color: var(--primary-color);
-    transition-duration: 0.3s;
-    
+    color: var(--text-color);
+    box-shadow: 0 4px 15px rgba(0, 179, 255, 0.6); /* Pop-out shadow effect */
+    transform: scale(1.05); /* Slight increase in size on hover */
 }
+
 .register-btn {
     background-color: var(--primary-color);
     color: var(--text-color);
     border: none;
 }
 
-/* Hover effect for Register Button */
 .register-btn:hover {
-    /* Set the hover styles to make it look like Login */
-    border: 0.2px solid var(--border-color); /* Add border */
-    background-color: transparent; /* Set to transparent background */
-    color: var(--border-color); /* Change text color to border color */
-    transition-duration: 0.3s;
+    border: 1px solid var(--border-color);
+    background-color: transparent;
+    color: var(--border-color);
+    box-shadow: 0 4px 15px rgba(0, 179, 255, 0.6); /* Pop-out shadow effect */
 }
 
 .admin-btn {
     background-color: var(--secondary-color);
     color: var(--text-color);
     border: none;
-}   
+}
+
+.admin-btn:hover {
+    color: var(--text-color);
+    transform: scale(1.05); /* Slight increase in size on hover */
+    text-shadow: 0 4px 15px rgba(0, 179, 255, 0.6); /* Pop-out shadow effect */
+}
+
+button:focus {
+    outline: none;
+} 
 
 
 /* Hero Section */
@@ -173,7 +192,7 @@ nav {
 
 .internships h3, .categories h3 {
     font-size: 28px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     color: var(--secondary-color);
 }
 
@@ -193,7 +212,7 @@ nav {
 }
 
 .location-item img {
-    width: 200%;
+    width: 130%;
     height: auto;
     object-fit: cover;
     border-radius: 10px;
