@@ -10,6 +10,7 @@
 
 /* Global Reset and Styling */
 * {
+    scroll-behavior: smooth;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -187,19 +188,19 @@ button:focus {
     width: 100%;
     max-width: 1200px;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
 }
 
 .internships h3, .categories h3 {
     font-size: 28px;
-    margin-bottom: 10px;
+    margin-bottom: 40px;
     color: var(--secondary-color);
 }
 
 .locations, .category-list {
     display: flex;
     justify-content: center;
-    gap: 40px;
+    gap: 47px;
     flex-wrap: wrap;
 }
 
@@ -212,14 +213,14 @@ button:focus {
 }
 
 .location-item img {
-    width: 130%;
-    height: auto;
+    width: 150%;
+    height: 151px;
     object-fit: cover;
     border-radius: 10px;
 }
 
 .category-item img {
-    width: 100%;
+    width: 90%;
     height: auto;
     object-fit: cover;
     border-radius: 10px;
@@ -230,6 +231,71 @@ button:focus {
     font-size: 16px;
     font-weight: 600;
     color: var(--secondary-color);
+}
+/* About Us Section */
+.about-us {
+    width: 100%;
+    height: 100vh;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 0;
+}
+
+.about-us-container {
+    display: flex;
+    max-width: 1200px;
+    width: 100%;
+    gap: 30px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.about-us-image img {
+    width: 300px;
+    height: auto;
+    object-fit: cover;
+}
+
+.about-us-content {
+    max-width: 600px;
+}
+
+.about-us-content h2 {
+    font-size: 32px;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+.about-us-content p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.about-us-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.about-us-buttons button {
+    padding: 10px 20px;
+    background-color: transparent;
+    color: var(--text-color);
+    border: 1px solid var(--primary-color);
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.about-us-buttons button:hover {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    transform: scale(1.05);
 }
 
 
