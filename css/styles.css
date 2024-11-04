@@ -190,6 +190,14 @@ button:focus {
     max-width: 1200px;
     text-align: center;
     margin-bottom: 50px;
+    gap:20px;
+}
+#browse-internship{
+    color: #00b3ff;
+    text-decoration:wavy;
+    align-items: right;
+    margin-right: 90px;
+    margin-left: auto;
 }
 
 .internships h3, .categories h3 {
@@ -249,13 +257,13 @@ button:focus {
     display: flex;
     max-width: 1200px;
     width: 100%;
-    gap: 30px;
+    gap: 50px;
     align-items: center;
     justify-content: space-between;
 }
 
 .about-us-image img {
-    width: 300px;
+    width: 600px;
     height: auto;
     object-fit: cover;
 }
