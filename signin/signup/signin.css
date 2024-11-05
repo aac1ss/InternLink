@@ -1,11 +1,12 @@
 /* Color Variables */
 
 :root {
-    --primary-color: #00b3ff; /* Main accent color */
-    --secondary-color: #18232d; /* Background color for header and footer */
-    --text-color: #fff; /* Text color */
+    --primary-color: #4b49ac; /* Main accent color */
+    --secondary-color: #d9e7ff; /* Background color for header and footer */
+    --text-color: #1f1e1e; /* Text color */
     --bg-color: #f4f4f4; /* Background color for body and sections */
-    --border-color: #00b3ff; /* Border color for buttons */
+    --border-color: #7978E9; /* Border color for buttons */
+    
 }
 
 /* Global Reset and Styling */
