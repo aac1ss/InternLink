@@ -1,6 +1,147 @@
-* {
-    font-family: Nunito, sans-serif;
+
+:root {
+    --primary-color: #00b3ff; /* Main accent color */
+    --secondary-color: #18232d; /* Background color for header and footer */
+    --text-color: #fff; /* Text color */
+    --bg-color: #f4f4f4; /* Background color for body and sections */
+    --border-color: #00b3ff; /* Border color for buttons */
 }
+
+/* Global Reset and Styling */
+* {
+    
+    scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow-x: hidden;
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-color);
+}
+
+/* Navigation Bar Styling */
+header {
+    background-color: var(--secondary-color);
+    padding: 20px 0;
+    color: var(--text-color);
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 200px;
+    margin-right: 10px;
+}
+
+.logo h1 {
+    font-size: 24px;
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    margin-right: 20px;
+}
+
+.nav-links li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 20px;
+    align-items: center; /* Ensure buttons and separator align properly */
+}
+
+.nav-buttons h1 {
+    color: var(--primary-color);
+    font-size: 24px; /* Adjusted for a larger and more prominent separator */
+    margin-left: 15px;
+    margin-right: 15px;
+    line-height: 1; /* Ensures alignment with the buttons */
+}
+
+/* Button styles */
+button {
+    padding: 8px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out; /* Smooth transitions for hover effects */
+}
+
+.login-btn {
+    border: 1px solid var(--border-color);
+    background-color: transparent;
+    color: var(--border-color);
+}
+
+.login-btn:hover {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    box-shadow: 0 4px 15px rgba(0, 179, 255, 0.6); /* Pop-out shadow effect */
+    transform: scale(0.95); /* Slight increase in size on hover */
+}
+
+.register-btn {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    border: none;
+    transition: transform 0.6s ease; 
+}
+
+.register-btn:hover {
+    border: 1px solid var(--border-color);
+    /* background-color: transparent; */
+    transform: scale(0.85);
+    color: var(--text-color);
+    /* box-shadow: 0 4px 15px rgba(0, 179, 255, 0.6); Pop-out shadow effect */
+}
+
+.admin-btn {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    border: none;
+}
+
+.admin-btn:hover {
+    color: var(--text-color);
+    transform: scale(1.1); /* Slight increase in size on hover */
+    }
+
+button:focus {
+    outline: none;
+} 
+
+
+
+/* START OF THIS SECTIOn */
 
 .text-blk {
     margin: 0;
@@ -29,7 +170,7 @@
 }
 
 .section-head-text {
-    font-size: 35px;
+    font-size: 2rem;
     font-weight: 700;
     line-height: 48px;
     color: rgb(0, 135, 177);
@@ -37,7 +178,7 @@
 }
 
 .section-subhead-text {
-    font-size: 25px;
+    font-size: 1.3rem;
     color: rgb(153, 153, 153);
     line-height: 35px;
     text-align: center;
@@ -53,8 +194,13 @@
 }
 
 .team-card-container {
-    width: 280px;
+    width: 330px;
     margin-bottom: 40px;
+}
+.team-card-container:hover {
+    transform: scale(1.05);
+    transition: .5s;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
 .team-card {
@@ -62,8 +208,8 @@
     flex-direction: column;
     align-items: center;
     background: white;
-    padding: 20px;
-    border-radius: 8px;
+    padding: 35px;
+    border-radius: 28px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
@@ -94,6 +240,85 @@
     margin-bottom: 20px;
 }
 
-.social-media-links {
-    
+.social-media-links a {
+    margin: 0 5px;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    color:var(--secondary-color);
+    text-decoration: none;
+}
+.fa-brands:hover{
+    color: var(--primary-color);
+    transition: 0.4s;
+    padding: 0px 2px;
+    transform: scale(1.2);
+}
+
+.social-media-links a:hover {
+    transform: scale(1.1);
+    filter: brightness(0.7);
+}
+
+/* Footer Section */
+footer {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    padding: 40px 0;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    max-width: 1200px; /* Ensures the footer stays contained */
+    margin: 0 auto;
+    gap: 30px; /* Ensures some spacing between items */
+}
+
+.footer-logo {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer-logo h3 {
+    font-size: 24px;
+}
+
+.footer-logo img {
+    width: 150px;
+}
+
+.footer-details p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: space-between;
+    flex: 2;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 150px;
+}
+
+.footer-column h4 {
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.footer-column ul {
+    list-style: none;
+}
+
+.footer-column ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 14px;
 }
