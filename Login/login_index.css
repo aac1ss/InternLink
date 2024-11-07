@@ -1,0 +1,268 @@
+/* Color Variables */
+
+:root {
+    --primary-color: #00b3ff; /* Main accent color */
+    --secondary-color: #18232d; /* Background color for header and footer */
+    --text-color: #fff; /* Text color */
+    --bg-color: #f4f4f4; /* Background color for body and sections */
+    --border-color: #00b3ff; /* Border color for buttons */
+  }
+  
+  /* Global Reset and Styling */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    overflow-x: hidden;
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-color);
+  }
+  
+  /* Navigation Bar Styling */
+  header {
+    background-color: var(--secondary-color);
+    padding: 20px 0;
+    color: var(--text-color);
+  }
+  
+  .navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: 0 auto;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo img {
+    width: 40px;
+    margin-right: 10px;
+  }
+  
+  .logo h1 {
+    font-size: 24px;
+    color: var(--primary-color);
+    font-weight: 700;
+  }
+  
+  nav {
+    display: flex;
+    align-items: center;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    margin-right: 20px;
+  }
+  
+  .nav-links li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+  }
+  
+  .nav-buttons {
+    display: flex;
+    gap: 20px;
+    align-items: center; /* Ensure buttons and separator align properly */
+  }
+  
+  .nav-buttons h1 {
+    color: var(--primary-color);
+    font-size: 24px; /* Adjusted for a larger and more prominent separator */
+    margin-left: 15px;
+    margin-right: 15px;
+    line-height: 1; /* Ensures alignment with the buttons */
+  }
+  
+  /* Button styles */
+  button {
+    padding: 8px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out; /* Smooth transitions for hover effects */
+  }
+  
+  /* Specific button styles */
+  .login-btn {
+    border: 1px solid var(--border-color);
+    background-color: transparent;
+    color: var(--border-color);
+  }
+  
+  .login-btn:hover {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    box-shadow: 0 4px 15px rgba(0, 179, 255, 0.6); /* Pop-out shadow effect */
+    transform: scale(1.05); /* Slight increase in size on hover */
+  }
+  
+  .register-btn {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    border: none;
+  }
+  
+  .register-btn:hover {
+    border: 1px solid var(--border-color);
+    background-color: transparent;
+    color: var(--border-color);
+    box-shadow: 0 4px 15px rgba(0, 179, 255, 0.6); /* Pop-out shadow effect */
+  }
+  
+  .admin-btn {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    border: none;
+  }
+  
+  .admin-btn:hover {
+    color: var(--text-color);
+    transform: scale(1.05); /* Slight increase in size on hover */
+    text-shadow: 0 4px 15px rgba(0, 179, 255, 0.6); /* Pop-out shadow effect */
+  }
+  
+  button:focus {
+    outline: none;
+  } 
+  
+  
+  
+  
+  
+  
+  /* Main Section Styling */
+  main{ 
+    background-color: var(--secondary-color);
+    
+  }
+  .intro {
+    text-align: center;
+    margin: 0px ;
+  }
+  
+  .intro h1 {
+    font-size: 2em;
+    color: #ffffff;
+  }
+  
+  .intro p {
+    color: var(--text-color);
+  }
+  
+  .user-options {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 40px;
+  }
+  
+  .option {
+    text-align: center;
+    background-color: #555;
+    ;
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+  }
+  
+  .option img {
+    width: 300px;
+    height: 200px;
+  }
+  
+  .option h2 {
+    color: #1f1f2e;
+  }
+  
+  .option button {
+    padding: 10px 20px;
+    background-color: #27a9e0;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  
+  
+  
+  
+  
+  /* The Footer part begins here */
+  footer {
+      background-color: var(--secondary-color);
+      color: var(--text-color);
+      padding: 40px 0;
+  }
+  
+  .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      max-width: 1200px; /* Ensures the footer stays contained */
+      margin: 0 auto;
+      gap: 30px; /* Ensures some spacing between items */
+  }
+  
+  .footer-logo {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+  }
+  
+  .footer-logo h3 {
+      font-size: 24px;
+  }
+  
+  .footer-logo img {
+      width: 150px;
+  }
+  
+  .footer-details p {
+      margin: 5px 0;
+      font-size: 14px;
+  }
+  
+  .footer-links {
+      display: flex;
+      justify-content: space-between;
+      flex: 2;
+      flex-wrap: wrap;
+      gap: 30px;
+  }
+  
+  .footer-column {
+      flex: 1;
+      min-width: 150px;
+  }
+  
+  .footer-column h4 {
+      margin-bottom: 15px;
+      font-size: 18px;
+  }
+  
+  .footer-column ul {
+      list-style: none;
+  }
+  
+  .footer-column ul li a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-size: 14px;
+  }
+  
