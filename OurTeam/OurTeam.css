@@ -21,7 +21,6 @@ body {
     font-family: Arial, sans-serif;
     background-color: var(--bg-color);
 }
-
 /* Navigation Bar Styling */
 header {
     background-color: var(--secondary-color);
