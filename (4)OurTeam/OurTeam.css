@@ -9,6 +9,7 @@
 
 /* Global Reset and Styling */
 * {
+    
     scroll-behavior: smooth;
     margin: 0;
     padding: 0;
@@ -20,7 +21,6 @@ body {
     font-family: Arial, sans-serif;
     background-color: var(--bg-color);
 }
-
 /* Navigation Bar Styling */
 header {
     background-color: var(--secondary-color);
@@ -95,13 +95,18 @@ button {
     transition: all 0.3s ease-in-out; /* Smooth transitions for hover effects */
 }
 
-/* Specific button styles */
 .login-btn {
     border: 1px solid var(--border-color);
     background-color: transparent;
     color: var(--border-color);
 }
-
+.login-btn a{
+    text-decoration: none;
+    color: inherit;
+    border: none;
+    box-shadow: none;
+    outline: none; 
+}
 .login-btn:hover {
     background-color: var(--primary-color);
     color: var(--text-color);
@@ -140,173 +145,123 @@ button:focus {
 } 
 
 
-/* Hero Section */
-.hero {
-    background-color: var(--secondary-color);
-    color: var(--primary-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 87vh; /* Full viewport height */
-    text-align: center;
-    flex-direction: column;
-    width: 100vw; /* Full viewport width */
+
+/* START OF THIS SECTIOn */
+
+.text-blk {
+    margin: 0;
+    line-height: 25px;
 }
 
-.hero-content h2 {
-    font-size: 40px;
-    font-weight: bold;
-}
-
-.hero-content p {
-    font-size: 18px;
-    margin: 20px 0;
-}
-
-.search-box input {
-    padding: 12px;
-    width: 50%;
-    border: none;
-    border-radius: 25px;
-    font-size: 16px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-
-.internships-categories {
+.responsive-container-block {
+    min-height: 75px;
+    height: fit-content;
     width: 100%;
-    height: 100vh;
-    background-color: var(--bg-color);
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px 0;
-}
-
-.internships, .categories {
-    width: 100%;
-    max-width: 1200px;
-    text-align: center;
-    margin-bottom: 50px;
-    gap:20px;
-}
-#browse-internship{
-    color: #00b3ff;
-    text-decoration:wavy;
-    align-items: right;
-    margin-right: 90px;
-    margin-left: auto;
-}
-
-.internships h3, .categories h3 {
-    font-size: 28px;
-    margin-bottom: 40px;
-    color: var(--secondary-color);
-}
-
-.locations, .category-list {
-    display: flex;
-    justify-content: center;
-    gap: 47px;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
-.location-item, .category-item {
+.outer-container {
+    padding: 10px 50px;
+    background-color: rgb(244, 252, 255);
+}
+
+.inner-container {
+    max-width: 1320px;
+    flex-direction: column;
+    align-items: center;
+    margin: 50px auto;
+}
+
+.section-head-text {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 48px;
+    color: rgb(0, 135, 177);
+    margin-bottom: 10px;
+}
+
+.section-subhead-text {
+    font-size: 1.3rem;
+    color: rgb(153, 153, 153);
+    line-height: 35px;
     text-align: center;
-    width: 200px;
+    margin-bottom: 60px;
+}
+
+.team-cards-wrapper {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.team-card-container {
+    width: 330px;
+    margin-bottom: 40px;
+}
+.team-card-container:hover {
+    transform: scale(1.05);
+    transition: .5s;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.team-card {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background: white;
+    padding: 35px;
+    border-radius: 28px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
-.location-item img {
-    width: 150%;
-    height: 151px;
-    object-fit: cover;
-    border-radius: 10px;
-}
-
-.category-item img {
-    width: 90%;
-    height: auto;
-    object-fit: cover;
-    border-radius: 10px;
-}
-
-.location-item p, .category-item p {
-    margin-top: 10px;
-    font-size: 16px;
-    font-weight: 600;
-    color: var(--secondary-color);
-}
-/* About Us Section */
-.about-us {
+.img-wrapper {
     width: 100%;
-    height: 100vh;
-    background-color: var(--secondary-color);
-    color: var(--text-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 50px 0;
-}
-
-.about-us-container {
-    display: flex;
-    max-width: 1200px;
-    width: 100%;
-    gap: 50px;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.about-us-image img {
-    width: 600px;
     height: auto;
-    object-fit: cover;
-}
-
-.about-us-content {
-    max-width: 600px;
-}
-
-.about-us-content h2 {
-    font-size: 32px;
     margin-bottom: 15px;
-    color: var(--primary-color);
 }
 
-.about-us-content p {
-    font-size: 16px;
-    line-height: 1.6;
+.team-img {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+}
+
+.name {
+    font-size: 25px;
+    font-weight: 700;
+    color: rgb(102, 102, 102);
+    margin-bottom: 5px;
+}
+
+.position {
+    font-size: 20px;
+    font-weight: 700;
+    color: rgb(0, 135, 177);
     margin-bottom: 20px;
 }
 
-.about-us-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+.social-media-links a {
+    margin: 0 5px;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    color:var(--secondary-color);
+    text-decoration: none;
+}
+.fa-brands:hover{
+    color: var(--primary-color);
+    transition: 0.4s;
+    padding: 0px 2px;
+    transform: scale(1.2);
 }
 
-.about-us-buttons button {
-    padding: 10px 20px;
-    background-color: transparent;
-    color: var(--text-color);
-    border: 1px solid var(--primary-color);
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease;
+.social-media-links a:hover {
+    transform: scale(1.1);
+    filter: brightness(0.7);
 }
-
-.about-us-buttons button:hover {
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-    transform: scale(1.05);
-}
-
-
 
 /* Footer Section */
 footer {
@@ -372,4 +327,3 @@ footer {
     text-decoration: none;
     font-size: 14px;
 }
-

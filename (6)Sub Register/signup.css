@@ -102,7 +102,13 @@ button {
     background-color: transparent;
     color: var(--border-color);
 }
-
+.login-btn a{
+    text-decoration: none;
+    color: inherit;
+    border: none;
+    box-shadow: none;
+    outline: none; 
+}
 .login-btn:hover {
     background-color: var(--primary-color);
     color: #fff;
@@ -205,8 +211,8 @@ input[type="password"] {
     font-size: 1em;
 }
 
-button.sign-in,
-button.google-sign-in {
+button.sign-up,
+button.google-sign-up {
     width: 100%;
     padding: 0.8em;
     margin-top: 1em;
@@ -217,12 +223,12 @@ button.google-sign-in {
     transition: background 0.3s;
 }
 
-button.sign-in {
+button.sign-up {
     background-color: var(--primary-color);
     color: #fff;
 }
 
-button.sign-in:hover {
+button.sign-up:hover {
     background-color: var(--primary-color);
 }
 
@@ -233,18 +239,18 @@ button.sign-in:hover {
 }
 
 .terms,
-.signup-link {
+.login-link {
     margin-top: 1em;
     font-size: 0.85em;
     color: #666;
 }
 
-.signup-link a {
+.login-link a {
     color: #007bff;
     text-decoration: none;
 }
 
-.signup-link a:hover {
+.login-link a:hover {
     text-decoration: underline;
 }
 
