@@ -1,0 +1,330 @@
+/* Color Variables */
+
+:root {
+    --primary-color: #4b49ac; /* Main accent color */
+    --secondary-color: #d9e7ff; /* Background color for header and footer */
+    --text-color: #1f1e1e; /* Text color */
+    --bg-color: #f4f4f4; /* Background color for body and sections */
+    --border-color: #7978E9; /* Border color for buttons */
+    
+}
+
+/* Global Reset and Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow-x: hidden;
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-color);
+}
+
+/* Navigation Bar Styling */
+header {
+    background-color: var(--secondary-color);
+    padding: 20px 0;
+    color: var(--text-color);
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 40px;
+    margin-right: 10px;
+}
+
+.logo h1 {
+    font-size: 24px;
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    margin-right: 20px;
+}
+
+.nav-links li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 20px;
+    align-items: center; /* Ensure buttons and separator align properly */
+}
+
+.nav-buttons h1 {
+    color: var(--primary-color);
+    font-size: 24px; /* Adjusted for a larger and more prominent separator */
+    margin-left: 15px;
+    margin-right: 15px;
+    line-height: 1; /* Ensures alignment with the buttons */
+}
+
+/* Button styles */
+button {
+    padding: 8px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out; /* Smooth transitions for hover effects */
+}
+
+/* Specific button styles */
+.login-btn {
+    border: 1px solid var(--border-color);
+    background-color: transparent;
+    color: var(--border-color);
+}
+.login-btn a{
+    text-decoration: none;
+    color: inherit;
+    border: none;
+    box-shadow: none;
+    outline: none; 
+}
+.login-btn:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+  
+    transform: scale(1.02); /* Slight increase in size on hover */
+}
+
+.register-btn {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.register-btn a{
+    text-decoration: none;
+    color: inherit;
+    border: none;
+    box-shadow: none;
+    outline: none;
+}
+
+
+.register-btn:hover {
+    border: 1px solid var(--border-color);
+    background-color: transparent;
+    color: var(--border-color);
+}
+
+.admin-btn {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    border: none;
+}
+
+.admin-btn:hover {
+    color: var(--text-color);
+    transform: scale(1.05); /* Slight increase in size on hover */
+}
+
+button:focus {
+    outline: none;
+} 
+
+
+/* The main section hai yo chahi  */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: var(--secondary-color);
+}
+
+/* Ensures main content centers between header and footer */
+main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2em;
+}
+
+/* Main container for form */
+.form-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 2em;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin-bottom: 1em;
+    color: #333;
+}
+
+label {
+    display: block;
+    text-align: left;
+    font-weight: bold;
+    margin-top: 1em;
+    color: #555;
+}
+
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 0.8em;
+    margin-top: 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+button.sign-in,
+button.google-sign-in {
+    width: 100%;
+    padding: 0.8em;
+    margin-top: 1em;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button.sign-in {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+button.sign-in:hover {
+    background-color: var(--primary-color);
+}
+
+.separator {
+    margin: 1.5em 0;
+    font-size: 0.9em;
+    color: #888;
+}
+
+.terms,
+.signup-link {
+    margin-top: 1em;
+    font-size: 0.85em;
+    color: #666;
+}
+
+.signup-link a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
+}
+
+
+
+
+/* The Footer part begins here */
+footer {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    padding: 40px 0;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    max-width: 1200px; /* Ensures the footer stays contained */
+    margin: 0 auto;
+    gap: 30px; /* Ensures some spacing between items */
+}
+
+.footer-logo {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer-logo h3 {
+    font-size: 24px;
+}
+
+.footer-logo img {
+    width: 150px;
+}
+
+.footer-details p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: space-between;
+    flex: 2;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 150px;
+}
+
+.footer-column h4 {
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.footer-column ul {
+    list-style: none;
+}
+
+.footer-column ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 14px;
+}
+
+
+
+
+
+
+

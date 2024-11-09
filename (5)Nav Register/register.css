@@ -101,6 +101,13 @@ button {
   background-color: transparent;
   color: var(--border-color);
 }
+.login-btn a{
+  text-decoration: none;
+  color: inherit;
+  border: none;
+  box-shadow: none;
+  outline: none; 
+}
 
 .login-btn:hover {
   background-color: var(--primary-color);
@@ -111,15 +118,22 @@ button {
 
 .register-btn {
   background-color: var(--primary-color);
-  color: var(--text-color);
-  border: none;
+  color: #fff;
 }
+
+.register-btn a{
+  text-decoration: none;
+  color: inherit;
+  border: none;
+  box-shadow: none;
+  outline: none;
+}
+
 
 .register-btn:hover {
   border: 1px solid var(--border-color);
   background-color: transparent;
   color: var(--border-color);
-  box-shadow: 0 4px 15px rgba(0, 179, 255, 0.6); /* Pop-out shadow effect */
 }
 
 .admin-btn {
@@ -196,6 +210,26 @@ main{
   cursor: pointer;
 }
 
+
+.register-btn {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+.register-btn a{
+  text-decoration: none;
+  color: inherit;
+  border: none;
+  box-shadow: none;
+  outline: none;
+}
+
+
+.register-btn:hover {
+  border: 1px solid var(--border-color);
+  background-color: transparent;
+  color: var(--border-color);
+}
 
 
 
