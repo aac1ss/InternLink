@@ -1,15 +1,15 @@
-   /* Reset and general styling */
-   * {
+/* Reset and general styling */
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    
 }
 
 body {
     font-family: Arial, sans-serif;
     background-color: #f8f8f8;
 }
+
 :root {
     --primary-color: #00b3ff; /* Main accent color */
     --secondary-color: #18232d; /* Background color for header and footer */
@@ -144,12 +144,11 @@ button {
 .admin-btn:hover {
     color: var(--text-color);
     transform: scale(1.1); /* Slight increase in size on hover */
-    }
+}
 
 button:focus {
     outline: none;
-} 
-
+}
 
 .dashboard-container {
     display: flex;
@@ -213,6 +212,7 @@ button:focus {
 .main-content {
     flex-grow: 1;
     padding: 20px;
+    height: 100vh;
 }
 
 .top-bar {
@@ -264,30 +264,6 @@ button:focus {
     color: #555;
 }
 
-.profile-update {
-    background-color: #e9f5ff;
-    padding: 15px;
-    border-radius: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.profile-update p {
-    font-size: 14px;
-    color: #333;
-}
-
-.add-socials {
-    background-color: #e53e3e;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
 .recent-activities {
     display: flex;
     justify-content: space-between;
@@ -316,55 +292,55 @@ button:focus {
 .recent-details ul {
     list-style: none;
 }
-
-/* Profile Section Styling */
-.profile-form {
+/* Profile section styling */
+#profileContent {
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: none;
 }
 
-.profile-form h2 {
-    margin-bottom: 20px;
-    font-size: 20px;
-    color: #333;
+.profile-form {
+    display: flex;
+    flex-direction: column;
 }
 
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .form-group label {
-    display: block;
+    font-size: 14px;
     font-weight: bold;
-    margin-bottom: 5px;
-    color: #333;
 }
 
-.form-group input, .form-group select, .form-group textarea {
+.form-group input,
+.form-group select,
+.form-group textarea {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
     font-size: 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
 }
 
-.form-group textarea {
-    height: 100px;
-    resize: none;
+textarea {
+    resize: vertical;
 }
 
 .save-btn {
-    background-color: #e53e3e;
-    color: #fff;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    padding: 15px;
     border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
     font-size: 16px;
-    display: block;
-    margin-top: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.save-btn:hover {
+    background-color: #004c8c;
 }
 
 /* Footer Section */
@@ -431,4 +407,3 @@ footer {
     text-decoration: none;
     font-size: 14px;
 }
-
