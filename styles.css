@@ -1,6 +1,6 @@
-
+/*COLOR CODE TYO BLUE:  #18232d */
 :root {
-    --primary-color: #00b3ff; /* Main accent color */
+    --primary-color: #59CBE8; /* Main accent color */
     --secondary-color: #18232d; /* Background color for header and footer */
     --text-color: #fff; /* Text color */
     --bg-color: #f4f4f4; /* Background color for body and sections */
@@ -53,6 +53,7 @@ header {
 }
 
 nav {
+    
     display: flex;
     align-items: center;
 }
@@ -111,13 +112,13 @@ button {
 
 .login-btn:hover {
     background-color: var(--primary-color);
-    color: var(--text-color);
+    color: var(--secondary-color);
     box-shadow: 0 4px 15px rgba(0, 179, 255, 0.6); /* Pop-out shadow effect */
     transform: scale(0.95); /* Slight increase in size on hover */
 }
 
 .register-btn {
-    background-color: var(--primary-color);
+    background-color: var(--border-color);
     color: #fff;
 }
 
@@ -133,7 +134,7 @@ button {
 .register-btn:hover {
     border: 1px solid var(--border-color);
     background-color: transparent;
-    color: var(--border-color);
+    color: var(--primary-color);
 }
 
 .admin-btn {
@@ -143,7 +144,7 @@ button {
 }
 
 .admin-btn:hover {
-    color: var(--text-color);
+    color: var(--primary-color);
     transform: scale(1.1); /* Slight increase in size on hover */
     }
 
@@ -159,7 +160,7 @@ button:focus {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 87vh; /* Full viewport height */
+    height: 89vh; /* Full viewport height */
     text-align: center;
     flex-direction: column;
     width: 100vw; /* Full viewport width */
@@ -253,6 +254,8 @@ button:focus {
     font-weight: 600;
     color: var(--secondary-color);
 }
+
+
 /* About Us Section */
 .about-us {
     width: 100%;
@@ -322,6 +325,100 @@ button:focus {
     color: var(--secondary-color);
     transform: scale(1.05);
 }
+/* How It Works Section */
+.section {
+    width: 100%;
+    padding: 35px 20px;
+    background-color: #c6c6c6;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-title h3 {
+    font-size: 1rem;
+    color: grey;
+    margin-bottom: 10px;
+}
+
+.section-title h2 {
+    font-size: 2.5rem;
+}
+
+.steps-container {
+    display: flex;
+    justify-content: center; /* Center the steps horizontally */
+    gap: 20px;
+    width: 100%;
+    max-width: 960px; /* Ensure the container doesn't stretch too wide */
+}
+
+.step {
+    text-align: center;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    width: 30%;
+}
+
+.step img {
+    width: 100%;
+    max-width: 150px;
+    height: auto;
+    margin-bottom: 15px;
+    border-radius: 8px;
+}
+
+.step-number {
+    font-size: 0.9rem;
+    color: grey;
+    margin-bottom: 10px;
+    display: block;
+}
+
+/* Search and Apply Section */
+.search-and-apply .internship-description {
+    padding: 40px 286px;
+    display: flex;
+    gap: 50px;
+}
+#internship-description{
+   padding:0px ;
+
+}
+
+.search-info h3 {
+    font-size: 1rem;
+    color: grey;
+}
+
+.search-info h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.stats {
+    display: flex;
+    gap: 36px;
+    margin-top: 27px;
+}
+.stat{
+    display: inline-grid;
+    gap:7px;
+}
+
+.stat-h4{
+    font-weight: 400;
+}
+.stat-p{
+    font-weight: 600;
+    font-size: 1.4rem;
+}
 
 
 
@@ -354,11 +451,12 @@ footer {
 }
 
 .footer-logo img {
-    width: 150px;
+    width: 250px;
 }
 
 .footer-details p {
-    margin: 5px 0;
+    margin: 5px 70px;
+    padding: 0px;
     font-size: 14px;
 }
 
@@ -378,6 +476,7 @@ footer {
 .footer-column h4 {
     margin-bottom: 15px;
     font-size: 18px;
+    color: var(--primary-color);
 }
 
 .footer-column ul {
