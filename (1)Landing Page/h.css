@@ -1,3 +1,11 @@
+:root {
+    --primary-color: #59CBE8; /* Main accent color */
+    --secondary-color: #f8f8f8; /* Background color for footer */
+    --text-color: #333; /* Text color for links */
+    --footer-background: #fff; /* Background for footer area */
+    --border-color: #ccc; /* Line separator color */
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -9,30 +17,33 @@ body {
 }
 
 footer {
-    background-color: #f8f8f8;
+    background-color: var(--footer-background);
     padding: 40px 20px;
+    color: var(--text-color);
 }
 
 .footer-content {
     display: flex;
     justify-content: space-between;
-    align-items: start;
+    align-items: flex-start;
     max-width: 1200px;
     margin: 0 auto;
+    gap: 40px; /* Uniform gap between columns */
+}
+
+.footer-column {
+    flex: 1; /* Ensures equal width for all columns */
+    text-align: left;
 }
 
 .footer-logo img {
     max-width: 150px;
 }
 
-.footer-links {
-    display: flex;
-    gap: 50px;
-}
-
 .footer-column h3 {
-    font-size: 18px;
-    margin-bottom: 15px;
+    color: #000;
+    font-size: 16px;
+    margin-bottom: 10px;
 }
 
 .footer-column ul {
@@ -40,12 +51,17 @@ footer {
 }
 
 .footer-column ul li {
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
 .footer-column ul li a {
     text-decoration: none;
-    color: #333;
+    color: var(--text-color);
+    font-size: 14px;
+}
+
+.footer-column ul li a:hover {
+    color: var(--primary-color);
 }
 
 .fsocial-icons {
@@ -53,10 +69,27 @@ footer {
     gap: 20px;
 }
 
-.fsocial-icons a:hover  {
-    filter: brightness(0.3);
+.fsocial-icons a {
+    color: var(--text-color);
 }
 
+.fsocial-icons a i {
+    font-size: 24px;
+    transition: all 0.3s ease;
+}
+
+.fsocial-icons a:hover i {
+    color: var(--primary-color);
+}
+
+/* Separator line */
+.footer-separator {
+    margin-top: 20px;
+    border: 0;
+    border-top: 1px solid var(--border-color);
+}
+
+/* Footer bottom part with equal spacing */
 .footer-bottom {
     display: flex;
     justify-content: space-between;
@@ -64,10 +97,46 @@ footer {
     max-width: 1200px;
     margin: 20px auto 0;
     font-size: 14px;
+    padding: 10px 0;
 }
 
-.footer-bottom-links a {
-    margin-left: 20px;
+/* Left side for Privacy Policy */
+.footer-left {
+    flex: 1;
+    text-align: left;
+}
+
+.footer-left a {
     text-decoration: none;
-    color: #0073e6;
+    color: var(--text-color);
+}
+
+.footer-left a:hover {
+    color: var(--primary-color);
+}
+
+/* Centered part for © 2024 internlink */
+.footer-center {
+    flex: 1;
+    text-align: center;
+}
+
+.footer-center p {
+    margin: 0;
+    color: var(--text-color);
+}
+
+/* Right side for User Agreement */
+.footer-right {
+    flex: 1;
+    text-align: right;
+}
+
+.footer-right a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.footer-right a:hover {
+    color: var(--primary-color);
 }

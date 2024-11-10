@@ -468,6 +468,7 @@ button:focus {
 .discover-primary-btn:hover {
     background-color: #f2f2f2;
     color: #005bb5;
+    scale: 1.1;
 }
 
 .secondary-btn {
