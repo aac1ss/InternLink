@@ -1,8 +1,8 @@
 :root {
     --primary-color: #59CBE8; /* Main accent color */
     --secondary-color: #f8f8f8; /* Background color for footer */
-    --text-color: #333; /* Text color for links */
-    --footer-background: #fff; /* Background for footer area */
+    --text-color: #ffffff; /* Text color for links */
+    --footer-background: #141E30; /* Background for footer area */
     --border-color: #ccc; /* Line separator color */
 }
 
@@ -32,17 +32,16 @@ footer {
 }
 
 .footer-column {
-    flex: 1; /* Ensures equal width for all columns */
     text-align: left;
 }
 
 .footer-logo img {
-    max-width: 150px;
+    max-width: 250px;
 }
 
 .footer-column h3 {
-    color: #000;
-    font-size: 16px;
+    color: var(--primary-color);
+    font-size: 18px;
     margin-bottom: 10px;
 }
 

@@ -66,6 +66,10 @@ nav {
     gap: 30px;
     margin-right: 20px;
 }
+.nav-links li a:hover {
+    color: var(--primary-color);
+    transition: 0.4s;
+}
 
 .nav-links li a {
     color: var(--text-color);
@@ -425,11 +429,23 @@ button:focus {
 /* Get Your Intenship With More Ease  */
 
 .discover {
-    background-color: #0073e6;
+    background-color: var(--border-color); 
     color: white;
     text-align: center;
     padding: 100px 20px;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    position: relative; 
+}
+
+#watermark {
+    position: absolute;
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    opacity: 9%; 
+    width: 250px;
+    height: 250px;
+    z-index: 0; 
 }
 
 .discover-content h1 {
@@ -481,8 +497,136 @@ button:focus {
     background-color: white;
     color: #0073e6;
 }
+/* FOOTER */
 
-/* Footer Section */
+footer {
+    background-color: var(--secondary-color);
+    padding: 40px 20px;
+    color: var(--text-color);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 40px; /* Uniform gap between columns */
+}
+
+.footer-column {
+    text-align: left;
+}
+
+.footer-logo img {
+    max-width: 250px;
+}
+
+.footer-column h3 {
+    color: var(--primary-color);
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.footer-column ul {
+    list-style-type: none;
+}
+
+.footer-column ul li {
+    margin-bottom: 8px;
+}
+
+.footer-column ul li a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 14px;
+}
+
+.footer-column ul li a:hover {
+    color: var(--primary-color);
+}
+
+.fsocial-icons {
+    display: flex;
+    gap: 20px;
+}
+
+.fsocial-icons a {
+    color: var(--text-color);
+}
+
+.fsocial-icons a i {
+    font-size: 24px;
+    transition: all 0.3s ease;
+}
+
+.fsocial-icons a:hover i {
+    color: var(--primary-color);
+}
+
+/* Separator line */
+.footer-separator {
+    margin-top: 20px;
+    border: 0;
+    border-top: 1px solid var(--text-color);
+}
+
+/* Footer bottom part with equal spacing */
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 20px auto 0;
+    font-size: 14px;
+    padding: 10px 0;
+}
+
+/* Left side for Privacy Policy */
+.footer-left {
+    flex: 1;
+    text-align: left;
+}
+
+.footer-left a {
+    text-decoration: none;
+    color: #a6a6a6;
+}
+
+.footer-left a:hover {
+    color: var(--text-color);
+}
+
+/* Centered part for © 2024 internlink */
+.footer-center {
+    flex: 1;
+    text-align: center;
+}
+
+.footer-center p {
+    margin: 0;
+    color: var(--text-color);
+}
+
+/* Right side for User Agreement */
+.footer-right {
+    flex: 1;
+    text-align: right;
+}
+
+.footer-right a {
+    text-decoration: none;
+    color: #a6a6a6;
+}
+
+.footer-right a:hover {
+    color: var(--text-color);
+}
+
+
+
+
+/*
 footer {
     background-color: var(--secondary-color);
     color: var(--text-color);
@@ -494,9 +638,9 @@ footer {
     justify-content: space-between;
     align-items: flex-start;
     flex-wrap: wrap;
-    max-width: 1200px; /* Ensures the footer stays contained */
+    max-width: 1200px; 
     margin: 0 auto;
-    gap: 30px; /* Ensures some spacing between items */
+    gap: 30px;
 }
 
 .footer-logo {
@@ -548,4 +692,4 @@ footer {
     text-decoration: none;
     font-size: 14px;
 }
-
+*/
