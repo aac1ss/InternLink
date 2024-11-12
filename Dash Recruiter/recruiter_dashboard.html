@@ -1,104 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recruiter Dashboard</title>
-    <link rel="stylesheet" href="/Dash Recruiter/recruiter_dashboard.css" />
-  </head>
-  <body>
+    <link rel="stylesheet" href="/Dash Recruiter/recruiter_dashboard.css">
+</head>
+<body>
     <!-- Dummy Navigation Bar -->
     <nav class="dummy-nav">
-      <h2>Navigation Bar</h2>
+        <h2>Navigation Bar</h2>
     </nav>
 
     <div class="container">
-      <!-- Sidebar -->
-      <aside class="sidebar">
-        <nav class="sidebar-nav">
-          <a href="#dashboard" class="active">Dashboard</a>
-          <a href="#company-profile">Company Profile</a>
-          <a href="#internships-jobs">Internships/Jobs</a>
-          <a href="#manage-applicants">Manage Applicants</a>
-          <a href="#membership">Membership</a>
-          <a href="#contact-us">Contact Us</a>
-          <a href="#setting">Setting</a>
-        </nav>
-        <div class="logout">
-          <a href="#logout">Logout</a>
-        </div>
-      </aside>
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <nav class="sidebar-nav">
+                <a href="#dashboard" class="active">Dashboard</a>
+                <a href="#company-profile">Company Profile</a>
+                <a href="#internships-jobs">Internships/Jobs</a>
+                <a href="#manage-applicants">Manage Applicants</a>
+                <a href="#membership">Membership</a>
+                <a href="#contact-us">Contact Us</a>
+                <a href="#setting">Setting</a>
+            </nav>
+            <div class="logout">
+                <a href="#logout">Logout</a>
+            </div>
+        </aside>
 
-      <!-- Main Content -->
-      <main class="main-content">
-        <!-- Fixed Header -->
-        <header class="header">
-          <h1>Welcome back! Asdasd Aaaa</h1>
-        </header>
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Fixed Header -->
+            <header class="header">
+                <h1>Welcome back! Asdasd Aaaa</h1>
+            </header>
 
-        <!-- DashBoard -->
-        <section id="dashboard" class="section">
-          <div class="profile-completion">
-            <p>
-              You haven’t completed your profile yet. Take a few minutes to fill
-              out your profile.
-            </p>
-            <ul>
-              <li>Upload Company Images</li>
-              <li>Add Social Links</li>
-            </ul>
-            <button>Complete Now →</button>
-          </div>
-          <div class="post-job">
-            <h2>Post your Internship/Job</h2>
-            <p>
-              Find the perfect fit for your team - post your job with us today!
-            </p>
-            <button>Post an Internship/Job →</button>
-          </div>
-          <div class="stats">
-            <div>Total Jobs<br />0</div>
-            <div>Total Applicants<br />0</div>
-            <div>Shortlisted<br />0</div>
-            <div>Views<br />0</div>
-          </div>
-        </section>
+            <!-- Dashboard -->
+            <section id="dashboard" class="section">
+                <div class="profile-completion">
+                    <p>You haven’t completed your profile yet. Take a few minutes to fill out your profile.</p>
+                    <ul>
+                        <li>Upload Company Images</li>
+                        <li>Add Social Links</li>
+                    </ul>
+                    <button>Complete Now →</button>
+                </div>
+                <div class="post-job">
+                    <h2>Post your Internship/Job</h2>
+                    <p>Find the perfect fit for your team - post your job with us today!</p>
+                    <button>Post an Internship/Job →</button>
+                </div>
+                <div class="stats">
+                    <div>Total Jobs<br>0</div>
+                    <div>Total Applicants<br>0</div>
+                    <div>Shortlisted<br>0</div>
+                    <div>Views<br>0</div>
+                </div>
+            </section>
 
-        <!-- DashBoard -->
-        <section id="company-profile" class="section">
-          Company Profile Content Here
-        </section>
+            <!-- Company Profile -->
+            <section id="company-profile" class="section">
+                <div class="content">
+                    <h2>Company Profile</h2>
+                    <form class="company-profile-form">
+                        <h3>Company Information</h3>
+                        <div class="form-group">
+                            <label>Company Name*</label>
+                            <input type="text" placeholder="Enter company name">
+                        </div>
+                        <div class="form-group">
+                            <label>Industry*</label>
+                            <input type="text" placeholder="e.g., Technology, Finance">
+                        </div>
+                        <div class="form-group">
+                            <label>Company Size*</label>
+                            <select>
+                                <option>1-10 Employees</option>
+                                <option>11-50 Employees</option>
+                                <option>51-200 Employees</option>
+                                <option>201-500 Employees</option>
+                                <option>500+ Employees</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Company Website</label>
+                            <input type="url" placeholder="e.g., www.company.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Company Description*</label>
+                            <textarea placeholder="Write a brief description..."></textarea>
+                        </div>
 
-        <!-- DashBoard -->
-        <section id="internships-jobs" class="section">
-          Internships/Jobs Content Here
-        </section>
-        
-        <!-- DashBoard -->
-        <section id="manage-applicants" class="section">
-          Manage Applicants Content Here
-        </section>
-        
-        <!-- DashBoard -->
-        <section id="membership" class="section">
-          Membership Content Here
-        </section>
-        
-        <!-- DashBoard -->
-        <section id="contact-us" class="section">
-          Contact Us Content Here
-        </section>
-        
-        <!-- DashBoard -->
-        <section id="setting" class="section">Settings Content Here</section>
-      </main>
+                        <h3>Contact Information</h3>
+                        <div class="form-group">
+                            <label>Contact Person Name*</label>
+                            <input type="text" placeholder="Enter contact person's name">
+                        </div>
+                        <div class="form-group">
+                            <label>Contact Position*</label>
+                            <input type="text" placeholder="e.g., HR Manager">
+                        </div>
+                        <div class="form-group">
+                            <label>Contact Email*</label>
+                            <input type="email" placeholder="Enter contact email">
+                        </div>
+                        <div class="form-group">
+                            <label>Contact Phone Number*</label>
+                            <input type="tel" placeholder="e.g., (123) 456-7890">
+                        </div>
+                        <div class="form-group">
+                            <label>Office Address*</label>
+                            <input type="text" placeholder="Enter office address">
+                        </div>
+
+                        <h3>Social Links</h3>
+                        <div class="form-group">
+                            <label>LinkedIn Profile</label>
+                            <input type="url" placeholder="LinkedIn URL">
+                        </div>
+                        <div class="form-group">
+                            <label>Twitter Handle</label>
+                            <input type="text" placeholder="Twitter handle">
+                        </div>
+                        <div class="form-group">
+                            <label>Facebook Page</label>
+                            <input type="url" placeholder="Facebook URL">
+                        </div>
+                        <div class="form-group">
+                            <label>Other</label>
+                            <input type="url" placeholder="Other social link">
+                        </div>
+
+                        <h3>Documents</h3>
+                        <div class="form-group">
+                            <label>Upload Company Logo</label>
+                            <input type="file">
+                        </div>
+                        <div class="form-group">
+                            <label>Upload Registration Document</label>
+                            <input type="file">
+                        </div>
+
+                        <button type="submit" class="save-btn">Save</button>
+                    </form>
+                </div>
+            </section>
+        </main>
     </div>
 
     <!-- Dummy Footer -->
     <footer class="dummy-footer">
-      <p>Footer Content</p>
+        <p>Footer Content</p>
     </footer>
 
     <script src="/Dash Recruiter/recruiter_dashboard.js"></script>
-  </body>
+</body>
 </html>
