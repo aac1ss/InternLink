@@ -46,6 +46,8 @@ body {
 .sidebar {
     width: 250px;
     background-color: var(--sidebar-bg);
+    /* background-color: #5a58cb; */
+    /* background: linear-gradient(to right,  #6b69db, #4b49ac ); */
     padding-top: 10px;
     padding-left: 20px;
     display: flex;
