@@ -1,0 +1,161 @@
+/* Color Variables */
+:root {
+    --sidebar-bg: #141E30;
+    --text-color-white: #fff;
+    --sidebar-link-color: #333;
+    --sidebar-active-bg: #f0f0f0;
+    --logout-bg: #f8d7da;
+    --logout-text: #721c24;
+    --header-bg: #ffffff;
+    --main-bg: #ffffff;
+    --profile-completion-bg: #f4f4f4;
+    --button-bg: #dc3545;
+    --button-text: #ffffff;
+    --dummy-nav-footer-bg: #000000;
+    --dummy-nav-footer-text: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: var(--sidebar-link-color);
+    background-color: var(--main-bg);
+}
+
+/* Dummy Navigation Bar */
+.dummy-nav {
+    background-color: var(--dummy-nav-footer-bg);
+    color: var(--dummy-nav-footer-text);
+    padding: 20px;
+    text-align: center;
+}
+
+/* Sidebar */
+.container {
+    display: flex;
+    min-height: 91vh;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: var(--sidebar-bg);
+    padding-top: 10px;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    border-right: 1px solid #ddd;
+}
+
+.sidebar-nav {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.sidebar-nav a {
+    text-decoration: none;
+    color: var(--text-color-white);
+    padding: 10px 15px;
+    display: block;
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.sidebar-nav a.active, .sidebar-nav a:hover {
+    color: #7b93be;
+    font-weight:500;
+}
+
+.logout {
+    margin-top: 240px;
+    margin-left: 15px;
+}
+
+.logout a {
+    text-decoration: none;
+    color: var(--logout-text);
+    padding: 10px 15px;
+    display: block;
+    border-radius: 5px;
+    background-color: var(--logout-bg);
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    padding: 20px;
+}
+
+.header {
+    background-color: var(--header-bg);
+    padding: 20px;
+    font-size: 1.5em;
+    font-weight: bold;
+    border-bottom: 1px solid #ddd;
+}
+
+.section {
+    display: none;
+}
+
+.section:target {
+    display: block;
+}
+
+#dashboard {
+    display: block; /* Default visible section */
+}
+
+.profile-completion, .post-job, .stats {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: var(--profile-completion-bg);
+    border-radius: 5px;
+}
+
+.profile-completion button, .post-job button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    color: var(--button-text);
+    background-color: var(--button-bg);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.profile-completion ul {
+    list-style-type: disc;
+    margin: 10px 0 0 20px;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.stats div {
+    padding: 10px;
+    flex: 1;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.stats div:last-child {
+    margin-right: 0;
+}
+
+/* Dummy Footer */
+.dummy-footer {
+    background-color: var(--dummy-nav-footer-bg);
+    color: var(--dummy-nav-footer-text);
+    text-align: center;
+    padding: 15px;
+}
