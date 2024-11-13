@@ -300,10 +300,10 @@ textarea {
     padding: 15px;
 }
 .arko{
+    justify-content: center;
+    align-items: center;
     padding: 10px;
     width: 20%;
     background-color: var(--btn-color-new);    
-}
-.arko > a{
     color: var(--button-text);
 }
