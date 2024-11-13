@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recruiter Dashboard</title>
-    <link rel="stylesheet" href="/Dash Recruiter/recruiter_dashboard.css">
+    <link rel="stylesheet" href="/DashBoard/Recruiter/recruiter_dashboard.css">
 </head>
 <body>
     <!-- Dummy Navigation Bar -->
@@ -47,9 +47,9 @@
                     <button>Complete Now →</button>
                 </div>
                 <div class="post-job">
-                    <h2>Post your Internship/Job</h2>
+                    <h2>Post your Internship</h2>
                     <p>Find the perfect fit for your team - post your job with us today!</p>
-                    <button>Post an Internship/Job →</button>
+                    <button>Post an Internship →</button>
                 </div>
                 <div class="stats">
                     <div>Total Jobs<br>0</div>
@@ -67,11 +67,11 @@
                         <h3>Company Information</h3>
                         <div class="form-group">
                             <label>Company Name*</label>
-                            <input type="text" placeholder="Enter company name">
+                            <input type="text" placeholder="Enter company name" required>
                         </div>
                         <div class="form-group">
                             <label>Industry*</label>
-                            <input type="text" placeholder="e.g., Technology, Finance">
+                            <input type="text" placeholder="e.g., Technology, Finance" required>
                         </div>
                         <div class="form-group">
                             <label>Company Size*</label>
@@ -89,7 +89,7 @@
                         </div>
                         <div class="form-group">
                             <label>Company Description*</label>
-                            <textarea placeholder="Write a brief description..."></textarea>
+                            <textarea placeholder="Write a brief description..." required></textarea>
                         </div>
 
                         <h3>Contact Information</h3>
@@ -151,9 +151,12 @@
 
     <!-- Dummy Footer -->
     <footer class="dummy-footer">
+        <div class="arko">
+            <a href="/DashBoard/Candidate/candidate_dashboard.html" style="text-decoration: none;"> Go to Candidate DashBoard</a>
+        </div>
         <p>Footer Content</p>
     </footer>
 
-    <script src="/Dash Recruiter/recruiter_dashboard.js"></script>
+    <script src="/DashBoard/Recruiter/recruiter_dashboard.js"></script>
 </body>
 </html>

@@ -3,6 +3,7 @@
     --sidebar-bg: #141E30;
     --text-color-white: #fff;
     --hover-color-sidebar:#7b93be;
+    --btn-color-new:#004c8c;
 
     --sidebar-link-color: #333;
     --sidebar-active-bg: #f0f0f0;
@@ -46,6 +47,8 @@ body {
 .sidebar {
     width: 250px;
     background-color: var(--sidebar-bg);
+    /* background-color: #5a58cb; */
+    /* background: linear-gradient(to right,  #6b69db, #4b49ac ); */
     padding-top: 10px;
     padding-left: 20px;
     display: flex;
@@ -134,9 +137,16 @@ body {
     margin-top: 10px;
     padding: 10px 20px;
     color: var(--button-text);
-    background-color: var(--button-bg);
+    background-color: var(--sidebar-bg);
     border: none;
     border-radius: 5px;
+    cursor: pointer;
+}
+.profile-completion button:hover, .post-job button:hover{
+    margin-top: 10px;
+    padding: 10px 20px;
+    color: var(--button-text);
+    background-color: #003a6a;
     cursor: pointer;
 }
 
@@ -271,6 +281,7 @@ textarea {
     background-color: var(--sidebar-bg);
     color: #fff;
     padding: 15px;
+    width: 5%;
     border: none;
     font-size: 16px;
     cursor: pointer;
@@ -287,4 +298,12 @@ textarea {
     color: var(--dummy-nav-footer-text);
     text-align: center;
     padding: 15px;
+}
+.arko{
+    padding: 10px;
+    width: 20%;
+    background-color: var(--btn-color-new);    
+}
+.arko > a{
+    color: var(--button-text);
 }
