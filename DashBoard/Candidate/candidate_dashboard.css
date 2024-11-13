@@ -14,6 +14,10 @@
     --text-color: #fff; /* Text color */
     --bg-color: #f4f4f4; /* Background color for body and sections */
     --border-color: #00b3ff; /* Border color for buttons */
+    --dummy-nav-footer-bg: #000000;
+    --dummy-nav-footer-text: #ffffff;
+    --btn-color-new:#004c8c;
+
 }
 
 body {
@@ -335,131 +339,19 @@ textarea {
 
 .save-btn:hover {
     background-color: #004c8c;
-}/* FOOTER */
-
-footer {
-    background-color: var(--secondary-color);
-    padding: 40px 20px;
-    color: var(--text-color);
-    bottom: 0;
-    margin-top: 2px;
 }
 
-.footer-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    max-width: 1200px;
-    margin: 0 auto;
-    gap: 40px; /* Uniform gap between columns */
-}
-
-.footer-column {
-    text-align: left;
-}
-
-.footer-logo img {
-    max-width: 250px;
-}
-
-.footer-column h3 {
-    color: var(--primary-color);
-    font-size: 18px;
-    margin-bottom: 10px;
-}
-
-.footer-column ul {
-    list-style-type: none;
-}
-
-.footer-column ul li {
-    margin-bottom: 8px;
-}
-
-.footer-column ul li a {
-    text-decoration: none;
-    color: var(--text-color);
-    font-size: 14px;
-}
-
-.footer-column ul li a:hover {
-    color: var(--primary-color);
-}
-
-.fsocial-icons {
-    display: flex;
-    gap: 20px;
-}
-
-.fsocial-icons a {
-    color: var(--text-color);
-}
-
-.fsocial-icons a i {
-    font-size: 24px;
-    transition: all 0.3s ease;
-}
-
-.fsocial-icons a:hover i {
-    color: var(--primary-color);
-}
-
-/* Separator line */
-.footer-separator {
-    margin-top: 20px;
-    border: 0;
-    border-top: 1px solid var(--text-color);
-}
-
-/* Footer bottom part with equal spacing */
-.footer-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 20px auto 0;
-    font-size: 14px;
-    padding: 10px 0;
-}
-
-/* Left side for Privacy Policy */
-.footer-left {
-    flex: 1;
-    text-align: left;
-}
-
-.footer-left a {
-    text-decoration: none;
-    color: #a6a6a6;
-}
-
-.footer-left a:hover {
-    color: var(--text-color);
-}
-
-/* Centered part for © 2024 internlink */
-.footer-center {
-    flex: 1;
+/* Dummy Footer */
+.dummy-footer {
+    background-color: var(--dummy-nav-footer-bg);
+    color: var(--dummy-nav-footer-text);
     text-align: center;
+    padding: 15px;
 }
-
-.footer-center p {
-    margin: 0;
-    color: var(--text-color);
-}
-
-/* Right side for User Agreement */
-.footer-right {
-    flex: 1;
-    text-align: right;
-}
-
-.footer-right a {
-    text-decoration: none;
-    color: #a6a6a6;
-}
-
-.footer-right a:hover {
-    color: var(--text-color);
+.arko{
+    padding: 10px;
+    width: 20%;
+    background-color: var(--btn-color-new);    
+    color: var(--bg-color);
 }
 
