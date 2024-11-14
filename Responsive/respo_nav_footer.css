@@ -8,6 +8,7 @@
 }
 
 /* Tablets and Small Desktops */
+
 @media (max-width: 992px) {
     .nav-links {
         gap: 20px;
