@@ -1,0 +1,193 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    color: #fff;
+    padding: 15px 50px;
+}
+
+.navbar .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.navbar .nav-links {
+    list-style-type: none;
+    display: flex;
+    gap: 20px;
+}
+
+.navbar .nav-links li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 15px;
+}
+
+.navbar .nav-links li a:hover {
+    background-color: #555;
+    border-radius: 5px;
+}
+
+/* Internship List Section */
+.internship-list-section {
+    display: flex;
+    justify-content: center;
+    margin: 50px 0;
+}
+
+.internship-list {
+    width: 80%;
+}
+
+/* Full-Width Internship Card */
+.internship-card {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.internship-card:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.company-logo {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    margin-right: 40px;
+}
+
+.job-overview h3 {
+    font-size: 1.6rem;
+    margin-bottom: 5px;
+}
+
+.company-name {
+    color: #666;
+    font-size: 1.1rem;
+}
+
+.job-details {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.tags {
+    display: flex;
+    gap: 10px;
+    margin-left: 140px;
+    margin-bottom: 20px;
+}
+
+/* Card Footer */
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.details-btn {
+    background-color: #ff4b5c;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#days-left{
+    margin-bottom: 21px;
+    margin-left: 140px;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    max-width: 600px;
+    max-height: 70vh; /* Reduces the height to 70% of the viewport */
+    border-radius: 10px;
+    overflow-y: auto; /* Adds scroll if content exceeds max-height */
+    animation: slide-in 0.3s ease;
+}
+
+.modal-header h2 {
+    font-size: 1.8rem;
+}
+
+.modal-body {
+    padding: 15px 0;
+}
+
+.modal-job-details p {
+    margin-bottom: 10px;
+}
+
+.modal-body h3 {
+    font-size: 1.3rem;
+    margin-top: 20px;
+}
+
+.modal-body ul {
+    list-style-type: disc;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.apply-btn {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+/* Slide-in animation */
+@keyframes slide-in {
+    from {
+        transform: translateY(-20%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
