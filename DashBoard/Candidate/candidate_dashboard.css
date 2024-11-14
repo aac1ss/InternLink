@@ -340,7 +340,6 @@ textarea {
 .save-btn:hover {
     background-color: #004c8c;
 }
-
 /* Dummy Footer */
 .dummy-footer {
     background-color: var(--dummy-nav-footer-bg);
