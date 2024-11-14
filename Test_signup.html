@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,6 +8,8 @@
     <link rel="stylesheet" type="text/css" href="">
 </head>
 <body>
+
+    <!-- Main Part  -->
     <div class="container" id="main">
         <div class="Login-recruiter">
             <form action="#">
@@ -43,20 +45,32 @@
         <!-- Overlay ko lagi  -->
          <div class="overlay-container">
             <div class="overlay">
-                <div class="overlay-left">
+                <div class="overlay-right">
                     <h1>Are you a Recruiter?</h1>
-                    <P>If yes, Find the best candidate for you company through InternLink By Signing Up</P>
-                    <button id="SignUp">SignUp</button>
+                    <P>If yes, Find the best candidate for you company through InternLink By quickly Signing Up </P>
+                    <button id="RSignUp">SignUp</button>
                 </div>
 
-                <div class="overlay-right">
+                <div class="overlay-left">
                     <h1>Are you looking for best Internship Oppourtunity?
                     </h1>
                     <P>If yes, Apply for your  Internship today by signing up to Internlink</P>
-                    <button id="SignUp">SignUp </button>
+                    <button id="CSignUp">SignUp </button>
                 </div>
             </div>
          </div>
     </div>
+    <script type="text/javascript">
+        const CsignUpButton= document.getElementById('CSignUp');
+        const RsignUpButton= document.getElementById('RSignUp');
+        const main=document.getElementById('main');
+
+        CsignUpButton.addEventListener('click',() => {
+            main.classlist.add("right-panel-active");
+        })
+        RsignUpButton.addEventListener('click',() => {
+            main.classlist.remove("right-panel-active");
+        })
+    </script>
 </body>
 </html>
