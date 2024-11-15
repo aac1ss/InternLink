@@ -1,5 +1,5 @@
 /* Base Styles (Desktop Default) */
-/* Navigation Bar Styling */
+
 header {
     background-color: var(--secondary-color);
     padding: 20px 0;
@@ -57,15 +57,15 @@ nav {
 .nav-buttons {
     display: flex;
     gap: 20px;
-    align-items: center; /* Ensure buttons and separator align properly */
+    align-items: center; 
 }
 
 .nav-buttons h1 {
     color: var(--primary-color);
-    font-size: 24px; /* Adjusted for a larger and more prominent separator */
+    font-size: 24px;
     margin-left: 15px;
     margin-right: 15px;
-    line-height: 1; /* Ensures alignment with the buttons */
+    line-height: 1;
 }
 
 /* Button styles */
@@ -75,7 +75,7 @@ button {
     font-size: 14px;
     font-weight: bold;
     cursor: pointer;
-    transition: all 0.3s ease-in-out; /* Smooth transitions for hover effects */
+    transition: all 0.3s ease-in-out;
 }
 
 /* Specific button styles */
@@ -96,8 +96,8 @@ button {
 .login-btn:hover {
     background-color: var(--primary-color);
     color: var(--secondary-color);
-    box-shadow: 0 4px 15px rgba(0, 179, 255, 0.6); /* Pop-out shadow effect */
-    transform: scale(0.95); /* Slight shrink on hover */
+    box-shadow: 0 4px 15px rgba(0, 179, 255, 0.6); 
+    transform: scale(0.95);
 }
 
 .register-btn {
@@ -127,24 +127,24 @@ button {
 
 .admin-btn:hover {
     color: var(--primary-color);
-    transform: scale(1.1); /* Slight increase in size on hover */
+    transform: scale(1.1); 
 }
 
 button:focus {
     outline: none;
 }
 
-/* Responsive Styles */
+
 /* Large Desktops and Laptops */
 @media (max-width: 1200px) {
     .nav-links {
-        gap: 20px; /* Reduce the gap between links */
+        gap: 20px;
     }
     .logo img {
-        width: 180px; /* Reduce logo size */
+        width: 180px; 
     }
     .nav-buttons button {
-        padding: 8px 18px; /* Slightly smaller buttons */
+        padding: 8px 18px;
     }
 }
 
@@ -189,7 +189,7 @@ button:focus {
         gap: 10px;
     }
     .nav-buttons h1 {
-        display: none; /* Remove the vertical separator on small screens */
+        display: none; 
     }
     .nav-buttons button {
         width: 100%;
