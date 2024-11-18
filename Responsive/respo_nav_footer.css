@@ -147,7 +147,7 @@ button:focus {
 
     .nav-links li,
     .nav-buttons button {
-        margin: 10px 0;
+        margin: 10px 20;
         text-align: center;
     }
 
@@ -155,6 +155,8 @@ button:focus {
     .hamburger {
         display: flex;
         flex-direction: column;
+        margin-right: 30px;
+        margin-left: auto;
         justify-content: space-between;
         width: 25px;
         height: 20px;
@@ -202,7 +204,10 @@ button:focus {
 
     .nav-links,
     .nav-buttons {
+        background: #192438;
+        
         top: 50px; /* Adjust dropdown position for smaller screens */
         width: 100%; /* Full-width dropdown */
-    }
+    
+}
 }

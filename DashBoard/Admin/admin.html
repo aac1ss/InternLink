@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recruiter Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="admin.css"
+    />
+  </head>
+  <body>
+    <!-- Dummy Navigation Bar -->
+    <nav class="dummy-nav">
+      <h2>Navigation Bar</h2>
+    </nav>
+
+    <div class="container">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <nav class="sidebar-nav">
+          <a href="#dashboard" class="active">Dashboard</a>
+          <a href="#internships">Internships</a>
+          <a href="#manage-applicants">Manage Recruiters</a>
+          <a href="#membership">Membership </a>
+          <a href="#contact-us">Contact Us</a>
+          <a href="#setting">Setting</a>
+        </nav>
+        <div class="logout">
+          <a href="#logout">Logout</a>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <!-- Fixed Header -->
+        <header class="header">
+          <h1>Welcome back! Asdasd Aaaa</h1>
+        </header>
+
+        <!-- Dashboard -->
+        <section id="dashboard" class="section">
+          <div class="profile-completion">
+            <p>
+              You haven’t completed your profile yet. Take a few minutes to fill
+              out your profile.
+            </p>
+            <ul>
+              <li>Upload Company Images</li>
+              <li>Add Social Links</li>
+            </ul>
+            <button>Complete Now →</button>
+          </div>
+          <div class="post-internship">
+            <h2>Post your Internship</h2>
+            <p>
+              Find the perfect fit for your team - post your Internship with us today!
+            </p>
+            <button>Post an Internship →</button>
+          </div>
+          <div class="stats">
+            <div>Total Internships<br />0</div>
+            <div>Total Applicants<br />0</div>
+            <div>Shortlisted<br />0</div>
+            <div>Views<br />0</div>
+          </div>
+        </section>
+
+      
+      
+        <section id="internships-jobs" class="section">
+    <div class="content">
+        <h2>Your Posted Internships</h2>
+        <table class="internship-table">
+            <thead>
+                <tr>
+                    <th>Position</th>
+                    <th>Status</th>
+                    <th>Posted Date</th>
+                    <th>Deadline</th>
+                    <th>Applications</th>
+                    <th>Duration</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Software Developer Intern</td>
+                    <td class="status active">Active</td>
+                    <td>01 Nov 2024</td>
+                    <td>30 Nov 2024</td>
+                    <td>50</td>
+                    <td>3 months</td>
+                    <td>
+                        <button class="extend-btn">Extend Deadline</button>
+                        <button class="remove-btn">Remove Listing</button>
+                        <button class="view-applicants-btn">View Applicants</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Marketing Intern</td>
+                    <td class="status closed">Closed</td>
+                    <td>01 Oct 2024</td>
+                    <td>01 Nov 2024</td>
+                    <td>75</td>
+                    <td>6 months</td>
+                    <td>
+                        <button class="reactivate-btn">Reactivate</button>
+                        <button class="view-applicants-btn">View Applicants</button>
+                    </td>
+                </tr>
+                <!-- Add more internship rows as needed -->
+            </tbody>
+        </table>
+    </div>
+</section>
+<section id="internships" class="section">
+  <div class="content">
+      <h2>Your Posted Internships</h2>
+      <table class="internship-table">
+          <thead>
+              <tr>
+                  <th>Position</th>
+                  <th>Status</th>
+                  <th>Posted Date</th>
+                  <th>Deadline</th>
+                  <th>Applications</th>
+                  <th>Duration</th>
+                  <th>Actions</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <td>Software Developer Intern</td>
+                  <td class="status active">Active</td>
+                  <td>01 Nov 2024</td>
+                  <td>30 Nov 2024</td>
+                  <td>50</td>
+                  <td>3 months</td>
+                  <td class="action-buttons">
+                      <button class="extend-btn">Extend Deadline</button>
+                      <button class="remove-btn">Remove Listing</button>
+                      <a href="manage-applicants.html" class="view-applicants-btn">View Applicants</a>
+                  </td>
+              </tr>
+              <tr>
+                  <td>Marketing Intern</td>
+                  <td class="status closed">Closed</td>
+                  <td>01 Oct 2024</td>
+                  <td>01 Nov 2024</td>
+                  <td>75</td>
+                  <td>6 months</td>
+                  <td class="action-buttons">
+                      <button class="extend-btn">Extend Deadline</button>
+                      <button class="remove-btn" disabled>Remove Listing</button>
+                      <a href="manage-applicants.html" class="view-applicants-btn">View Applicants</a>
+                  </td>
+              </tr>
+              <!-- Add more internship rows as needed -->
+          </tbody>
+      </table>
+  </div>
+</section>
+
+            <!-- Setting Section -->
+              <section id="setting" class="section">
+              <div class="content">
+                <h2>Settings</h2>
+                <form class="settings-form">
+                  <div class="form-group">
+                    <label>Account Email</label>
+                    <input type="email" placeholder="Enter your email" required />
+                  </div>
+                  <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" placeholder="Enter new password" />
+                  </div>
+                  <div class="form-group">
+                    <label>Notification Preferences</label>
+                    <select>
+                      <option>Email Notifications</option>
+                      <option>SMS Notifications</option>
+                      <option>Push Notifications</option>
+                    </select>
+                  </div>
+                  <button type="submit" class="save-btn">Save Changes</button>
+                </form>
+              </div>
+            </section>
+        
+            <!-- Manage Applicants Section -->
+            <section id="manage-applicants" class="section">
+              <div class="content">
+                <h2>Manage Applicants</h2>
+                <table class="applicants-table">
+                  <thead>
+                    <tr>
+                      <th>Applicant Name</th>
+                      <th>Position Applied</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>John Doe</td>
+                      <td>Software Intern</td>
+                      <td>Under Review</td>
+                      <td>
+                        <button class="action-btn approve">Approve</button>
+                        <button class="action-btn reject">Reject</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Jane Smith</td>
+                      <td>Data Analyst Intern</td>
+                      <td>Interview Scheduled</td>
+                      <td>
+                        <button class="action-btn approve">Approve</button>
+                        <button class="action-btn reject">Reject</button>
+                      </td>
+                    </tr>
+                    <!-- Additional rows as needed -->
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <!-- Contact Admin Section -->
+<section id="contact-us" class="section">
+  <div class="content">
+    <h2>Contact Admin</h2>
+    <form class="contact-admin-form">
+      <h3>Get in Touch</h3>
+      <div class="form-group">
+        <label for="subject">Subject*</label>
+        <input type="text" id="subject" placeholder="Enter subject" required />
+      </div>
+      <div class="form-group">
+        <label for="message">Message*</label>
+        <textarea id="message" placeholder="Write your message here..." required></textarea>
+      </div>
+      <h3>Your Contact Information</h3>
+      <div class="form-group">
+        <label for="admin-contact-name">Your Name*</label>
+        <input type="text" id="admin-contact-name" placeholder="Enter your name" required />
+      </div>
+      <div class="form-group">
+        <label for="admin-contact-email">Your Email*</label>
+        <input type="email" id="admin-contact-email" placeholder="Enter your email" required />
+      </div>
+      <button type="submit" class="send-btn">Send Message</button>
+    </form>
+  </div>
+</section>
+<section id="membership" class="section">
+  <div class="content">
+      <h2>Choose Your Membership Plan</h2>
+      <div class="membership-plans">
+          <!-- Plan Cards -->
+          <div class="plan-card">
+              <h3>Basic Plan</h3>
+              <p class="price">$29/month</p>
+              <p>Access to 10 Internship postings</p>
+              <p>Basic support</p>
+              <button class="select-plan-btn" onclick="showPaymentPopup('Basic Plan', '$29/month')">Choose Plan</button>
+          </div>
+          <div class="plan-card">
+              <h3>Standard Plan</h3>
+              <p class="price">$49/month</p>
+              <p>Access to 20 Internship postings</p>
+              <p>Priority support</p>
+              <button class="select-plan-btn" onclick="showPaymentPopup('Standard Plan', '$49/month')">Choose Plan</button>
+          </div>
+          <div class="plan-card">
+              <h3>Premium Plan</h3>
+              <p class="price">$99/month</p>
+              <p>Unlimited Internship postings</p>
+              <p>Dedicated support</p>
+              <button class="select-plan-btn" onclick="showPaymentPopup('Premium Plan', '$99/month')">Choose Plan</button>
+          </div>
+      </div>
+  </div>
+
+  <!-- Payment Popup -->
+  <div id="payment-popup" class="payment-popup">
+      <div class="popup-content">
+          <span class="close-btn" onclick="closePaymentPopup()">&times;</span>
+          <h3>Payment for <span id="plan-name"></span></h3>
+          <p><strong>Price:</strong> <span id="plan-price"></span></p>
+          <form class="payment-form">
+              <label>Card Number</label>
+              <input type="text" placeholder="1234 5678 9012 3456" required>
+              <label>Expiry Date</label>
+              <input type="text" placeholder="MM/YY" required>
+              <label>CVV</label>
+              <input type="text" placeholder="123" required>
+              <button type="submit" class="pay-btn">Pay Now</button>
+          </form>
+      </div>
+  </div>
+</section>
+
+
+      </main>
+    </div>
+
+    <!-- Dummy Footer -->
+    <footer class="dummy-footer">
+      <a
+        href="/DashBoard/Candidate/candidate_dashboard.html"
+        style="text-decoration: none"
+      >
+        <div class="arko">Go to Candidate DashBoard</div>
+      </a>
+      <p>Footer Content</p>
+    </footer>
+
+    <script src="/DashBoard/Recruiter/recruiter_dashboard.js"></script>
+  </body>
+</html>
