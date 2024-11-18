@@ -1,0 +1,44 @@
+Must-Have Features for the Admin Dashboard
+User Management
+Intern Accounts: Ability to view, add, edit, and deactivate intern profiles. Include details like personal information, internship status, and performance metrics.
+Recruiter Accounts: Manage recruiter profiles, including company details, job postings, and application statuses.
+Job Management
+Job Listings: Create, edit, and remove job postings. Include filters for job type, location, and status (active/inactive).
+Applications Tracking: Monitor applications submitted by interns for various positions, with options to approve or reject applications.
+Payment Management
+Payment Processing: Track payments made to interns and recruiters. Include features for issuing payments and generating invoices.
+Payment History: View past transactions for both interns and recruiters.
+Analytics and Reporting
+Performance Metrics: Generate reports on intern performance, recruiter satisfaction, and overall portal usage.
+Financial Reports: Summarize payment data to track financial health related to internships.
+Communication Tools
+Messaging System: Facilitate communication between admins, interns, and recruiters through a built-in messaging feature.
+Notifications: Alert users about important updates (e.g., application status changes or payment confirmations).
+Settings and Customization
+Profile Settings: Allow admins to manage their own profiles and settings.
+Portal Customization: Options to customize the dashboard layout and features based on specific needs.
+Suggested Sidebar Contents
+Dashboard Overview
+Intern Management
+View Interns
+Add New Intern
+Intern Performance
+Recruiter Management
+View Recruiters
+Add New Recruiter
+Job Postings
+Job Applications
+Application Tracking
+Review Applications
+Payments
+Payment Overview
+Process Payments
+Payment History
+Reports
+Performance Reports
+Financial Reports
+Settings
+Profile Settings
+Portal Customization
+Help & Support
+This structure will help you create a comprehensive admin dashboard that meets the needs of managing both interns and recruiters effectively while ensuring smooth operations within the internship portal.

@@ -1,0 +1,652 @@
+ /* Color Variables */
+    :root {
+        --sidebar-bg: #141E30;
+        --text-color-white: #fff;
+        --hover-color-sidebar: #7b93be;
+        --btn-color-new: #004c8c;
+        --border-color: #00b3ff;
+ /* Border color for buttons */
+
+        --sidebar-link-color: #333;
+        --sidebar-active-bg: #f0f0f0;
+        --logout-bg: #f8d7da;
+        --logout-text: #721c24;
+        --header-bg: #ffffff;
+        --main-bg: #ffffff;
+        --profile-completion-bg: #f4f4f4;
+        --button-bg: #dc3545;
+        --button-text: #ffffff;
+        --dummy-nav-footer-bg: #000000;
+        --dummy-nav-footer-text: #ffffff;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        color: var(--sidebar-link-color);
+        background-color: var(--main-bg);
+    }
+
+    /* Dummy Navigation Bar */
+    .dummy-nav {
+        background-color: var(--dummy-nav-footer-bg);
+        color: var(--dummy-nav-footer-text);
+        padding: 20px;
+        text-align: center;
+    }
+
+/* Sidebar */
+    .container {
+        display: flex;
+        min-height: 91vh;
+    }
+
+    .sidebar {
+        width: 250px;
+        background-color: var(--sidebar-bg);
+        /* background-color: #5a58cb; */
+        /* background: linear-gradient(to right,  #6b69db, #4b49ac ); */
+        padding-top: 10px;
+        padding-left: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        border-right: 1px solid #ddd;
+    }
+
+    .sidebar-nav {
+        margin-top: 20px;
+        width: 100%;
+    }
+
+    .sidebar-nav a {
+        text-decoration: none;
+        color: var(--text-color-white);
+        padding: 10px 15px;
+        display: block;
+        width: 100%;
+        border-radius: 5px;
+        margin-bottom: 5px;
+    }
+
+    .sidebar-nav a.active,
+    .sidebar-nav a:hover {
+        color: #7b93be;
+        font-weight: 500;
+    }
+
+    .logout {
+        margin: 10px;
+    }
+
+    .logout a {
+        text-decoration: none;
+        color: var(--sidebar-bg);
+        padding: 10px 15px;
+        display: block;
+        font-weight: 700;
+        border-radius: 5px;
+        background-color: var(--hover-color-sidebar);
+    }
+
+    .logout a:hover {
+        color: #cfcfcf;
+        transform: scale(0.9);
+        font-weight: 600;
+        border-radius: 5px;
+        background-color: #004c8c;
+    }
+
+
+/* Main Content */
+    .main-content {
+        flex: 1;
+        padding: 20px;
+    }
+
+    .header {
+        background-color: var(--header-bg);
+        padding: 20px;
+        font-size: 1.5em;
+        font-weight: bold;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .section {
+        display: none;
+    }
+
+    .section:target {
+        display: block;
+    }
+
+    #dashboard {
+        display: block;
+        /* Default visible section */
+    }
+
+    .profile-completion,
+    .post-job,
+    .stats {
+        margin: 20px 0;
+        padding: 20px;
+        background-color: var(--profile-completion-bg);
+        border-radius: 5px;
+    }
+
+    .profile-completion button,
+    .post-internship button {
+        margin-top: 10px;
+        padding: 10px 20px;
+        color: var(--button-text);
+        background-color: var(--sidebar-bg);
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .profile-completion button:hover,
+    .post-internship button:hover {
+        margin-top: 10px;
+        padding: 10px 20px;
+        color: var(--button-text);
+        background-color: #003a6a;
+        cursor: pointer;
+    }
+
+    .profile-completion ul {
+        list-style-type: disc;
+        margin: 10px 0 0 20px;
+    }
+
+    .stats {
+        display: flex;
+        justify-content: space-between;
+        text-align: center;
+    }
+
+    .stats div {
+        padding: 10px;
+        flex: 1;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        margin-right: 10px;
+    }
+
+    .stats div:last-child {
+        margin-right: 0;
+    }
+
+    /* Company PROFILE Section  */
+    /* .company-profile-content {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .company-profile-form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .company-profile-form-group {
+        margin-bottom: 20px;
+    }
+
+    .company-profile-form-group label {
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .company-profile-form-group input,
+    .company-profile-form-group select,
+    .company-profile-form-group textarea {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid var(--border-color);
+        border-radius: 5px;
+    }
+
+    .company-profile-form-group textarea {
+        resize: vertical;
+    }
+
+    .company-profile-save-btn {
+        background-color: var(--primary-color);
+        color: var(--text-color-white);
+        padding: 15px;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .company-profile-save-btn:hover {
+        background-color: #004c8c;
+    } */
+
+/* Profile Section Styling */
+
+    .content {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .company-profile-form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .company-profile-form h3 {
+        margin: 20px 0px;
+        color: var(--sidebar-bg);
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        font-size: 14px;
+        font-weight: bold;
+        margin: 5px 20px;
+        display: block;
+    }
+
+    .form-group input,
+    .form-group select {
+        width: 50%;
+        padding: 10px;
+        margin: 0px 20px;
+        font-size: 16px;
+        /* border: 1px solid var(--sidebar-bg); */
+        border: 1px solid var(--border-color);
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group textarea {
+        width: 50%;
+        padding: 10px;
+        margin: 0px 20px;
+        height: 180px;
+        font-size: 16px;
+        /* border: 1px solid var(--sidebar-bg); */
+        border: 1px solid var(--border-color);
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    textarea {
+        resize: vertical;
+    }
+
+    .save-btn {
+        background-color: var(--sidebar-bg);
+        margin-left: 20px;
+        color: #fff;
+        padding: 15px;
+        width: 18%;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .save-btn:hover {
+        background-color: #004c8c;
+    }
+
+    /* Internships Section */
+.internship-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.internship-table thead {
+    background-color: var(--sidebar-bg);
+    color: #fff;
+}
+
+.internship-table th, .internship-table td {
+    padding: 15px;
+    text-align: center;
+    border: 1px solid var(--border-color);
+}
+
+.internship-table td {
+    font-size: 0.9em;
+}
+
+.internship-table .status {
+    font-weight: bold;
+    padding: 8px 12px;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.internship-table .status.active {
+    background-color: #28a745; /* Green for active internships */
+}
+
+.internship-table .status.closed {
+    background-color: #dc3545; /* Red for closed internships */
+}
+
+/* Actions Column */
+.internship-table .action-buttons {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+}
+
+.internship-table .action-buttons button,
+.internship-table .action-buttons a {
+    padding: 8px 15px;
+    font-size: 0.9em;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.internship-table .extend-btn {
+    background-color: #007bff; /* Blue */
+    color: white;
+}
+
+.internship-table .remove-btn {
+    background-color: #dc3545; /* Red */
+    color: white;
+}
+
+.internship-table .remove-btn:disabled {
+    background-color: #6c757d; /* Disabled state */
+    cursor: not-allowed;
+}
+
+.internship-table .view-applicants-btn {
+    background-color: #6c757d; /* Gray */
+    color: white;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+}
+
+.internship-table button:hover,
+.internship-table a:hover {
+    opacity: 0.8;
+}
+
+.internship-table .view-applicants-btn:hover {
+    background-color: #5a6268; /* Darker gray */
+}
+
+/* Settings Section Styling */
+    .settings-form {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .settings-form .form-group {
+        margin-bottom: 20px;
+    }
+
+    .settings-form .form-group label {
+        font-size: 14px;
+        font-weight: bold;
+        margin: 5px 20px;
+        display: block;
+    }
+
+    .settings-form .form-group input,
+    .settings-form .form-group select {
+        width: 50%;
+        padding: 10px;
+        margin: 0px 20px;
+        font-size: 16px;
+        border: 1px solid var(--border-color);
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+/* Manage Applicants Table */
+    .applicants-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .applicants-table th,
+    .applicants-table td {
+        padding: 15px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .applicants-table th {
+        background-color: var(--sidebar-bg);
+        color: var(--text-color-white);
+        font-weight: bold;
+    }
+
+    .applicants-table tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    .applicants-table tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    /* Action Buttons in Manage Applicants */
+    .action-btn {
+        padding: 8px 12px;
+        margin-right: 5px;
+        color: #ffffff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .action-btn.approve {
+        background-color: #28a745;
+    }
+
+    .action-btn.reject {
+        background-color: #dc3545;
+    }
+
+    .action-btn:hover {
+        opacity: 0.9;
+    }
+
+    /* Contact Admin Section */
+    .contact-admin-form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .contact-admin-form h3 {
+        margin: 20px 0px;
+        color: var(--sidebar-bg);
+    }
+
+    .contact-admin-form .form-group {
+        margin-bottom: 20px;
+    }
+
+    .contact-admin-form .form-group label {
+        font-size: 14px;
+        font-weight: bold;
+        margin: 5px 20px;
+        display: block;
+    }
+
+    .contact-admin-form .form-group input,
+    .contact-admin-form .form-group textarea {
+        width: 50%;
+        padding: 10px;
+        margin: 0px 20px;
+        font-size: 16px;
+        border: 1px solid var(--border-color);
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-admin-form textarea {
+        height: 120px;
+        resize: vertical;
+    }
+
+    .send-btn {
+        background-color: var(--sidebar-bg);
+        color: #fff;
+        padding: 15px;
+        width: 15%;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-left: 20px;
+    }
+
+    .send-btn:hover {
+        background-color: #004c8c;
+    }
+
+/* Membership Section */
+
+    .membership-plans {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+
+    .plan-card {
+        background-color: #fff;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 20px;
+        width: 30%;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .plan-card h3 {
+        color: var(--sidebar-bg);
+    }
+
+    .plan-card .price {
+        font-size: 1.5em;
+        font-weight: bold;
+        color: var(--btn-color-new);
+        margin: 10px 0;
+    }
+
+    .plan-card p {
+        color: #333;
+        margin: 5px 0;
+    }
+
+    .select-plan-btn {
+        margin-top: 15px;
+        padding: 10px 20px;
+        color: #fff;
+        background-color: var(--sidebar-bg);
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .select-plan-btn:hover {
+        background-color: #003a6a;
+    }
+
+    /* Payment Popup */
+    .payment-popup {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        align-items: center;
+        justify-content: center;
+    }
+
+    .popup-content {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        width: 400px;
+        text-align: center;
+        position: relative;
+    }
+
+    .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 1.5em;
+        cursor: pointer;
+    }
+
+    .payment-form label {
+        display: block;
+        margin-top: 10px;
+        font-weight: bold;
+    }
+
+    .payment-form input {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        font-size: 16px;
+        border: 1px solid var(--border-color);
+        border-radius: 5px;
+    }
+
+    .pay-btn {
+        margin-top: 20px;
+        padding: 10px 20px;
+        color: #fff;
+        background-color: var(--sidebar-bg);
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .pay-btn:hover {
+        background-color: #003a6a;
+    }
+
+
+    /* Dummy Footer */
+    .dummy-footer {
+        background-color: var(--dummy-nav-footer-bg);
+        color: var(--dummy-nav-footer-text);
+        text-align: center;
+        padding: 15px;
+    }
+
+    .arko {
+
+        padding: 10px;
+        width: 20%;
+        background-color: var(--btn-color-new);
+        color: var(--button-text);
+    }
