@@ -28,6 +28,15 @@ header {
     background-color: var(--secondary-color);
     padding: 20px 0;
     color: var(--text-color);
+    .primary-logo {
+        display: block;
+    }
+    
+    .secondary-logo {
+        display: none;
+    }
+    
+    
 }
 
 .navigation {
