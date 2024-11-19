@@ -1,2 +1,326 @@
-/* for various sizes */
+/* SIZES 
 
+Large Screens (min-width: 1200px)
+width.
+
+Medium Screens (max-width: 1199px) and (min-width: 768px)
+
+Small Screens(max-width: 767px)
+
+Extra Small Screens(max-width: 580px)
+*/
+
+/* Large screens (desktop)
+
+@media (min-width: 1200px) {
+    .hero {
+        padding: 100px 20px;
+    }
+
+    .hero h2 {
+        font-size: 2.5rem;
+    }
+
+    .hero p {
+        font-size: 1.2rem;
+    }
+
+   
+}
+
+@media (max-width: 1199px) and (min-width: 768px) {
+    .hero {
+        padding: 80px 15px;
+    }
+
+    .hero h2 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+}
+
+@media (max-width: 768px) {
+    .hero {
+        padding: 60px 10px;
+    }
+
+    .hero h2 {
+        font-size: 1.8rem;
+    }
+
+    .hero p {
+        font-size: 0.9rem;
+    }
+
+}
+
+@media (max-width: 580px) {
+    .hero {
+        padding: 50px 10px;
+    }
+
+    .hero h2 {
+        font-size: 1.5rem;
+    }
+
+    .hero p {
+        font-size: 0.8rem;
+    }
+
+   
+} */
+
+/* General Section Styling to Lock Content */
+section {
+    overflow: hidden; /* Prevent content overflow */
+    position: relative;
+}
+/* Large Screens (min-width: 1200px) */
+@media (min-width: 2000px) {
+    .hero {
+        padding: 100px 20px;
+    }
+
+    .hero-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .hero-content h2 {
+        font-size: 48px;
+    }
+
+    .hero-content p {
+        font-size: 20px;
+    }
+
+    .search-box input {
+        width: 50%;
+        padding: 14px;
+        font-size: 18px;
+    }
+
+    .internships-categories {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: flex-start;
+        max-width: 1200px;
+        margin: 50px auto;
+        gap: 40px;
+    }
+
+    .internships, .categories {
+        width: 48%;
+        text-align: center;
+    }
+
+    .locations, .category-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 40px;
+    }
+
+    .location-item, .category-item {
+        flex: 1 1 calc(23% - 20px); /* 4 items per row */
+        text-align: center;
+    }
+
+    .location-item img, .category-item img {
+        width: 100%;
+        max-width: 200px;
+        height: auto;
+        border-radius: 10px;
+        object-fit: cover;
+    }
+}
+
+/* Medium Screens (max-width: 1199px and min-width: 768px) */
+@media (max-width: 1199px) and (min-width: 768px) {
+    .hero {
+        padding: 80px 20px;
+    }
+
+    .hero-content {
+        max-width: 900px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .hero-content h2 {
+        font-size: 40px;
+    }
+
+    .hero-content p {
+        font-size: 18px;
+    }
+
+    .search-box input {
+        width: 60%;
+        padding: 12px;
+        font-size: 16px;
+    }
+
+    .internships-categories {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: flex-start;
+        max-width: 1200px;
+        margin:  auto;
+        gap: 10px;
+    }
+
+    .internships, .categories {
+        width: 88%;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .locations, .category-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 40px;
+    }
+
+    .location-item, .category-item {
+        flex: 1 1 calc(23% - 20px); /* 4 items per row */
+        text-align: center;
+    }
+
+    .location-item img, .category-item img {
+        width: 100%;
+        max-width: 200px;
+        height: auto;
+        border-radius: 10px;
+        object-fit: cover;
+    }
+}
+
+/* Small Screens (max-width: 767px) */
+@media (max-width: 767px) {
+    .hero {
+        padding: 60px 10px;
+    }
+
+    .hero-content {
+        max-width: 600px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .hero-content h2 {
+        font-size: 32px;
+    }
+
+    .hero-content p {
+        font-size: 16px;
+    }
+
+    .search-box input {
+        width: 80%;
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .internships-categories {
+        padding: 30px 10px;
+        max-width: 600px;
+        margin: 30px auto;
+    }
+
+    .internships h3, .categories h3 {
+        font-size: 24px;
+    }
+
+    .locations, .category-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* 2 items per row */
+        gap: 20px;
+    }
+
+    .location-item, .category-item {
+        flex: 1 1 auto;
+        max-width: 200px;
+        margin: 0 auto;
+    }
+
+    .location-item img, .category-item img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    #browse-internship {
+        margin-right: 0;
+        margin-left: auto;
+        text-align: center;
+    }
+}
+
+/* Extra Small Screens (max-width: 580px) */
+@media (max-width: 580px) {
+    .hero {
+        padding: 40px 10px;
+    }
+
+    .hero-content {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .hero-content h2 {
+        font-size: 24px;
+    }
+
+    .hero-content p {
+        font-size: 14px;
+    }
+
+    .search-box input {
+        width: 90%;
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .internships-categories {
+        padding: 20px 10px;
+        max-width: 400px;
+        margin: 20px auto;
+    }
+
+    .internships h3, .categories h3 {
+        font-size: 20px;
+    }
+
+    .locations, .category-list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .location-item, .category-item {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .location-item img, .category-item img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+    }
+
+    #browse-internship {
+        margin: 0;
+        text-align: center;
+        font-size: 14px;
+    }
+}
