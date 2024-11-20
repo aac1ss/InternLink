@@ -200,7 +200,7 @@ label {
     margin-top: 1em;
     color: #555;
 }
-
+input[type="text"],
 input[type="email"],
 input[type="password"] {
     width: 100%;
