@@ -6,39 +6,52 @@
     <title>InternLink</title>
     <link rel="stylesheet" href="/styles.css">
     <link rel="stylesheet" href="/Responsive/respo_nav_footer.css">
+    <link rel="stylesheet" href="/Responsive/respo_index.css">
 </head>
 <body>
     <header>
         <div class="navigation">
-            <div class="logo">
+            <!-- Default Logo -->
+            <div class="logo primary-logo">
                 <a href="index.html">
-                    <img src="/images/LOGO/LOGO.svg" alt="InternLink Logo" >
+                    <img src="/images/LOGO/LOGO.svg" alt="InternLink Logo">
                 </a>
-             <!-- <h1>InternLink</h1> -->
             </div>
+            
+            <!-- Secondary Logo for Small Screens -->
+            <div class="logo secondary-logo">
+                <a href="index.html">
+                    <img src="/images/LOGO/PNG/ICON - Copy.png" alt="InternLink Small Logo">
+                </a>
+            </div>
+            
+            <!-- Hamburger Menu -->
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
             <nav>
                 <ul class="nav-links">
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="#">Internships</a></li>
+                    <li><a href="/Internships/internships.html">Internships</a></li>
                     <li><a href="#about-us">About Us</a></li>
                 </ul>
                 <div class="nav-buttons">
                     <a href="/(2)Nav Login/Login_index.htm">
-                    <button class="login-btn">
-                    Login
-                </button>                         
-                </a> 
-                <a href="/(5)Nav Register/register_index.htm">
-                            <button class="register-btn"> 
-                            Register
-                        </button>          
-                        </a>  
-                 <h1>|</h1>
+                        <button class="login-btn">Login</button>
+                    </a>
+                    <a href="/(5)Nav Register/register_index.htm">
+                        <button class="register-btn">Register</button>
+                    </a>
                     <button class="admin-btn">Admin</button>
                 </div>
             </nav>
         </div>
     </header>
+    
+    
     
     <!-- Hero Section -->
 
@@ -72,7 +85,7 @@
                 </div>
                 <div class="location-item">
                     <img src="/images/Landing Page/3.png" alt="Content Writer">
-                    <p>Swayambhu</p>
+                    <p>Kathmandu</p>
                 </div>
             </div>
         </div>
@@ -224,7 +237,7 @@
             </ul>
         </div>
         <!-- Company -->
-        <div class="footer-column">
+        <div class="footer-column" id="foot-left">
             <h3>InternLink</h3>
             <ul>
                 <li><a href="#about-us">About Us</a></li>
@@ -260,4 +273,5 @@
 </footer>
 
 </body>
+<script src="/index.js"></script>
 </html>
