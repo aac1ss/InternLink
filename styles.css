@@ -348,7 +348,7 @@ button:focus {
 .section {
     width: 100%;
     padding: 35px 20px;
-    background-color: #c6c6c6;
+    background-color: white;
     display: flex;
     flex-direction: column;
     align-items: center; 
@@ -379,11 +379,18 @@ button:focus {
 
 .step {
     text-align: center;
-    background-color: #f9f9f9;
+    background-color: #E1BEE7;
     padding: 20px;
     border-radius: 8px;
     width: 30%;
+    transition: transform 0.3s ease; 
 }
+
+.steps-container > .step:hover {
+    transform: scale(1.07);
+}
+
+
 
 .step img {
     width: 100%;

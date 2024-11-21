@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Internship</title>
+    <link rel="stylesheet" href="h.css">
+    <script>
+        // Toggle visibility for stipend field
+        function toggleStipendField(value) {
+            const stipendAmountField = document.getElementById('stipend-amount-container');
+            const paidButton = document.getElementById('btn-paid');
+            const unpaidButton = document.getElementById('btn-unpaid');
+
+            if (value === 'paid') {
+                stipendAmountField.style.display = 'block';
+                paidButton.classList.add('active');
+                unpaidButton.classList.remove('active');
+            } else {
+                stipendAmountField.style.display = 'none';
+                unpaidButton.classList.add('active');
+                paidButton.classList.remove('active');
+            }
+        }
+
+        // Toggle active state for type buttons
+        function setType(value) {
+            const buttons = document.querySelectorAll('.type-toggle-btn');
+            buttons.forEach(button => button.classList.remove('active'));
+
+            document.getElementById(`type-${value}`).classList.add('active');
+            document.getElementById('type-hidden-input').value = value;
+        }
+    </script>
+</head>
+<body>
+    <section class="post-internship-container">
+        <h1>Post an Internship</h1>
+        <form action="#" method="post" class="internship-post-form">
+            <!-- Internship Details -->
+            <div class="section internship-details">
+                <h2>Internship Information</h2>
+                <div class="form-group">
+                    <label for="internship-title">Title: <span class="required">*</span></label>
+                    <input type="text" id="internship-title" name="internship_title" placeholder="e.g., Social Media Content Creator" required>
+                </div>
+                <div class="form-group">
+                    <label for="company-name">Company Name: <span class="required">*</span></label>
+                    <input type="text" id="company-name" name="company_name" placeholder="e.g., Craftmysop" required>
+                </div>
+                <div class="form-group">
+                    <label for="location">Location: <span class="required">*</span></label>
+                    <input type="text" id="location" name="location" placeholder="e.g., Remote, Mumbai, etc." required>
+                </div>
+                <div class="form-group">
+                    <label for="duration">Duration: <span class="required">*</span></label>
+                    <input type="text" id="duration" name="duration" placeholder="e.g., 3 months" required>
+                </div>
+                <div class="form-group">
+                    <label>Type: <span class="required">*</span></label>
+                    <div class="type-toggle">
+                        <button type="button" id="type-remote" class="type-toggle-btn active" onclick="setType('remote')">Remote</button>
+                        <button type="button" id="type-hybrid" class="type-toggle-btn" onclick="setType('hybrid')">Hybrid</button>
+                        <button type="button" id="type-onsite" class="type-toggle-btn" onclick="setType('onsite')">Onsite</button>
+                    </div>
+                    <input type="hidden" id="type-hidden-input" name="type" value="remote">
+                </div>
+                <div class="form-group stipend-group">
+                    <label>Stipend: <span class="required">*</span></label>
+                    <div class="stipend-toggle">
+                        <button type="button" id="btn-paid" class="toggle-btn" onclick="toggleStipendField('paid')">Paid</button>
+                        <button type="button" id="btn-unpaid" class="toggle-btn active" onclick="toggleStipendField('unpaid')">Unpaid</button>
+                    </div>
+                </div>
+                <div id="stipend-amount-container" class="form-group" style="display: none;">
+                    <label for="stipend-amount">Stipend Amount:</label>
+                    <input type="text" id="stipend-amount" name="stipend_amount" placeholder="e.g., Rs 5000 / Month">
+                </div>
+            </div>
+
+            <!-- Requirements -->
+            <div class="section internship-requirements">
+                <h2>Requirements</h2>
+                <div class="form-group">
+                    <label for="job-description">Job Description: <span class="required">*</span></label>
+                    <textarea id="job-description" name="job_description" rows="4" placeholder="Describe the role and responsibilities" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="responsibility">Responsibilities:</label>
+                    <textarea id="responsibility" name="responsibility" rows="4" placeholder="List responsibilities"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="requirements">Requirements:</label>
+                    <textarea id="requirements" name="requirements" rows="4" placeholder="List qualifications or prerequisites"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="skills">Skills:</label>
+                    <textarea id="skills" name="skills" rows="4" placeholder="List required skills"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="perks">Perks:</label>
+                    <textarea id="perks" name="perks" rows="4" placeholder="List any perks or benefits"></textarea>
+                </div>
+            </div>
+
+            <!-- Application Process -->
+            <div class="section application-process">
+                <h2>Application Process</h2>
+                <div class="form-group">
+                    <label for="additional-info">Additional Information:</label>
+                    <textarea id="additional-info" name="additional_info" rows="4" placeholder="Add any other details"></textarea>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="submit-btn">Post Internship</button>
+        </form>
+    </section>
+</body>
+</html>

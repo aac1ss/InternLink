@@ -41,7 +41,25 @@
     }
 
 /* Sidebar */
-    .container {
+/* Icon Styling */
+.nav-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px; /* Spacing between icon and text */
+    vertical-align: middle; /* Align with text */
+  }
+  
+  .sidebar-nav a {
+    display: flex;
+    align-items: center;
+  }
+  
+  .dropdown-content a {
+    display: flex;
+    align-items: center;
+  }
+     
+.container {
         display: flex;
         min-height: 91vh;
     }
@@ -80,7 +98,40 @@
         font-weight: 500;
     }
 
-    .logout {
+/* Dropdown Styling */
+
+.dropdown {
+    position: relative;
+  }
+  
+  .dropdown-toggle {
+    cursor: pointer;
+    display: block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    background-color: var(--sidebar-bg);
+    padding-left: 20px;
+    margin-top: 5px;
+    border-radius: 5px;
+  }
+  
+  .dropdown-content a {
+    padding: 8px 15px;
+    text-decoration: none;
+    color: var(--text-color-white);
+    border-radius: 5px;
+  }
+  
+
+  .dropdown.open .dropdown-content {
+    display: block;
+  }
+
+  /* LOGOUT */
+  
+  .logout {
         margin: 10px;
     }
 
@@ -181,56 +232,6 @@
     .stats div:last-child {
         margin-right: 0;
     }
-
-    /* Company PROFILE Section  */
-    /* .company-profile-content {
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .company-profile-form {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .company-profile-form-group {
-        margin-bottom: 20px;
-    }
-
-    .company-profile-form-group label {
-        font-size: 14px;
-        font-weight: bold;
-    }
-
-    .company-profile-form-group input,
-    .company-profile-form-group select,
-    .company-profile-form-group textarea {
-        width: 100%;
-        padding: 10px;
-        font-size: 16px;
-        border: 1px solid var(--border-color);
-        border-radius: 5px;
-    }
-
-    .company-profile-form-group textarea {
-        resize: vertical;
-    }
-
-    .company-profile-save-btn {
-        background-color: var(--primary-color);
-        color: var(--text-color-white);
-        padding: 15px;
-        border: none;
-        font-size: 16px;
-        cursor: pointer;
-        border-radius: 5px;
-    }
-
-    .company-profile-save-btn:hover {
-        background-color: #004c8c;
-    } */
 
 /* Profile Section Styling */
 

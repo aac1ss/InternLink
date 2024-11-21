@@ -19,18 +19,45 @@
       <!-- Sidebar -->
       <aside class="sidebar">
         <nav class="sidebar-nav">
-          <a href="#dashboard" class="active">Dashboard</a>
-          <a href="#company-profile">Company Profile</a>
-          <a href="#internships">Internships</a>
-          <a href="#manage-applicants">Manage Applicants</a>
-          <a href="#membership">Membership</a>
-          <a href="#contact-us">Contact Us</a>
-          <a href="#setting">Setting</a>
+          <a href="#dashboard" class="active">
+            <img src="/images/DashBoard Icons/Dashboard.svg" alt="Dashboard" class="nav-icon" /> Dashboard
+          </a>
+          <a href="#company-profile">
+            <img src="/images/DashBoard Icons/Profile.svg" alt="Company Profile" class="nav-icon" /> Company Profile
+          </a>
+          <div class="dropdown">
+            <a href="" class="dropdown-toggle">
+              <img src="/images/DashBoard Icons/Internships.svg" alt="Internships" class="nav-icon" /> Internships
+            </a>
+            <div class="dropdown-content">
+              <a href="#post-internship">
+                <img src="/images/DashBoard Icons/Post.svg" alt="Post Internship" class="nav-icon" /> Post Internship
+              </a>
+              <a href="#internships">
+                <img src="/images/DashBoard Icons/Status.svg" alt="View Status" class="nav-icon" /> View Status
+              </a>
+            </div>
+          </div>
+          <a href="#manage-applicants">
+            <img src="/images/DashBoard Icons/Manage Applicants.svg" alt="Manage Applicants" class="nav-icon" /> Manage Applicants
+          </a>
+          <a href="#membership">
+            <img src="/images/DashBoard Icons/membership.svg" alt="Membership" class="nav-icon" /> Membership
+          </a>
+          <a href="#contact-us">
+            <img src="/images/DashBoard Icons/Contact Us.svg" alt="Contact Us" class="nav-icon" /> Contact Us
+          </a>
+          <a href="#setting">
+            <img src="/images/DashBoard Icons/Settting.svg" alt="Setting" class="nav-icon" /> Setting
+          </a>
         </nav>
         <div class="logout">
-          <a href="#logout">Logout</a>
+          <a href="#logout">
+            <img src="/images/DashBoard Icons/Log Out.svg" alt="Logout" class="nav-icon" /> Logout
+          </a>
         </div>
       </aside>
+      
 
       <!-- Main Content -->
       <main class="main-content">
@@ -50,7 +77,9 @@
               <li>Upload Company Images</li>
               <li>Add Social Links</li>
             </ul>
-            <button>Complete Now →</button>
+            <a href="h.html"> //asd
+              <button>Complete Now →</button>
+            </a>
           </div>
           <div class="post-internship">
             <h2>Post your Internship</h2>
@@ -162,7 +191,10 @@
           </div>
         </section>
       
-        <section id="internships-jobs" class="section">
+        <!--Internships  -->
+
+        <!-- View Status -->
+          <section id="internships-jobs" class="section">
     <div class="content">
         <h2>Your Posted Internships</h2>
         <table class="internship-table">
@@ -207,8 +239,8 @@
             </tbody>
         </table>
     </div>
-</section>
-<section id="internships" class="section">
+          </section>
+          <section id="internships" class="section">
   <div class="content">
       <h2>Your Posted Internships</h2>
       <table class="internship-table">
@@ -254,7 +286,7 @@
           </tbody>
       </table>
   </div>
-</section>
+          </section>
 
             <!-- Setting Section -->
               <section id="setting" class="section">
@@ -320,7 +352,56 @@
               </div>
             </section>
 
-            <!-- Contact Admin Section -->
+            <!-- Memebership -->
+            <section id="membership" class="section">
+              <div class="content">
+                  <h2>Choose Your Membership Plan</h2>
+                  <div class="membership-plans">
+                      <!-- Plan Cards -->
+                      <div class="plan-card">
+                          <h3>Basic Plan</h3>
+                          <p class="price">$29/month</p>
+                          <p>Access to 10 Internship postings</p>
+                          <p>Basic support</p>
+                          <button class="select-plan-btn" onclick="showPaymentPopup('Basic Plan', '$29/month')">Choose Plan</button>
+                      </div>
+                      <div class="plan-card">
+                          <h3>Standard Plan</h3>
+                          <p class="price">$49/month</p>
+                          <p>Access to 20 Internship postings</p>
+                          <p>Priority support</p>
+                          <button class="select-plan-btn" onclick="showPaymentPopup('Standard Plan', '$49/month')">Choose Plan</button>
+                      </div>
+                      <div class="plan-card">
+                          <h3>Premium Plan</h3>
+                          <p class="price">$99/month</p>
+                          <p>Unlimited Internship postings</p>
+                          <p>Dedicated support</p>
+                          <button class="select-plan-btn" onclick="showPaymentPopup('Premium Plan', '$99/month')">Choose Plan</button>
+                      </div>
+                  </div>
+              </div>
+            
+              <!-- Payment Popup -->
+              <div id="payment-popup" class="payment-popup">
+                  <div class="popup-content">
+                      <span class="close-btn" onclick="closePaymentPopup()">&times;</span>
+                      <h3>Payment for <span id="plan-name"></span></h3>
+                      <p><strong>Price:</strong> <span id="plan-price"></span></p>
+                      <form class="payment-form">
+                          <label>Card Number</label>
+                          <input type="text" placeholder="1234 5678 9012 3456" required>
+                          <label>Expiry Date</label>
+                          <input type="text" placeholder="MM/YY" required>
+                          <label>CVV</label>
+                          <input type="text" placeholder="123" required>
+                          <button type="submit" class="pay-btn">Pay Now</button>
+                      </form>
+                  </div>
+              </div>
+            </section>
+
+            <!-- Contact Us [Admin] Section -->
 <section id="contact-us" class="section">
   <div class="content">
     <h2>Contact Admin</h2>
@@ -347,53 +428,8 @@
     </form>
   </div>
 </section>
-<section id="membership" class="section">
-  <div class="content">
-      <h2>Choose Your Membership Plan</h2>
-      <div class="membership-plans">
-          <!-- Plan Cards -->
-          <div class="plan-card">
-              <h3>Basic Plan</h3>
-              <p class="price">$29/month</p>
-              <p>Access to 10 Internship postings</p>
-              <p>Basic support</p>
-              <button class="select-plan-btn" onclick="showPaymentPopup('Basic Plan', '$29/month')">Choose Plan</button>
-          </div>
-          <div class="plan-card">
-              <h3>Standard Plan</h3>
-              <p class="price">$49/month</p>
-              <p>Access to 20 Internship postings</p>
-              <p>Priority support</p>
-              <button class="select-plan-btn" onclick="showPaymentPopup('Standard Plan', '$49/month')">Choose Plan</button>
-          </div>
-          <div class="plan-card">
-              <h3>Premium Plan</h3>
-              <p class="price">$99/month</p>
-              <p>Unlimited Internship postings</p>
-              <p>Dedicated support</p>
-              <button class="select-plan-btn" onclick="showPaymentPopup('Premium Plan', '$99/month')">Choose Plan</button>
-          </div>
-      </div>
-  </div>
 
-  <!-- Payment Popup -->
-  <div id="payment-popup" class="payment-popup">
-      <div class="popup-content">
-          <span class="close-btn" onclick="closePaymentPopup()">&times;</span>
-          <h3>Payment for <span id="plan-name"></span></h3>
-          <p><strong>Price:</strong> <span id="plan-price"></span></p>
-          <form class="payment-form">
-              <label>Card Number</label>
-              <input type="text" placeholder="1234 5678 9012 3456" required>
-              <label>Expiry Date</label>
-              <input type="text" placeholder="MM/YY" required>
-              <label>CVV</label>
-              <input type="text" placeholder="123" required>
-              <button type="submit" class="pay-btn">Pay Now</button>
-          </form>
-      </div>
-  </div>
-</section>
+
 
 
       </main>
