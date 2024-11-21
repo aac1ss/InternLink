@@ -41,7 +41,25 @@
     }
 
 /* Sidebar */
-    .container {
+/* Icon Styling */
+.nav-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px; /* Spacing between icon and text */
+    vertical-align: middle; /* Align with text */
+  }
+  
+  .sidebar-nav a {
+    display: flex;
+    align-items: center;
+  }
+  
+  .dropdown-content a {
+    display: flex;
+    align-items: center;
+  }
+     
+.container {
         display: flex;
         min-height: 91vh;
     }
@@ -106,10 +124,7 @@
     border-radius: 5px;
   }
   
-  .dropdown-content a:hover {
-    background-color: var(--hover-color-sidebar);
-  }
-  
+
   .dropdown.open .dropdown-content {
     display: block;
   }
