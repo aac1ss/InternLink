@@ -98,6 +98,8 @@ button:focus {
     transform: scale(1.1);
 }
 
+/* Responsive Navigation */
+
 /* Large Desktops and Laptops */
 @media (max-width: 1200px) {
     .nav-links {
@@ -251,7 +253,7 @@ button:focus {
 }
 
 
-/* RESPONSIVE DESIGN */
+/* RESPONSIVE Footer */
 
 /* Large screens (desktop) */
 @media (min-width: 1200px) {
@@ -325,19 +327,21 @@ button:focus {
 /* Extra small screens (small mobile devices) */
 @media (max-width: 580px) {
     .footer-content {
-        flex-direction: column; 
-        gap: 25px; 
-        align-items: center; 
-        text-align: center; 
+        flex-direction: row; 
+        justify-content: space-between;     
+           align-items: center; 
+        text-align: left;
+        gap: 15px; 
     }
 
+    /* Hide the logo */
     .footer-logo img {
-        max-width: 150px; 
+        display: none;
     }
 
     .footer-column h3 {
-        font-size: 15px; 
-        margin-bottom: 8px; 
+        font-size: 15px;
+        margin-bottom: 8px;
         color: var(--primary-color);
     }
 
@@ -347,12 +351,12 @@ button:focus {
     }
 
     .footer-column ul li {
-        margin-bottom: 6px; 
+        margin-bottom: 6px;
     }
 
     .footer-column ul li a {
-        font-size: 12px; 
-        line-height: 1.6; 
+        font-size: 12px;
+        line-height: 1.6;
         color: var(--text-color);
     }
 
@@ -363,7 +367,7 @@ button:focus {
     .fsocial-icons {
         display: flex;
         justify-content: center;
-        gap: 15px; 
+        gap: 15px;
     }
 
     .fsocial-icons a i {
@@ -372,21 +376,23 @@ button:focus {
     }
 
     .fsocial-icons a:hover i {
-        color: var(--primary-color); 
-        transform: scale(1.1); 
+        color: var(--primary-color);
+        transform: scale(1.1);
     }
-    #foot-left{
+
+    #foot-left {
         flex-direction: column;
-        font-size: 12px; 
+        font-size: 12px;
         padding-right: 30px;
         gap: 10px;
     }
+
     .footer-bottom {
-        flex-direction: column; 
-        font-size: 12px; 
-        text-align: center; 
+        flex-direction: column;
+        font-size: 12px;
+        text-align: center;
         padding-right: 30px;
-        gap: 10px; 
+        gap: 10px;
     }
 
     .footer-bottom p {
@@ -394,7 +400,7 @@ button:focus {
     }
 
     .footer-left, .footer-right {
-        margin-bottom: 8px; 
+        margin-bottom: 8px;
     }
 
     a {
