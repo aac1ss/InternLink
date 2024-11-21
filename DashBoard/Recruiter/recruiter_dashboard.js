@@ -1,3 +1,4 @@
+// For Navigation //
 document.querySelectorAll(".sidebar-nav a").forEach((link) => {
   link.addEventListener("click", function () {
     document.querySelectorAll(".section").forEach((section) => {
@@ -11,6 +12,29 @@ document.querySelectorAll(".sidebar-nav a").forEach((link) => {
       .forEach((link) => link.classList.remove("active"));
     this.classList.add("active");
   });
+});
+
+// Dropdown toggle functionality
+document.querySelectorAll(".dropdown-toggle").forEach((toggle) => {
+  toggle.addEventListener("click", function (event) {
+    event.preventDefault();
+    const parent = this.closest(".dropdown");
+    parent.classList.toggle("open");
+
+    // Close other dropdowns if open
+    document.querySelectorAll(".dropdown").forEach((dropdown) => {
+      if (dropdown !== parent) dropdown.classList.remove("open");
+    });
+  });
+});
+
+// Close dropdowns when clicking outside
+document.addEventListener("click", (event) => {
+  if (!event.target.closest(".dropdown")) {
+    document.querySelectorAll(".dropdown").forEach((dropdown) => {
+      dropdown.classList.remove("open");
+    });
+  }
 });
 
 //Pop UP
