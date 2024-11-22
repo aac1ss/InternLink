@@ -45,6 +45,16 @@ document.addEventListener("click", (event) => {
   }
 });
 
+// Ensure the "Post Internship" form displays fully
+document.querySelectorAll(".dropdown-content a[href='#post-internship']").forEach((link) => {
+  link.addEventListener("click", function () {
+    const formSection = document.querySelector("#post-internship");
+    if (formSection) {
+      formSection.style.display = "block"; // Ensure form visibility
+    }
+  });
+});
+
 // Popup functionality for membership plans
 function showPaymentPopup(planName, planPrice) {
   document.getElementById("payment-popup").style.display = "flex";
