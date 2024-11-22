@@ -1,2 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
-<svg fill="#000000" width="800px" height="800px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><title>ionicons-v5-j</title><path d="M160,136V240H313.37l-52.68-52.69a16,16,0,0,1,22.62-22.62l80,80a16,16,0,0,1,0,22.62l-80,80a16,16,0,0,1-22.62-22.62L313.37,272H160V376a56.06,56.06,0,0,0,56,56H424a56.06,56.06,0,0,0,56-56V136a56.06,56.06,0,0,0-56-56H216A56.06,56.06,0,0,0,160,136Z"/><path d="M48,240a16,16,0,0,0,0,32H160V240Z"/></svg>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 27.3.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 800 800" style="enable-background:new 0 0 800 800;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#7B93BE;}
+</style>
+<g>
+	<path class="st0" d="M229.1,186.1v185.8h274.1L409,277.8c-10.9-11.4-10.4-29.5,1-40.4c11-10.5,28.3-10.5,39.4,0l143,143
+		c11.2,11.2,11.2,29.3,0,40.4l-143,143c-11.4,10.9-29.5,10.4-40.4-1c-10.5-11-10.5-28.3,0-39.4l94.1-94.2H229.1v185.8
+		c0.1,55.2,44.8,100,100.1,100.1h371.7c55.2-0.1,100-44.8,100.1-100.1V186.1c-0.1-55.2-44.8-100-100.1-100.1H329.2
+		C273.9,86.1,229.1,130.8,229.1,186.1z"/>
+	<path class="st0" d="M29,371.9c-15.8,0-28.6,12.8-28.6,28.6c0,15.8,12.8,28.6,28.6,28.6h200.1v-57.2H29z"/>
+</g>
+</svg>
