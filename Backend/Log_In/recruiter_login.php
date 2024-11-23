@@ -1,5 +1,4 @@
 <?php
-// Include the database configuration file
 include '../dbconfig.php';
 
 session_start();

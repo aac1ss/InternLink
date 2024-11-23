@@ -76,13 +76,14 @@ $email = $_SESSION['email'];
     <!-- Main Content -->
     <main class="main-content">
       <header class="top-bar">
-          <h1>Hey there, <?php echo htmlspecialchars($email); ?>!</h1> <!-- Displaying Email -->
+          <h1>Hey there, <?php echo htmlspecialchars($email); ?>!</h1>
           <div class="user-profile">
               <span class="notification-icon">🔔</span>
               <span class="user-name"><?php echo htmlspecialchars($email); ?></span> <!-- Displaying Email -->
           </div>
       </header>
-        <!-- Dashboard -->
+        
+      <!-- Dashboard -->
         <section id="dashboard" class="section">
           <div class="content" id="dashboardContent">
             <section class="stats">
@@ -219,7 +220,7 @@ $email = $_SESSION['email'];
           <section id="post-internship-form" class="post-internship-container section">
             <div>
               <h1>Post an Internship</h1>
-              <form action="#" method="post" class="internship-post-form">
+              <form action="../../../Backend/Recruiter_DashBoard/Post_Internship.php" method="post" class="internship-post-form">
                 <!-- Internship Information -->
                 <div class="internship-details">
                   <h2>Internship Information</h2>
@@ -264,10 +265,34 @@ $email = $_SESSION['email'];
                 <div class="internship-requirements">
                   <h2>Requirements</h2>
                   <div class="form-group">
-                    <label for="requirements">Describe the requirements for the internship:</label>
-                    <textarea id="requirements" name="requirements" placeholder="e.g., Proficiency in Java, SpringBoot,Jpa,Java-8,Leadership ,Good Communication Skills, etc." rows="5"></textarea>
+                    <label for="job-description">Job Description: <span class="required">*</span></label>
+                    <textarea id="job-description" name="job_description" rows="4" placeholder="e.g., Proficiency in Java, SpringBoot,Jpa,Java-8,Leadership ,Good Communication Skills, etc."required></textarea>
                   </div>
+                  <div class="form-group">
+                    <label for="responsibility">Responsibilities:</label>
+                    <textarea id="responsibility" name="responsibility" rows="4" placeholder="List responsibilities"></textarea>
+                   </div>
+                   <div class="form-group">
+                    <label for="requirements">Requirements:</label>
+                    <textarea id="requirements" name="requirements" rows="4" placeholder="List qualifications or prerequisites"></textarea>
+                    </div>
+                    <div class="form-group">
+                     <label for="skills">Skills:</label>
+                    <textarea id="skills" name="skills" rows="4" placeholder="List required skills"></textarea>
+                    </div>
+                   <div class="form-group">
+                    <label for="perks">Perks:</label>
+                    <textarea id="perks" name="perks" rows="4" placeholder="List any perks or benefits"></textarea>
+                   </div>
                 </div>
+                 <!-- Application Process -->
+                <div class="section application-process">
+                    <h2>Application Process</h2>
+                     <div class="form-group">
+                    <label for="additional-info">Additional Information:</label>
+                    <textarea id="additional-info" name="additional_info" rows="4" placeholder="Add any other details"></textarea>
+                   </div>
+                  </div>
                 <!-- Submit Button -->
                 <div class="form-group">
                   <button type="submit" class="submit-btn">Post Internship</button>
@@ -277,10 +302,10 @@ $email = $_SESSION['email'];
           </section>
           
           <!-- View Status -->
-            <section id="internships-jobs" class="section">
+        <section id="internships-jobs" class="section">
                <div class="content">
-        <h2>Your Posted Internships</h2>
-        <table class="internship-table">
+            <h2>Your Posted Internships</h2>
+            <table class="internship-table">
             <thead>
                 <tr>
                     <th>Position</th>
@@ -320,14 +345,14 @@ $email = $_SESSION['email'];
                 </tr>
                 <!-- Add more internship rows as needed -->
             </tbody>
-        </table>
+             </table>
                </div>
             </section>
              <section id="internships" class="section">
               <div class="content">
-      <h2>Your Posted Internships</h2>
-      <table class="internship-table">
-          <thead>
+            <h2>Your Posted Internships</h2>
+              <table class="internship-table">
+               <thead>
               <tr>
                   <th>Position</th>
                   <th>Status</th>
@@ -337,7 +362,7 @@ $email = $_SESSION['email'];
                   <th>Duration</th>
                   <th>Actions</th>
               </tr>
-          </thead>
+               </thead>
           <tbody>
               <tr>
                   <td>Software Developer Intern</td>
@@ -367,7 +392,7 @@ $email = $_SESSION['email'];
               </tr>
               <!-- Add more internship rows as needed -->
           </tbody>
-      </table>
+       </table>
               </div>
             </section>
 
@@ -485,32 +510,32 @@ $email = $_SESSION['email'];
             </section>
 
           <!-- Contact Us [Admin] Section -->
-            <section id="contact-us" class="section">
-  <div class="content">
-    <form class="contact-admin-form">
-      <h1>Contact Admin</h1>
-      <h3>Get in Touch</h3>
-      <div class="form-group">
+      <section id="contact-us" class="section">
+             <div class="content">
+          <form class="contact-admin-form">
+         <h1>Contact Admin</h1>
+          <h3>Get in Touch</h3>
+         <div class="form-group">
         <label for="subject">Subject*</label>
         <input type="text" id="subject" placeholder="Enter subject" required />
-      </div>
-      <div class="form-group">
+         </div>
+         <div class="form-group">
         <label for="message">Message*</label>
         <textarea id="message" placeholder="Write your message here..." required></textarea>
-      </div>
-      <h3>Your Contact Information</h3>
-      <div class="form-group">
+          </div>
+         <h3>Your Contact Information</h3>
+         <div class="form-group">
         <label for="admin-contact-name">Your Name*</label>
         <input type="text" id="admin-contact-name" placeholder="Enter your name" required />
-      </div>
-      <div class="form-group">
+         </div>
+         <div class="form-group">
         <label for="admin-contact-email">Your Email*</label>
         <input type="email" id="admin-contact-email" placeholder="Enter your email" required />
-      </div>
-      <button type="submit" class="send-btn">Send Message</button>
-    </form>
-  </div>
-             </section>
+         </div>
+          <button type="submit" class="send-btn">Send Message</button>
+           </form>
+          </div>
+    </section>
 
 
 
