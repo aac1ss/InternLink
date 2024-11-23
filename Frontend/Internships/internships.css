@@ -129,15 +129,16 @@ body {
 
 /* Modal Styles */
 .modal {
-    display: none;
+    display: none; /* Hidden by default */
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5); /* Dark background */
     justify-content: center;
     align-items: center;
+    z-index: 1000; /* Ensure it sits on top of everything */
 }
 
 .modal-content {
@@ -180,6 +181,20 @@ body {
     border-radius: 5px;
 }
 
+/* Close Button */
+.close-btn {
+    font-size: 2rem;
+    color: #aaa;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.close-btn:hover {
+    color: #333;
+}
+
 /* Slide-in animation */
 @keyframes slide-in {
     from {
@@ -190,4 +205,9 @@ body {
         transform: translateY(0);
         opacity: 1;
     }
+}
+
+/* Ensures modal content does not overflow or get cut off */
+.modal-content {
+    overflow: auto;
 }
