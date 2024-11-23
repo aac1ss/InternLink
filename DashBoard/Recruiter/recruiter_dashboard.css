@@ -5,6 +5,8 @@
         --hover-color-sidebar: #7b93be;
         --btn-color-new: #004c8c;
         --border-color: #00b3ff;
+        --title-color:#007bff;
+
  /* Border color for buttons */
 
         --sidebar-link-color: #333;
@@ -39,6 +41,11 @@
         padding: 20px;
         text-align: center;
     }
+      
+  .required {
+   font-size: 18px;
+    color: red;
+  }
 
 /* Sidebar */
 /* Icon Styling */
@@ -129,30 +136,7 @@
     display: block;
   }
 
-  /* LOGOUT */
   
-  .logout {
-        margin: 10px;
-    }
-
-    .logout a {
-        text-decoration: none;
-        color: var(--sidebar-bg);
-        padding: 10px 15px;
-        display: block;
-        font-weight: 700;
-        border-radius: 5px;
-        background-color: var(--hover-color-sidebar);
-    }
-
-    .logout a:hover {
-        color: #cfcfcf;
-        transform: scale(0.9);
-        font-weight: 600;
-        border-radius: 5px;
-        background-color: #004c8c;
-    }
-
 
 /* Main Content */
     .main-content {
@@ -233,7 +217,7 @@
         margin-right: 0;
     }
 
-/* Profile Section Styling */
+/* Company Profile */
 
     .content {
         background-color: #fff;
@@ -241,72 +225,105 @@
         border-radius: 8px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
-
-    .company-profile-form {
-        display: flex;
-        flex-direction: column;
+    
+    .company-profile-form .form-group label {
+        font-size: 1rem; /* Increase size to match */
+        font-weight: bold;
+        color: #333;
+        display: block;
+        margin-bottom: 0.5rem;
     }
-
     .company-profile-form h3 {
-        margin: 20px 0px;
-        color: var(--sidebar-bg);
+        color: var(--title-color); /* Match color */
+        font-size: 1.5rem; /* Match font size */
+        margin-bottom: 1rem;
+        text-align: left; /* Align to left for consistency */
     }
 
     .form-group {
         margin-bottom: 20px;
     }
 
-    .form-group label {
-        font-size: 14px;
-        font-weight: bold;
-        margin: 5px 20px;
-        display: block;
-    }
-
-    .form-group input,
-    .form-group select {
-        width: 50%;
-        padding: 10px;
-        margin: 0px 20px;
-        font-size: 16px;
-        /* border: 1px solid var(--sidebar-bg); */
-        border: 1px solid var(--border-color);
-        border-radius: 5px;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    }
-
-    .form-group textarea {
-        width: 50%;
-        padding: 10px;
-        margin: 0px 20px;
-        height: 180px;
-        font-size: 16px;
-        /* border: 1px solid var(--sidebar-bg); */
-        border: 1px solid var(--border-color);
-        border-radius: 5px;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    }
+    
+    .company-profile-form .form-group input,
+.company-profile-form .form-group textarea,
+.company-profile-form .form-group select {
+    width: 100%; /* Full width for consistency */
+    padding: 0.8rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: none;
+    margin-bottom: 1rem;
+}
 
     textarea {
         resize: vertical;
     }
 
-    .save-btn {
-        background-color: var(--sidebar-bg);
-        margin-left: 20px;
-        color: #fff;
-        padding: 15px;
-        width: 18%;
-        border: none;
-        font-size: 16px;
-        cursor: pointer;
+    /* Match titles styling */
+    .company-profile-form h1 {
+        color: var(--sidebar-bg); /* Match color */
+        font-size: 2rem; /* Match font size */
+        margin-bottom: 1rem;
+        text-align: center; /* Align to left for consistency */
+    }
+    .company-profile-form h3 {
+        color: #007bff; /* Match color */
+        font-size: 1.5rem; /* Match font size */
+        margin-bottom: 1rem;
+        text-align: left; /* Align to left for consistency */
+    }
+    
+    /* Match input and label styles */
+    .company-profile-form .form-group label {
+        font-size: 1rem; /* Increase size to match */
+        font-weight: bold;
+        color: #333;
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+    
+    .company-profile-form .form-group input,
+    .company-profile-form .form-group textarea,
+    .company-profile-form .form-group select {
+        width: 100%; /* Full width for consistency */
+        padding: 0.8rem;
+        font-size: 1rem;
+        border: 1px solid #ccc;
         border-radius: 5px;
+        box-shadow: none;
+        margin-bottom: 1rem;
+    }
+    
+    /* Match button styling */
+    .company-profile-form .save-btn {
+        display: block;
+        width: 80%;
+        margin: 0 auto;
+        padding: 1rem;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        text-align: center;
+        cursor: pointer;
+        transition: background-color 0.3s;
     }
 
-    .save-btn:hover {
-        background-color: #004c8c;
+    .company-profile-form .save-btn:hover {
+        background-color: #0056b3;
     }
-
+    .company-profile-form {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 2rem;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
 
 /* Post Internship Section */
 .post-internship-container {
@@ -340,10 +357,7 @@
     margin-bottom: 0.5rem;
     display: block;
   }
-  
-  .post-internship-container .required {
-    color: red;
-  }
+
   
   .post-internship-container input,
   .post-internship-container textarea {
@@ -497,35 +511,6 @@
     background-color: #5a6268; /* Darker gray */
 }
 
-/* Settings Section Styling */
-    .settings-form {
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .settings-form .form-group {
-        margin-bottom: 20px;
-    }
-
-    .settings-form .form-group label {
-        font-size: 14px;
-        font-weight: bold;
-        margin: 5px 20px;
-        display: block;
-    }
-
-    .settings-form .form-group input,
-    .settings-form .form-group select {
-        width: 50%;
-        padding: 10px;
-        margin: 0px 20px;
-        font-size: 16px;
-        border: 1px solid var(--border-color);
-        border-radius: 5px;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    }
-
 /* Manage Applicants Table */
     .applicants-table {
         width: 100%;
@@ -575,60 +560,6 @@
 
     .action-btn:hover {
         opacity: 0.9;
-    }
-
-    /* Contact Admin Section */
-    .contact-admin-form {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .contact-admin-form h3 {
-        margin: 20px 0px;
-        color: var(--sidebar-bg);
-    }
-
-    .contact-admin-form .form-group {
-        margin-bottom: 20px;
-    }
-
-    .contact-admin-form .form-group label {
-        font-size: 14px;
-        font-weight: bold;
-        margin: 5px 20px;
-        display: block;
-    }
-
-    .contact-admin-form .form-group input,
-    .contact-admin-form .form-group textarea {
-        width: 50%;
-        padding: 10px;
-        margin: 0px 20px;
-        font-size: 16px;
-        border: 1px solid var(--border-color);
-        border-radius: 5px;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    }
-
-    .contact-admin-form textarea {
-        height: 120px;
-        resize: vertical;
-    }
-
-    .send-btn {
-        background-color: var(--sidebar-bg);
-        color: #fff;
-        padding: 15px;
-        width: 15%;
-        border: none;
-        font-size: 16px;
-        cursor: pointer;
-        border-radius: 5px;
-        margin-left: 20px;
-    }
-
-    .send-btn:hover {
-        background-color: #004c8c;
     }
 
 /* Membership Section */
@@ -738,6 +669,111 @@
         background-color: #003a6a;
     }
 
+    /* Contact Admin Section */
+    .contact-admin-form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .contact-admin-form h3 {
+        margin: 20px 0px;
+        color: var(--sidebar-bg);
+    }
+
+    .contact-admin-form .form-group {
+        margin-bottom: 20px;
+    }
+
+    .contact-admin-form .form-group label {
+        font-size: 14px;
+        font-weight: bold;
+        margin: 5px 20px;
+        display: block;
+    }
+
+    .contact-admin-form .form-group input,
+    .contact-admin-form .form-group textarea {
+        width: 50%;
+        padding: 10px;
+        margin: 0px 20px;
+        font-size: 16px;
+        border: 1px solid var(--border-color);
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-admin-form textarea {
+        height: 120px;
+        resize: vertical;
+    }
+
+    .send-btn {
+        background-color: var(--sidebar-bg);
+        color: #fff;
+        padding: 15px;
+        width: 15%;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-left: 20px;
+    }
+
+    .send-btn:hover {
+        background-color: #004c8c;
+    }
+
+/* Settings Section Styling */
+    .settings-form {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .settings-form .form-group {
+        margin-bottom: 20px;
+    }
+
+    .settings-form .form-group label {
+        font-size: 14px;
+        font-weight: bold;
+        margin: 5px 20px;
+        display: block;
+    }
+
+    .settings-form .form-group input,
+    .settings-form .form-group select {
+        width: 50%;
+        padding: 10px;
+        margin: 0px 20px;
+        font-size: 16px;
+        border: 1px solid var(--border-color);
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+/* LOGOUT */
+  
+.logout {
+    margin: 10px;
+}
+
+.logout a {
+    text-decoration: none;
+    color: var(--sidebar-bg);
+    padding: 10px 15px;
+    display: block;
+    font-weight: 700;
+    border-radius: 5px;
+    background-color: var(--hover-color-sidebar);
+}
+
+.logout a:hover {
+    color: #cfcfcf;
+    transform: scale(0.9);
+    font-weight: 600;
+    border-radius: 5px;
+    background-color: #004c8c;
+}
 
     /* Dummy Footer */
     .dummy-footer {
