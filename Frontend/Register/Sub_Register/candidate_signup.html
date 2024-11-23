@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InternLink - Sign Up</title>
+    <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <header>
+        <div class="navigation">
+            <div class="logo">
+                <img src="logo.png" alt="InternLink Logo"> <!-- Update with actual logo image -->
+                <h1>InternLink</h1>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Internships</a></li>
+                    <li><a href="#">About Us</a></li>
+                </ul>
+                <div class="nav-buttons">
+                    <button class="login-btn"> <a href="../../Login/Nav_Login/Login_index.htm">Login</a>  </button>                       
+                    <button class="register-btn"> <a href="../../Register/Nav_Register/register_index.htm">Register</a>  </button>                  
+                    <h1>|</h1>
+                    <button class="admin-btn">Admin</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Registration Form -->
+    <main>
+        <div class="form-container">
+            <h2>Create your free InternLink Account </h2>
+
+
+    <form id="formvalidation">
+
+    <label for="user_name">Username*</label>
+    <input type="text" id="user_name" name="user_name" required>
+
+    <label for="email">Email*</label>
+    <input type="email" id="email" name="email" required>
+    
+    <label for="password">Password*</label>
+    <input type="password" id="password" name="password" required>
+    
+    <label for="confirm-password">Confirm Password*</label>
+    <input type="password" id="confirm-password" name="confirm-password" required>
+
+
+    
+    <button type="submit" class="sign-up">Sign Up</button>
+
+    <div class="separator">Or</div>
+                
+                <button type="button" class="google-sign-up">Sign Up with Google</button>
+
+                <p class="login-link">Already have an account? <a href="../../Login/Sub_Logins/candidate_login.html">Login</a></p>
+</form>
+
+        </div>
+    </main>
+
+
+    <!-- The Javascript part hai yo -->
+    <script>
+        // Select the form element
+        const form = document.getElementById("formvalidation");
+        
+        // Add an event listener for form submission
+        form.addEventListener("submit", function (event) {
+            // Get the values of the password and confirm password fields
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirm-password").value;
+        
+            // Check if the passwords match
+            if (password !== confirmPassword) {
+                event.preventDefault(); // Prevent form submission if passwords don't match
+                alert("Passwords do not match!");
+            }
+        });
+        </script>
+        
+
+   <!-- FOOTER -->
+   <footer>
+    <div class="footer-content">
+        <div class="footer-logo">
+            <img src="logo.png" alt="InternLink Logo"> <!-- Add your logo here -->
+            <h3>InternLink</h3>
+            <div class="footer-details">
+                <p>Balkumari, Lalitpur</p>
+                <p>+977-9864240733</p>
+                <p>contact@internlink.com</p>
+            </div>
+        </div>
+        <div class="footer-links">
+            <div class="footer-column">
+                <h4>About InternLink</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Our Services</a></li>
+                    <li><a href="#">Our Blogs</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>For Candidates</h4>
+                <ul>
+                    <li><a href="#">Internships</a></li>
+                    <li><a href="#">Dashboard</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>For Recruiters</h4>
+                <ul>
+                    <li><a href="#">Become a Recruiter</a></li>
+                    <li><a href="#">Post Internship</a></li>
+                    <li><a href="#">Dashboard</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>More</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Use</a></li>
+                    <li><a href="#">FAQs</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
