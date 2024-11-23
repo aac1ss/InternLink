@@ -1,0 +1,124 @@
+/* Color Variables */
+:root {
+    --sidebar-bg: #141e30;
+    --text-color-white: #fff;
+    --hover-color-sidebar: #7b93be;
+    --btn-color-new: #004c8c;
+    --border-color: #00b3ff;
+    --sidebar-link-color: #333;
+    --sidebar-active-bg: #f0f0f0;
+    --logout-bg: #f8d7da;
+    --logout-text: #721c24;
+    --header-bg: #ffffff;
+    --main-bg: #ffffff;
+  }
+  
+  /* Reset Styles */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    color: var(--sidebar-link-color);
+    background-color: var(--main-bg);
+  }
+  
+  /* Dummy Navigation Bar */
+  .dummy-nav {
+    background-color: var(--sidebar-bg);
+    color: var(--text-color-white);
+    padding: 20px;
+    text-align: center;
+  }
+  
+  /* Sidebar Styles */
+  .container {
+    display: flex;
+    min-height: 91vh;
+  }
+  
+  .sidebar {
+    width: 250px;
+    background-color: var(--sidebar-bg);
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #ddd;
+  }
+  
+  .sidebar-nav a {
+    text-decoration: none;
+    color: var(--text-color-white);
+    padding: 10px 15px;
+    display: block;
+    border-radius: 5px;
+    margin-bottom: 5px;
+  }
+  
+  .sidebar-nav a.active,
+  .sidebar-nav a:hover {
+    color: #7b93be;
+    font-weight: bold;
+  }
+  
+  /* Dropdown Styling */
+  .dropdown {
+    position: relative;
+  }
+  
+  .dropdown-toggle {
+    cursor: pointer;
+    display: block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    background-color: var(--sidebar-bg);
+    padding-left: 20px;
+    margin-top: 5px;
+    border-radius: 5px;
+  }
+  
+  .dropdown-content a {
+    padding: 8px 15px;
+    text-decoration: none;
+    color: var(--text-color-white);
+    border-radius: 5px;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: var(--hover-color-sidebar);
+  }
+  
+  .dropdown.open .dropdown-content {
+    display: block;
+  }
+  
+  /* Logout Button */
+  .logout a {
+    text-decoration: none;
+    color: var(--sidebar-bg);
+    padding: 10px 15px;
+    display: block;
+    font-weight: bold;
+    background-color: var(--hover-color-sidebar);
+    border-radius: 5px;
+  }
+  
+  /* Footer */
+  .dummy-footer {
+    background-color: var(--sidebar-bg);
+    color: var(--text-color-white);
+    text-align: center;
+    padding: 15px;
+  }
+  
+  .arko {
+    padding: 10px;
+    background-color: var(--btn-color-new);
+    color: var(--text-color-white);
+  }
+  
