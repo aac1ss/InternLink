@@ -677,55 +677,77 @@
         display: flex;
         flex-direction: column;
     }
-
-    .contact-admin-form h3 {
-        margin: 20px 0px;
+    .contact-admin-form h1 {
         color: var(--sidebar-bg);
+        font-size: 2rem; 
+        margin-bottom: 1rem;
+        text-align: center; 
+    }
+    .contact-admin-form h3 {
+        color: var(--title-color); 
+        font-size: 1.5rem;
+        margin-bottom: 1.1rem;
+        text-align: left;
     }
 
     .contact-admin-form .form-group {
-        margin-bottom: 20px;
+        margin-bottom: 10px;
     }
 
     .contact-admin-form .form-group label {
-        font-size: 14px;
+        font-size: 1rem; 
         font-weight: bold;
-        margin: 5px 20px;
+        color: #333;
         display: block;
+        margin-bottom: 0.5rem;
     }
 
     .contact-admin-form .form-group input,
     .contact-admin-form .form-group textarea {
-        width: 50%;
-        padding: 10px;
-        margin: 0px 20px;
-        font-size: 16px;
-        border: 1px solid var(--border-color);
+        width: 100%;
+        padding: 0.8rem;
+        font-size: 1rem;
+        border: 1px solid #ccc;
         border-radius: 5px;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        box-shadow: none;
+        margin-bottom: 1rem;
     }
 
     .contact-admin-form textarea {
-        height: 120px;
         resize: vertical;
+        height: 150px; 
     }
-
-    .send-btn {
-        background-color: var(--sidebar-bg);
+    .contact-admin-form .send-btn {
+        display: block;
+        width: 80%;
+        margin: 0 auto;
+        padding: 1rem;
+        background-color: #007bff;
         color: #fff;
-        padding: 15px;
-        width: 15%;
         border: none;
-        font-size: 16px;
-        cursor: pointer;
         border-radius: 5px;
-        margin-left: 20px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        text-align: center;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    
+    .contact-admin-form .send-btn:hover {
+        background-color: #0056b3;
+    }
+    
+    /* Add shadow and center the form */
+    .contact-admin-form {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 2rem;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
 
-    .send-btn:hover {
-        background-color: #004c8c;
-    }
-
+    
 /* Settings Section Styling */
     .settings-form {
         padding: 20px;
