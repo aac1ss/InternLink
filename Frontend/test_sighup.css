@@ -1,0 +1,210 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+
+/* Color Variables */
+
+:root {
+    --primary-color: #4b49ac; /* Main accent color */
+    --secondary-color: #d9e7ff; /* Background color for header and footer */
+    --text-color: #1f1e1e; /* Text color */
+    --bg-color: #f4f4f4; /* Background color for body and sections */
+    --border-color: #7978E9; /* Border color for buttons */
+    
+}
+
+/* Main part css */
+*{
+    box-sizing: border-box;
+}
+
+body{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background: #f0eeee;
+    font-family: 'monserrat', sans-serif;
+    min-height: 100%;
+    margin: 10%;
+}
+
+.container{
+    position: relative;
+    width: 768px;
+    max-width: 100%;
+    min-height: 480px;
+    background-color: #ffff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 14px 28px rgba(0,0,0,0,25),
+                0 10px 10px rgba(0,0,0,0,22);
+}
+
+.Login-recruiter, .Login-candidates{
+    position: absolute;
+    top: 0%;
+    left: 0;
+    height: 100%;
+    transition: all 0.6% ease-in-out;  
+}
+
+.Login-recruiter{
+    width: 50%;
+    opacity: 0;
+    z-index: 1;
+}
+
+.Login-candidates{
+    width: 50%;
+    z-index: 2;
+}
+
+form{
+    background: #ffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 50px;
+    height: 100%;
+    text-align: center;
+}
+
+h1{
+    font-weight: bold;
+    margin: 0;
+    font-size: 25px;
+
+
+}
+
+p{
+    font-size: 14px;
+    font-weight: 100;
+    line-height: 20px;
+    letter-spacing: 0.5px;
+    margin: 15px 0 20px;
+
+}
+ input{
+    background: #eee;
+    padding: 12px 15px;
+    margin: 8px 15px;
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    outline: none; 
+ }
+ *{
+   
+    font-size: 14px;
+    text-decoration: none;
+    margin: 0px;
+
+ }
+
+ button{
+    color: var(--bg-color);
+    background-color: var(--primary-color);
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 55px;
+    margin: 20px;
+    border-radius: 20px;
+    border: 1px var(--primary-color);
+    outline: none;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    cursor: pointer;
+ }
+ button:active{
+    transform: scale(0.90);
+ }
+
+
+ #CSignUp, #RSignUp{
+    background-color: transparent;
+    border: 2px solid #ffff;
+ }
+
+ .container.right-panel-active .Login-candidates{
+    transform: translateX(100%);
+ }
+ .container.right-panel-active .Login-recruiter{
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
+ }
+ 
+ .overlay-container{
+    position:absolute ;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: transform 0.6s ease-in-out;
+    z-index: 100;
+ }
+
+ .container.right-panel-active .overlay-container{
+    transform: translateX(-100%);
+ }
+.overlay{
+    position: relative;
+    color: #ffff;
+    background: var(--border-color);
+    left: -100%;
+    height: 100%;
+    width: 200%;
+    background: linear-gradient(to right, #d46ce2, #4b49ac );
+    transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
+ }
+
+ .container.right-panel-active .overlay{
+    transform: translateX(50%);
+ }
+
+ .overlay-left, .overlay-right  {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    text-align: center;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
+ }
+
+.overlay-left{
+   transform: translateX(-20%);
+}
+.overlay-right{
+   right: 0;
+   transform: translateX(0);
+}
+
+.conntainer.right-panel-active .overlay-left{
+   transform: translate(0);
+}
+.conntainer.right-panel-active .overlay-right{
+   transform: translate(20%);
+}
+
+.social-container a{
+   height: 40px;
+   width: 40px;
+   margin: 0 5px;
+   display: inline-flex;
+   justify-content: center;
+   align-items: center;
+   border: 1px solid var(--secondary-color);
+   border-radius: 50px;
+
+}

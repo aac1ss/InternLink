@@ -1,0 +1,76 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login form </title>
+    <link rel="stylesheet" type="text/css" href="/test_sighup.css" >
+    <link rel="stylesheet" type="text/css" href="">
+</head>
+<body>
+
+    <!-- Main Part  -->
+    <div class="container" id="main">
+        <div class="Login-recruiter">
+            <form action="#">
+
+                <h1>Recruiters </h1>
+                <p>Create a free account and find the best candidate for your company!</p>
+                <div class="social-container">
+                    <a href="#" class="social"> <i class="fab fa-google-plus-g"></i></a>
+                </div>
+                <p>or use email for registration</p>
+                <input type="text" name="name" placeholder="Company Name" required="">
+                <input type="email" name="email" placeholder="Company Email" required="">
+                <input type="password" name="pswd" placeholder="Password" required="">
+                <button>Sign Up</button>  
+            </form>
+        </div>
+
+        <div class="Login-candidates">
+            <form action="#">
+                <h1>Candidates  </h1>
+                <p>Create a free account to apply!</p>
+                <div class="social-container">
+                    <a href="#" class="social"> <i class="fab fa-google-plus-g"></i></a>
+                </div>
+                <p>or use email for registration</p>
+                <input type="text" name="name" placeholder="Name" required="">
+                <input type="email" name="email" placeholder="Email" required="">
+                <input type="password" name="pswd" placeholder="Password" required="">
+                <button>Sign Up</button>  
+            </form>
+        </div>
+
+        <!-- Overlay ko lagi  -->
+         <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-right">
+                    <h1>Are you a Recruiter?</h1>
+                    <P>If yes, Find the best candidate for you company through InternLink By quickly Signing Up </P>
+                    <button id="RSignUp">SignUp</button>
+                </div>
+
+                <div class="overlay-left">
+                    <h1>Are you looking for best Internship Oppourtunity?
+                    </h1>
+                    <P>If yes, Apply for your  Internship today by signing up to Internlink</P>
+                    <button id="CSignUp">SignUp </button>
+                </div>
+            </div>
+         </div>
+    </div>
+    <script type="text/javascript">
+        const CsignUpButton= document.getElementById('CSignUp');
+        const RsignUpButton= document.getElementById('RSignUp');
+        const main=document.getElementById('main');
+
+        CsignUpButton.addEventListener('click',() => {
+            main.classlist.add("right-panel-active");
+        })
+        RsignUpButton.addEventListener('click',() => {
+            main.classlist.remove("right-panel-active");
+        })
+    </script>
+</body>
+</html>

@@ -379,7 +379,6 @@
   .post-internship-container .type-toggle,
   .post-internship-container .stipend-toggle {
     display: flex;
-    padding-left: 20px;
     gap: 1rem;
   }
   
