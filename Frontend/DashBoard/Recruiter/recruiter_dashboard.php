@@ -1,3 +1,17 @@
+<?php
+// Start the session to access session variables
+session_start();
+
+// Check if the user is logged in, if not redirect to login page
+if (!isset($_SESSION['email'])) {
+    header("Location: ../../Frontend/Login/recruiter_login.html");
+    exit;
+}
+
+// Retrieve the logged-in user's email from the session
+$email = $_SESSION['email'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -59,16 +73,15 @@
       </aside>
       
 
-      <!-- Main Content -->
-      <main class="main-content">
-        <header class="top-bar">
-            <h1>Hey there, Asdasf Aas Asfasf!</h1>
-            <div class="user-profile">
-                <span class="notification-icon">🔔</span>
-                <span class="user-name">Asdasf Aas Asfasf</span>
-            </div>
-        </header>
-
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="top-bar">
+          <h1>Hey there, <?php echo htmlspecialchars($email); ?>!</h1> <!-- Displaying Email -->
+          <div class="user-profile">
+              <span class="notification-icon">🔔</span>
+              <span class="user-name"><?php echo htmlspecialchars($email); ?></span> <!-- Displaying Email -->
+          </div>
+      </header>
         <!-- Dashboard -->
         <section id="dashboard" class="section">
           <div class="content" id="dashboardContent">
