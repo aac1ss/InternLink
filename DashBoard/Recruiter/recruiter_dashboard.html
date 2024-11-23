@@ -30,7 +30,7 @@
               <img src="/images/DashBoard Icons/Internships.svg" alt="Internships" class="nav-icon" /> Internships
             </a>
             <div class="dropdown-content">
-              <a href="#post-internship">
+              <a href="#post-internship-form">
                 <img src="/images/DashBoard Icons/Post.svg" alt="Post Internship" class="nav-icon" /> Post Internship
               </a>
               <a href="#internships">
@@ -192,14 +192,13 @@
         </section>
       
         <!--Internships  -->
-
           <!-- Post Internships -->
-          <section id="post-internship" class="section">
-            <div class="content">
+          <section id="post-internship-form" class="post-internship-container section">
+            <div>
               <h1>Post an Internship</h1>
               <form action="#" method="post" class="internship-post-form">
                 <!-- Internship Information -->
-                <div class="section internship-details">
+                <div class="internship-details">
                   <h2>Internship Information</h2>
                   <div class="form-group">
                     <label for="internship-title">Title: <span class="required">*</span></label>
@@ -234,18 +233,26 @@
                     </div>
                   </div>
                   <div id="stipend-amount-container" class="form-group" style="display: none;">
-                    <label for="stipend-amount">Stipend Amount:</label>
+                    <label for="stipend-amount">Stipend Amount: <span class="required">*</span></label>
                     <input type="text" id="stipend-amount" name="stipend_amount" placeholder="e.g., Rs 5000 / Month" />
                   </div>
                 </div>
                 <!-- Requirements -->
-                <div class="section internship-requirements">
-                  <!-- Requirements Content -->
+                <div class="internship-requirements">
+                  <h2>Requirements</h2>
+                  <div class="form-group">
+                    <label for="requirements">Describe the requirements for the internship:</label>
+                    <textarea id="requirements" name="requirements" placeholder="e.g., Proficiency in Python, good communication skills, etc." rows="5"></textarea>
+                  </div>
                 </div>
-                <button type="submit" class="submit-btn">Post Internship</button>
+                <!-- Submit Button -->
+                <div class="form-group">
+                  <button type="submit" class="submit-btn">Post Internship</button>
+                </div>
               </form>
             </div>
           </section>
+          
           <!-- View Status -->
             <section id="internships-jobs" class="section">
                <div class="content">

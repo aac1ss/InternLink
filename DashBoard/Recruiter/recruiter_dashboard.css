@@ -307,8 +307,8 @@
         background-color: #004c8c;
     }
 
-/*  */
 
+/* Post Internship Section */
 .post-internship-container {
     max-width: 800px;
     margin: 2rem auto;
@@ -316,54 +316,58 @@
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
+  }
+  
+  .post-internship-container h1 {
     text-align: center;
     color: #333;
     font-size: 2rem;
     margin-bottom: 1.5rem;
-}
-
-h2 {
+  }
+  
+  .post-internship-container h2 {
     color: #007bff;
     margin-bottom: 1rem;
     font-size: 1.5rem;
-}
-
-.form-group {
+  }
+  
+  .post-internship-container .form-group {
     margin-bottom: 1.5rem;
-}
-
-label {
+  }
+  
+  .post-internship-container label {
     font-weight: bold;
     margin-bottom: 0.5rem;
     display: block;
-}
-
-.required {
+  }
+  
+  .post-internship-container .required {
     color: red;
-}
-
-input, textarea {
+  }
+  
+  .post-internship-container input,
+  .post-internship-container textarea {
     width: 100%;
     padding: 0.8rem;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 1rem;
     outline: none;
-}
-
-textarea {
+  }
+  
+  .post-internship-container textarea {
     resize: vertical;
-}
-
-.type-toggle, .stipend-toggle {
+  }
+  
+  .post-internship-container .type-toggle,
+  .post-internship-container .stipend-toggle {
     display: flex;
+    padding-left: 20px;
     gap: 1rem;
-}
-
-.toggle-btn, .type-toggle-btn {
+  }
+  
+  .post-internship-container .toggle-btn,
+  .post-internship-container .type-toggle-btn {
     padding: 0.6rem 1rem;
     border: 2px solid #007bff;
     border-radius: 5px;
@@ -372,21 +376,24 @@ textarea {
     cursor: pointer;
     font-weight: bold;
     transition: all 0.3s ease;
-}
-
-.toggle-btn.active, .type-toggle-btn.active {
+  }
+  
+  .post-internship-container .toggle-btn.active,
+  .post-internship-container .type-toggle-btn.active {
     background-color: #007bff;
     color: #fff;
-}
-
-.toggle-btn:hover, .type-toggle-btn:hover {
+  }
+  
+  .post-internship-container .toggle-btn:hover,
+  .post-internship-container .type-toggle-btn:hover {
     background-color: #0056b3;
     color: #fff;
-}
-
-.submit-btn {
+  }
+  
+  .post-internship-container .submit-btn {
     display: block;
-    width: 100%;
+    width: 80%;
+    margin: 0 auto; /* Center align the button */
     padding: 1rem;
     background-color: #007bff;
     color: #fff;
@@ -396,106 +403,12 @@ textarea {
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s;
-}
-
-.submit-btn:hover {
+  }
+  
+  .post-internship-container .submit-btn:hover {
     background-color: #0056b3;
-}
-
-/*Post Internships  */
-
-.post-internship-container {
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 2rem;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-    text-align: center;
-    color: #333;
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-}
-
-h2 {
-    color: #007bff;
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
-}
-
-.form-group {
-    margin-bottom: 1.5rem;
-}
-
-label {
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-    display: block;
-}
-
-.required {
-    color: red;
-}
-
-input, textarea {
-    width: 100%;
-    padding: 0.8rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem;
-    outline: none;
-}
-
-textarea {
-    resize: vertical;
-}
-
-.type-toggle, .stipend-toggle {
-    display: flex;
-    gap: 1rem;
-}
-
-.toggle-btn, .type-toggle-btn {
-    padding: 0.6rem 1rem;
-    border: 2px solid #007bff;
-    border-radius: 5px;
-    background-color: #fff;
-    color: #007bff;
-    cursor: pointer;
-    font-weight: bold;
-    transition: all 0.3s ease;
-}
-
-.toggle-btn.active, .type-toggle-btn.active {
-    background-color: #007bff;
-    color: #fff;
-}
-
-.toggle-btn:hover, .type-toggle-btn:hover {
-    background-color: #0056b3;
-    color: #fff;
-}
-
-.submit-btn {
-    display: block;
-    width: 100%;
-    padding: 1rem;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.2rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.submit-btn:hover {
-    background-color: #0056b3;
-}
+  }
+  
 
 /* View Status (internship */
 .internship-table {
