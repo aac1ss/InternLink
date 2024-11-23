@@ -61,61 +61,71 @@
 
       <!-- Main Content -->
       <main class="main-content">
-        <!-- Fixed Header -->
-        <header class="header">
-          <h1>Welcome back! Asdasd Aaaa</h1>
+        <header class="top-bar">
+            <h1>Hey there, Asdasf Aas Asfasf!</h1>
+            <div class="user-profile">
+                <span class="notification-icon">🔔</span>
+                <span class="user-name">Asdasf Aas Asfasf</span>
+            </div>
         </header>
 
         <!-- Dashboard -->
         <section id="dashboard" class="section">
-          <div class="profile-completion">
-            <p>
-              You haven’t completed your profile yet. Take a few minutes to fill
-              out your profile.
-            </p>
-            <ul>
-              <li>Upload Company Images</li>
-              <li>Add Social Links</li>
-            </ul>
-            <a href="h.html"> //asd
-              <button>Complete Now →</button>
-            </a>
-          </div>
-          <div class="post-internship">
-            <h2>Post your Internship</h2>
-            <p>
-              Find the perfect fit for your team - post your Internship with us today!
-            </p>
-            <button>Post an Internship →</button>
-          </div>
-          <div class="stats">
-            <div>Total Internships<br />0</div>
-            <div>Total Applicants<br />0</div>
-            <div>Shortlisted<br />0</div>
-            <div>Views<br />0</div>
+          <div class="content" id="dashboardContent">
+            <section class="stats">
+                <div class="stat-card">
+                    <h2>0</h2>
+                    <p>Applied</p>
+                </div>
+                <div class="stat-card">
+                    <h2>55</h2>
+                    <p>Alerts</p>
+                </div>
+                <div class="stat-card">
+                    <h2>0</h2>
+                    <p>Rejected</p>
+                </div>
+                <div class="stat-card">
+                    <h2>0</h2>
+                    <p>Bookmarks</p>
+                </div>
+            </section>
+            <section class="recent-activities">
+                <div class="recent-applications">
+                    <h3>Internship Applied Recently</h3>
+                    <p>No recent applications</p>
+                </div>
+                <div class="recent-details">
+                    <h3>Recent Activities</h3>
+                    <ul>
+                        <li>Account Verified - 1 month ago</li>
+                        <li>New Account Created - 1 month ago</li>
+                    </ul>
+                </div>
+            </section>
           </div>
         </section>
 
         <!-- Company Profile -->
         <section id="company-profile" class="section">
           <div class="content">
-            <h2>Company Profile</h2>
             <form class="company-profile-form">
+              <h1>Company Profile</h1>
               <h3>Company Information</h3>
               <div class="form-group">
-                <label>Company Name*</label>
+                <label>Company Name <span class="required">*</span></label>
                 <input type="text" placeholder="Enter company name" required />
               </div>
               <div class="form-group">
-                <label>Industry*</label>
+                <label>Industry <span class="required">*</span></label>
                 <input
                   type="text"
-                  placeholder="e.g., Technology, Finance"
+                  placeholder="e.g., Technology, Finance, Web-Development"
                   required
                 />
               </div>
               <div class="form-group">
-                <label>Company Size*</label>
+                <label>Company Size <span class="required">*</span></label>
                 <select>
                   <option>1-10 Employees</option>
                   <option>11-50 Employees</option>
@@ -126,7 +136,7 @@
               </div>
               <div class="form-group">
                 <label>Company Website</label>
-                <input type="url" placeholder="e.g., www.company.com" />
+                <input type="url" placeholder="e.g., www.internlink.com" />
               </div>
               <div class="form-group">
                 <label>Company Description*</label>
@@ -138,23 +148,23 @@
 
               <h3>Contact Information</h3>
               <div class="form-group">
-                <label>Contact Person Name*</label>
+                <label>Contact Person Name <span class="required">*</span></label>
                 <input type="text" placeholder="Enter contact person's name" />
               </div>
               <div class="form-group">
-                <label>Contact Position*</label>
+                <label>Contact Position <span class="required">*</span></label>
                 <input type="text" placeholder="e.g., HR Manager" />
               </div>
               <div class="form-group">
-                <label>Contact Email*</label>
+                <label>Contact Email <span class="required">*</span></label>
                 <input type="email" placeholder="Enter contact email" />
               </div>
               <div class="form-group">
-                <label>Contact Phone Number*</label>
-                <input type="tel" placeholder="e.g., (123) 456-7890" />
+                <label>Contact Phone Number <span class="required">*</span></label>
+                <input type="tel" placeholder="e.g., (977) 9869696969" />
               </div>
               <div class="form-group">
-                <label>Office Address*</label>
+                <label>Office Address <span class="required">*</span></label>
                 <input type="text" placeholder="Enter office address" />
               </div>
 
@@ -178,11 +188,11 @@
 
               <h3>Documents</h3>
               <div class="form-group">
-                <label>Upload Company Logo</label>
+                <label>Upload Company Logo <span class="required">*</span></label>
                 <input type="file" />
               </div>
               <div class="form-group">
-                <label>Upload Registration Document</label>
+                <label>Upload Registration Document <span class="required">*</span></label>
                 <input type="file" />
               </div>
 
@@ -202,15 +212,15 @@
                   <h2>Internship Information</h2>
                   <div class="form-group">
                     <label for="internship-title">Title: <span class="required">*</span></label>
-                    <input type="text" id="internship-title" name="internship_title" placeholder="e.g., Social Media Content Creator" required />
+                    <input type="text" id="internship-title" name="internship_title" placeholder="e.g., Java Developer" required />
                   </div>
                   <div class="form-group">
                     <label for="company-name">Company Name: <span class="required">*</span></label>
-                    <input type="text" id="company-name" name="company_name" placeholder="e.g., Craftmysop" required />
+                    <input type="text" id="company-name" name="company_name" placeholder="e.g., InternLink" required />
                   </div>
                   <div class="form-group">
                     <label for="location">Location: <span class="required">*</span></label>
-                    <input type="text" id="location" name="location" placeholder="e.g., Remote, Mumbai, etc." required />
+                    <input type="text" id="location" name="location" placeholder="e.g., Jhamsikhel, Balkumamri, etc." required />
                   </div>
                   <div class="form-group">
                     <label for="duration">Duration: <span class="required">*</span></label>
@@ -242,7 +252,7 @@
                   <h2>Requirements</h2>
                   <div class="form-group">
                     <label for="requirements">Describe the requirements for the internship:</label>
-                    <textarea id="requirements" name="requirements" placeholder="e.g., Proficiency in Python, good communication skills, etc." rows="5"></textarea>
+                    <textarea id="requirements" name="requirements" placeholder="e.g., Proficiency in Java, SpringBoot,Jpa,Java-8,Leadership ,Good Communication Skills, etc." rows="5"></textarea>
                   </div>
                 </div>
                 <!-- Submit Button -->
@@ -301,7 +311,7 @@
                </div>
             </section>
              <section id="internships" class="section">
-         <div class="content">
+              <div class="content">
       <h2>Your Posted Internships</h2>
       <table class="internship-table">
           <thead>
@@ -345,10 +355,10 @@
               <!-- Add more internship rows as needed -->
           </tbody>
       </table>
-  </div>
+              </div>
             </section>
 
-            <!-- Setting Section -->
+          <!-- Setting Section -->
               <section id="setting" class="section">
               <div class="content">
                 <h2>Settings</h2>
@@ -374,7 +384,7 @@
               </div>
             </section>
         
-            <!-- Manage Applicants Section -->
+          <!-- Manage Applicants Section -->
             <section id="manage-applicants" class="section">
               <div class="content">
                 <h2>Manage Applicants</h2>
@@ -412,7 +422,7 @@
               </div>
             </section>
 
-            <!-- Memebership -->
+          <!-- Memebership -->
             <section id="membership" class="section">
               <div class="content">
                   <h2>Choose Your Membership Plan</h2>
@@ -461,11 +471,11 @@
               </div>
             </section>
 
-            <!-- Contact Us [Admin] Section -->
-<section id="contact-us" class="section">
+          <!-- Contact Us [Admin] Section -->
+            <section id="contact-us" class="section">
   <div class="content">
-    <h2>Contact Admin</h2>
     <form class="contact-admin-form">
+      <h1>Contact Admin</h1>
       <h3>Get in Touch</h3>
       <div class="form-group">
         <label for="subject">Subject*</label>
@@ -487,7 +497,7 @@
       <button type="submit" class="send-btn">Send Message</button>
     </form>
   </div>
-</section>
+             </section>
 
 
 
