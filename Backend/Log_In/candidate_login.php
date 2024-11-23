@@ -25,8 +25,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (password_verify($password, $hashed_password)) {
            $_SESSION['email'] = $email;
-            $message = "Login successful! Welcome back!";
-            } else {
+             header("Location: ../../Frontend/DashBoard/Candidate/candidate_dashboard.html");
+             exit;
+            }
+             else {
           
             $message = "Error: Invalid email or password.";
         }

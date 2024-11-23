@@ -332,6 +332,70 @@
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
 
+
+/* Internship */
+/*
+.internship-section {
+    padding: 40px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.section-title {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #343a40; 
+}
+
+.cards-wrapper {
+    display: flex;
+    justify-content: space-around; 
+}
+
+.action-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    padding: 20px;
+    transition: transform 0.3s; 
+}
+
+.action-card:hover {
+    transform: translateY(-5px); 
+}
+
+.card-image {
+    width: 100%;
+    height: auto; 
+    border-radius: 10px; 
+}
+
+.card-title {
+    font-size: 1.5em;
+    margin: 15px 0;
+    color: #495057; 
+}
+
+.action-button {
+    background-color: #007bff; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s, transform 0.3s; 
+}
+
+.action-button:hover {
+    background-color: #0056b3; 
+}
+
+*/
+
 /* Post Internship Section */
 .post-internship-container {
     max-width: 800px;

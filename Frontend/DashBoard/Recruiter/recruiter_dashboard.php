@@ -40,7 +40,7 @@ $email = $_SESSION['email'];
             <img src="../../images/DashBoard Icons/Profile.svg" alt="Company Profile" class="nav-icon" /> Company Profile
           </a>
           <div class="dropdown">
-            <a href="" class="dropdown-toggle">
+            <a href="post-internship-main-section" class="dropdown-toggle">
               <img src="../../images/DashBoard Icons/Internships.svg" alt="Internships" class="nav-icon" /> Internships
             </a>
             <div class="dropdown-content">
@@ -216,6 +216,26 @@ $email = $_SESSION['email'];
         </section>
       
         <!--Internships  -->
+        <!-- <section id="internship-management-section" class="internship-section">
+    <h1 class="section-title">Internship Management</h1>
+    <div class="cards-wrapper">
+        <div class="action-card">
+            <img src="post-internship.jpg" alt="Post Internship" class="card-image">
+            <h3 class="card-title">Post Internship</h3>
+            <button class="action-button" onclick="postInternship()">Post Internship</button>
+        </div>
+        <div class="action-card">
+            <img src="view-status.jpg" alt="View Status" class="card-image">
+            <h3 class="card-title">View Status</h3>
+            <button class="action-button" onclick="viewStatus()">View Status</button>
+        </div>
+    </div>
+</section> -->
+
+<script src="script.js"></script>
+</body>
+</html>
+
           <!-- Post Internships -->
           <section id="post-internship-form" class="post-internship-container section">
             <div>
