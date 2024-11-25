@@ -124,5 +124,6 @@ if (!$result) {
 mysqli_close($conn); // Close database connection
 ?>
 
+
 </body>
 </html>
