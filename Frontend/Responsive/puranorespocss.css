@@ -1,0 +1,297 @@
+/* For Categories and Internships */
+    
+    /* Extra Small Screens: max-width: 957px */
+
+    @media screen and (max-width: 958px) {
+        .internships-categories {
+            width: 100%;
+            height: 100vh;
+            background-color: var(--bg-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 0px;
+        }    
+    
+        .internships{
+            width: 100%;
+            max-width: 1200px;
+            text-align: center;
+            margin-bottom: 2px;
+            padding: 0px;
+            gap:20px;
+        }
+        .locations {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            justify-items: center;
+            align-items: center;
+            width: 100%;
+            padding-top: 0px;
+            gap: 0px;
+        }
+        .categories{
+            width: 100%;
+            max-width: 800px;
+            text-align: center;
+            margin-bottom: 0px;
+            padding: 0px;
+           
+        }
+         .category-list {
+            gap: 0px; 
+        }
+    
+        .location-item {
+            width: 100%;
+            max-width: 400px; 
+        }
+        .category-item {
+            width: 50%; 
+            max-width: 350px;
+        }
+    
+        
+        .category-item img {
+            width: 40%;
+            height: auto;
+        }
+        .location-item img {
+            width: 60%;
+            height: auto;
+        }
+    
+        .location-item p{
+            margin-top: -50px;
+        font-size: 12.5px;
+        font-weight: 600;
+        color: var(--secondary-color);
+        }
+         .category-item p {
+            margin-top: 0px;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--secondary-color);
+        }
+    
+        .internships h3{
+            font-size: 20px;
+            margin-bottom: 0px;
+            color: var(--secondary-color);
+    }
+        .categories h3 {
+            font-size: 20px;
+            margin-bottom: 0px;
+            color: var(--secondary-color);
+    }
+    
+        #browse-internship {
+            font-size: 14px;
+            text-align: center;
+            margin: 0px 0px; }
+        #browse-internship{
+            color: #00b3ff;
+            text-decoration:wavy;
+            align-items: right;
+            margin-right: 9px;
+            margin-left: auto;
+            margin-bottom: 40px;
+        }
+    }
+    @media screen and (max-width: 390px) {
+        .internships-categories {
+            width: 100%;
+            height: 100vh;
+            background-color: var(--bg-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 32px;
+        }    
+    
+        .internships{
+            width: 100%;
+            max-width: 1200px;
+            text-align: center;
+            margin-bottom: 2px;
+            padding: 0px;
+            gap:20px;
+        }
+        .locations {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            justify-items: center;
+            align-items: center;
+            width: 100%;
+            padding-top: 0px;
+            gap: 0px;
+        }
+        .categories{
+            width: 100%;
+            max-width: 800px;
+            text-align: center;
+            margin-bottom: 65px;
+            padding: 0px;
+           
+        }
+         .category-list {
+            gap: 0px; 
+    
+        .location-item {
+            width: 100%; 
+            max-width: 400px; 
+        }
+        .category-item {
+            width: 100%; 
+            max-width: 400px;
+        }
+    
+        .location-item img,
+        .category-item img {
+            width: 100%;
+            height: auto;
+        }
+    
+        .location-item p{
+            margin-top: -10px;
+        font-size: 12.5px;
+        font-weight: 600;
+        color: var(--secondary-color);
+        }
+         .category-item p {
+            margin-top: 0px;
+        font-size: 12px;
+        font-weight: 400;
+        color: var(--secondary-color);
+        }
+    
+        .internships h3{
+    
+            font-size: 20px;
+            margin-bottom: 0px;
+            color: var(--secondary-color);
+    }
+        .categories h3 {
+    
+            font-size: 20px;
+            margin-bottom: 0px;
+            color: var(--secondary-color);
+    }
+    
+        #browse-internship {
+            font-size: 14px;
+            text-align: center;
+            margin: 10px 0; 
+        }
+        #browse-internship{
+            color: #00b3ff;
+            text-decoration:wavy;
+            align-items: right;
+            margin-right: 9px;
+            margin-left: auto;
+            margin-bottom: 40px;
+        }
+    }
+    
+    
+    
+    /*  About Us Section */
+        /* Medium Screens (max-width: 1199px and min-width: 768px) */
+    @media (max-width: 1199px) and (min-width: 768px) {
+        .about-us-container {
+            flex-direction: row;
+            padding: 40px 15px;
+        }
+    
+        .about-us-content h2 {
+            font-size: 2rem;
+        }
+        .about-us-image img {
+            width: 500px;
+            height: auto;
+        }
+    
+        .about-us-content p {
+            font-size: 1rem;
+        }
+    
+        .about-us-buttons button {
+            font-size: 0.9rem;
+            padding: 8px 15px;
+        }
+    }
+    
+        /* Small Screens (max-width: 767px) */
+    @media (max-width: 767px) {
+        .about-us-container {
+            flex-direction: column;
+            text-align: center;
+        }
+    
+        .about-us-image,
+        .about-us-content {
+            width: 100%;
+        }
+        .about-us-image img {
+            width: 400px;
+            height: auto;
+        }
+    
+        .about-us-content {
+            text-align: center;
+        }
+    
+        .about-us-content h2 {
+            font-size: 1.8rem;
+        }
+    
+        .about-us-content p {
+            font-size: 0.9rem;
+        }
+    
+        .about-us-buttons {
+            flex-direction: column;
+            gap: 10px;
+        }
+    
+        .about-us-buttons button {
+            font-size: 0.85rem;
+            padding: 8px 15px;
+        }
+    }
+    
+        /* Extra Small Screens (max-width: 580px) */
+    @media (max-width: 580px) {
+        .about-us {
+            padding: 10px 10px;
+           
+        }
+        .about-us-image img {
+            width: 370px;
+            height: auto;
+        }
+        .about-us-container {
+            gap: 15px;
+        }
+    
+        .about-us-content h2 {
+            font-size: 1.5rem;
+        }
+    
+        .about-us-content p {
+            font-size: 0.8rem;
+        }
+    
+        .about-us-buttons button {
+            font-size: 0.8rem;
+            padding: 6px 12px;
+        }
+        
+        #btn-abt-us{
+            width: 40%;
+        }
+    }
+    
+    }    
