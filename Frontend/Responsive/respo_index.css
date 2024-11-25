@@ -74,304 +74,470 @@ Extra Small Screens(max-width: 580px)
 
 } 
 
-/* For Categories and Internships */
-    
-    /* Extra Small Screens: max-width: 957px */
 
-@media screen and (max-width: 958px) {
+/* Internships and Locations  */
+
+
+@media (max-width: 990px) {
+    /* Adjust the main container to maintain full viewport height */
     .internships-categories {
+        height: 100vh; /* Full viewport height */
+        padding: 20px; /* Maintain padding */
+        overflow: hidden; /* Prevent scrollbars */
+    }
+
+    .internships, .categories {
         width: 100%;
-        height: 100vh;
-        background-color: var(--bg-color);
+        max-width: 900px; /* Constrain the width for smaller screens */
+        text-align: center;
+        margin-bottom: 30px; /* Reduced margin for tighter spacing */
+        gap: 25px; /* Reduced gap between elements */
+    }
+
+    #browse-internship {
+        color: #00b3ff;
+        text-decoration: wavy;
+        margin: 0; /* Reset margin */
+        text-align: center; /* Center align on smaller screens */
+    }
+
+    .internships h3, .categories h3 {
+        font-size: 24px; /* Slightly smaller font size for headings */
+        margin-bottom: 30px; /* Adjust spacing to maintain balance */
+        color: var(--secondary-color);
+    }
+
+    .locations, .category-list {
+        display: flex;
+        justify-content: center;
+        gap: 25px; /* Adjust spacing between items */
+        flex-wrap: wrap; /* Allow wrapping for smaller screens */
+    }
+
+    .location-item, .category-item {
+        text-align: center;
+        width: 180px; /* Reduced width to better fit the screen */
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
-        padding: 0px;
-    }    
-
-    .internships{
-        width: 100%;
-        max-width: 1200px;
-        text-align: center;
-        margin-bottom: 2px;
-        padding: 0px;
-        gap:20px;
-    }
-    .locations {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        justify-items: center;
-        align-items: center;
-        width: 100%;
-        padding-top: 0px;
-        gap: 0px;
-    }
-    .categories{
-        width: 100%;
-        max-width: 800px;
-        text-align: center;
-        margin-bottom: 0px;
-        padding: 0px;
-       
-    }
-     .category-list {
-        gap: 0px; /* Reduce gap further */
     }
 
-    .location-item {
-        width: 50%; /* Full-width for small screens */
-        max-width: 400px; /* Prevent too large widths */
-    }
-    .category-item {
-        width: 50%; 
-        max-width: 350px;
-    }
-
-    
-    .category-item img {
-        width: 40%;
-        height: auto;
-    }
     .location-item img {
-        width: 60%;
-        height: auto;
+        width: 110%; /* Slightly scale up to make images more prominent */
+        height: 140px; /* Adjust image height for better proportion */
+        object-fit: cover; /* Ensure the image is well-cropped */
+        border-radius: 10px;
     }
 
-    .location-item p{
-        margin-top: -50px;
-    font-size: 12.5px;
-    font-weight: 600;
-    color: var(--secondary-color);
-    }
-     .category-item p {
-        margin-top: 0px;
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--secondary-color);
+    .category-item img {
+        width: 100%; /* Ensure images fit their container */
+        height: 120px; /* Adjust for better consistency */
+        object-fit: cover;
+        border-radius: 10px;
     }
 
-    .internships h3{
-        font-size: 20px;
-        margin-bottom: 0px;
+    .location-item p, .category-item p {
+        margin-top: 8px; /* Adjust margin for a tighter layout */
+        font-size: 14px; /* Smaller font size for better readability */
+        font-weight: 600;
         color: var(--secondary-color);
+    }
 }
-    .categories h3 {
-        font-size: 20px;
-        margin-bottom: 0px;
-        color: var(--secondary-color);
-}
+@media (max-width: 855px) {
+    /* Adjust the main container for smaller screens */
+    .internships-categories {
+        height: 100vh; /* Full viewport height */
+        padding: 20px; /* Maintain padding */
+        overflow: hidden; /* Prevent horizontal scroll */
+    }
+
+    .internships, .categories {
+        width: 100%;
+        max-width: 850px; /* Constrained width for better alignment */
+        text-align: center;
+        margin-bottom: 30px;
+        gap: 20px; /* Reduced gap between items */
+    }
 
     #browse-internship {
-        font-size: 14px;
-        text-align: center;
-        margin: 0px 0px; /* Space above and below */
-    }
-    #browse-internship{
         color: #00b3ff;
-        text-decoration:wavy;
-        align-items: right;
-        margin-right: 9px;
-        margin-left: auto;
-        margin-bottom: 40px;
+        text-decoration: wavy;
+        margin: 0; /* Reset margin */
+        text-align: center; /* Center align the link */
     }
-}
-    /* Extra Small Screens: max-width: 580px */
-@media screen and (max-width: 390px) {
-    .internships-categories {
-        width: 100%;
-        height: 100vh;
-        background-color: var(--bg-color);
+
+    .internships h3, .categories h3 {
+        font-size: 22px; /* Smaller font size for headings */
+        margin-bottom: 25px; /* Adjusted margin to keep spacing balanced */
+        color: var(--secondary-color);
+    }
+
+    .locations, .category-list {
+        display: flex;
+        justify-content: center;
+        gap: 20px; /* Reduced gap between items */
+        flex-wrap: wrap; /* Allow items to wrap to new rows */
+    }
+
+    .location-item, .category-item {
+        text-align: center;
+        width: 160px; /* Reduced width for better fit */
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
-        padding: 32px;
-    }    
-
-    .internships{
-        width: 100%;
-        max-width: 1200px;
-        text-align: center;
-        margin-bottom: 2px;
-        padding: 0px;
-        gap:20px;
-    }
-    .locations {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        justify-items: center;
-        align-items: center;
-        width: 100%;
-        padding-top: 0px;
-        gap: 0px;
-    }
-    .categories{
-        width: 100%;
-        max-width: 800px;
-        text-align: center;
-        margin-bottom: 65px;
-        padding: 0px;
-       
-    }
-     .category-list {
-        gap: 0px; /* Reduce gap further */
     }
 
-    .location-item {
-        width: 100%; /* Full-width for small screens */
-        max-width: 400px; /* Prevent too large widths */
-    }
-    .category-item {
-        width: 100%; 
-        max-width: 400px;
+    .location-item img {
+        width: 100%; /* Keep the image filling its container */
+        height: 130px; /* Adjusted image height for a more balanced appearance */
+        object-fit: cover; /* Ensure images are cropped proportionally */
+        border-radius: 10px;
     }
 
-    .location-item img,
     .category-item img {
+        width: 100%; /* Fit images to the container */
+        height: 110px; /* Adjusted height for better proportion */
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    .location-item p, .category-item p {
+        margin-top: 8px;
+        font-size: 14px; /* Smaller font size for text */
+        font-weight: 600;
+        color: var(--secondary-color);
+    }
+}
+
+/* From 757px to 400px */
+@media (max-width: 757px) and (min-width: 400px) {
+    .internships-categories {
+        height: 100vh; /* Full viewport height */
+        padding: 15px; /* Slightly reduced padding */
+        overflow: hidden; /* Prevent overflow */
+    }
+
+    .internships, .categories {
         width: 100%;
-        height: auto;
+        max-width: 750px; /* Constrained width for compactness */
+        text-align: center;
+        margin-bottom: 20px; /* Reduced margin for better use of space */
+        gap: 15px; /* Reduced gap between items */
     }
-
-    .location-item p{
-        margin-top: -10px;
-    font-size: 12.5px;
-    font-weight: 600;
-    color: var(--secondary-color);
-    }
-     .category-item p {
-        margin-top: 0px;
-    font-size: 12px;
-    font-weight: 400;
-    color: var(--secondary-color);
-    }
-
-    .internships h3{
-
-        font-size: 20px;
-        margin-bottom: 0px;
-        color: var(--secondary-color);
-}
-    .categories h3 {
-
-        font-size: 20px;
-        margin-bottom: 0px;
-        color: var(--secondary-color);
-}
 
     #browse-internship {
-        font-size: 14px;
-        text-align: center;
-        margin: 10px 0; /* Space above and below */
-    }
-    #browse-internship{
         color: #00b3ff;
-        text-decoration:wavy;
-        align-items: right;
-        margin-right: 9px;
-        margin-left: auto;
-        margin-bottom: 40px;
+        text-decoration: wavy;
+        margin: 0; /* Reset margin */
+        text-align: center; /* Center align the link */
+    }
+
+    .internships h3, .categories h3 {
+        font-size: 18px; /* Reduced font size */
+        margin-bottom: 15px; /* Adjusted margin for balance */
+        color: var(--secondary-color);
+    }
+
+    .locations, .category-list {
+        display: flex;
+        justify-content: center;
+        gap: 12px; /* Reduced gap for more compact layout */
+        flex-wrap: wrap; /* Allow items to wrap */
+    }
+
+    .location-item, .category-item {
+        text-align: center;
+        width: 140px; /* Further reduced item width for compact design */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .location-item img {
+        width: 100%; /* Ensure images fill their container */
+        height: 100px; /* Further reduced image height for better fitting */
+        object-fit: cover; /* Ensures images are cropped proportionally */
+        border-radius: 8px;
+    }
+
+    .category-item img {
+        width: 100%; /* Ensure images fit within container */
+        height: 85px; /* Further reduced height for better proportion */
+        object-fit: cover;
+        border-radius: 8px;
+    }
+
+    .location-item p, .category-item p {
+        margin-top: 5px; /* Reduced margin for compact layout */
+        font-size: 12px; /* Small text size for readability */
+        font-weight: 600;
+        color: var(--secondary-color);
+    }
+}
+
+/* From 400px and below */
+@media (max-width: 400px) {
+    .internships-categories {
+        height: auto; /* Allow height to adjust to content */
+        padding: 10px; /* Reduced padding for tight screens */
+        overflow: visible; /* Allow overflow if needed */
+    }
+
+    .internships, .categories {
+        width: 100%;
+        max-width: 400px; /* Constrained to screen width */
+        text-align: center;
+        margin-bottom: 15px; /* Adjusted margin for small screens */
+        gap: 10px; /* Tight gap between items */
+    }
+
+    #browse-internship {
+        color: #00b3ff;
+        text-decoration: wavy;
+        margin: 0; /* Reset margin */
+        text-align: center; /* Center align the link */
+    }
+
+    .internships h3, .categories h3 {
+        font-size: 16px; /* Smaller font size for smaller screens */
+        margin-bottom: 10px; /* Adjusted margin for better spacing */
+        color: var(--secondary-color);
+    }
+
+    .locations, .category-list {
+        display: flex;
+        justify-content: center;
+        gap: 8px; /* Further reduced gap between items */
+        flex-wrap: wrap; /* Allow items to wrap */
+    }
+
+    .location-item, .category-item {
+        text-align: center;
+        width: 120px; /* Reduced item width for very small screens */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .location-item img {
+        width: 100%; /* Ensure images fill their container */
+        height: 80px; /* Further reduced height to fit smaller screens */
+        object-fit: cover; /* Maintain image aspect ratio */
+        border-radius: 5px;
+    }
+
+    .category-item img {
+        width: 100%; /* Ensure images fit within container */
+        height: 70px; /* Further reduced height for better fit */
+        object-fit: cover;
+        border-radius: 5px;
+    }
+
+    .location-item p, .category-item p {
+        margin-top: 4px; /* Reduced margin */
+        font-size: 10px; /* Small font size for very small screens */
+        font-weight: 600;
+        color: var(--secondary-color);
     }
 }
 
 
 
-/*  About Us Section */
-    /* Medium Screens (max-width: 1199px and min-width: 768px) */
-@media (max-width: 1199px) and (min-width: 768px) {
+/* Large Screens (min-width: 1200px) */
+@media (min-width: 1200px) {
+    .about-us {
+        padding: 50px 0;
+    }
+
     .about-us-container {
-        flex-direction: row;
-        padding: 40px 15px;
+        max-width: 1200px;
+        width: 100%;
+        gap: 50px;
+    }
+
+    .about-us-image img {
+        width: 600px;
+        height: auto;
+        object-fit: cover;
     }
 
     .about-us-content h2 {
-        font-size: 2rem;
-    }
-    .about-us-image img {
-        width: 500px;
-        height: auto;
+        font-size: 32px;
+        margin-bottom: 15px;
     }
 
     .about-us-content p {
-        font-size: 1rem;
+        font-size: 16px;
+        line-height: 1.6;
     }
 
     .about-us-buttons button {
-        font-size: 0.9rem;
-        padding: 8px 15px;
+        padding: 10px 20px;
+        font-size: 16px;
     }
 }
 
-    /* Small Screens (max-width: 767px) */
+/* Medium Screens (max-width: 1199px) and (min-width: 768px) */
+@media (max-width: 1199px) and (min-width: 768px) {
+    .about-us-container {
+        flex-direction: column;
+        gap: 30px;
+        align-items: center;
+        text-align: center;
+    }
+
+    .about-us-image img {
+        width: 500px;
+    }
+
+    .about-us-content {
+        max-width: 500px;
+    }
+
+    .about-us-content h2 {
+        font-size: 28px;
+    }
+
+    .about-us-content p {
+        font-size: 14px;
+    }
+
+    .about-us-buttons button {
+        padding: 12px 24px;
+        font-size: 14px;
+    }
+
+    /* Section Title */
+    .section-title h2 {
+        font-size: 2rem;
+    }
+
+    .steps-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .step {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .step img {
+        width: 120px;
+    }
+}
+
+/* Small Screens (max-width: 767px) */
 @media (max-width: 767px) {
     .about-us-container {
         flex-direction: column;
+        gap: 20px;
+        align-items: center;
         text-align: center;
     }
 
-    .about-us-image,
-    .about-us-content {
-        width: 100%;
-    }
     .about-us-image img {
         width: 400px;
-        height: auto;
     }
 
     .about-us-content {
-        text-align: center;
+        max-width: 400px;
     }
 
     .about-us-content h2 {
-        font-size: 1.8rem;
+        font-size: 24px;
     }
 
     .about-us-content p {
-        font-size: 0.9rem;
-    }
-
-    .about-us-buttons {
-        flex-direction: column;
-        gap: 10px;
+        font-size: 13px;
     }
 
     .about-us-buttons button {
-        font-size: 0.85rem;
-        padding: 8px 15px;
+        width: 100%;
+        padding: 15px 30px;
+        font-size: 14px;
     }
-}
 
-    /* Extra Small Screens (max-width: 580px) */
-@media (max-width: 580px) {
-    .about-us {
-        padding: 10px 10px;
-       
+    /* Section Title */
+    .section-title h2 {
+        font-size: 1.75rem;
     }
-    .about-us-image img {
-        width: 370px;
-        height: auto;
-    }
-    .about-us-container {
+
+    .steps-container {
+        flex-direction: column;
         gap: 15px;
     }
 
+    .step {
+        width: 100%;
+        padding: 12px;
+    }
+
+    .step img {
+        width: 100px;
+    }
+}
+
+/* Extra Small Screens (max-width: 580px) */
+@media (max-width: 580px) {
+    .about-us {
+        padding: 20px 0;
+    }
+
+    .about-us-container {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+        text-align: center;
+    }
+
+    .about-us-image img {
+        width: 350px;
+    }
+
+    .about-us-content {
+        max-width: 350px;
+    }
+
     .about-us-content h2 {
-        font-size: 1.5rem;
+        font-size: 22px;
     }
 
     .about-us-content p {
-        font-size: 0.8rem;
+        font-size: 12px;
     }
 
     .about-us-buttons button {
-        font-size: 0.8rem;
-        padding: 6px 12px;
+        width: 100%;
+        padding: 14px 28px;
+        font-size: 13px;
     }
-    
-    #btn-abt-us{
-        width: 40%;
+
+    /* Section Title */
+    .section-title h2 {
+        font-size: 1.5rem;
+    }
+
+    .steps-container {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .step {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .step img {
+        width: 80px;
     }
 }
+
+
+
+
+
+
 
 
 /* Search and Apply Section */
