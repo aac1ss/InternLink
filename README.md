@@ -1,7 +1,10 @@
 <h1>Internlink: Linking Talents With Opportunities</h1>
-<img width="261" alt="Internlink Logo" src="https://github.com/user-attachments/assets/fb62883f-754f-4448-b117-1ebe23f8b0d8">
-
-<p>Internlink is a web-based platform designed to connect talented students and individuals with valuable internship opportunities. Our mission is to bridge the gap between aspiring talent and potential employers, facilitating a seamless recruitment process that benefits both candidates and companies.</p>
+<div style="display: flex; align-items: center;">
+    <div style="flex: 1;">
+        <p>Internlink is a web-based platform designed to connect talented students and individuals with valuable internship opportunities. Our mission is to bridge the gap between aspiring talent and potential employers, facilitating a seamless recruitment process that benefits both candidates and companies.</p>
+    </div>
+    <img width="261" alt="Internlink Logo" src="https://github.com/user-attachments/assets/fb62883f-754f-4448-b117-1ebe23f8b0d8" style="margin-left: 20px;">
+</div>
 
 <h2><strong>Key Features:</strong></h2>
 <ul>
@@ -22,6 +25,8 @@
     <li>CSS</li>
     <li>JavaScript</li>
     <li>MySQL</li>
+    <li>Php</li>
+    
 </ul>
 <p>Additionally, we will incorporate various front-end and back-end tools to enhance functionality and user experience.</p>
 
