@@ -5,29 +5,51 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>InternLink</title>
   <link rel="stylesheet" href="login_index.css">
+  <link rel="stylesheet" href="../../Responsive/respo_nav_footer.css">
 </head>
 <body>
     <!-- Navigation and header -->
     <header>
-      <div class="navigation">
-          <div class="logo">
-              <img src="logo.png" alt="InternLink Logo"> <!-- Update with actual logo image -->
-              <h1>InternLink</h1>
-          </div>
-          <nav>
-              <ul class="nav-links">
-                  <li><a href="#">Home</a></li>
-                  <li><a href="#">Internships</a></li>
-                  <li><a href="#">About Us</a></li>
-              </ul>
-              <div class="nav-buttons">
-                <button class="login-btn"> <a href="/Login/Nav Login/Login_index.htm">Login</a>  </button>                      
-                <button class="register-btn"> <a href="/Register/Nav Register/register_index.htm">Register</a>  </button>                  <h1>|</h1>
-                  <button class="admin-btn">Admin</button>
-              </div>
-          </nav>
-      </div>
-  </header>
+        <div class="navigation">
+            <!-- Default Logo -->
+            <div class="logo primary-logo">
+                <a href="index.html">
+                    <img src="../../images/LOGO/LOGO.svg" alt="InternLink Logo">
+                </a>
+            </div>
+            
+            <!-- Secondary Logo for Small Screens -->
+            <div class="logo secondary-logo">
+                <a href="index.html">
+                    <img src="../../images/LOGO/PNG/ICON - Copy.png" alt="InternLink Small Logo">
+                </a>
+            </div>
+            
+            <!-- Hamburger Menu -->
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="../../index.html">Home</a></li>
+                    <li><a href="../../Internships/internships.php">Internships</a></li>
+                    <li><a href="../../index.html#about-us">About Us</a></li>
+                </ul>
+                <div class="nav-buttons">
+                    <a href="Login_index.htm">
+                        <button class="login-btn">Login</button>
+                    </a>
+                    <a href="../../Register/Nav_Register/register_index.htm">
+                        <button class="register-btn">Register</button>
+                    </a>
+                    <button class="admin-btn">Admin</button>
+                </div>
+            </nav>
+        </div>
+    </header>
 
 
   <!-- Main Content -->
@@ -36,6 +58,7 @@
     <section class="intro">
       <h1>Join InternLink Community</h1>
       <p>Where Talents meet Opportunities</p>
+      <h1>Login Page</h1>
     </section>
 
     <section class="user-options">

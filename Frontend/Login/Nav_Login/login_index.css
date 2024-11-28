@@ -22,103 +22,118 @@
   }
   
   /* Navigation Bar Styling */
-  header {
-    background-color: var(--secondary-color);
-    padding: 20px 0;
-    color: var(--text-color);
+  
+/* Navigation Bar Styling */
+header {
+  background-color: var(--secondary-color);
+  padding: 20px 0;
+  color: var(--text-color);
+  .primary-logo {
+      display: block;
   }
   
-  .navigation {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 90%;
-    margin: 0 auto;
+  .secondary-logo {
+      display: none;
   }
   
-  .logo {
-    display: flex;
-    align-items: center;
-  }
   
-  .logo img {
-    width: 40px;
-    margin-right: 10px;
-  }
-  
-  .logo h1 {
-    font-size: 24px;
-    color: var(--primary-color);
-    font-weight: 700;
-  }
-  
-  nav {
-    display: flex;
-    align-items: center;
-  }
-  
-  .nav-links {
-    list-style: none;
-    display: flex;
-    gap: 30px;
-    margin-right: 20px;
-  }
-  
-  .nav-links li a {
-    color: var(--text-color);
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: 500;
-  }
-  
-  .nav-buttons {
-    display: flex;
-    gap: 20px;
-    align-items: center; /* Ensure buttons and separator align properly */
-  }
-  
-  .nav-buttons h1 {
-    color: var(--primary-color);
-    font-size: 24px; /* Adjusted for a larger and more prominent separator */
-    margin-left: 15px;
-    margin-right: 15px;
-    line-height: 1; /* Ensures alignment with the buttons */
-  }
-  
-  /* Button styles */
-  button {
-    padding: 8px 20px;
-    border-radius: 5px;
-    font-size: 14px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out; /* Smooth transitions for hover effects */
-  }
-  
-  /* Specific button styles */
-  .login-btn {
-    border: 1px solid var(--border-color);
-    background-color: transparent;
-    color: var(--border-color);
-  }
-  .login-btn a{
-    text-decoration: none;
-    color: inherit;
-    border: none;
-    box-shadow: none;
-    outline: none; 
 }
 
-  .login-btn:hover {
-    background-color: var(--primary-color);
-    color: var(--text-color);
-    box-shadow: 0 4px 15px rgba(0, 179, 255, 0.6); /* Pop-out shadow effect */
-    transform: scale(1.05); /* Slight increase in size on hover */
-  }
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  width: 200px;
+  margin-right: 10px;
+}
+
+.logo h1 {
+  font-size: 24px;
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
+nav {
   
-  
-.register-btn {
+  display: flex;
+  align-items: center;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  margin-right: 20px;
+}
+.nav-links li a:hover {
+  color: var(--primary-color);
+  transition: 0.4s;
+}
+
+.nav-links li a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 20px;
+  align-items: center; /* Ensure buttons and separator align properly */
+}
+
+.nav-buttons h1 {
+  color: var(--primary-color);
+  font-size: 24px; /* Adjusted for a larger and more prominent separator */
+  margin-left: 15px;
+  margin-right: 15px;
+  line-height: 1; /* Ensures alignment with the buttons */
+}
+
+/* Button styles */
+button {
+  padding: 8px 20px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out; /* Smooth transitions for hover effects */
+}
+
+/* Specific button styles */
+.login-btn {
+  border: 1px solid var(--border-color);
+  background-color: transparent;
+  color: var(--border-color);
+}
+.login-btn a{
+  text-decoration: none;
+  color: inherit;
+  border: none;
+  box-shadow: none;
+  outline: none; 
+}
+
+.login-btn:hover {
   background-color: var(--primary-color);
+  color: var(--secondary-color);
+  box-shadow: 0 4px 15px rgba(0, 179, 255, 0.6); /* Pop-out shadow effect */
+  transform: scale(0.95); /* Slight increase in size on hover */
+}
+
+.register-btn {
+  background-color: var(--border-color);
   color: #fff;
 }
 
@@ -134,25 +149,25 @@
 .register-btn:hover {
   border: 1px solid var(--border-color);
   background-color: transparent;
-  color: var(--border-color);
+  color: var(--primary-color);
 }
 
-  .admin-btn {
-    background-color: var(--secondary-color);
-    color: var(--text-color);
-    border: none;
+.admin-btn {
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  border: none;
+}
+
+.admin-btn:hover {
+  color: var(--primary-color);
+  transform: scale(1.1); /* Slight increase in size on hover */
   }
-  
-  .admin-btn:hover {
-    color: var(--text-color);
-    transform: scale(1.05); /* Slight increase in size on hover */
-    text-shadow: 0 4px 15px rgba(0, 179, 255, 0.6); /* Pop-out shadow effect */
-  }
-  
-  button:focus {
-    outline: none;
-  } 
-  
+
+button:focus {
+  outline: none;
+} 
+
+
   
   
   
@@ -196,7 +211,7 @@
 .option:hover {
   transform: translateY(-10px); /* Moves the card slightly up */
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Increases shadow for a pop-out effect */
-}
+} 
   .option img {
     width: 300px;
     height: 200px;
