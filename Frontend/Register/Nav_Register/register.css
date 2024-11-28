@@ -2,7 +2,7 @@
 
 :root {
   --primary-color: #00b3ff; /* Main accent color */
-  --secondary-color: #18232d; /* Background color for header and footer */
+  --secondary-color:  #141E30 ; /* Background color for header and footer */
   --text-color: #fff; /* Text color */
   --bg-color: #f4f4f4; /* Background color for body and sections */
   --border-color: #00b3ff; /* Border color for buttons */
@@ -186,10 +186,16 @@ main{
 .option {
   text-align: center;
   background-color: #bdbdbd;
-  ;
   padding: 20px;
   border-radius: 10px;
   width: 400px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.option:hover {
+  transform: translateY(-10px); /* Moves the card slightly up */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Increases shadow for a pop-out effect */
 }
 
 .option img {
