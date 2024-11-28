@@ -379,11 +379,14 @@ button:focus {
 
 .step {
     text-align: center;
-    background-color: #E1BEE7;
+    background-color:#00b3ff;
     padding: 20px;
     border-radius: 8px;
     width: 30%;
     transition: transform 0.3s ease; 
+}
+.step > h3 {
+color: var(--secondary-color);    
 }
 
 .steps-container > .step:hover {
@@ -401,8 +404,8 @@ button:focus {
 }
 
 .step-number {
-    font-size: 0.9rem;
-    color: grey;
+    font-size: 0.9rem;  
+    color: whitesmoke;
     margin-bottom: 10px;
     display: block;
 }
