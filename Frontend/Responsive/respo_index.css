@@ -570,7 +570,66 @@ Extra Small Screens(max-width: 580px)
         padding: 20px 40px;
     }
 }
-
+    /* Small Screens (max-width: 999px) */
+    @media screen and (max-width: 1000px) {
+        /* How It Works Section */
+        .steps-container {
+            flex-direction: column;
+            align-items: center;
+            justify-content: center; /* Center contents vertically */
+            gap: 20px;
+            margin: 0 auto; /* Center the container horizontally */
+            text-align: center; /* Center text inside the container */
+        }
+    
+        .step {
+            width: 90%;
+            max-width: 400px;
+            margin: 0 auto; /* Center the element horizontally */
+        }
+    
+        .step img {
+            max-width: 120px;
+            margin: 0 auto; /* Center the image */
+            display: block; /* Ensure block-level centering */
+        }
+    
+        /* Search and Apply Section */
+        .search-and-apply .internship-description {
+            padding: 20px;
+            text-align: center; /* Center text inside this section */
+        }
+    
+        .search-info h2 {
+            font-size: 1.8rem;
+            text-align: center; /* Center header text */
+        }
+    
+        .stats {
+            display: flex;
+            justify-content: center; /* Center the stats horizontally */
+            gap: 36px;
+            margin-top: 27px;
+        }
+    
+        .stat {
+            display: inline-grid;
+            gap: 7px;
+            text-align: center; /* Center content inside each stat */
+        }
+    
+        .stat-h4 {
+            font-weight: 400;
+            text-align: center; /* Center subheading text */
+        }
+    
+        .stat-p {
+            font-weight: 600;
+            font-size: 1.2rem;
+            text-align: center; /* Center paragraph text */
+        }
+    }
+    
     /* Small Screens (max-width: 767px) */
 @media screen and (max-width: 767px) {
     /* How It Works Section */
