@@ -116,6 +116,46 @@ function setType(value) {
   document.getElementById("type-hidden-input").value = value;
 }
 
+
+
+
+// For View-Status
+document.addEventListener("DOMContentLoaded", () => {
+  // Fetch data from the backend
+  fetch("fetch_internships.php")
+    .then((response) => response.json())
+    .then((data) => {
+      populateInternships("#internships tbody", data);
+    })
+    .catch((error) => console.error("Error fetching internships:", error));
+});
+
+// Populate the internships table
+function populateInternships(tableSelector, internships) {
+  const tableBody = document.querySelector(tableSelector);
+  tableBody.innerHTML = ""; // Clear existing rows
+
+  internships.forEach((internship) => {
+    const row = `
+      <tr>
+        <td>${internship.internship_id}</td>
+        <td>${internship.position}</td>
+        <td class="status ${internship.status === "Active" ? "active" : "closed"}">${internship.status}</td>
+        <td>${internship.posted_date.split(" ")[0]}</td>
+        <td>${internship.deadline}</td>
+        <td>${internship.applications || "0"}</td>
+        <td>${internship.duration} months</td>
+        <td>
+          <button class="extend-btn">Extend Deadline</button>
+          <button class="remove-btn">Remove Listing</button>
+          <button class="view-applicants-btn">View Applicants</button>
+        </td>
+      </tr>
+    `;
+    tableBody.insertAdjacentHTML("beforeend", row);
+  });
+}
+
 // MEMBERSHIP
 // Popup functionality for membership plans
 function showPaymentPopup(planName, planPrice) {
