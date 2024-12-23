@@ -2,13 +2,17 @@
 
 :root {
   --primary-color: #00b3ff; /* Main accent color */
-  --secondary-color: #18232d; /* Background color for header and footer */
+  --secondary-color:  #141E30 ; /* Background color for header and footer */
   --text-color: #fff; /* Text color */
   --bg-color: #f4f4f4; /* Background color for body and sections */
   --border-color: #00b3ff; /* Border color for buttons */
 }
 
 /* Global Reset and Styling */
+html {
+  scroll-behavior: smooth;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -26,6 +30,15 @@ header {
   background-color: var(--secondary-color);
   padding: 20px 0;
   color: var(--text-color);
+  .primary-logo {
+      display: block;
+  }
+  
+  .secondary-logo {
+      display: none;
+  }
+  
+  
 }
 
 .navigation {
@@ -42,7 +55,7 @@ header {
 }
 
 .logo img {
-  width: 40px;
+  width: 200px;
   margin-right: 10px;
 }
 
@@ -53,6 +66,7 @@ header {
 }
 
 nav {
+  
   display: flex;
   align-items: center;
 }
@@ -62,6 +76,10 @@ nav {
   display: flex;
   gap: 30px;
   margin-right: 20px;
+}
+.nav-links li a:hover {
+  color: var(--primary-color);
+  transition: 0.4s;
 }
 
 .nav-links li a {
@@ -111,13 +129,13 @@ button {
 
 .login-btn:hover {
   background-color: var(--primary-color);
-  color: var(--text-color);
+  color: var(--secondary-color);
   box-shadow: 0 4px 15px rgba(0, 179, 255, 0.6); /* Pop-out shadow effect */
-  transform: scale(1.05); /* Slight increase in size on hover */
+  transform: scale(0.95); /* Slight increase in size on hover */
 }
 
 .register-btn {
-  background-color: var(--primary-color);
+  background-color: var(--border-color);
   color: #fff;
 }
 
@@ -133,7 +151,7 @@ button {
 .register-btn:hover {
   border: 1px solid var(--border-color);
   background-color: transparent;
-  color: var(--border-color);
+  color: var(--primary-color);
 }
 
 .admin-btn {
@@ -143,10 +161,9 @@ button {
 }
 
 .admin-btn:hover {
-  color: var(--text-color);
-  transform: scale(1.05); /* Slight increase in size on hover */
-  text-shadow: 0 4px 15px rgba(0, 179, 255, 0.6); /* Pop-out shadow effect */
-}
+  color: var(--primary-color);
+  transform: scale(1.1); /* Slight increase in size on hover */
+  }
 
 button:focus {
   outline: none;
@@ -186,10 +203,16 @@ main{
 .option {
   text-align: center;
   background-color: #bdbdbd;
-  ;
   padding: 20px;
   border-radius: 10px;
   width: 400px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.option:hover {
+  transform: translateY(-10px); /* Moves the card slightly up */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Increases shadow for a pop-out effect */
 }
 
 .option img {

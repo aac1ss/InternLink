@@ -110,7 +110,6 @@ button {
     cursor: pointer;
     transition: all 0.3s ease-in-out; /* Smooth transitions for hover effects */
 }
-
 /* Specific button styles */
 .login-btn {
     border: 1px solid var(--border-color);
@@ -152,13 +151,14 @@ button {
     color: var(--primary-color);
 }
 
-.admin-btn {
+#admin-btn {
     background-color: var(--secondary-color);
     color: var(--text-color);
     border: none;
+    text-decoration: none;
 }
 
-.admin-btn:hover {
+#admin-btn:hover {
     color: var(--primary-color);
     transform: scale(1.1); /* Slight increase in size on hover */
     }
