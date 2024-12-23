@@ -22,12 +22,46 @@ $email = $_SESSION['email'];
       rel="stylesheet"
       href="recruiter_dashboard.css"
     />
+    <link rel="stylesheet" href="../../Responsive/respo_index.css">
   </head>
   <body>
-    <!-- Dummy Navigation Bar -->
-    <nav class="dummy-nav">
-      <h2>Navigation Bar</h2>
-    </nav>
+  <header>
+    <div class="recruiter-navigation">
+        <!-- Default Logo -->
+        <div class="recruiter-logo primary-recruiter-logo">
+            <a href="index.html">
+                <img src="images/LOGO/LOGO.svg" alt="InternLink Logo">
+            </a>
+        </div>
+
+        <!-- Secondary Logo for Small Screens -->
+        <div class="recruiter-logo secondary-recruiter-logo">
+            <a href="index.html">
+                <img src="images/LOGO/PNG/ICON - Copy.png" alt="InternLink Small Logo">
+            </a>
+        </div>
+
+        <!-- Hamburger Menu -->
+        <div class="recruiter-hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <nav>
+            <ul class="recruiter-nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="Internships/internships.php">Internships</a></li>
+                <li><a href="#about-us">About Us</a></li>
+            </ul>
+            <div class="recruiter-nav-buttons">
+                <a href="Login/Nav_Login/Login_index.htm">
+                    <button class="recruiter-login-btn">Login</button>
+                </a>
+            </div>
+        </nav>
+    </div>
+</header>
 
     <div class="container">
       <!-- Sidebar -->
@@ -214,27 +248,6 @@ $email = $_SESSION['email'];
             </form>
           </div>
         </section>
-      
-        <!--Internships  -->
-        <!-- <section id="internship-management-section" class="internship-section">
-    <h1 class="section-title">Internship Management</h1>
-    <div class="cards-wrapper">
-        <div class="action-card">
-            <img src="post-internship.jpg" alt="Post Internship" class="card-image">
-            <h3 class="card-title">Post Internship</h3>
-            <button class="action-button" onclick="postInternship()">Post Internship</button>
-        </div>
-        <div class="action-card">
-            <img src="view-status.jpg" alt="View Status" class="card-image">
-            <h3 class="card-title">View Status</h3>
-            <button class="action-button" onclick="viewStatus()">View Status</button>
-        </div>
-    </div>
-</section> -->
-
-<script src="script.js"></script>
-</body>
-</html>
 
           <!-- Post Internships -->
           <section id="post-internship-form" class="post-internship-container section">
@@ -322,12 +335,13 @@ $email = $_SESSION['email'];
           </section>
           
           <!-- View Status -->
-        <section id="internships-jobs" class="section">
-               <div class="content">
-            <h2>Your Posted Internships</h2>
-            <table class="internship-table">
+          <section id="internships" class="section">
+    <div class="content">
+        <h2>Your Posted Internships</h2>
+        <table class="internship-table">
             <thead>
                 <tr>
+                    <th>Internship ID</th>
                     <th>Position</th>
                     <th>Status</th>
                     <th>Posted Date</th>
@@ -338,83 +352,12 @@ $email = $_SESSION['email'];
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Software Developer Intern</td>
-                    <td class="status active">Active</td>
-                    <td>01 Nov 2024</td>
-                    <td>30 Nov 2024</td>
-                    <td>50</td>
-                    <td>3 months</td>
-                    <td>
-                        <button class="extend-btn">Extend Deadline</button>
-                        <button class="remove-btn">Remove Listing</button>
-                        <button class="view-applicants-btn">View Applicants</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Marketing Intern</td>
-                    <td class="status closed">Closed</td>
-                    <td>01 Oct 2024</td>
-                    <td>01 Nov 2024</td>
-                    <td>75</td>
-                    <td>6 months</td>
-                    <td>
-                        <button class="reactivate-btn">Reactivate</button>
-                        <button class="view-applicants-btn">View Applicants</button>
-                    </td>
-                </tr>
-                <!-- Add more internship rows as needed -->
+                <!-- Dynamic content will be populated here -->
             </tbody>
-             </table>
-               </div>
-            </section>
-             <section id="internships" class="section">
-              <div class="content">
-            <h2>Your Posted Internships</h2>
-              <table class="internship-table">
-               <thead>
-              <tr>
-                  <th>Position</th>
-                  <th>Status</th>
-                  <th>Posted Date</th>
-                  <th>Deadline</th>
-                  <th>Applications</th>
-                  <th>Duration</th>
-                  <th>Actions</th>
-              </tr>
-               </thead>
-          <tbody>
-              <tr>
-                  <td>Software Developer Intern</td>
-                  <td class="status active">Active</td>
-                  <td>01 Nov 2024</td>
-                  <td>30 Nov 2024</td>
-                  <td>50</td>
-                  <td>3 months</td>
-                  <td class="action-buttons">
-                      <button class="extend-btn">Extend Deadline</button>
-                      <button class="remove-btn">Remove Listing</button>
-                      <a href="manage-applicants.html" class="view-applicants-btn">View Applicants</a>
-                  </td>
-              </tr>
-              <tr>
-                  <td>Marketing Intern</td>
-                  <td class="status closed">Closed</td>
-                  <td>01 Oct 2024</td>
-                  <td>01 Nov 2024</td>
-                  <td>75</td>
-                  <td>6 months</td>
-                  <td class="action-buttons">
-                      <button class="extend-btn">Extend Deadline</button>
-                      <button class="remove-btn" disabled>Remove Listing</button>
-                      <a href="manage-applicants.html" class="view-applicants-btn">View Applicants</a>
-                  </td>
-              </tr>
-              <!-- Add more internship rows as needed -->
-          </tbody>
-       </table>
-              </div>
-            </section>
+        </table>
+    </div>
+</section>
+
 
           <!-- Setting Section -->
               <section id="setting" class="section">
@@ -437,7 +380,7 @@ $email = $_SESSION['email'];
                       <option>Push Notifications</option>
                     </select>
                   </div>
-                  <button type="submit" class="save-btn">Save Changes</button>
+                  <button type="submit" class="send-btn">Save Changes</button>
                 </form>
               </div>
             </section>
