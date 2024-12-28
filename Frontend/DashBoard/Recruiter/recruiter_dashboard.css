@@ -603,16 +603,18 @@ header {
 /* -------------------------------------------------------------------- */
 
 /* View Status (internship */
+/* Table Styles */
 .internship-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: var(--main-bg);
 }
 
 .internship-table thead {
     background-color: var(--sidebar-bg);
-    color: #fff;
+    color: var(--text-color-white);
 }
 
 .internship-table th, .internship-table td {
@@ -622,30 +624,28 @@ header {
 }
 
 .internship-table td {
-    font-size: 0.9em;
+    font-size:0.9em;
 }
 
 .internship-table .status {
     font-weight: bold;
     padding: 8px 12px;
     border-radius: 5px;
-    color: #fff;
+    color: var(--text-color-white);
 }
 
 /* Status when internship is 'On' */
 .status-on {
     background-color: green;
-    color: white;
-    text-align: center;
-  }
-  
-  /* Status when internship is 'Off' */
-  .status-off {
+    color: var(--text-color-white);
+}
+
+/* Status when internship is 'Off' */
+.status-off {
     background-color: red;
-    color: white;
-    text-align: center;
-  }
-  
+    color: var(--text-color-white);
+}
+
 /* Actions Column */
 .internship-table .action-buttons {
     display: flex;
@@ -664,23 +664,23 @@ header {
 }
 
 .internship-table .extend-btn {
-    background-color: #007bff; /* Blue */
-    color: white;
+    background-color: var(--btn-color-new); 
+    color: var(--text-color-white);
 }
 
-.internship-table .remove-btn {
-    background-color: #dc3545; /* Red */
-    color: white;
+.internship-table .end-btn {
+    background-color: var(--button-bg); /* Red */
+    color: var(--text-color-white);
 }
 
 .internship-table .remove-btn:disabled {
-    background-color: #6c757d; /* Disabled state */
+    background-color:var(--hover-color-sidebar); /* Disabled state */
     cursor: not-allowed;
 }
 
 .internship-table .view-applicants-btn {
-    background-color: #6c757d; /* Gray */
-    color: white;
+    background-color: grey; /* Gray */
+    color: var(--text-color-white);
     text-decoration: none;
     padding: 8px 15px;
     border-radius: 5px;
@@ -696,56 +696,56 @@ header {
 }
 
 /* Manage Applicants Table */
-    .applicants-table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 20px 0;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
+.applicants-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
-    .applicants-table th,
-    .applicants-table td {
-        padding: 15px;
-        text-align: left;
-        border-bottom: 1px solid #ddd;
-    }
+.applicants-table th,
+.applicants-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--hover-color-sidebar);
+}
 
-    .applicants-table th {
-        background-color: var(--sidebar-bg);
-        color: var(--text-color-white);
-        font-weight: bold;
-    }
+.applicants-table th {
+    background-color: var(--sidebar-bg);
+    color: var(--text-color-white);
+    font-weight: bold;
+}
 
-    .applicants-table tr:nth-child(even) {
-        background-color: #f9f9f9;
-    }
+.applicants-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
 
-    .applicants-table tr:hover {
-        background-color: #f1f1f1;
-    }
+.applicants-table tr:hover {
+    background-color: #f1f1f1;
+}
 
-    /* Action Buttons in Manage Applicants */
-    .action-btn {
-        padding: 8px 12px;
-        margin-right: 5px;
-        color: #ffffff;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-    }
+/* Action Buttons in Manage Applicants */
+.action-btn {
+    padding: 8px 12px;
+    margin-right: 5px;
+    color: var(--text-color-white);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, opacity 0.2s ease;
+}
 
-    .action-btn.approve {
-        background-color: #28a745;
-    }
+.action-btn.approve {
+    background-color: #28a745; /* Green */
+}
 
-    .action-btn.reject {
-        background-color: #dc3545;
-    }
+.action-btn.reject {
+    background-color: #dc3545; /* Red */
+}
 
-    .action-btn:hover {
-        opacity: 0.9;
-    }
-
+.action-btn:hover {
+    opacity: 0.9;
+}
 
 
 /* -------------------------------------------------------------------- */

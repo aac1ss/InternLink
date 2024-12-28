@@ -207,7 +207,7 @@ function populateInternships(tableSelector, internships) {
       <td>${internship.created_at}</td>
       <td>${internship.deadline}</td>
       <td>${internship.deadline}</td>
-      <td>${internship.duration}</td>
+      <td>${internship.duration} months</td>
        <td class="status ${statusClass}">${internship.status}</td>
       <td class="action-buttons">
         <button class="extend-btn" onclick="extendDeadline(${internship.internship_id})">Extend Deadline</button>
