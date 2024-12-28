@@ -1,3 +1,5 @@
+
+
 // SIDE BAR functionality
 document.querySelectorAll(".sidebar-nav a").forEach((link) => {
   link.addEventListener("click", function (event) {
@@ -88,8 +90,6 @@ document.querySelectorAll(".dropdown-content a[href='#post-internship']").forEac
   });
 });
 
-
-
 // Toggle visibility for stipend field
 function toggleStipendField(value) {
   const stipendAmountField = document.getElementById("stipend-amount-container");
@@ -107,6 +107,8 @@ function toggleStipendField(value) {
   }
 }
 
+
+// View-Status
 // Toggle active state for type buttons
 function setType(value) {
   const buttons = document.querySelectorAll(".type-toggle-btn");
@@ -115,46 +117,74 @@ function setType(value) {
   document.getElementById(`type-${value}`).classList.add("active");
   document.getElementById("type-hidden-input").value = value;
 }
-
-
-
-
-// For View-Status
 document.addEventListener("DOMContentLoaded", () => {
   // Fetch data from the backend
-  fetch("fetch_internships.php")
+  fetch("../../../Backend/Recruiter_DashBoard/View-Status.php") // Make sure the path is correct
     .then((response) => response.json())
     .then((data) => {
+      if (data.error) {
+        console.error(data.error);
+        return;
+      }
       populateInternships("#internships tbody", data);
     })
     .catch((error) => console.error("Error fetching internships:", error));
 });
 
-// Populate the internships table
 function populateInternships(tableSelector, internships) {
   const tableBody = document.querySelector(tableSelector);
-  tableBody.innerHTML = ""; // Clear existing rows
+  tableBody.innerHTML = ''; // Clear any existing data
 
   internships.forEach((internship) => {
-    const row = `
-      <tr>
-        <td>${internship.internship_id}</td>
-        <td>${internship.position}</td>
-        <td class="status ${internship.status === "Active" ? "active" : "closed"}">${internship.status}</td>
-        <td>${internship.posted_date.split(" ")[0]}</td>
-        <td>${internship.deadline}</td>
-        <td>${internship.applications || "0"}</td>
-        <td>${internship.duration} months</td>
-        <td>
-          <button class="extend-btn">Extend Deadline</button>
-          <button class="remove-btn">Remove Listing</button>
-          <button class="view-applicants-btn">View Applicants</button>
-        </td>
-      </tr>
+    const row = document.createElement("tr");
+
+    // Add internship details to the row
+    row.innerHTML = `
+      <td>${internship.internship_id}</td>
+      <td>${internship.internship_title}</td>
+      <td class="status ${internship.status === 'On' ? 'active' : 'closed'}">${internship.status}</td>
+      <td>${internship.created_at}</td>
+      <td>${internship.deadline}</td>
+      <td>${internship.application_count}</td>
+      <td>${internship.duration}</td>
+      <td class="action-buttons">
+        <button class="extend-btn">Extend</button>
+        <button class="remove-btn" onclick="toggleInternshipStatus(${internship.internship_id})">Delete</button>
+      </td>
     `;
-    tableBody.insertAdjacentHTML("beforeend", row);
+
+    tableBody.appendChild(row);
   });
 }
+
+function toggleInternshipStatus(internshipId) {
+  // Implement the logic to toggle the internship status (On/Off)
+  console.log("Toggling status for internship ID:", internshipId);
+  // You can use another fetch request to change the status in the database here
+}
+
+
+function toggleInternshipStatus(internshipId) {
+  fetch("../../../../Backend/Recruiter_DashBoard/toggle-status.php", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ internship_id: internshipId }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.success) {
+        console.log("Internship status updated.");
+        // Refresh the internships table after status change
+        location.reload();  // Reload the page to reflect changes
+      } else {
+        console.error("Error updating internship status:", data.error);
+      }
+    })
+    .catch((error) => console.error("Error toggling status:", error));
+}
+
 
 // MEMBERSHIP
 // Popup functionality for membership plans
