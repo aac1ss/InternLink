@@ -33,12 +33,16 @@
         color: var(--sidebar-link-color);
         background-color: var(--main-bg);
     }
-  /* Required " * " */
+
+/* -------------------------------------------------------------------- */
+
+    /* Required " * " */
   .required {
     font-size: 18px;
      color: red;
    }
  
+/* -------------------------------------------------------------------- */
 
     /* Navigation Bar */
     /* Global Styles */
@@ -48,7 +52,8 @@ body {
     margin: 0;
     padding: 0;
 }
-/* Dashboard Navigation */
+
+/* -------------------------------------------------------------------- */
 /* Dashboard Navigation */
 header {
     padding: 20px 0;  /* Uniform padding on top and bottom */
@@ -118,6 +123,7 @@ header {
 .nav-links a:hover {
     color: #00b3ff;
 }
+/* -------------------------------------------------------------------- */
 
 /* Profile Picture Section */
 .recruiter-dashboard-actions {
@@ -202,6 +208,7 @@ header {
     display: block;
 }
 
+/* -------------------------------------------------------------------- */
 /* Sidebar */
 /* Icon Styling */
 .nav-icon {
@@ -290,6 +297,7 @@ header {
   }
 
   
+/* -------------------------------------------------------------------- */
 
 /* Main Content */
 .main-content {
@@ -379,6 +387,10 @@ header {
 .recent-details ul {
     list-style: none;
 }
+
+
+/* -------------------------------------------------------------------- */
+
 /* Company Profile */
 
     .content {
@@ -488,6 +500,7 @@ header {
     }
 
 
+/* -------------------------------------------------------------------- */
 
 /* Post Internship Section */
 .post-internship-container {
@@ -587,7 +600,8 @@ header {
   }
   
 
-  
+/* -------------------------------------------------------------------- */
+
 /* View Status (internship */
 .internship-table {
     width: 100%;
@@ -618,14 +632,20 @@ header {
     color: #fff;
 }
 
-.internship-table .status.active {
-    background-color: #28a745; /* Green for active internships */
-}
-
-.internship-table .status.closed {
-    background-color: #dc3545; /* Red for closed internships */
-}
-
+/* Status when internship is 'On' */
+.status-on {
+    background-color: green;
+    color: white;
+    text-align: center;
+  }
+  
+  /* Status when internship is 'Off' */
+  .status-off {
+    background-color: red;
+    color: white;
+    text-align: center;
+  }
+  
 /* Actions Column */
 .internship-table .action-buttons {
     display: flex;
@@ -728,6 +748,7 @@ header {
 
 
 
+/* -------------------------------------------------------------------- */
 
 /* Membership Section */
 
@@ -835,6 +856,7 @@ header {
     .pay-btn:hover {
         background-color: #003a6a;
     }
+/* -------------------------------------------------------------------- */
 
     /* Contact Admin Section */
     .contact-admin-form {
@@ -911,7 +933,8 @@ header {
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
 
-    
+ /* -------------------------------------------------------------------- */
+   
 /* Settings Section Styling */
     .settings-form {
         padding: 20px;
@@ -959,7 +982,10 @@ header {
     .settings-form .save-btn:hover {
         background-color: #0056b3;
     }
-/* LOGOUT */
+
+/* -------------------------------------------------------------------- */
+
+    /* LOGOUT */
   
 .logout {
     margin: 10px;

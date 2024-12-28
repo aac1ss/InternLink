@@ -1,7 +1,7 @@
 <?php
+session_start();
 include '../dbconfig.php';
 
-session_start();
 
 // Initialize a variable to hold feedback messages
 $message = "";

@@ -139,19 +139,20 @@ $email = $_SESSION['recruiter_email'];
           </div>
         </section>
 
-        <!-- Company Profile -->
-        <section id="company-profile" class="section">
+
+<!-- Company Profile -->
+<section id="company-profile" class="section">
     <div class="content">
-        <form class="company-profile-form" action="Post_CompanyProfile.php" method="post" enctype="multipart/form-data">
+        <form id="company-profile-form" class="company-profile-form" action="../../../Backend/Recruiter_DashBoard/Post_CompanyProfile.php" method="post" enctype="multipart/form-data">
             <h1>Company Profile</h1>
             <h3>Company Information</h3>
             <div class="form-group">
                 <label>Company Name <span class="required">*</span></label>
-                <input type="text" name="company_name" placeholder="Enter company name" required value="<?php echo isset($company_profile) ? $company_profile['company_name'] : ''; ?>" />
+                <input type="text" name="company_name" placeholder="Enter company name" required value="<?php echo isset($company_profile) ? htmlspecialchars($company_profile['company_name']) : ''; ?>" />
             </div>
             <div class="form-group">
                 <label>Industry <span class="required">*</span></label>
-                <input type="text" name="industry" placeholder="e.g., Technology, Finance, Web-Development" required value="<?php echo isset($company_profile) ? $company_profile['industry'] : ''; ?>" />
+                <input type="text" name="industry" placeholder="e.g., Technology, Finance, Web-Development" required value="<?php echo isset($company_profile) ? htmlspecialchars($company_profile['industry']) : ''; ?>" />
             </div>
             <div class="form-group">
                 <label>Company Size <span class="required">*</span></label>
@@ -165,67 +166,70 @@ $email = $_SESSION['recruiter_email'];
             </div>
             <div class="form-group">
                 <label>Company Website</label>
-                <input type="url" name="company_website" placeholder="e.g., www.internlink.com" value="<?php echo isset($company_profile) ? $company_profile['company_website'] : ''; ?>" />
+                <input type="url" name="company_website" placeholder="e.g., www.internlink.com" value="<?php echo isset($company_profile) ? htmlspecialchars($company_profile['company_website']) : ''; ?>" />
             </div>
             <div class="form-group">
                 <label>Company Description*</label>
-                <textarea name="company_description" placeholder="Write a brief description..." required><?php echo isset($company_profile) ? $company_profile['company_description'] : ''; ?></textarea>
+                <textarea name="company_description" placeholder="Write a brief description..." required><?php echo isset($company_profile) ? htmlspecialchars($company_profile['company_description']) : ''; ?></textarea>
             </div>
 
             <h3>Contact Information</h3>
             <div class="form-group">
                 <label>Contact Person Name <span class="required">*</span></label>
-                <input type="text" name="contact_person_name" placeholder="Enter contact person's name" value="<?php echo isset($company_profile) ? $company_profile['contact_person_name'] : ''; ?>" />
+                <input type="text" name="contact_person_name" placeholder="Enter contact person's name" value="<?php echo isset($company_profile) ? htmlspecialchars($company_profile['contact_person_name']) : ''; ?>" />
             </div>
             <div class="form-group">
                 <label>Contact Position <span class="required">*</span></label>
-                <input type="text" name="contact_position" placeholder="e.g., HR Manager" value="<?php echo isset($company_profile) ? $company_profile['contact_position'] : ''; ?>" />
+                <input type="text" name="contact_position" placeholder="e.g., HR Manager" value="<?php echo isset($company_profile) ? htmlspecialchars($company_profile['contact_position']) : ''; ?>" />
             </div>
             <div class="form-group">
                 <label>Contact Email <span class="required">*</span></label>
-                <input type="email" name="contact_email" placeholder="Enter contact email" value="<?php echo isset($company_profile) ? $company_profile['contact_email'] : ''; ?>" />
+                <input type="email" name="contact_email" placeholder="Enter contact email" value="<?php echo isset($company_profile) ? htmlspecialchars($company_profile['contact_email']) : ''; ?>" />
             </div>
             <div class="form-group">
                 <label>Contact Phone Number <span class="required">*</span></label>
-                <input type="tel" name="contact_phone" placeholder="e.g., (977) 9869696969" value="<?php echo isset($company_profile) ? $company_profile['contact_phone'] : ''; ?>" />
+                <input type="tel" name="contact_phone" placeholder="e.g., (977) 9869696969" value="<?php echo isset($company_profile) ? htmlspecialchars($company_profile['contact_phone_number']) : ''; ?>" />
             </div>
             <div class="form-group">
                 <label>Office Address <span class="required">*</span></label>
-                <input type="text" name="office_address" placeholder="Enter office address" value="<?php echo isset($company_profile) ? $company_profile['office_address'] : ''; ?>" />
+                <input type="text" name="office_address" placeholder="Enter office address" value="<?php echo isset($company_profile) ? htmlspecialchars($company_profile['office_address']) : ''; ?>" />
             </div>
 
-            <h3>Social Links</h3>
+            <h3>Social Media Links</h3>
             <div class="form-group">
                 <label>LinkedIn Profile</label>
-                <input type="url" name="linkedin_profile" placeholder="LinkedIn URL" value="<?php echo isset($company_profile) ? $company_profile['linkedin_profile'] : ''; ?>" />
+                <input type="url" name="linkedin_profile" placeholder="e.g., www.linkedin.com/company/internlink" value="<?php echo isset($company_profile) ? htmlspecialchars($company_profile['linkedin_profile']) : ''; ?>" />
             </div>
             <div class="form-group">
                 <label>Twitter Handle</label>
-                <input type="text" name="twitter_handle" placeholder="Twitter handle" value="<?php echo isset($company_profile) ? $company_profile['twitter_handle'] : ''; ?>" />
+                <input type="text" name="twitter_handle" placeholder="e.g., @internlink" value="<?php echo isset($company_profile) ? htmlspecialchars($company_profile['twitter_handle']) : ''; ?>" />
             </div>
             <div class="form-group">
                 <label>Facebook Page</label>
-                <input type="url" name="facebook_page" placeholder="Facebook URL" value="<?php echo isset($company_profile) ? $company_profile['facebook_page'] : ''; ?>" />
+                <input type="text" name="facebook_page" placeholder="e.g., www.facebook.com/internlink" value="<?php echo isset($company_profile) ? htmlspecialchars($company_profile['facebook_page']) : ''; ?>" />
             </div>
             <div class="form-group">
-                <label>Other</label>
-                <input type="url" name="other_social_link" placeholder="Other social link" value="<?php echo isset($company_profile) ? $company_profile['other_social_link'] : ''; ?>" />
+                <label>Other Social Link</label>
+                <input type="text" name="other_social_link" placeholder="Other social media link" value="<?php echo isset($company_profile) ? htmlspecialchars($company_profile['other_social_link']) : ''; ?>" />
             </div>
 
-            <h3>Documents</h3>
+            <h3>Uploads</h3>
             <div class="form-group">
-                <label>Upload Company Logo <span class="required">*</span></label>
+                <label>Company Logo</label>
                 <input type="file" name="company_logo" />
+                <?php if (isset($company_profile) && $company_profile['company_logo']) { ?>
+                    <p>Current Logo: <img src="../uploads/<?php echo htmlspecialchars($company_profile['company_logo']); ?>" alt="Logo" width="100" /></p>
+                <?php } ?>
             </div>
             <div class="form-group">
-                <label>Upload Registration Document <span class="required">*</span></label>
+                <label>Registration Document</label>
                 <input type="file" name="registration_document" />
+                <?php if (isset($company_profile) && $company_profile['registration_document']) { ?>
+                    <p>Current Document: <a href="../uploads/<?php echo htmlspecialchars($company_profile['registration_document']); ?>" target="_blank">View Document</a></p>
+                <?php } ?>
             </div>
 
-            <button type="submit" class="save-btn">Save</button>
-            <?php if (isset($company_profile)): ?>
-                <button type="button" class="save-btn" id="edit-btn">Edit Profile</button>
-            <?php endif; ?>
+            <button type="submit" class="save-btn">Save Profile</button>
         </form>
     </div>
 </section>
@@ -321,20 +325,21 @@ $email = $_SESSION['recruiter_email'];
                 <tr>
                     <th>Internship ID</th>
                     <th>Position</th>
-                    <th>Status</th>
                     <th>Posted Date</th>
                     <th>Deadline</th>
                     <th>Applications</th>
                     <th>Duration</th>
+                    <th>Status</th>
                     <th>Actions</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="internship-list">
                 <!-- Dynamic content will be populated here -->
             </tbody>
         </table>
     </div>
 </section>
+
 
 
 

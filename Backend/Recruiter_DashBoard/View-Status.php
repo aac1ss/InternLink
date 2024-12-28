@@ -2,22 +2,59 @@
 include '../dbconfig.php';
 session_start();
 
-// Ensure recruiter email is set in the session
-if (!isset($_SESSION['email'])) {
-    echo json_encode(["error" => "Recruiter email is not set in the session."]);
+// Ensure recruiter ID is set in the session
+if (!isset($_SESSION['r_id'])) {
+    echo json_encode(["error" => "Recruiter ID is not set in the session."]);
     exit;
 }
 
-$recruiter_email = $_SESSION['email'];
+$recruiter_id = $_SESSION['r_id'];
 
-// SQL query to get internship details and applications count
-$sql = "SELECT p.internship_id, p.internship_title, p.company_name, p.location, p.created_at, p.deadline, 
-               COUNT(a.application_id) AS application_count
-        FROM post_internship_form_detail p
-        LEFT JOIN applications a ON p.internship_id = a.internship_id
-        WHERE p.recruiter_email = '$recruiter_email'
-        GROUP BY p.internship_id";
+// Check for a request to extend the deadline
+if (isset($_POST['action']) && $_POST['action'] === 'extend_deadline') {
+    $internship_id = $_POST['internship_id'];
+    $new_deadline = $_POST['new_deadline'];
 
+    // SQL query to update the deadline
+    $sql = "UPDATE post_internship_form_detail 
+            SET deadline = '$new_deadline' 
+            WHERE internship_id = '$internship_id' AND r_id = '$recruiter_id'";
+
+    if (mysqli_query($conn, $sql)) {
+        echo json_encode(["success" => true, "message" => "Deadline extended successfully."]);
+    } else {
+        echo json_encode(["error" => "Error updating deadline: " . mysqli_error($conn)]);
+    }
+
+    mysqli_close($conn);
+    exit;
+}
+
+// Check for a request to end the posting
+if (isset($_POST['action']) && $_POST['action'] === 'end_posting') {
+    $internship_id = $_POST['internship_id'];
+
+    // SQL query to update the status to "Off"
+    $sql = "UPDATE post_internship_form_detail 
+            SET status = 'Off' 
+            WHERE internship_id = '$internship_id' AND r_id = '$recruiter_id'";
+
+    if (mysqli_query($conn, $sql)) {
+        echo json_encode(["success" => true, "message" => "Posting ended successfully."]);
+    } else {
+        echo json_encode(["error" => "Error ending posting: " . mysqli_error($conn)]);
+    }
+
+    mysqli_close($conn);
+    exit;
+}
+
+// SQL query to fetch internships posted by the logged-in recruiter
+$sql = "SELECT internship_id, internship_title, company_name, location, duration, created_at, deadline, status
+FROM post_internship_form_detail
+WHERE r_id = '$recruiter_id'
+ORDER BY created_at DESC;
+";
 
 $result = mysqli_query($conn, $sql);
 

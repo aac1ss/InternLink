@@ -3,7 +3,7 @@ function openModal(data) {
     try {
         // If data is a string, parse it into an object
         if (typeof data === 'string') {
-            data = data.replace(/[\x00-\x1F\x7F]/g, ""); // Remove control characters
+            data = data.replace(/[\x00-\x1F\x7F]/g, ""); 
             data = JSON.parse(data);
         }
 
