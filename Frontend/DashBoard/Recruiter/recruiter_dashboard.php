@@ -3,13 +3,13 @@
 session_start();
 
 // Check if the user is logged in, if not redirect to login page
-if (!isset($_SESSION['email'])) {
+if (!isset($_SESSION['recruiter_email'])) {
     header("Location: ../../Frontend/Login/recruiter_login.html");
     exit;
 }
 
 // Retrieve the logged-in user's email from the session
-$email = $_SESSION['email'];
+$email = $_SESSION['recruiter_email'];
 ?>
 
 <!DOCTYPE html>
@@ -18,48 +18,33 @@ $email = $_SESSION['email'];
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Recruiter Dashboard</title>
-    <link
-      rel="stylesheet"
-      href="recruiter_dashboard.css"
-    />
+    <link rel="stylesheet" href="recruiter_dashboard.css?v=1.0">
+
     <link rel="stylesheet" href="../../Responsive/respo_index.css">
   </head>
   <body>
+  
   <header>
-    <div class="recruiter-navigation">
-        <!-- Default Logo -->
-        <div class="recruiter-logo primary-recruiter-logo">
-            <a href="index.html">
-                <img src="images/LOGO/LOGO.svg" alt="InternLink Logo">
+    <div class="recruiter-dashboard-navigation">
+        <!-- Logo -->
+        <div class="recruiter-dashboard-logo">
+            <a href="recruiter_dashboard.php">
+                <img src="../../images/LOGO/LOGO.svg" alt="Dashboard Logo">
             </a>
         </div>
 
-        <!-- Secondary Logo for Small Screens -->
-        <div class="recruiter-logo secondary-recruiter-logo">
-            <a href="index.html">
-                <img src="images/LOGO/PNG/ICON - Copy.png" alt="InternLink Small Logo">
-            </a>
-        </div>
+        <!-- Navigation Links -->
+        <ul class="nav-links">
+            <li><a href="../../index.html">Home</a></li>
+            <li><a href="../../Internships/internships.php">Internships</a></li>
+        </ul>
 
-        <!-- Hamburger Menu -->
-        <div class="recruiter-hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-
-        <nav>
-            <ul class="recruiter-nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="Internships/internships.php">Internships</a></li>
-                <li><a href="#about-us">About Us</a></li>
-            </ul>
-            <div class="recruiter-nav-buttons">
-                <a href="Login/Nav_Login/Login_index.htm">
-                    <button class="recruiter-login-btn">Login</button>
-                </a>
+        <!-- Profile Picture -->
+        <div class="recruiter-dashboard-actions">
+            <div class="recruiter-profile">
+                <img src="../../images/images.png" alt="Profile Picture" class="profile-pic">
             </div>
-        </nav>
+        </div>
     </div>
 </header>
 
@@ -100,7 +85,7 @@ $email = $_SESSION['email'];
           </a>
         </nav>
         <div class="logout">
-          <a href="#logout">
+        <a href="/InternLink/Backend/Recruiter_DashBoard/logout.php">
             <img src="../../images/DashBoard Icons/Log Out.svg" alt="Logout" class="nav-icon" /> Logout
           </a>
         </div>
@@ -109,13 +94,13 @@ $email = $_SESSION['email'];
 
     <!-- Main Content -->
     <main class="main-content">
-      <header class="top-bar">
+      <div class="top-bar">
           <h1>Hey there, <?php echo htmlspecialchars($email); ?>!</h1>
           <div class="user-profile">
               <span class="notification-icon">🔔</span>
               <span class="user-name"><?php echo htmlspecialchars($email); ?></span> <!-- Displaying Email -->
           </div>
-      </header>
+</div>
         
       <!-- Dashboard -->
         <section id="dashboard" class="section">
@@ -123,11 +108,11 @@ $email = $_SESSION['email'];
             <section class="stats">
                 <div class="stat-card">
                     <h2>0</h2>
-                    <p>Applied</p>
+                    <p>Total Internship Posted</p>
                 </div>
                 <div class="stat-card">
                     <h2>55</h2>
-                    <p>Alerts</p>
+                    <p>Total Applicants</p>
                 </div>
                 <div class="stat-card">
                     <h2>0</h2>
@@ -140,7 +125,7 @@ $email = $_SESSION['email'];
             </section>
             <section class="recent-activities">
                 <div class="recent-applications">
-                    <h3>Internship Applied Recently</h3>
+                    <h3>Recent internship</h3>
                     <p>No recent applications</p>
                 </div>
                 <div class="recent-details">
@@ -154,100 +139,101 @@ $email = $_SESSION['email'];
           </div>
         </section>
 
-        <!-- Company Profile -->
-        <section id="company-profile" class="section">
-          <div class="content">
-            <form class="company-profile-form">
-              <h1>Company Profile</h1>
-              <h3>Company Information</h3>
-              <div class="form-group">
+
+<!-- Company Profile -->
+<section id="company-profile" class="section">
+    <div class="content">
+        <form id="company-profile-form" class="company-profile-form" action="../../../Backend/Recruiter_DashBoard/Post_CompanyProfile.php" method="post" enctype="multipart/form-data">
+            <h1>Company Profile</h1>
+            <h3>Company Information</h3>
+            <div class="form-group">
                 <label>Company Name <span class="required">*</span></label>
-                <input type="text" placeholder="Enter company name" required />
-              </div>
-              <div class="form-group">
+                <input type="text" name="company_name" placeholder="Enter company name" required value="<?php echo isset($company_profile) ? htmlspecialchars($company_profile['company_name']) : ''; ?>" />
+            </div>
+            <div class="form-group">
                 <label>Industry <span class="required">*</span></label>
-                <input
-                  type="text"
-                  placeholder="e.g., Technology, Finance, Web-Development"
-                  required
-                />
-              </div>
-              <div class="form-group">
+                <input type="text" name="industry" placeholder="e.g., Technology, Finance, Web-Development" required value="<?php echo isset($company_profile) ? htmlspecialchars($company_profile['industry']) : ''; ?>" />
+            </div>
+            <div class="form-group">
                 <label>Company Size <span class="required">*</span></label>
-                <select>
-                  <option>1-10 Employees</option>
-                  <option>11-50 Employees</option>
-                  <option>51-200 Employees</option>
-                  <option>201-500 Employees</option>
-                  <option>500+ Employees</option>
+                <select name="company_size">
+                    <option <?php echo (isset($company_profile) && $company_profile['company_size'] == '1-10 Employees') ? 'selected' : ''; ?>>1-10 Employees</option>
+                    <option <?php echo (isset($company_profile) && $company_profile['company_size'] == '11-50 Employees') ? 'selected' : ''; ?>>11-50 Employees</option>
+                    <option <?php echo (isset($company_profile) && $company_profile['company_size'] == '51-200 Employees') ? 'selected' : ''; ?>>51-200 Employees</option>
+                    <option <?php echo (isset($company_profile) && $company_profile['company_size'] == '201-500 Employees') ? 'selected' : ''; ?>>201-500 Employees</option>
+                    <option <?php echo (isset($company_profile) && $company_profile['company_size'] == '500+ Employees') ? 'selected' : ''; ?>>500+ Employees</option>
                 </select>
-              </div>
-              <div class="form-group">
+            </div>
+            <div class="form-group">
                 <label>Company Website</label>
-                <input type="url" placeholder="e.g., www.internlink.com" />
-              </div>
-              <div class="form-group">
+                <input type="url" name="company_website" placeholder="e.g., www.internlink.com" value="<?php echo isset($company_profile) ? htmlspecialchars($company_profile['company_website']) : ''; ?>" />
+            </div>
+            <div class="form-group">
                 <label>Company Description*</label>
-                <textarea
-                  placeholder="Write a brief description..."
-                  required
-                ></textarea>
-              </div>
+                <textarea name="company_description" placeholder="Write a brief description..." required><?php echo isset($company_profile) ? htmlspecialchars($company_profile['company_description']) : ''; ?></textarea>
+            </div>
 
-              <h3>Contact Information</h3>
-              <div class="form-group">
+            <h3>Contact Information</h3>
+            <div class="form-group">
                 <label>Contact Person Name <span class="required">*</span></label>
-                <input type="text" placeholder="Enter contact person's name" />
-              </div>
-              <div class="form-group">
+                <input type="text" name="contact_person_name" placeholder="Enter contact person's name" value="<?php echo isset($company_profile) ? htmlspecialchars($company_profile['contact_person_name']) : ''; ?>" />
+            </div>
+            <div class="form-group">
                 <label>Contact Position <span class="required">*</span></label>
-                <input type="text" placeholder="e.g., HR Manager" />
-              </div>
-              <div class="form-group">
+                <input type="text" name="contact_position" placeholder="e.g., HR Manager" value="<?php echo isset($company_profile) ? htmlspecialchars($company_profile['contact_position']) : ''; ?>" />
+            </div>
+            <div class="form-group">
                 <label>Contact Email <span class="required">*</span></label>
-                <input type="email" placeholder="Enter contact email" />
-              </div>
-              <div class="form-group">
+                <input type="email" name="contact_email" placeholder="Enter contact email" value="<?php echo isset($company_profile) ? htmlspecialchars($company_profile['contact_email']) : ''; ?>" />
+            </div>
+            <div class="form-group">
                 <label>Contact Phone Number <span class="required">*</span></label>
-                <input type="tel" placeholder="e.g., (977) 9869696969" />
-              </div>
-              <div class="form-group">
+                <input type="tel" name="contact_phone" placeholder="e.g., (977) 9869696969" value="<?php echo isset($company_profile) ? htmlspecialchars($company_profile['contact_phone_number']) : ''; ?>" />
+            </div>
+            <div class="form-group">
                 <label>Office Address <span class="required">*</span></label>
-                <input type="text" placeholder="Enter office address" />
-              </div>
+                <input type="text" name="office_address" placeholder="Enter office address" value="<?php echo isset($company_profile) ? htmlspecialchars($company_profile['office_address']) : ''; ?>" />
+            </div>
 
-              <h3>Social Links</h3>
-              <div class="form-group">
+            <h3>Social Media Links</h3>
+            <div class="form-group">
                 <label>LinkedIn Profile</label>
-                <input type="url" placeholder="LinkedIn URL" />
-              </div>
-              <div class="form-group">
+                <input type="url" name="linkedin_profile" placeholder="e.g., www.linkedin.com/company/internlink" value="<?php echo isset($company_profile) ? htmlspecialchars($company_profile['linkedin_profile']) : ''; ?>" />
+            </div>
+            <div class="form-group">
                 <label>Twitter Handle</label>
-                <input type="text" placeholder="Twitter handle" />
-              </div>
-              <div class="form-group">
+                <input type="text" name="twitter_handle" placeholder="e.g., @internlink" value="<?php echo isset($company_profile) ? htmlspecialchars($company_profile['twitter_handle']) : ''; ?>" />
+            </div>
+            <div class="form-group">
                 <label>Facebook Page</label>
-                <input type="url" placeholder="Facebook URL" />
-              </div>
-              <div class="form-group">
-                <label>Other</label>
-                <input type="url" placeholder="Other social link" />
-              </div>
+                <input type="text" name="facebook_page" placeholder="e.g., www.facebook.com/internlink" value="<?php echo isset($company_profile) ? htmlspecialchars($company_profile['facebook_page']) : ''; ?>" />
+            </div>
+            <div class="form-group">
+                <label>Other Social Link</label>
+                <input type="text" name="other_social_link" placeholder="Other social media link" value="<?php echo isset($company_profile) ? htmlspecialchars($company_profile['other_social_link']) : ''; ?>" />
+            </div>
 
-              <h3>Documents</h3>
-              <div class="form-group">
-                <label>Upload Company Logo <span class="required">*</span></label>
-                <input type="file" />
-              </div>
-              <div class="form-group">
-                <label>Upload Registration Document <span class="required">*</span></label>
-                <input type="file" />
-              </div>
+            <h3>Uploads</h3>
+            <div class="form-group">
+                <label>Company Logo</label>
+                <input type="file" name="company_logo" />
+                <?php if (isset($company_profile) && $company_profile['company_logo']) { ?>
+                    <p>Current Logo: <img src="../uploads/<?php echo htmlspecialchars($company_profile['company_logo']); ?>" alt="Logo" width="100" /></p>
+                <?php } ?>
+            </div>
+            <div class="form-group">
+                <label>Registration Document</label>
+                <input type="file" name="registration_document" />
+                <?php if (isset($company_profile) && $company_profile['registration_document']) { ?>
+                    <p>Current Document: <a href="../uploads/<?php echo htmlspecialchars($company_profile['registration_document']); ?>" target="_blank">View Document</a></p>
+                <?php } ?>
+            </div>
 
-              <button type="submit" class="save-btn">Save</button>
-            </form>
-          </div>
-        </section>
+            <button type="submit" class="save-btn">Save Profile</button>
+        </form>
+    </div>
+</section>
+
 
           <!-- Post Internships -->
           <section id="post-internship-form" class="post-internship-container section">
@@ -276,9 +262,9 @@ $email = $_SESSION['email'];
                   <div class="form-group">
                     <label>Type: <span class="required">*</span></label>
                     <div class="type-toggle">
-                      <button type="button" id="type-remote" class="type-toggle-btn active" onclick="setType('remote')">Remote</button>
-                      <button type="button" id="type-hybrid" class="type-toggle-btn" onclick="setType('hybrid')">Hybrid</button>
-                      <button type="button" id="type-onsite" class="type-toggle-btn" onclick="setType('onsite')">Onsite</button>
+                      <button type="button" id="type-remote" class="type-toggle-btn active" onclick="setType('Remote')">Remote</button>
+                      <button type="button" id="type-hybrid" class="type-toggle-btn" onclick="setType('Hybrid')">Hybrid</button>
+                      <button type="button" id="type-onsite" class="type-toggle-btn" onclick="setType('Onsite')">Onsite</button>
                     </div>
                     <input type="hidden" id="type-hidden-input" name="type" value="remote" />
                   </div>
@@ -317,15 +303,11 @@ $email = $_SESSION['email'];
                     <label for="perks">Perks:</label>
                     <textarea id="perks" name="perks" rows="4" placeholder="List any perks or benefits"></textarea>
                    </div>
-                </div>
-                 <!-- Application Process -->
-                <div class="section application-process">
-                    <h2>Application Process</h2>
-                     <div class="form-group">
+                   <div class="form-group">
                     <label for="additional-info">Additional Information:</label>
                     <textarea id="additional-info" name="additional_info" rows="4" placeholder="Add any other details"></textarea>
                    </div>
-                  </div>
+                </div>
                 <!-- Submit Button -->
                 <div class="form-group">
                   <button type="submit" class="submit-btn">Post Internship</button>
@@ -343,20 +325,22 @@ $email = $_SESSION['email'];
                 <tr>
                     <th>Internship ID</th>
                     <th>Position</th>
-                    <th>Status</th>
                     <th>Posted Date</th>
                     <th>Deadline</th>
                     <th>Applications</th>
                     <th>Duration</th>
+                    <th>Status</th>
                     <th>Actions</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="internship-list">
                 <!-- Dynamic content will be populated here -->
             </tbody>
         </table>
     </div>
 </section>
+
+
 
 
           <!-- Setting Section -->

@@ -19,59 +19,122 @@ if (!$result) {
     <title>Internship Listings</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link rel="stylesheet" href="internships.css">
+    <link rel="stylesheet" href="../Responsive/respo_nav_footer.css">
 </head>
 <body>
 
-<!-- Dummy Navbar -->
-<nav class="navbar">
-    <div class="logo">InternLink</div>
-    <ul class="nav-links">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Browse Internships</a></li>
-        <li><a href="#">Companies</a></li>
-        <li><a href="#">Contact</a></li>
-    </ul>
-</nav>
+   <!-- Navigation -->
+   
+   <header>
+        <div class="navigation">
+            <!-- Default Logo -->
+            <div class="logo primary-logo">
+                <a href="../index.html">
+                    <img src="../images/LOGO/LOGO.svg" alt="InternLink Logo">
+                </a>
+            </div>
+            
+            <!-- Secondary Logo for Small Screens -->
+            <div class="logo secondary-logo">
+                <a href="../index.html">
+                    <img src="../images/LOGO/PNG/ICON - Copy.png" alt="InternLink Small Logo">
+                </a>
+            </div>
+            
+            <!-- Hamburger Menu -->
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../Internships/internships.php">Internships</a></li>
+                    <li><a href="#about-us">About Us</a></li>
+                </ul>
+                <div class="nav-buttons">
+                    <a href="../Login/Nav_Login/Login_index.htm">
+                        <button class="login-btn">Login</button>
+                    </a>
+                    <a href="../Register/Nav_Register/register_index.htm">
+                        <button class="register-btn">Register</button>
+                    </a>
+                    <button class="admin-btn"><a href="../DashBoard/Adminn/admin.html" id="admin-btn" style="text-decoration: none;"> Admin </a></button>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
+    
 
 <!-- Internship Listings Section -->
 <section class="internship-list-section">
     <div class="internship-list">
-        <?php if (mysqli_num_rows($result) > 0): ?>
-            <?php while ($row = mysqli_fetch_assoc($result)): ?>
-                <!-- Internship Card -->
-                <div class="internship-card">
-                    <div class="card-header">
-                        <img src="/images/LOGO/PNG/ICON.png" alt="Company Logo" class="company-logo">
-                        <div class="job-overview">
-                            <h3><?php echo htmlspecialchars($row['internship_title']); ?></h3>
-                            <p class="company-name"><?php echo htmlspecialchars($row['company_name']); ?></p>
-                            <div class="job-details">
-                                <span><i class="fas fa-map-marker-alt"></i> <?php echo htmlspecialchars($row['location']); ?></span>
-                                <span><i class="fas fa-dollar-sign"></i> <?php echo htmlspecialchars($row['stipend_amount'] ?: 'Unpaid'); ?></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tags">
-                        <span>#<?php echo htmlspecialchars($row['type']); ?></span>
-                        <span>#InternshipProgram</span>
-                    </div>
-                    <div class="card-footer">
-                        <span id="days-left"><i class="fas fa-clock"></i> Apply Now</span>
-                        <button class="details-btn" onclick="openModal('<?php echo htmlspecialchars(json_encode($row)); ?>')">View Details</button>
+    <?php if (mysqli_num_rows($result) > 0): ?>
+    <?php while ($row = mysqli_fetch_assoc($result)): ?>
+        <!-- Internship Card -->
+        <div class="internship-card">
+            <div class="card-header">
+                <img src="/images/LOGO/PNG/ICON.png" alt="Company Logo" class="company-logo">
+                <div class="job-overview">
+                    <h3><?php echo htmlspecialchars($row['internship_title']); ?></h3>
+                    <p class="company-name">
+    <?php echo htmlspecialchars($row['company_name'] ?? 'Unknown Company', ENT_QUOTES | ENT_HTML5, 'UTF-8'); ?>
+</p>
+
+                    <div class="job-details">
+                        <span><i class="fas fa-map-marker-alt"></i> <?php echo htmlspecialchars($row['location']); ?></span>
+                        <span><img src="../images/rs.png" style="width: 20px; height: 18px; margin-right:5px;" >  <?php echo htmlspecialchars($row['stipend_amount'] ?: 'Unpaid'); ?></span>
                     </div>
                 </div>
-            <?php endwhile; ?>
-        <?php else: ?>
-            <p>No internships available at the moment. Check back later!</p>
-        <?php endif; ?>
+            </div>
+            <div class="tags">
+                <span>#<?php echo htmlspecialchars($row['internship_title']); ?></span>
+                <span>#<?php echo htmlspecialchars($row['type']); ?></span>
+                <span>#<?php echo htmlspecialchars($row['location']); ?></span>
+                <span>#InternshipProgram</span>
+            </div>
+            <div class="card-footer">
+    <?php
+    // Retrieve created_at and deadline directly from the database
+    $created_at = new DateTime($row['created_at']); 
+    $deadline = new DateTime($row['deadline']);
+
+    // Current date as the reference point
+    $current_date = new DateTime();
+
+    // Calculate days remaining or check expiration
+    if ($current_date > $deadline) {
+        $remaining_text = '<i class="fas fa-clock"></i> Deadline Passed';
+    } else {
+        $diff = $current_date->diff($deadline);
+        $remaining_text = '<i class="fas fa-clock"></i> ' . $diff->days . ' days left';
+    }
+
+    // Format created_at for display
+    $created_at_text = $created_at->format('M d, Y');
+    ?>
+    <span id="days-left"><?php echo $remaining_text; ?></span>
+    <small class="created-at" style="color:grey; font-weight: bold;"  >Posted on: <?php echo htmlspecialchars($created_at_text); ?></small>
+    <button class="details-btn" onclick="openModal(<?php echo htmlspecialchars(json_encode($row), ENT_QUOTES, 'UTF-8'); ?>)">View Details</button>
+</div>
+
+        </div>
+    <?php endwhile; ?>
+<?php else: ?>
+    <p>No internships available at the moment. Check back later!</p>
+<?php endif; ?>
+
     </div>
 </section>
 
 <!-- Internship Details Modal -->
-<div id="internshipModal" class="modal">
+<div id="internshipModal" class="modal" style="display: none;">
     <div class="modal-content">
         <span class="close-btn" onclick="closeModal()">&times;</span>
-        
+
         <!-- Modal Header with Job Title and Company Name -->
         <div class="modal-header">
             <h2 id="modal-job-title">Job Title</h2>
@@ -81,9 +144,9 @@ if (!$result) {
         <!-- Modal Body with Detailed Job Information -->
         <div class="modal-body">
             <div class="modal-job-details">
-                <p><i class="fas fa-dollar-sign"></i> <strong>Offered Salary:</strong> <span id="modal-stipend"></span></p>
+                <p><img src="../images/rs.png" style="width: 20px; height: 18px; margin-right:5px;" >   <strong>Offered Salary:</strong> <span id="modal-stipend"></span></p>
                 <p><i class="fas fa-map-marker-alt"></i> <strong>Location:</strong> <span id="modal-location"></span></p>
-                <p><i class="fas fa-calendar-alt"></i> <strong>Duration:</strong> <span id="modal-duration"></span></p>
+                <p><i class="fas fa-calendar-alt"></i> <strong>Duration:</strong> <span id="modal-duration"></span> months</p>
                 <p><i class="fas fa-user"></i> <strong>Type:</strong> <span id="modal-type"></span></p>
             </div>
 
@@ -106,6 +169,7 @@ if (!$result) {
         </div>
     </div>
 </div>
+
 
 <!-- Dummy Footer -->
 <footer class="footer">

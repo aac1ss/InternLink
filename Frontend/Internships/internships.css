@@ -1,91 +1,208 @@
-/* General Styles */
+
+:root {
+    --primary-color: #59CBE8; /* Main accent color */
+    --secondary-color: #141E30; /* Background color for header and footer */
+    --text-color: #fff; /* Text color */
+    --bg-color: #f4f4f4; /* Background color for body and sections */
+    --border-color: #00b3ff; /* Border color for buttons */
+}
+
+/* Global Reset and Styling */
 * {
+    scroll-behavior: smooth;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
+    overflow-x: hidden;
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-color);
 }
 
-/* Navbar */
-.navbar {
+/* Navigation Bar Styling */
+header {
+    background-color: var(--secondary-color);
+    padding: 20px 0;
+    color: var(--text-color);
+    .primary-logo {
+        display: block;
+    }
+    
+    .secondary-logo {
+        display: none;
+    }
+    
+    
+}
+
+.navigation {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #333;
-    color: #fff;
-    padding: 15px 50px;
+    width: 90%;
+    margin: 0 auto;
 }
 
-.navbar .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
+.logo {
+    display: flex;
+    align-items: center;
 }
 
-.navbar .nav-links {
-    list-style-type: none;
+.logo img {
+    width: 200px;
+    margin-right: 10px;
+}
+
+.logo h1 {
+    font-size: 24px;
+    color: var(--secondary-color);;
+    font-weight: 700;
+}
+
+nav {
+    
+    display: flex;
+    align-items: center;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    margin-right: 20px;
+}
+.nav-links li a:hover {
+    color: var(--secondary-color);;
+    transition: 0.4s;
+}
+
+.nav-links li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.nav-buttons {
     display: flex;
     gap: 20px;
+    align-items: center; /* Ensure buttons and separator align properly */
 }
 
-.navbar .nav-links li a {
-    color: #fff;
-    text-decoration: none;
-    padding: 10px 15px;
+.nav-buttons h1 {
+    color: var(--secondary-color);
+    font-size: 24px; /* Adjusted for a larger and more prominent separator */
+    margin-left: 15px;
+    margin-right: 15px;
+    line-height: 1; /* Ensures alignment with the buttons */
 }
 
-.navbar .nav-links li a:hover {
-    background-color: #555;
+/* Button styles */
+button {
+    padding: 8px 20px;
     border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out; /* Smooth transitions for hover effects */
+}
+/* Specific button styles */
+.login-btn {
+    border: 1px solid var(--border-color);
+    background-color: transparent;
+    color: var(--border-color);
+}
+.login-btn a{
+    text-decoration: none;
+    color: inherit;
+    border: none;
+    box-shadow: none;
+    outline: none; 
 }
 
-/* Internship List Section */
-.internship-list-section {
-    display: flex;
-    justify-content: center;
-    margin: 50px 0;
+.login-btn:hover {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    box-shadow: 0 4px 15px rgba(0, 179, 255, 0.6); /* Pop-out shadow effect */
+    transform: scale(0.95); /* Slight increase in size on hover */
 }
 
-.internship-list {
-    width: 80%;
+.register-btn {
+    background-color: var(--border-color);
+    color: #fff;
 }
+
+.register-btn a{
+    text-decoration: none;
+    color: inherit;
+    border: none;
+    box-shadow: none;
+    outline: none;
+}
+
+
+.register-btn:hover {
+    border: 1px solid var(--border-color);
+    background-color: transparent;
+    color: var(--primary-color);
+}
+
+#admin-btn {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    border: none;
+    text-decoration: none;
+}
+
+#admin-btn:hover {
+    color: var(--primary-color);
+    transform: scale(1.1); /* Slight increase in size on hover */
+    }
+
+button:focus {
+    outline: none;
+} 
+
 
 /* Full-Width Internship Card */
 .internship-card {
     display: flex;
     flex-direction: column;
+    margin: 40px 70px;
     background-color: white;
     border: 1px solid #e0e0e0;
-    border-radius: 15px;
-    padding: 25px;
-    margin-bottom: 25px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease;
+    border-radius: 10px;
+    padding: 20px;
+    
+    transition: box-shadow 0.3s ease-in-out;
+    height: 100%;
 }
 
 .internship-card:hover {
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 8px #b4b5b6;
 }
 
+/* Card Header */
 .card-header {
     display: flex;
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .company-logo {
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
     border-radius: 10px;
-    margin-right: 40px;
+    margin-right: 20px;
+    object-fit: cover;
 }
 
 .job-overview h3 {
-    font-size: 1.6rem;
+    font-size: 1.7rem;
+    font-weight: 600;
+    color: vvar(--secondary-color);
     margin-bottom: 5px;
 }
 
@@ -94,17 +211,39 @@ body {
     font-size: 1.1rem;
 }
 
+/* Job Details */
 .job-details {
     display: flex;
-    gap: 15px;
+    gap: 20px;
     margin-top: 10px;
+    color: #555;
 }
 
+.job-details span {
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+}
+
+.job-details i {
+    margin-right: 5px;
+}
+
+/* Tags Section */
 .tags {
     display: flex;
-    gap: 10px;
-    margin-left: 140px;
-    margin-bottom: 20px;
+    gap: 12px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+    color: var(--secondary-color);;
+}
+
+.tags span {
+    background-color: rgba(8, 161, 227, 0.1);
+    border-radius: 15px;
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    font-weight: 500;
 }
 
 /* Card Footer */
@@ -112,102 +251,243 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: 15px;
+}
+
+#days-left {
+    font-size: 1rem;
+    color:#141e30de;
 }
 
 .details-btn {
-    background-color: #ff4b5c;
+    background-color: var(--secondary-color);;
     color: white;
-    padding: 12px 20px;
+    padding: 10px 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
-}
-#days-left{
-    margin-bottom: 21px;
-    margin-left: 140px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
+.details-btn:hover {
+    background-color: var(--secondary-color);
+    transform: scale(1.1);
+    transition: 0.3s ease-in-out;
+}
 /* Modal Styles */
 .modal {
-    display: none; /* Hidden by default */
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Dark background */
+    background: rgba(0, 0, 0, 0.7); /* Slightly darker overlay */
+    display: none; /* Initially hidden */
     justify-content: center;
     align-items: center;
-    z-index: 1000; /* Ensure it sits on top of everything */
+    z-index: 1000;
 }
 
 .modal-content {
-    background-color: white;
-    padding: 20px;
-    max-width: 600px;
-    max-height: 70vh; /* Reduces the height to 70% of the viewport */
-    border-radius: 10px;
-    overflow-y: auto; /* Adds scroll if content exceeds max-height */
-    animation: slide-in 0.3s ease;
-}
-
-.modal-header h2 {
-    font-size: 1.8rem;
-}
-
-.modal-body {
-    padding: 15px 0;
-}
-
-.modal-job-details p {
-    margin-bottom: 10px;
-}
-
-.modal-body h3 {
-    font-size: 1.3rem;
-    margin-top: 20px;
-}
-
-.modal-body ul {
-    list-style-type: disc;
-    margin-left: 20px;
-    margin-bottom: 20px;
-}
-
-.apply-btn {
-    background-color: #28a745;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
+    background: #fff; /* White background */
+    padding: 40px;
+    margin-top: 30px;
+    height: 94%;
+    border-radius: 12px;
+    width: 80%;
+    max-width: 800px;
+    position: relative;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transform: translateY(-20px);
+    animation: slideIn 0.5s ease-out; /* Animation for modal slide-in */
 }
 
 /* Close Button */
 .close-btn {
-    font-size: 2rem;
-    color: #aaa;
-    cursor: pointer;
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 15px;
+    right: 15px;
+    font-size: 2.5rem;
+    color: #333;
+    cursor: pointer;
+    transition: color 0.3s;
 }
 
 .close-btn:hover {
+    color: #00b3ff; /* Hover effect with accent color */
+}
+
+/* Modal Header */
+.modal-header h2 {
+    font-size: 2rem;
+    color: #333; /* Dark text for title */
+    font-weight: bold;
+    margin: 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #00b3ff; /* Accent color */
+}
+
+.modal-header p {
+    font-size: 1.1rem;
+    padding-top: 10px;
+    color: var(--secondary-color);
+    font-weight: 600;
+    font-style: italic;
+}
+
+/* Modal Body */
+.modal-body {
+    padding: 25px 0;
+    max-height: 60vh;
+    overflow-y: auto;
+    font-family: 'Arial', sans-serif;
     color: #333;
 }
 
-/* Slide-in animation */
-@keyframes slide-in {
-    from {
-        transform: translateY(-20%);
-        opacity: 0;
+.modal-job-details p {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.5;
+}
+
+.modal-body h3 {
+    font-size: 1.5rem;
+    color: #00b3ff; /* Accent color for section headers */
+    margin-top: 30px;
+    font-weight: bold;
+}
+
+.modal-body p {
+    font-size: 1.1rem;
+    padding-top: 5px;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Style for responsibilities bullets */
+.styled-bullets {
+    list-style-type: none; /* Remove default bullet points */
+    padding: 0;
+    margin: 0;
+}
+
+.styled-bullets li {
+    position: relative;
+    padding-left: 20px; /* Add space for the dot */
+    margin-bottom: 8px; /* Space between items */
+    font-size: 16px; /* Adjust as needed */
+    line-height: 1.5;
+}
+
+.styled-bullets li::before {
+    content: '●'; 
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 14px; /* Adjust size of the dot */
+    color: var(--secondary-color); /* Change to desired color */
+}
+
+
+/* Icons */
+.fas {
+    color: #00b3ff;
+    margin-right: 8px;
+}
+
+/* Modal Footer */
+.modal-footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Apply Button */
+.apply-btn {
+    background-color: #00b3ff;
+    color: white;
+    padding: 9px 18px;
+    border-radius: 30px;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s;
+    box-shadow: 0 5px 15px rgba(0, 179, 255, 0.3);
+}
+
+.apply-btn:hover {
+    background-color: #0094cc;
+    transform: translateY(-4px); /* Floating effect */
+    box-shadow: 0 8px 25px rgba(0, 179, 255, 0.5);
+}
+
+.apply-btn:active {
+    background-color: #0082b3;
+    transform: translateY(0);
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 90%;
     }
-    to {
-        transform: translateY(0);
-        opacity: 1;
+
+    .modal-header h2 {
+        font-size: 1.8rem;
+    }
+
+    .modal-body h3 {
+        font-size: 1.3rem;
+    }
+
+    .apply-btn {
+        width: 100%;
     }
 }
 
-/* Ensures modal content does not overflow or get cut off */
-.modal-content {
-    overflow: auto;
+/* Slide-in animation for the modal */
+@keyframes slideIn {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Styling for Mobile */
+@media (max-width: 768px) {
+    .internship-card {
+        flex-direction: column;
+        align-items: center;
+        padding: 15px;
+    }
+
+    .company-logo {
+        width: 80px;
+        height: 80px;
+    }
+
+    .card-header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .job-details {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .tags {
+        justify-content: center;
+    }
+
+    .card-footer {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #days-left {
+        margin-bottom: 10px;
+    }
 }

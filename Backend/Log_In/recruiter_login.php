@@ -1,7 +1,7 @@
 <?php
+session_start();
 include '../dbconfig.php';
 
-session_start();
 
 // Initialize a variable to hold feedback messages
 $message = "";
@@ -12,18 +12,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
 
     // Prepare SQL statement to prevent SQL injection
-    $sql = "SELECT r_password FROM recruiters_signup WHERE r_email = ?";
+    $sql = "SELECT r_id, r_password FROM recruiters_signup WHERE r_email = ?";
     $stmt = mysqli_prepare($conn, $sql);
 
     if ($stmt) {
         mysqli_stmt_bind_param($stmt, 's', $email);
         mysqli_stmt_execute($stmt);
-        mysqli_stmt_bind_result($stmt, $hashed_password);
+        mysqli_stmt_bind_result($stmt, $recruiter_id, $hashed_password);
         mysqli_stmt_fetch($stmt);
 
         if (password_verify($password, $hashed_password)) {
-           
-            $_SESSION['email'] = $email;
+            // Set session variables with recruiter email and ID
+            $_SESSION['recruiter_email'] = $email; 
+            $_SESSION['r_id'] = $recruiter_id;  // Set the recruiter ID session variable
+
+            // Redirect to recruiter dashboard
             header("Location: ../../Frontend/DashBoard/Recruiter/recruiter_dashboard.php");
             exit; 
         } else {

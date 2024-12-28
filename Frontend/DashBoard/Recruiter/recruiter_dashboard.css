@@ -34,126 +34,181 @@
         background-color: var(--main-bg);
     }
 
-    /* Navigation Bar */
-    header {
-        background-color: var(--secondary-color);
-        padding: 20px 0;
-        color: var(--text-color);
-    }
-    
-    .recruiter-primary-recruiter-logo {
-        display: block;
-    }
-    
-    .recruiter-secondary-recruiter-logo {
-        display: none;
-    }
-    
-    .recruiter-navigation {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 90%;
-        margin: 0 auto;
-    }
-    
-    .recruiter-logo {
-        display: flex;
-        align-items: center;
-    }
-    
-    .recruiter-logo img {
-        width: 200px;
-        margin-right: 10px;
-    }
-    
-    .recruiter-logo h1 {
-        font-size: 24px;
-        color: var(--primary-color);
-        font-weight: 700;
-    }
-    
-    nav {
-        display: flex;
-        align-items: center;
-    }
-    
-    .recruiter-nav-links {
-        list-style: none;
-        display: flex;
-        gap: 30px;
-        margin-right: 20px;
-    }
-    
-    .recruiter-nav-links li a:hover {
-        color: var(--primary-color);
-        transition: 0.4s;
-    }
-    
-    .recruiter-nav-links li a {
-        color: var(--text-color);
-        text-decoration: none;
-        font-size: 16px;
-        font-weight: 500;
-    }
-    
-    .recruiter-nav-buttons {
-        display: flex;
-        gap: 20px;
-        align-items: center; /* Ensure buttons and separator align properly */
-    }
-    
-    .recruiter-nav-buttons h1 {
-        color: var(--primary-color);
-        font-size: 24px; /* Adjusted for a larger and more prominent separator */
-        margin-left: 15px;
-        margin-right: 15px;
-        line-height: 1; /* Ensures alignment with the buttons */
-    }
-    
-    /* Button styles */
-    button {
-        padding: 8px 20px;
-        border-radius: 5px;
-        font-size: 14px;
-        font-weight: bold;
-        cursor: pointer;
-        transition: all 0.3s ease-in-out; /* Smooth transitions for hover effects */
-    }
-    
-    /* Specific button styles */
-    .recruiter-login-btn {
-        border: 1px solid var(--border-color);
-        background-color: transparent;
-        color: var(--border-color);
-    }
-    
-    .recruiter-login-btn a {
-        text-decoration: none;
-        color: inherit;
-        border: none;
-        box-shadow: none;
-        outline: none;
-    }
-    
-    .recruiter-login-btn:hover {
-        background-color: var(--primary-color);
-        color: var(--secondary-color);
-        box-shadow: 0 4px 15px rgba(0, 179, 255, 0.6); /* Pop-out shadow effect */
-        transform: scale(0.95); /* Slight increase in size on hover */
-    }
-    
-    button:focus {
-        outline: none;
-    }
-    
-    
+/* -------------------------------------------------------------------- */
+
     /* Required " * " */
   .required {
-   font-size: 18px;
-    color: red;
-  }
+    font-size: 18px;
+     color: red;
+   }
+ 
+/* -------------------------------------------------------------------- */
 
+    /* Navigation Bar */
+    /* Global Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7f6; /* Light gray background for contrast */
+    margin: 0;
+    padding: 0;
+}
+
+/* -------------------------------------------------------------------- */
+/* Dashboard Navigation */
+header {
+    padding: 20px 0;  /* Uniform padding on top and bottom */
+    background-color: var(--sidebar-bg);
+    box-shadow: 0px 4px 15px rgba(0, 179, 255, 0.1);
+    z-index: 10;
+    transition: box-shadow 0.3s ease;
+}
+
+/* Navigation Container */
+.recruiter-dashboard-navigation {
+    display: flex;
+    justify-content: space-between; /* Ensure space between the logo and other elements */
+    align-items: center;
+    width: 90%;  /* Similar to the index page */
+    margin: 0 auto;
+    max-width: 1200px; /* Limit max-width for consistency */
+}
+
+/* Logo */
+.recruiter-dashboard-logo {
+    display: flex;
+    align-items: center;
+    margin-right: 180px; /* Give space on the right side of the logo */
+}
+
+.recruiter-dashboard-logo img {
+    width: 180px;
+    margin-right: 10px;  /* Space between logo and text */
+    filter: brightness(0.9);
+    transition: filter 0.3s ease;
+}
+
+.recruiter-dashboard-logo img:hover {
+    filter: brightness(1);
+}
+
+.recruiter-dashboard-logo h1 {
+    font-size: 24px;
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+/* Navigation Links */
+.nav-links {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.nav-links a {
+    color: var(--button-text);
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #00b3ff;
+}
+/* -------------------------------------------------------------------- */
+
+/* Profile Picture Section */
+.recruiter-dashboard-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Profile Picture Container */
+.recruiter-profile {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 50%;
+    background-color: #f1f1f1; /* Light background for profile picture */
+    border: 2px solid #e0e0e0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Profile Picture */
+.profile-pic {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.recruiter-profile:hover {
+    transform: scale(1.1); /* Slight zoom on hover */
+    box-shadow: 0 4px 15px rgba(0, 179, 255, 0.4); /* Light glow effect */
+}
+
+/* Profile Popup (Dropdown Menu) */
+.profile-popup {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color: #ffffff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    z-index: 1000;
+    width: 200px;
+    padding: 10px 0;
+    font-size: 14px;
+}
+
+.profile-popup ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.profile-popup ul li {
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
+}
+
+.profile-popup ul li a {
+    color: #333;
+    text-decoration: none;
+    display: block;
+}
+
+.profile-popup ul li:hover {
+    background-color: #f1f1f1; /* Subtle hover effect */
+}
+
+.profile-popup ul li a:hover {
+    color: #00b3ff; /* Highlight color for links */
+}
+
+/* Show popup when profile is clicked */
+.profile-pic:hover + .profile-popup,
+.profile-popup:hover {
+    display: block;
+}
+
+/* -------------------------------------------------------------------- */
 /* Sidebar */
 /* Icon Styling */
 .nav-icon {
@@ -242,6 +297,7 @@
   }
 
   
+/* -------------------------------------------------------------------- */
 
 /* Main Content */
 .main-content {
@@ -319,7 +375,7 @@
 
 .recent-applications h3, .recent-details h3 {
     margin-bottom: 10px;
-    font-size: 18px;
+    font-size: 28px;
     color: #333;
 }
 
@@ -331,6 +387,10 @@
 .recent-details ul {
     list-style: none;
 }
+
+
+/* -------------------------------------------------------------------- */
+
 /* Company Profile */
 
     .content {
@@ -440,6 +500,7 @@
     }
 
 
+/* -------------------------------------------------------------------- */
 
 /* Post Internship Section */
 .post-internship-container {
@@ -539,17 +600,21 @@
   }
   
 
+/* -------------------------------------------------------------------- */
+
 /* View Status (internship */
+/* Table Styles */
 .internship-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: var(--main-bg);
 }
 
 .internship-table thead {
     background-color: var(--sidebar-bg);
-    color: #fff;
+    color: var(--text-color-white);
 }
 
 .internship-table th, .internship-table td {
@@ -559,22 +624,26 @@
 }
 
 .internship-table td {
-    font-size: 0.9em;
+    font-size:0.9em;
 }
 
 .internship-table .status {
     font-weight: bold;
     padding: 8px 12px;
     border-radius: 5px;
-    color: #fff;
+    color: var(--text-color-white);
 }
 
-.internship-table .status.active {
-    background-color: #28a745; /* Green for active internships */
+/* Status when internship is 'On' */
+.status-on {
+    background-color: green;
+    color: var(--text-color-white);
 }
 
-.internship-table .status.closed {
-    background-color: #dc3545; /* Red for closed internships */
+/* Status when internship is 'Off' */
+.status-off {
+    background-color: red;
+    color: var(--text-color-white);
 }
 
 /* Actions Column */
@@ -595,23 +664,23 @@
 }
 
 .internship-table .extend-btn {
-    background-color: #007bff; /* Blue */
-    color: white;
+    background-color: var(--btn-color-new); 
+    color: var(--text-color-white);
 }
 
-.internship-table .remove-btn {
-    background-color: #dc3545; /* Red */
-    color: white;
+.internship-table .end-btn {
+    background-color: var(--button-bg); /* Red */
+    color: var(--text-color-white);
 }
 
 .internship-table .remove-btn:disabled {
-    background-color: #6c757d; /* Disabled state */
+    background-color:var(--hover-color-sidebar); /* Disabled state */
     cursor: not-allowed;
 }
 
 .internship-table .view-applicants-btn {
-    background-color: #6c757d; /* Gray */
-    color: white;
+    background-color: grey; /* Gray */
+    color: var(--text-color-white);
     text-decoration: none;
     padding: 8px 15px;
     border-radius: 5px;
@@ -627,55 +696,59 @@
 }
 
 /* Manage Applicants Table */
-    .applicants-table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 20px 0;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
+.applicants-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
-    .applicants-table th,
-    .applicants-table td {
-        padding: 15px;
-        text-align: left;
-        border-bottom: 1px solid #ddd;
-    }
+.applicants-table th,
+.applicants-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--hover-color-sidebar);
+}
 
-    .applicants-table th {
-        background-color: var(--sidebar-bg);
-        color: var(--text-color-white);
-        font-weight: bold;
-    }
+.applicants-table th {
+    background-color: var(--sidebar-bg);
+    color: var(--text-color-white);
+    font-weight: bold;
+}
 
-    .applicants-table tr:nth-child(even) {
-        background-color: #f9f9f9;
-    }
+.applicants-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
 
-    .applicants-table tr:hover {
-        background-color: #f1f1f1;
-    }
+.applicants-table tr:hover {
+    background-color: #f1f1f1;
+}
 
-    /* Action Buttons in Manage Applicants */
-    .action-btn {
-        padding: 8px 12px;
-        margin-right: 5px;
-        color: #ffffff;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-    }
+/* Action Buttons in Manage Applicants */
+.action-btn {
+    padding: 8px 12px;
+    margin-right: 5px;
+    color: var(--text-color-white);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, opacity 0.2s ease;
+}
 
-    .action-btn.approve {
-        background-color: #28a745;
-    }
+.action-btn.approve {
+    background-color: #28a745; /* Green */
+}
 
-    .action-btn.reject {
-        background-color: #dc3545;
-    }
+.action-btn.reject {
+    background-color: #dc3545; /* Red */
+}
 
-    .action-btn:hover {
-        opacity: 0.9;
-    }
+.action-btn:hover {
+    opacity: 0.9;
+}
+
+
+/* -------------------------------------------------------------------- */
 
 /* Membership Section */
 
@@ -783,6 +856,7 @@
     .pay-btn:hover {
         background-color: #003a6a;
     }
+/* -------------------------------------------------------------------- */
 
     /* Contact Admin Section */
     .contact-admin-form {
@@ -859,7 +933,8 @@
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
 
-    
+ /* -------------------------------------------------------------------- */
+   
 /* Settings Section Styling */
     .settings-form {
         padding: 20px;
@@ -907,7 +982,10 @@
     .settings-form .save-btn:hover {
         background-color: #0056b3;
     }
-/* LOGOUT */
+
+/* -------------------------------------------------------------------- */
+
+    /* LOGOUT */
   
 .logout {
     margin: 10px;

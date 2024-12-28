@@ -5,6 +5,13 @@ include '../dbconfig.php';
 
 session_start();
 
+// Check if r_id is set in the session
+if (!isset($_SESSION['r_id'])) {
+    die("Error: Recruiter not logged in.");
+}
+
+$r_id = $_SESSION['r_id'];  // Get recruiter ID from session
+
 // Retrieve form data
 $internship_title = $_POST['internship_title'];
 $company_name = $_POST['company_name'];
@@ -19,12 +26,18 @@ $skills = $_POST['skills'];
 $perks = $_POST['perks'];
 $additional_info = $_POST['additional_info'];
 
-// Insert data into the database
-$sql = "INSERT INTO post_internship_form_detail (internship_title, company_name, location, duration, type, stipend_amount, job_description, responsibility, requirements, skills, perks, additional_info) 
-VALUES ('$internship_title', '$company_name', '$location', '$duration', '$type', '$stipend_amount', '$job_description', '$responsibility', '$requirements', '$skills', '$perks', '$additional_info')";
+// Get current date for created_at
+$created_at = date('Y-m-d H:i:s');
+
+// Calculate the deadline (1 month after created_at)
+$deadline = date('Y-m-d', strtotime("+1 month", strtotime($created_at)));
+
+// Insert data into the post_internship_form_detail table with the recruiter ID
+$sql = "INSERT INTO post_internship_form_detail (internship_title, company_name, location, duration, type, stipend_amount, job_description, responsibility, requirements, skills, perks, additional_info, created_at, deadline, status, r_id) 
+VALUES ('$internship_title', '$company_name', '$location', '$duration', '$type', '$stipend_amount', '$job_description', '$responsibility', '$requirements', '$skills', '$perks', '$additional_info', '$created_at', '$deadline', 'on', '$r_id')";
 
 if (mysqli_query($conn, $sql)) {
-    echo "New internship posted successfully!";
+    echo "New internship posted successfully ";
 } else {
     echo "Error: " . mysqli_error($conn);
 }
