@@ -166,6 +166,88 @@ button:focus {
 } 
 
 
+/* Profile Picture Section */
+.recruiter-dashboard-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Profile Picture Container */
+.recruiter-profile {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 50%;
+    background-color: #7b93be;
+    border: 2px solid #e0e0e0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Profile Picture */
+.profile-pic {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.recruiter-profile:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 15px rgba(0, 179, 255, 0.4);
+}
+
+/* Profile Popup (Dropdown Menu) */
+.profile-popup {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color: #ffffff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    z-index: 1000;
+    width: 200px;
+    padding: 10px 0;
+    font-size: 14px;
+}
+
+.profile-popup ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.profile-popup ul li {
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
+}
+
+.profile-popup ul li a {
+    color: #333;
+    text-decoration: none;
+    display: block;
+}
+
+.profile-popup ul li:hover {
+    background-color: #f1f1f1;
+}
+
+.profile-popup ul li a:hover {
+    color: #00b3ff;
+}
+
+.profile-pic:hover + .profile-popup,
+.profile-popup:hover {
+    display: block;
+}
+
 /* Full-Width Internship Card */
 .internship-card {
     display: flex;
@@ -183,6 +265,44 @@ button:focus {
 .internship-card:hover {
     box-shadow: 0 2px 8px #b4b5b6;
 }
+/* Card sticker */
+
+/* Style for the Login Required Sticker */
+.login-required-sticker {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    background: var(--border-color); /* Slightly dark background with transparency */
+    color: white;
+    padding: 12px 18px; /* Adjust padding for better readability */
+    font-weight: bold;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    filter: blur(0.4px); /* Stronger blur effect */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Larger shadow for depth */
+    transition: opacity 0.3s ease-in-out, transform 0.2s ease-in-out; /* Smooth transitions */
+    opacity: 0; /* Initially hidden */
+    transform: translateY(-10px); /* Slightly offset when hidden */
+}
+
+/* Make the sticker visible when not logged in as a candidate */
+.internship-card .login-required-sticker {
+    opacity: 1;
+    transform: translateY(0); /* Reset the offset when visible */
+}
+
+/* Ensure the internship card has relative positioning so the sticker can be placed correctly */
+.internship-card {
+    position: relative;
+}
+
+/* Optional: Add a soft gradient to the background for more depth */
+.login-required-sticker {
+    background: linear-gradient(45deg, #59CBE8, #46a4bc);
+}
+
 
 /* Card Header */
 .card-header {

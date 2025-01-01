@@ -55,46 +55,40 @@ body {
 
 /* -------------------------------------------------------------------- */
 /* Dashboard Navigation */
+/* Dashboard Navigation */
 header {
-    padding: 20px 0;  /* Uniform padding on top and bottom */
+    padding: 20px 0;
     background-color: var(--sidebar-bg);
     box-shadow: 0px 4px 15px rgba(0, 179, 255, 0.1);
     z-index: 10;
     transition: box-shadow 0.3s ease;
 }
 
-/* Navigation Container */
 .recruiter-dashboard-navigation {
     display: flex;
-    justify-content: space-between; /* Ensure space between the logo and other elements */
+    justify-content: space-between;
     align-items: center;
-    width: 90%;  /* Similar to the index page */
+    width: 90%;
     margin: 0 auto;
-    max-width: 1200px; /* Limit max-width for consistency */
+    max-width: 1200px;
 }
 
 /* Logo */
 .recruiter-dashboard-logo {
     display: flex;
     align-items: center;
-    margin-right: 180px; /* Give space on the right side of the logo */
+    margin-right: 180px;
 }
 
 .recruiter-dashboard-logo img {
     width: 180px;
-    margin-right: 10px;  /* Space between logo and text */
+    margin-right: 10px;
     filter: brightness(0.9);
     transition: filter 0.3s ease;
 }
 
 .recruiter-dashboard-logo img:hover {
     filter: brightness(1);
-}
-
-.recruiter-dashboard-logo h1 {
-    font-size: 24px;
-    color: var(--primary-color);
-    font-weight: 700;
 }
 
 /* Navigation Links */
@@ -123,7 +117,6 @@ header {
 .nav-links a:hover {
     color: #00b3ff;
 }
-/* -------------------------------------------------------------------- */
 
 /* Profile Picture Section */
 .recruiter-dashboard-actions {
@@ -141,7 +134,7 @@ header {
     align-items: center;
     overflow: hidden;
     border-radius: 50%;
-    background-color: #f1f1f1; /* Light background for profile picture */
+    background-color: var(--hover-color-sidebar);
     border: 2px solid #e0e0e0;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     cursor: pointer;
@@ -158,8 +151,8 @@ header {
 }
 
 .recruiter-profile:hover {
-    transform: scale(1.1); /* Slight zoom on hover */
-    box-shadow: 0 4px 15px rgba(0, 179, 255, 0.4); /* Light glow effect */
+    transform: scale(1.1);
+    box-shadow: 0 4px 15px rgba(0, 179, 255, 0.4);
 }
 
 /* Profile Popup (Dropdown Menu) */
@@ -195,18 +188,18 @@ header {
 }
 
 .profile-popup ul li:hover {
-    background-color: #f1f1f1; /* Subtle hover effect */
+    background-color: #f1f1f1;
 }
 
 .profile-popup ul li a:hover {
-    color: #00b3ff; /* Highlight color for links */
+    color: #00b3ff;
 }
 
-/* Show popup when profile is clicked */
 .profile-pic:hover + .profile-popup,
 .profile-popup:hover {
     display: block;
 }
+
 
 /* -------------------------------------------------------------------- */
 /* Sidebar */
