@@ -4,12 +4,33 @@ session_start();
 
 // Check if the user is logged in, if not redirect to login page
 if (!isset($_SESSION['recruiter_email'])) {
-    header("Location: ../../Frontend/Login/recruiter_login.html");
+    header("Location: ../../Frontend/Login/Sub_Logins/recruiter_login.html");
     exit;
 }
 
-// Retrieve the logged-in user's email from the session
+// Retrieve the logged-in recruiter's email from the session
 $email = $_SESSION['recruiter_email'];
+
+// Include the database configuration file
+include('../../../Backend/dbconfig.php');
+
+// Query to fetch the recruiter's company profile details, including the logo
+$query = "SELECT r_id, company_logo FROM company_profile WHERE contact_email = ?";
+$stmt = mysqli_prepare($conn, $query);
+mysqli_stmt_bind_param($stmt, "s", $email);
+mysqli_stmt_execute($stmt);
+$result = mysqli_stmt_get_result($stmt);
+$recruiter = mysqli_fetch_assoc($result);
+
+// Check if the recruiter details were found
+if ($recruiter) {
+    $r_id = $recruiter['r_id'];
+    // Use the company logo from the database or default if not found
+    $company_logo = $recruiter['company_logo'] ? '../../../Backend/uploads/' . $recruiter['company_logo'] : '../../images/default-profile.png';
+} else {
+    $company_logo = '../../images/default-profile.png';
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -18,6 +39,8 @@ $email = $_SESSION['recruiter_email'];
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Recruiter Dashboard</title>
+    <link rel="icon" href="../../images/favicon.ico"
+        type="image/x-icon" />
     <link rel="stylesheet" href="recruiter_dashboard.css?v=1.0">
 
     <link rel="stylesheet" href="../../Responsive/respo_index.css">
@@ -28,7 +51,7 @@ $email = $_SESSION['recruiter_email'];
     <div class="recruiter-dashboard-navigation">
         <!-- Logo -->
         <div class="recruiter-dashboard-logo">
-            <a href="recruiter_dashboard.php">
+            <a href="candidate_dashboard.php">
                 <img src="../../images/LOGO/LOGO.svg" alt="Dashboard Logo">
             </a>
         </div>
@@ -42,7 +65,7 @@ $email = $_SESSION['recruiter_email'];
         <!-- Profile Picture -->
         <div class="recruiter-dashboard-actions">
             <div class="recruiter-profile">
-                <img src="../../images/images.png" alt="Profile Picture" class="profile-pic">
+                <img src="<?php echo $company_logo; ?>" alt="Profile Picture" class="profile-pic">
             </div>
         </div>
     </div>
