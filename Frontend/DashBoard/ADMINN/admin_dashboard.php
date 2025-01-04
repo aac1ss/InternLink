@@ -2,14 +2,9 @@
 // Start the session to access session variables
 session_start();
 
-// Check if the user is logged in, if not redirect to login page
-if (!isset($_SESSION['recruiter_email'])) {
-    header("Location: ../../Frontend/Login/recruiter_login.html");
-    exit;
-}
+// Retrieve the logged-in recruiter's email from the session
+$email = $_SESSION['admin_email'];
 
-// Retrieve the logged-in user's email from the session
-$email = $_SESSION['recruiter_email'];
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +13,9 @@ $email = $_SESSION['recruiter_email'];
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Recruiter Dashboard</title>
-    <link rel="stylesheet" href="recruiter_dashboard.css?v=1.0">
+    <link rel="icon" href="../../images/favicon.ico"
+        type="image/x-icon" />
+    <link rel="stylesheet" href="admin_dashboard.css?v=1.0">
 
     <link rel="stylesheet" href="../../Responsive/respo_index.css">
   </head>
@@ -28,7 +25,7 @@ $email = $_SESSION['recruiter_email'];
     <div class="recruiter-dashboard-navigation">
         <!-- Logo -->
         <div class="recruiter-dashboard-logo">
-            <a href="recruiter_dashboard.php">
+            <a href="candidate_dashboard.php">
                 <img src="../../images/LOGO/LOGO.svg" alt="Dashboard Logo">
             </a>
         </div>
@@ -38,14 +35,6 @@ $email = $_SESSION['recruiter_email'];
             <li><a href="../../index.html">Home</a></li>
             <li><a href="../../Internships/internships.php">Internships</a></li>
         </ul>
-
-        <!-- Profile Picture -->
-        <div class="recruiter-dashboard-actions">
-            <div class="recruiter-profile">
-                <img src="../../images/images.png" alt="Profile Picture" class="profile-pic">
-            </div>
-        </div>
-    </div>
 </header>
 
     <div class="container">
@@ -56,29 +45,26 @@ $email = $_SESSION['recruiter_email'];
             <img src="../../images/DashBoard Icons/Dashboard.svg" alt="Dashboard" class="nav-icon" /> Dashboard
           </a>
           <a href="#company-profile">
-            <img src="../../images/DashBoard Icons/Profile.svg" alt="Company Profile" class="nav-icon" /> Company Profile
+            <img src="../../images/DashBoard Icons/Profile.svg" alt="Company Profile" class="nav-icon" /> Statistics
           </a>
           <div class="dropdown">
             <a href="post-internship-main-section" class="dropdown-toggle">
-              <img src="../../images/DashBoard Icons/Internships.svg" alt="Internships" class="nav-icon" /> Internships
+              <img src="../../images/DashBoard Icons/Internships.svg" alt="Internships" class="nav-icon" /> User Management
             </a>
             <div class="dropdown-content">
               <a href="#post-internship-form">
-                <img src="../../images/DashBoard Icons/Post.svg" alt="Post Internship" class="nav-icon" /> Post Internship
+                <img src="../../images/DashBoard Icons/Post.svg" alt="Post Internship" class="nav-icon" /> Manage Candidates
               </a>
               <a href="#internships">
-                <img src="../../images/DashBoard Icons/Status.svg" alt="View Status" class="nav-icon" /> View Status
+                <img src="../../images/DashBoard Icons/Status.svg" alt="View Status" class="nav-icon" /> Manage Recruiters
               </a>
             </div>
           </div>
           <a href="#manage-applicants">
-            <img src="../../images/DashBoard Icons/Manage Applicants.svg" alt="Manage Applicants" class="nav-icon" /> Manage Applicants
+            <img src="../../images/DashBoard Icons/Manage Applicants.svg" alt="Manage Applicants" class="nav-icon" /> Manage Applications
           </a>
           <a href="#membership">
             <img src="../../images/DashBoard Icons/membership.svg" alt="Membership" class="nav-icon" /> Membership
-          </a>
-          <a href="#contact-us">
-            <img src="../../images/DashBoard Icons/Contact Us.svg" alt="Contact Us" class="nav-icon" /> Contact Us
           </a>
           <a href="#setting">
             <img src="../../images/DashBoard Icons/Settting.svg" alt="Setting" class="nav-icon" /> Setting
@@ -95,7 +81,7 @@ $email = $_SESSION['recruiter_email'];
     <!-- Main Content -->
     <main class="main-content">
       <div class="top-bar">
-          <h1>Hey there, <?php echo htmlspecialchars($email); ?>!</h1>
+          <h1>Hey there Admin, <?php echo htmlspecialchars($email); ?>!</h1>
           <div class="user-profile">
               <span class="notification-icon">🔔</span>
               <span class="user-name"><?php echo htmlspecialchars($email); ?></span> <!-- Displaying Email -->
@@ -105,29 +91,127 @@ $email = $_SESSION['recruiter_email'];
       <!-- Dashboard -->
         <section id="dashboard" class="section">
           <div class="content" id="dashboardContent">
-            <section class="stats">
-                <div class="stat-card">
-                    <h2>0</h2>
-                    <p>Total Internship Posted</p>
-                </div>
-                <div class="stat-card">
-                    <h2>55</h2>
-                    <p>Total Applicants</p>
-                </div>
-                <div class="stat-card">
-                    <h2>0</h2>
-                    <p>Rejected</p>
-                </div>
-                <div class="stat-card">
-                    <h2>0</h2>
-                    <p>Bookmarks</p>
-                </div>
-            </section>
+         
+         <?php
+// Include the database connection
+include('D:\xampp\htdocs\InternLink\Backend\dbconfig.php'); // Adjust the path according to your project structure
+
+// Start session for any session-related functionality (like error message)
+if (session_status() == PHP_SESSION_NONE) {
+  session_start();  // Start the session only if it's not already started
+}
+
+?>
+
+<section class="stats">
+    <div class="stat-card">
+        <h2>
+            <?php
+            // Query to count the total number of internships posted
+            $sql_internships = "SELECT COUNT(*) AS total_internships FROM post_internship_form_detail";
+            $result_internships = $conn->query($sql_internships);
+            if ($result_internships->num_rows > 0) {
+                $row_internships = $result_internships->fetch_assoc();
+                echo $row_internships['total_internships'];
+            } else {
+                echo "0"; // If no internships exist
+            }
+            ?>
+        </h2>
+        <p>Total Internship Posted</p>
+    </div>
+    <div class="stat-card">
+        <h2>
+            <?php
+            // Query to count the total number of recruiters
+            $sql_recruiters = "SELECT COUNT(*) AS total_recruiters FROM recruiters_signup";
+            $result_recruiters = $conn->query($sql_recruiters);
+            if ($result_recruiters->num_rows > 0) {
+                $row_recruiters = $result_recruiters->fetch_assoc();
+                echo $row_recruiters['total_recruiters'];
+            } else {
+                echo "0"; // If no recruiters exist
+            }
+            ?>
+        </h2>
+        <p>Total Recruiters</p>
+    </div>
+    <div class="stat-card">
+        <h2>
+            <?php
+            // Query to count the total number of candidates
+            $sql_candidates = "SELECT COUNT(*) AS total_candidates FROM candidates_signup";
+            $result_candidates = $conn->query($sql_candidates);
+            if ($result_candidates->num_rows > 0) {
+                $row_candidates = $result_candidates->fetch_assoc();
+                echo $row_candidates['total_candidates'];
+            } else {
+                echo "0"; // If no candidates exist
+            }
+            ?>
+        </h2>
+        <p>Total Candidates</p>
+    </div>
+    <div class="stat-card">
+        <h2>
+          0
+        </h2>
+        <p>Payment Subscriber</p>
+    </div>
+</section>
+
+<!--Recent Activities  -->
             <section class="recent-activities">
-                <div class="recent-applications">
-                    <h3>Recent internship</h3>
-                    <p>No recent applications</p>
-                </div>
+            <?php
+// Include the database connection
+include('../../../Backend/dbconfig.php');
+
+// Start session if not already started
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Query to fetch recent internships in descending order
+$sql = "SELECT company_name, internship_title, deadline, created_at FROM post_internship_form_detail ORDER BY created_at DESC"; // Assuming there is a 'created_at' column for sorting
+$result = $conn->query($sql);
+?>
+
+<!-- Recent Applications Section -->
+<div class="recent-applications">
+    <h3>Recent Internships</h3>
+
+    <?php
+   if ($result->num_rows > 0) {
+    $counter = 1; // Initialize the counter
+    // Loop through the results and display each internship
+    while ($row = $result->fetch_assoc()) {
+        // Calculate the difference between deadline and created_at
+        $created_at = new DateTime($row['created_at']);
+        $deadline = new DateTime($row['deadline']);
+        $interval = $created_at->diff($deadline);
+
+        // Get the number of days difference
+        $days_remaining = $interval->format('%r%a'); // '%r' adds a negative sign if the date has passed
+
+        // Format the message based on days remaining
+        if ($days_remaining > 0) {
+            $subtractedDateMessage = $days_remaining . " days ";
+        } elseif ($days_remaining == 0) {
+            $subtractedDateMessage = "Deadline is today";
+        } else {
+            $subtractedDateMessage = abs($days_remaining) . " days ago (expired)";
+        }
+
+        // Print the internship details
+        echo '<p>' . $counter . ') ' . $row['company_name'] . ' posted an internship for "' . $row['internship_title'] . '" which ends in ' . $subtractedDateMessage . '.</p>';
+        $counter++; // Increment the counter
+    }
+    } else {
+        echo '<p>No recent applications</p>';
+    }
+    ?>
+</div>
+
                 <div class="recent-details">
                     <h3>Recent Activities</h3>
                     <ul>
@@ -148,7 +232,7 @@ $email = $_SESSION['recruiter_email'];
             <h3>Company Information</h3>
             <div class="form-group">
                 <label>Company Name <span class="required">*</span></label>
-                <input type="text" name="company_name" placeholder="Enter company name" required value="<?php echo isset($company_profile) ? htmlspecialchars($company_profile['company_name']) : ''; ?>" />
+                <input type="text" name="company_name" placeholder="Enter company name" required value="<?php echo isset($email) ? htmlspecialchars($company_profile['company_name']) : ''; ?>" />
             </div>
             <div class="form-group">
                 <label>Industry <span class="required">*</span></label>
@@ -235,110 +319,163 @@ $email = $_SESSION['recruiter_email'];
 </section>
 
 
-          <!-- Post Internships -->
-          <section id="post-internship-form" class="post-internship-container section">
-            <div>
-              <h1>Post an Internship</h1>
-              <form action="../../../Backend/Recruiter_DashBoard/Post_Internship.php" method="post" class="internship-post-form">
-                <!-- Internship Information -->
-                <div class="internship-details">
-                  <h2>Internship Information</h2>
-                  <div class="form-group">
-                    <label for="internship-title">Title: <span class="required">*</span></label>
-                    <input type="text" id="internship-title" name="internship_title" placeholder="e.g., Java Developer" required />
-                  </div>
-                  <div class="form-group">
-                    <label for="company-name">Company Name: <span class="required">*</span></label>
-                    <input type="text" id="company-name" name="company_name" placeholder="e.g., InternLink" required />
-                  </div>
-                  <div class="form-group">
-                    <label for="location">Location: <span class="required">*</span></label>
-                    <input type="text" id="location" name="location" placeholder="e.g., Jhamsikhel, Balkumamri, etc." required />
-                  </div>
-                  <div class="form-group">
-                    <label for="duration">Duration: <span class="required">*</span></label>
-                    <input type="text" id="duration" name="duration" placeholder="e.g., 3 months" required />
-                  </div>
-                  <div class="form-group">
-                    <label>Type: <span class="required">*</span></label>
-                    <div class="type-toggle">
-                      <button type="button" id="type-remote" class="type-toggle-btn active" onclick="setType('Remote')">Remote</button>
-                      <button type="button" id="type-hybrid" class="type-toggle-btn" onclick="setType('Hybrid')">Hybrid</button>
-                      <button type="button" id="type-onsite" class="type-toggle-btn" onclick="setType('Onsite')">Onsite</button>
-                    </div>
-                    <input type="hidden" id="type-hidden-input" name="type" value="remote" />
-                  </div>
-                  <div class="form-group stipend-group">
-                    <label>Stipend: <span class="required">*</span></label>
-                    <div class="stipend-toggle">
-                      <button type="button" id="btn-paid" class="toggle-btn" onclick="toggleStipendField('paid')">Paid</button>
-                      <button type="button" id="btn-unpaid" class="toggle-btn active" onclick="toggleStipendField('unpaid')">Unpaid</button>
-                    </div>
-                  </div>
-                  <div id="stipend-amount-container" class="form-group" style="display: none;">
-                    <label for="stipend-amount">Stipend Amount: <span class="required">*</span></label>
-                    <input type="text" id="stipend-amount" name="stipend_amount" placeholder="e.g., Rs 5000 / Month" />
-                  </div>
-                </div>
-                <!-- Requirements -->
-                <div class="internship-requirements">
-                  <h2>Requirements</h2>
-                  <div class="form-group">
-                    <label for="job-description">Job Description: <span class="required">*</span></label>
-                    <textarea id="job-description" name="job_description" rows="4" placeholder="e.g., Proficiency in Java, SpringBoot,Jpa,Java-8,Leadership ,Good Communication Skills, etc."required></textarea>
-                  </div>
-                  <div class="form-group">
-                    <label for="responsibility">Responsibilities:</label>
-                    <textarea id="responsibility" name="responsibility" rows="4" placeholder="List responsibilities"></textarea>
-                   </div>
-                   <div class="form-group">
-                    <label for="requirements">Requirements:</label>
-                    <textarea id="requirements" name="requirements" rows="4" placeholder="List qualifications or prerequisites"></textarea>
-                    </div>
-                    <div class="form-group">
-                     <label for="skills">Skills:</label>
-                    <textarea id="skills" name="skills" rows="4" placeholder="List required skills"></textarea>
-                    </div>
-                   <div class="form-group">
-                    <label for="perks">Perks:</label>
-                    <textarea id="perks" name="perks" rows="4" placeholder="List any perks or benefits"></textarea>
-                   </div>
-                   <div class="form-group">
-                    <label for="additional-info">Additional Information:</label>
-                    <textarea id="additional-info" name="additional_info" rows="4" placeholder="Add any other details"></textarea>
-                   </div>
-                </div>
-                <!-- Submit Button -->
-                <div class="form-group">
-                  <button type="submit" class="submit-btn">Post Internship</button>
-                </div>
-              </form>
-            </div>
-          </section>
-          
-          <!-- View Status -->
-          <section id="internships" class="section">
+          <!-- Manage Candidates -->
+          <section id="post-internship-form" class="section">
     <div class="content">
-        <h2>Your Posted Internships</h2>
+        <h2>All Candidates</h2>
         <table class="internship-table">
             <thead>
                 <tr>
-                    <th>Internship ID</th>
-                    <th>Position</th>
-                    <th>Posted Date</th>
-                    <th>Deadline</th>
-                    <th>Applications</th>
-                    <th>Duration</th>
-                    <th>Status</th>
+                    <th>Candidate ID</th>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Membership</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody id="internship-list">
-                <!-- Dynamic content will be populated here -->
+                <?php
+                include('D:\xampp\htdocs\InternLink\Backend\dbconfig.php');
+
+                // Fetch data from candidate_profiles
+                $sql = "SELECT * FROM candidate_profiles";
+                $result = $conn->query($sql);
+
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo '<tr>';
+                        echo '<td>' . htmlspecialchars($row['c_id']) . '</td>';
+                        echo '<td>' . htmlspecialchars($row['full_name']) . '</td>';
+                        echo '<td>' . htmlspecialchars($row['email']) . '</td>';
+                        echo '<td>' . htmlspecialchars($row['phone']) . '</td>';
+                        echo '<td>
+                            <select class="membership-dropdown">
+                                <option value="Basic" selected>Basic</option>
+                                <option value="Standard">Standard</option>
+                                <option value="Premium">Premium</option>
+                            </select>
+                          </td>';
+                        echo '<td>
+                            <button class="delete-btn" onclick="confirmDelete(' . $row['c_id'] . ')">Delete</button>
+                          </td>';
+                        echo '</tr>';
+                    }
+                } else {
+                    echo '<tr><td colspan="6">No candidates found</td></tr>';
+                }
+
+                $conn->close();
+                ?>
             </tbody>
         </table>
     </div>
 </section>
+
+<script>
+    // Two-step confirmation for delete
+    function confirmDelete(candidateId) {
+        const confirmFirst = confirm("Are you sure you want to delete candidate ID: " + candidateId + "?");
+        if (confirmFirst) {
+            const confirmSecond = confirm("This action is irreversible. Do you really want to proceed?");
+            if (confirmSecond) {
+                // Send AJAX request to delete the candidate
+                fetch(`delete_candidate.php?c_id=${candidateId}`, {
+                    method: 'GET',
+                })
+                .then(response => response.text())
+                .then(data => {
+                    alert(data);
+                    // Refresh the page or remove the row from the table
+                    location.reload();
+                })
+                .catch(error => console.error('Error:', error));
+            }
+        }
+    }
+</script>
+
+          
+          <!-- Manage -->
+          <section id="internships" class="section">
+    <div class="content">
+        <h2>All Recruiters</h2>
+        <table class="internship-table">
+            <thead>
+                <tr>
+                    <th>Recruiter ID</th>
+                    <th>Company Name</th>
+                    <th>Industry</th>
+                    <th>Contact Person Name</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>Membership</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="internship-list">
+                <?php
+                include('D:\xampp\htdocs\InternLink\Backend\dbconfig.php');
+
+
+                $sql = "SELECT * FROM company_profile";
+                $result = $conn->query($sql);
+
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo '<tr>';
+                        echo '<td>' . htmlspecialchars($row['r_id']) . '</td>';
+                        echo '<td>' . htmlspecialchars($row['company_name']) . '</td>';
+                        echo '<td>' . htmlspecialchars($row['industry']) . '</td>';
+                        echo '<td>' . htmlspecialchars($row['contact_person_name']) . '</td>';
+                        echo '<td>' . htmlspecialchars($row['contact_email']) . '</td>';
+                        echo '<td>' . htmlspecialchars($row['contact_phone_number']) . '</td>';
+                        echo '<td>
+                            <select class="membership-dropdown">
+                                <option value="Basic" selected>Basic</option>
+                                <option value="Standard">Standard</option>
+                                <option value="Premium">Premium</option>
+                            </select>
+                          </td>';
+                        echo '<td>
+                            <button class="delete-btn" onclick="confirmDelete(' . $row['r_id'] . ')">Delete</button>
+                          </td>';
+                        echo '</tr>';
+                    }
+                } else {
+                    echo '<tr><td colspan="8">No recruiters found</td></tr>';
+                }
+
+                $conn->close();
+                ?>  
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<script>
+    // Two-step confirmation for delete
+    function confirmDelete(recruiterId) {
+        const confirmFirst = confirm("Are you sure you want to delete recruiter ID: " + recruiterId + "?");
+        if (confirmFirst) {
+            const confirmSecond = confirm("This action is irreversible. Do you really want to proceed?");
+            if (confirmSecond) {
+                // Send AJAX request to delete the recruiter
+                fetch(`delete_recruiter.php?r_id=${recruiterId}`, {
+                    method: 'GET',
+                })
+                .then(response => response.text())
+                .then(data => {
+                    alert(data);
+                    // Refresh the page to reflect changes
+                    location.reload();
+                })
+                .catch(error => console.error('Error:', error));
+            }
+        }
+    }
+</script>
+
 
 
 
@@ -501,6 +638,6 @@ $email = $_SESSION['recruiter_email'];
       <p>Footer Content</p>
     </footer>
 
-    <script src="recruiter_dashboard.js"></script>
+    <script src="admin_dashboard.js"></script>
   </body>
 </html>
