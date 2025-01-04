@@ -1,71 +1,183 @@
-/* Color Variables */
-:root {
-    --sidebar-bg: #141e30;
-    --text-color-white: #fff;
-    --hover-color-sidebar: #7b93be;
-    --btn-color-new: #004c8c;
-    --border-color: #00b3ff;
-    --sidebar-link-color: #333;
-    --sidebar-active-bg: #f0f0f0;
-    --logout-bg: #f8d7da;
-    --logout-text: #721c24;
-    --header-bg: #ffffff;
-    --main-bg: #ffffff;
-  }
-  
-  /* Reset Styles */
-  * {
+ /* Color Variables */
+    :root {
+        --sidebar-bg: #141E30;
+        --text-color-white: #fff;
+        --hover-color-sidebar: #7b93be;
+        --btn-color-new: #004c8c;
+        --border-color: #00b3ff;
+        --title-color:#007bff;
+
+ /* Border color for buttons */
+
+        --sidebar-link-color: #333;
+        --sidebar-active-bg: #f0f0f0;
+        --logout-bg: #f8d7da;
+        --logout-text: #721c24;
+        --header-bg: #ffffff;
+        --main-bg: #ffffff;
+        --profile-completion-bg: #f4f4f4;
+        --button-bg: #dc3545;
+        --button-text: #ffffff;
+        --dummy-nav-footer-bg: #000000;
+        --dummy-nav-footer-text: #ffffff;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        color: var(--sidebar-link-color);
+        background-color: var(--main-bg);
+    }
+
+/* -------------------------------------------------------------------- */
+
+    /* Required " * " */
+  .required {
+    font-size: 18px;
+     color: red;
+   }
+ 
+/* -------------------------------------------------------------------- */
+
+    /* Navigation Bar */
+    /* Global Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7f6; /* Light gray background for contrast */
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: Arial, sans-serif;
-    color: var(--sidebar-link-color);
-    background-color: var(--main-bg);
-  }
-  
-  /* Dummy Navigation Bar */
-  .dummy-nav {
+}
+
+/* -------------------------------------------------------------------- */
+/* Dashboard Navigation */
+/* Dashboard Navigation */
+header {
+    padding: 20px 0;
     background-color: var(--sidebar-bg);
-    color: var(--text-color-white);
-    padding: 20px;
-    text-align: center;
-  }
-  
-  /* Sidebar Styles */
-  .container {
+    box-shadow: 0px 4px 15px rgba(0, 179, 255, 0.1);
+    z-index: 10;
+    transition: box-shadow 0.3s ease;
+}
+
+.recruiter-dashboard-navigation {
     display: flex;
-    min-height: 91vh;
-  }
-  
-  .sidebar {
-    width: 250px;
-    background-color: var(--sidebar-bg);
-    padding: 10px 20px;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+/* Logo */
+.recruiter-dashboard-logo {
     display: flex;
-    flex-direction: column;
-    border-right: 1px solid #ddd;
+    align-items: center;
+    margin-right: 180px;
+}
+
+.recruiter-dashboard-logo img {
+    width: 180px;
+    margin-right: 10px;
+    filter: brightness(0.9);
+    transition: filter 0.3s ease;
+}
+
+.recruiter-dashboard-logo img:hover {
+    filter: brightness(1);
+}
+
+/* Navigation Links */
+.nav-links {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.nav-links a {
+    color: var(--button-text);
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #00b3ff;
+}
+
+/* -------------------------------------------------------------------- */
+/* Sidebar */
+/* Icon Styling */
+.nav-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px; /* Spacing between icon and text */
+    vertical-align: middle; /* Align with text */
   }
   
   .sidebar-nav a {
-    text-decoration: none;
-    color: var(--text-color-white);
-    padding: 10px 15px;
-    display: block;
-    border-radius: 5px;
-    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
   }
   
-  .sidebar-nav a.active,
-  .sidebar-nav a:hover {
-    color: #7b93be;
-    font-weight: bold;
+  .dropdown-content a {
+    display: flex;
+    align-items: center;
   }
-  
-  /* Dropdown Styling */
-  .dropdown {
+     
+.container {
+        display: flex;
+        min-height: 91vh;
+    }
+
+    .sidebar {
+        width: 250px;
+        background-color: var(--sidebar-bg);
+        padding-top: 10px;
+        padding-left: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        border-right: 1px solid #ddd;
+    }
+
+    .sidebar-nav {
+        margin-top: 20px;
+        width: 100%;
+    }
+
+    .sidebar-nav a {
+        text-decoration: none;
+        color: var(--text-color-white);
+        padding: 10px 15px;
+        display: block;
+        width: 100%;
+        border-radius: 5px;
+        margin-bottom: 5px;
+    }
+
+    .sidebar-nav a.active,
+    .sidebar-nav a:hover {
+        color: #7b93be;
+        font-weight: 500;
+    }
+
+/* Dropdown Styling */
+
+.dropdown {
     position: relative;
   }
   
@@ -89,36 +201,740 @@
     border-radius: 5px;
   }
   
-  .dropdown-content a:hover {
-    background-color: var(--hover-color-sidebar);
-  }
-  
+
   .dropdown.open .dropdown-content {
     display: block;
   }
+
   
-  /* Logout Button */
-  .logout a {
+/* -------------------------------------------------------------------- */
+
+/* Main Content */
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+    /* height: 100vh; */
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.top-bar h1 {
+    font-size: 24px;
+    color: #333;
+}
+
+.user-name{
+    color: var(--title-color);
+}
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.notification-icon {
+    padding-bottom: 4px;
+    font-size: 20px;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.stat-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    flex: 1;
+}
+
+.stat-card h2 {
+    font-size: 24px;
+    color: #333;
+}
+
+.stat-card p {
+    margin-top: 5px;
+    font-size: 16px;
+    color: #555;
+}
+
+.recent-activities {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.recent-applications, .recent-details {
+    flex: 1;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.recent-applications h3, .recent-details h3 {
+    margin-bottom: 10px;
+    font-size: 28px;
+    color: #333;
+}
+
+.recent-applications p, .recent-details ul {
+    font-size: 14px;
+    color: #555;
+}
+
+.recent-details ul {
+    list-style: none;
+}
+
+
+/* -------------------------------------------------------------------- */
+
+/* Statistics */
+
+    
+/* Section style */
+.section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 1rem;
+  background-color: #f7f7f7;
+}
+
+/* Card style */
+.card {
+  background-color: #fff;
+  border-radius: 30px; /* Squircle effect */
+  width: 350px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  text-align: center;
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+/* Title style */
+h2 {
+  font-size: 1.8rem;
+  color: #333;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Chart container */
+.chart-container {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+/* Pie chart style */
+.pie-chart {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: conic-gradient();
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.pie-chart:before {
+  content: '';
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background-color: white;
+  position: absolute;
+}
+
+.label {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Legend style */
+.legend {
+  font-size: 14px;
+  color: #555;
+}
+
+#salary-legend {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+}
+
+#salary-legend li {
+  margin: 8px 0;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+/* Color circles in legend */
+#salary-legend li span {
+  margin-right: 10px;
+  font-size: 16px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .card {
+      width: 280px;
+      padding: 1.5rem;
+  }
+
+  h2 {
+      font-size: 1.5rem;
+  }
+
+  .pie-chart {
+      width: 180px;
+      height: 180px;
+  }
+
+  .label {
+      font-size: 16px;
+  }
+}
+/* -------------------------------------------------------------------- */
+
+/* All Candidates */
+.post-internship-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+/* -------------------------------------------------------------------- */
+
+/* View Status (internship */
+/* Table Styles */
+
+/* Modal Styles */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: #fff;
+  width: 400px;
+  margin: 15% auto;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.modal-content h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.modal-content p {
+  margin: 15px 0;
+  color: #555;
+  font-size: 1rem;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.modal-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.modal-btn.cancel {
+  background-color: #f5f5f5;
+  color: #333;
+  transition: background-color 0.3s;
+}
+
+.modal-btn.cancel:hover {
+  background-color: #e0e0e0;
+}
+
+.modal-btn.confirm {
+  background-color: #ff4d4d;
+  color: white;
+  transition: background-color 0.3s;
+}
+
+.modal-btn.confirm:hover {
+  background-color: #cc0000;
+}
+
+.internship-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+    text-align: left;
+}
+
+.internship-table th, .internship-table td {
+    padding: 12px 15px;
+    border: 1px solid var(--hover-color-sidebar);
+}
+
+.internship-table th {
+    background-color: var(--sidebar-bg);
+    color: var(--button-text);
+    font-weight: bold;
+}
+
+.internship-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.membership-dropdown {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.delete-btn {
+    padding: 8px 12px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.delete-btn:hover {
+    background-color: #cc0000;
+}
+
+/* Status when internship is 'On' */
+.status-on {
+    background-color: green;
+    color: var(--text-color-white);
+}
+
+/* Status when internship is 'Off' */
+.status-off {
+    background-color: red;
+    color: var(--text-color-white);
+}
+
+/* Actions Column */
+.internship-table .action-buttons {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+}
+
+.internship-table .action-buttons button,
+.internship-table .action-buttons a {
+    padding: 8px 15px;
+    font-size: 0.9em;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.internship-table .extend-btn {
+    background-color: var(--btn-color-new); 
+    color: var(--text-color-white);
+}
+
+.internship-table .end-btn {
+    background-color: var(--button-bg); /* Red */
+    color: var(--text-color-white);
+}
+
+.internship-table .remove-btn:disabled {
+    background-color:var(--hover-color-sidebar); /* Disabled state */
+    cursor: not-allowed;
+}
+
+.internship-table .view-applicants-btn {
+    background-color: grey; /* Gray */
+    color: var(--text-color-white);
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+}
+
+.internship-table button:hover,
+.internship-table a:hover {
+    opacity: 0.8;
+}
+
+.internship-table .view-applicants-btn:hover {
+    background-color: #5a6268; /* Darker gray */
+}
+
+/* Manage Applicants Table */
+.applicants-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.applicants-table th,
+.applicants-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--hover-color-sidebar);
+}
+
+.applicants-table th {
+    background-color: var(--sidebar-bg);
+    color: var(--text-color-white);
+    font-weight: bold;
+}
+
+.applicants-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.applicants-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Action Buttons in Manage Applicants */
+.action-btn {
+    padding: 8px 12px;
+    margin-right: 5px;
+    color: var(--text-color-white);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, opacity 0.2s ease;
+}
+
+.action-btn.approve {
+    background-color: #28a745; /* Green */
+}
+
+.action-btn.reject {
+    background-color: #dc3545; /* Red */
+}
+
+.action-btn:hover {
+    opacity: 0.9;
+}
+
+
+/* -------------------------------------------------------------------- */
+
+/* Membership Section */
+
+    .membership-plans {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+
+    .plan-card {
+        background-color: #fff;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 20px;
+        width: 30%;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .plan-card h3 {
+        color: var(--sidebar-bg);
+    }
+
+    .plan-card .price {
+        font-size: 1.5em;
+        font-weight: bold;
+        color: var(--btn-color-new);
+        margin: 10px 0;
+    }
+
+    .plan-card p {
+        color: #333;
+        margin: 5px 0;
+    }
+
+    .select-plan-btn {
+        margin-top: 15px;
+        padding: 10px 20px;
+        color: #fff;
+        background-color: var(--sidebar-bg);
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .select-plan-btn:hover {
+        background-color: #003a6a;
+    }
+
+    /* Payment Popup */
+    .payment-popup {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        align-items: center;
+        justify-content: center;
+    }
+
+    .popup-content {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        width: 400px;
+        text-align: center;
+        position: relative;
+    }
+
+    .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 1.5em;
+        cursor: pointer;
+    }
+
+    .payment-form label {
+        display: block;
+        margin-top: 10px;
+        font-weight: bold;
+    }
+
+    .payment-form input {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        font-size: 16px;
+        border: 1px solid var(--border-color);
+        border-radius: 5px;
+    }
+
+    .pay-btn {
+        margin-top: 20px;
+        padding: 10px 20px;
+        color: #fff;
+        background-color: var(--sidebar-bg);
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .pay-btn:hover {
+        background-color: #003a6a;
+    }
+/* -------------------------------------------------------------------- */
+
+    /* Contact Admin Section */
+    .contact-admin-form {
+        display: flex;
+        flex-direction: column;
+    }
+    .contact-admin-form h1 {
+        color: var(--sidebar-bg);
+        font-size: 2rem; 
+        margin-bottom: 1rem;
+        text-align: center; 
+    }
+    .contact-admin-form h3 {
+        color: var(--title-color); 
+        font-size: 1.5rem;
+        margin-bottom: 1.1rem;
+        text-align: left;
+    }
+
+    .contact-admin-form .form-group {
+        margin-bottom: 10px;
+    }
+
+    .contact-admin-form .form-group label {
+        font-size: 1rem; 
+        font-weight: bold;
+        color: #333;
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+
+    .contact-admin-form .form-group input,
+    .contact-admin-form .form-group textarea {
+        width: 100%;
+        padding: 0.8rem;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: none;
+        margin-bottom: 1rem;
+    }
+
+    .contact-admin-form textarea {
+        resize: vertical;
+        height: 150px; 
+    }
+    .contact-admin-form .send-btn {
+        display: block;
+        width: 80%;
+        margin: 0 auto;
+        padding: 1rem;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        text-align: center;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    
+    .contact-admin-form .send-btn:hover {
+        background-color: #0056b3;
+    }
+    
+    /* Add shadow and center the form */
+    .contact-admin-form {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 2rem;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+ /* -------------------------------------------------------------------- */
+   
+/* Settings Section Styling */
+    .settings-form {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .settings-form .form-group {
+        margin-bottom: 20px;
+    }
+
+    .settings-form .form-group label {
+        font-size: 14px;
+        font-weight: bold;
+        margin: 5px 20px;
+        display: block;
+    }
+
+    .settings-form .form-group input,
+    .settings-form .form-group select {
+        width: 50%;
+        padding: 10px;
+        margin: 0px 20px;
+        font-size: 16px;
+        border: 1px solid var(--border-color);
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+    .settings-form .save-btn {
+        display: block;
+        width: 80%;
+        margin: 0 auto;
+        padding: 1rem;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        text-align: center;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    
+    .settings-form .save-btn:hover {
+        background-color: #0056b3;
+    }
+
+/* -------------------------------------------------------------------- */
+
+    /* LOGOUT */
+  
+.logout {
+    margin: 10px;
+}
+
+.logout a {
     text-decoration: none;
     color: var(--sidebar-bg);
     padding: 10px 15px;
     display: block;
-    font-weight: bold;
-    background-color: var(--hover-color-sidebar);
+    font-weight: 700;
     border-radius: 5px;
-  }
-  
-  /* Footer */
-  .dummy-footer {
-    background-color: var(--sidebar-bg);
-    color: var(--text-color-white);
-    text-align: center;
-    padding: 15px;
-  }
-  
-  .arko {
-    padding: 10px;
-    background-color: var(--btn-color-new);
-    color: var(--text-color-white);
-  }
-  
+    background-color: var(--hover-color-sidebar);
+}
+
+.logout a:hover {
+    color: #cfcfcf;
+    transform: scale(0.9);
+    font-weight: 600;
+    border-radius: 5px;
+    background-color: #004c8c;
+}
+
+    /* Dummy Footer */
+    .dummy-footer {
+        background-color: var(--dummy-nav-footer-bg);
+        color: var(--dummy-nav-footer-text);
+        text-align: center;
+        padding: 15px;
+    }
+
+    .arko {
+
+        padding: 10px;
+        width: 20%;
+        background-color: var(--btn-color-new);
+        color: var(--button-text);
+    }
