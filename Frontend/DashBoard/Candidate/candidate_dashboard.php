@@ -96,7 +96,7 @@ if ($candidate) {
             </div>
           </div>
           <a href="#manage-applicants">
-            <img src="../../images/DashBoard Icons/Manage Applicants.svg" alt="Manage Applicants" class="nav-icon" /> Manage Applicants
+            <img src="../../images/DashBoard Icons/Manage Applicants.svg" alt="Manage Application" class="nav-icon" /> Manage Application
           </a>
           <a href="#membership">
             <img src="../../images/DashBoard Icons/membership.svg" alt="Membership" class="nav-icon" /> Membership
@@ -251,84 +251,40 @@ if ($candidate) {
 
           <!-- Post Internships -->
           <section id="post-internship-form" class="post-internship-container section">
-            <div>
-              <h1>Post an Internship</h1>
-              <form action="../../../Backend/Candidate_DashBoard/Post_CandidateProfile.php" method="post" class="internship-post-form">
-                <!-- Internship Information -->
-                <div class="internship-details">
-                  <h2>Internship Information</h2>
-                  <div class="form-group">
-                    <label for="internship-title">Title: <span class="required">*</span></label>
-                    <input type="text" id="internship-title" name="internship_title" placeholder="e.g., Java Developer" required />
-                  </div>
-                  <div class="form-group">
-                    <label for="company-name">Company Name: <span class="required">*</span></label>
-                    <input type="text" id="company-name" name="company_name" placeholder="e.g., InternLink" required />
-                  </div>
-                  <div class="form-group">
-                    <label for="location">Location: <span class="required">*</span></label>
-                    <input type="text" id="location" name="location" placeholder="e.g., Jhamsikhel, Balkumamri, etc." required />
-                  </div>
-                  <div class="form-group">
-                    <label for="duration">Duration: <span class="required">*</span></label>
-                    <input type="text" id="duration" name="duration" placeholder="e.g., 3 months" required />
-                  </div>
-                  <div class="form-group">
-                    <label>Type: <span class="required">*</span></label>
-                    <div class="type-toggle">
-                      <button type="button" id="type-remote" class="type-toggle-btn active" onclick="setType('Remote')">Remote</button>
-                      <button type="button" id="type-hybrid" class="type-toggle-btn" onclick="setType('Hybrid')">Hybrid</button>
-                      <button type="button" id="type-onsite" class="type-toggle-btn" onclick="setType('Onsite')">Onsite</button>
-                    </div>
-                    <input type="hidden" id="type-hidden-input" name="type" value="remote" />
-                  </div>
-                  <div class="form-group stipend-group">
-                    <label>Stipend: <span class="required">*</span></label>
-                    <div class="stipend-toggle">
-                      <button type="button" id="btn-paid" class="toggle-btn" onclick="toggleStipendField('paid')">Paid</button>
-                      <button type="button" id="btn-unpaid" class="toggle-btn active" onclick="toggleStipendField('unpaid')">Unpaid</button>
-                    </div>
-                  </div>
-                  <div id="stipend-amount-container" class="form-group" style="display: none;">
-                    <label for="stipend-amount">Stipend Amount: <span class="required">*</span></label>
-                    <input type="text" id="stipend-amount" name="stipend_amount" placeholder="e.g., Rs 5000 / Month" />
-                  </div>
-                </div>
-                <!-- Requirements -->
-                <div class="internship-requirements">
-                  <h2>Requirements</h2>
-                  <div class="form-group">
-                    <label for="job-description">Job Description: <span class="required">*</span></label>
-                    <textarea id="job-description" name="job_description" rows="4" placeholder="e.g., Proficiency in Java, SpringBoot,Jpa,Java-8,Leadership ,Good Communication Skills, etc."required></textarea>
-                  </div>
-                  <div class="form-group">
-                    <label for="responsibility">Responsibilities:</label>
-                    <textarea id="responsibility" name="responsibility" rows="4" placeholder="List responsibilities"></textarea>
-                   </div>
-                   <div class="form-group">
-                    <label for="requirements">Requirements:</label>
-                    <textarea id="requirements" name="requirements" rows="4" placeholder="List qualifications or prerequisites"></textarea>
-                    </div>
-                    <div class="form-group">
-                     <label for="skills">Skills:</label>
-                    <textarea id="skills" name="skills" rows="4" placeholder="List required skills"></textarea>
-                    </div>
-                   <div class="form-group">
-                    <label for="perks">Perks:</label>
-                    <textarea id="perks" name="perks" rows="4" placeholder="List any perks or benefits"></textarea>
-                   </div>
-                   <div class="form-group">
-                    <label for="additional-info">Additional Information:</label>
-                    <textarea id="additional-info" name="additional_info" rows="4" placeholder="Add any other details"></textarea>
-                   </div>
-                </div>
-                <!-- Submit Button -->
-                <div class="form-group">
-                  <button type="submit" class="submit-btn">Post Internship</button>
-                </div>
-              </form>
+    <div class="card">
+      <div class="card-header" onclick="toggleCard(this)">
+        <h4 class="internship-name">Internship Title</h4>
+        <p class="applied-date">Applied on: <span>2025-01-04</span></p>
+      </div>
+      <div class="card-body">
+        <div class="timeline">
+          <div class="timeline-step" id="step1">
+            <div class="timeline-icon"></div>
+            <div class="timeline-content">
+              <h3>Application Submitted</h3>
+              <p>Status: <span id="status1">Pending</span></p>
             </div>
-          </section>
+          </div>
+
+          <div class="timeline-step" id="step2">
+            <div class="timeline-icon"></div>
+            <div class="timeline-content">
+              <h3>Under Review</h3>
+              <p>Status: <span id="status2">Pending</span></p>
+            </div>
+          </div>
+
+          <div class="timeline-step" id="step3">
+            <div class="timeline-icon"></div>
+            <div class="timeline-content">
+              <h3>Selected / Rejected</h3>
+              <p>Status: <span id="status3">Pending</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
           
           <!-- View Status -->
           <section id="internships" class="section">
@@ -402,8 +358,7 @@ if ($candidate) {
                       <td>Software Intern</td>
                       <td>Under Review</td>
                       <td>
-                        <button class="action-btn approve">Approve</button>
-                        <button class="action-btn reject">Reject</button>
+                        <button class="action-btn reject">Retract</button>
                       </td>
                     </tr>
                     <tr>
@@ -411,8 +366,7 @@ if ($candidate) {
                       <td>Data Analyst Intern</td>
                       <td>Interview Scheduled</td>
                       <td>
-                        <button class="action-btn approve">Approve</button>
-                        <button class="action-btn reject">Reject</button>
+                        <button class="action-btn reject">Retract</button>
                       </td>
                     </tr>
                     <!-- Additional rows as needed -->
