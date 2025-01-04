@@ -346,7 +346,7 @@ if ($candidate) {
                 <table class="applicants-table">
                   <thead>
                     <tr>
-                      <th>Applicant Name</th>
+                      <th>Company Name</th>
                       <th>Position Applied</th>
                       <th>Status</th>
                       <th>Action</th>
@@ -425,9 +425,10 @@ if ($candidate) {
             </section>
 
           <!-- Contact Us [Admin] Section -->
+
       <section id="contact-us" class="section">
              <div class="content">
-          <form class="contact-admin-form">
+          <form class="contact-admin-form" action="../../../Backend/Candidate_DashBoard/contact_admin.php" method="post">
          <h1>Contact Admin</h1>
           <h3>Get in Touch</h3>
          <div class="form-group">
@@ -447,7 +448,7 @@ if ($candidate) {
         <label for="admin-contact-email">Your Email*</label>
         <input type="email" id="admin-contact-email" placeholder="Enter your email" required />
          </div>
-          <button type="submit" class="send-btn">Send Message</button>
+          <button type="submit" id="send-btn">Send Message</button>
            </form>
           </div>
     </section>
