@@ -179,6 +179,33 @@ nav {
     display: block;
 }
 
+/* Profile Details Container */
+.profile-details-container {
+    position: absolute; /* Keep it fixed in place */
+    top: 85px; /* Slight margin from the top */
+    right: 60px; /* Align to the right side of the screen */
+    padding: 15px;
+}
+
+/* Profile Details Text */
+.profile-details {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    text-align: left;
+}
+
+.candidate-name {
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--border-color);
+    margin-bottom: 2px;
+}
+
+.candidate-id {
+    font-size: 14px;
+    color: #777;
+}
+
 /* Button styles */
 button {
     padding: 8px 20px;

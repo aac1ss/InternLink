@@ -1,74 +1,61 @@
 <?php
 session_start();
+include '../../Backend/dbconfig.php';
 
-// Include database connection
-include '../dbconfig.php';
-echo "Debug: Received internship_id: " . $internship_id;
-// Check if the user is logged in and internship_id is provided
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['internship_id']) && !empty($_POST['internship_id'])) {
-        $internship_id = intval($_POST['internship_id']); // Sanitize input
+// Check if internship details are passed
+if (isset($_POST['internship_title']) && isset($_POST['created_at']) && isset($_POST['company_name'])) {
+    $internship_title = $_POST['internship_title'];
+    $created_at = $_POST['created_at'];
+    $company_name = $_POST['company_name'];
+
+    // Ensure session is active and c_id is set
+    if (isset($_SESSION['c_id'])) {
+        $c_id = $_SESSION['c_id'];
     } else {
-        die("Internship ID is missing or invalid.");
+        echo "Session error: c_id is not set.<br>";
+        exit;
+    }
+
+    // Query to get the internship_id based on internship title, company name, and created_at
+    $query = "SELECT internship_id FROM post_internship_form_detail WHERE internship_title = ? AND company_name = ? AND created_at = ?";
+    
+    if ($stmt = mysqli_prepare($conn, $query)) {
+        mysqli_stmt_bind_param($stmt, 'sss', $internship_title, $company_name, $created_at);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_store_result($stmt);
+        
+        // Check if internship is found
+        if (mysqli_stmt_num_rows($stmt) > 0) {
+            mysqli_stmt_bind_result($stmt, $internship_id);
+            mysqli_stmt_fetch($stmt);
+
+echo "Internship Title: " . $internship_title . "<br>";
+echo "Company Name: " . $company_name . "<br>";
+echo "Created At: " . $created_at . "<br>";
+
+
+            // Proceed with the application
+            $application_query = "INSERT INTO internship_applications (c_id, internship_id, status) VALUES (?, ?, 'Pending')";
+            if ($stmt_application = mysqli_prepare($conn, $application_query)) {
+                mysqli_stmt_bind_param($stmt_application, 'ii', $c_id, $internship_id);
+                if (mysqli_stmt_execute($stmt_application)) {
+                    echo "Application submitted successfully!";
+                } else {
+                    echo "Error applying for internship.";
+                }
+                mysqli_stmt_close($stmt_application);
+            } else {
+                echo "Error: Unable to prepare application query.";
+            }
+        } else {
+            echo "Error: The internship you're trying to apply for no longer exists.";
+        }
+
+        mysqli_stmt_close($stmt);
+    } else {
+        echo "Error: Unable to prepare internship query.";
     }
 } else {
-    die("Invalid request method.");
+    echo "Error: Internship details are not provided.";
 }
-
-// Get candidate's email and internship ID
-$email = $_SESSION['email'];
-$internship_id = intval($_POST['internship_id']);
-
-// Fetch candidate ID (c_id) from the database
-$query = "SELECT c_id FROM candidate_profiles WHERE email = ?";
-$stmt = mysqli_prepare($conn, $query);
-mysqli_stmt_bind_param($stmt, "s", $email);
-mysqli_stmt_execute($stmt);
-$result = mysqli_stmt_get_result($stmt);
-$candidate = mysqli_fetch_assoc($result);
-
-if (!$candidate) {
-    echo "Candidate profile not found.";
-    exit;
-}
-
-$c_id = $candidate['c_id'];
-
-// Verify if the internship_id exists
-$verify_internship_query = "SELECT internship_id FROM post_internship_form_detail WHERE internship_id = ?";
-$stmt = mysqli_prepare($conn, $verify_internship_query);
-mysqli_stmt_bind_param($stmt, "i", $internship_id);
-mysqli_stmt_execute($stmt);
-$result = mysqli_stmt_get_result($stmt);
-
-if (mysqli_num_rows($result) === 0) {
-    echo "Invalid internship ID. Please try again.";
-    exit;
-}
-
-// Check if the candidate has already applied
-$check_query = "SELECT * FROM applications WHERE c_id = ? AND internship_id = ?";
-$stmt = mysqli_prepare($conn, $check_query);
-mysqli_stmt_bind_param($stmt, "ii", $c_id, $internship_id);
-mysqli_stmt_execute($stmt);
-$result = mysqli_stmt_get_result($stmt);
-
-if (mysqli_num_rows($result) > 0) {
-    echo "You have already applied for this internship.";
-    exit;
-}
-
-// Insert the application
-$insert_query = "INSERT INTO applications (c_id, internship_id) VALUES (?, ?)";
-$stmt = mysqli_prepare($conn, $insert_query);
-mysqli_stmt_bind_param($stmt, "ii", $c_id, $internship_id);
-
-if (mysqli_stmt_execute($stmt)) {
-    echo "Applied successfully!";
-} else {
-    echo "Failed to apply. Please try again.";
-}
-
-// Close connection
-mysqli_close($conn);
 ?>

@@ -56,4 +56,17 @@ function closeModal() {
 
 
 //Apply now functionality
+function applyForInternship(internship_id) {
+    // Set the internship_id in the hidden input field in the modal form
+    document.getElementById('modal-internship-id').value = internship_id;
+
+    // Open the modal (optional, if you want to show more details)
+    document.getElementById('internshipModal').style.display = 'block';
+}
+
+function closeModal() {
+    document.getElementById('internshipModal').style.display = 'none';
+}
+
+
 
