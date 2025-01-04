@@ -303,113 +303,123 @@ header {
 
 /* Statistics */
 
-    .content {
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
     
-    .company-profile-form .form-group label {
-        font-size: 1rem; /* Increase size to match */
-        font-weight: bold;
-        color: #333;
-        display: block;
-        margin-bottom: 0.5rem;
-    }
-    .company-profile-form h3 {
-        color: var(--title-color); /* Match color */
-        font-size: 1.5rem; /* Match font size */
-        margin-bottom: 1rem;
-        text-align: left; /* Align to left for consistency */
-    }
-
-    .form-group {
-        margin-bottom: 20px;
-    }
-
-    
-    .company-profile-form .form-group input,
-.company-profile-form .form-group textarea,
-.company-profile-form .form-group select {
-    width: 100%; /* Full width for consistency */
-    padding: 0.8rem;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: none;
-    margin-bottom: 1rem;
+/* Section style */
+.section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 1rem;
+  background-color: #f7f7f7;
 }
 
-    textarea {
-        resize: vertical;
-    }
+/* Card style */
+.card {
+  background-color: #fff;
+  border-radius: 30px; /* Squircle effect */
+  width: 350px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  text-align: center;
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
 
-    /* Match titles styling */
-    .company-profile-form h1 {
-        color: var(--sidebar-bg); /* Match color */
-        font-size: 2rem; /* Match font size */
-        margin-bottom: 1rem;
-        text-align: center; /* Align to left for consistency */
-    }
-    .company-profile-form h3 {
-        color: #007bff; /* Match color */
-        font-size: 1.5rem; /* Match font size */
-        margin-bottom: 1rem;
-        text-align: left; /* Align to left for consistency */
-    }
-    
-    /* Match input and label styles */
-    .company-profile-form .form-group label {
-        font-size: 1rem; /* Increase size to match */
-        font-weight: bold;
-        color: #333;
-        display: block;
-        margin-bottom: 0.5rem;
-    }
-    
-    .company-profile-form .form-group input,
-    .company-profile-form .form-group textarea,
-    .company-profile-form .form-group select {
-        width: 100%; /* Full width for consistency */
-        padding: 0.8rem;
-        font-size: 1rem;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        box-shadow: none;
-        margin-bottom: 1rem;
-    }
-    
-    /* Match button styling */
-    .company-profile-form .save-btn {
-        display: block;
-        width: 80%;
-        margin: 0 auto;
-        padding: 1rem;
-        background-color: #007bff;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        font-size: 1.2rem;
-        font-weight: bold;
-        text-align: center;
-        cursor: pointer;
-        transition: background-color 0.3s;
-    }
+.card:hover {
+  transform: scale(1.05);
+}
 
-    .company-profile-form .save-btn:hover {
-        background-color: #0056b3;
-    }
-    .company-profile-form {
-        max-width: 800px;
-        margin: 2rem auto;
-        padding: 2rem;
-        background-color: #ffffff;
-        border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
+/* Title style */
+h2 {
+  font-size: 1.8rem;
+  color: #333;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
 
+/* Chart container */
+.chart-container {
+  position: relative;
+  margin-bottom: 2rem;
+}
 
+/* Pie chart style */
+.pie-chart {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: conic-gradient();
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.pie-chart:before {
+  content: '';
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background-color: white;
+  position: absolute;
+}
+
+.label {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Legend style */
+.legend {
+  font-size: 14px;
+  color: #555;
+}
+
+#salary-legend {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+}
+
+#salary-legend li {
+  margin: 8px 0;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+/* Color circles in legend */
+#salary-legend li span {
+  margin-right: 10px;
+  font-size: 16px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .card {
+      width: 280px;
+      padding: 1.5rem;
+  }
+
+  h2 {
+      font-size: 1.5rem;
+  }
+
+  .pie-chart {
+      width: 180px;
+      height: 180px;
+  }
+
+  .label {
+      font-size: 16px;
+  }
+}
 /* -------------------------------------------------------------------- */
 
 /* All Candidates */

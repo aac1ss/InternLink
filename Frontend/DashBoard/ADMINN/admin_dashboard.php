@@ -227,94 +227,96 @@ $result = $conn->query($sql);
 <!-- Company Profile -->
 <section id="company-profile" class="section">
     <div class="content">
-        <form id="company-profile-form" class="company-profile-form" action="../../../Backend/Recruiter_DashBoard/Post_CompanyProfile.php" method="post" enctype="multipart/form-data">
-            <h1>Company Profile</h1>
-            <h3>Company Information</h3>
-            <div class="form-group">
-                <label>Company Name <span class="required">*</span></label>
-                <input type="text" name="company_name" placeholder="Enter company name" required value="<?php echo isset($email) ? htmlspecialchars($company_profile['company_name']) : ''; ?>" />
-            </div>
-            <div class="form-group">
-                <label>Industry <span class="required">*</span></label>
-                <input type="text" name="industry" placeholder="e.g., Technology, Finance, Web-Development" required value="<?php echo isset($company_profile) ? htmlspecialchars($company_profile['industry']) : ''; ?>" />
-            </div>
-            <div class="form-group">
-                <label>Company Size <span class="required">*</span></label>
-                <select name="company_size">
-                    <option <?php echo (isset($company_profile) && $company_profile['company_size'] == '1-10 Employees') ? 'selected' : ''; ?>>1-10 Employees</option>
-                    <option <?php echo (isset($company_profile) && $company_profile['company_size'] == '11-50 Employees') ? 'selected' : ''; ?>>11-50 Employees</option>
-                    <option <?php echo (isset($company_profile) && $company_profile['company_size'] == '51-200 Employees') ? 'selected' : ''; ?>>51-200 Employees</option>
-                    <option <?php echo (isset($company_profile) && $company_profile['company_size'] == '201-500 Employees') ? 'selected' : ''; ?>>201-500 Employees</option>
-                    <option <?php echo (isset($company_profile) && $company_profile['company_size'] == '500+ Employees') ? 'selected' : ''; ?>>500+ Employees</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Company Website</label>
-                <input type="url" name="company_website" placeholder="e.g., www.internlink.com" value="<?php echo isset($company_profile) ? htmlspecialchars($company_profile['company_website']) : ''; ?>" />
-            </div>
-            <div class="form-group">
-                <label>Company Description*</label>
-                <textarea name="company_description" placeholder="Write a brief description..." required><?php echo isset($company_profile) ? htmlspecialchars($company_profile['company_description']) : ''; ?></textarea>
+        <h2>Stipend Distribution</h2>
+
+        <?php
+        // Database connection
+        include('D:\xampp\htdocs\InternLink\Backend\dbconfig.php');
+
+        // Fetch stipend data from the table
+        $query = "SELECT stipend_amount FROM post_internship_form_detail";
+        $result = mysqli_query($conn, $query);
+
+        // Initialize an array to hold stipend amounts
+        $stipends = [];
+
+        while ($row = mysqli_fetch_assoc($result)) {
+            $stipends[] = $row['stipend_amount'];
+        }
+
+        // Calculate the total stipend sum
+        $totalStipend = array_sum($stipends);
+
+        // Categorize the stipend amounts
+        $below5k = 0;
+        $between5k15k = 0;
+        $above15k = 0;
+
+        foreach ($stipends as $stipend) {
+            if ($stipend < 5000) {
+                $below5k++;
+            } elseif ($stipend >= 5000 && $stipend <= 15000) {
+                $between5k15k++;
+            } else {
+                $above15k++;
+            }
+        }
+
+        // Calculate the percentages for each category
+        $below5kPercent = ($below5k / count($stipends)) * 100;
+        $between5k15kPercent = ($between5k15k / count($stipends)) * 100;
+        $above15kPercent = ($above15k / count($stipends)) * 100;
+        ?>
+
+        <div class="card">
+            <div class="chart-container">
+                <div id="pieChart" class="pie-chart">
+                    <div class="label">
+                        <span>Stipend</span>
+                    </div>
+                </div>
             </div>
 
-            <h3>Contact Information</h3>
-            <div class="form-group">
-                <label>Contact Person Name <span class="required">*</span></label>
-                <input type="text" name="contact_person_name" placeholder="Enter contact person's name" value="<?php echo isset($company_profile) ? htmlspecialchars($company_profile['contact_person_name']) : ''; ?>" />
+            <div class="legend">
+                <ul id="salary-legend">
+                    <!-- Dynamic legend will be populated here -->
+                </ul>
             </div>
-            <div class="form-group">
-                <label>Contact Position <span class="required">*</span></label>
-                <input type="text" name="contact_position" placeholder="e.g., HR Manager" value="<?php echo isset($company_profile) ? htmlspecialchars($company_profile['contact_position']) : ''; ?>" />
-            </div>
-            <div class="form-group">
-                <label>Contact Email <span class="required">*</span></label>
-                <input type="email" name="contact_email" placeholder="Enter contact email" value="<?php echo isset($company_profile) ? htmlspecialchars($company_profile['contact_email']) : ''; ?>" />
-            </div>
-            <div class="form-group">
-                <label>Contact Phone Number <span class="required">*</span></label>
-                <input type="tel" name="contact_phone" placeholder="e.g., (977) 9869696969" value="<?php echo isset($company_profile) ? htmlspecialchars($company_profile['contact_phone_number']) : ''; ?>" />
-            </div>
-            <div class="form-group">
-                <label>Office Address <span class="required">*</span></label>
-                <input type="text" name="office_address" placeholder="Enter office address" value="<?php echo isset($company_profile) ? htmlspecialchars($company_profile['office_address']) : ''; ?>" />
-            </div>
+        </div>
 
-            <h3>Social Media Links</h3>
-            <div class="form-group">
-                <label>LinkedIn Profile</label>
-                <input type="url" name="linkedin_profile" placeholder="e.g., www.linkedin.com/company/internlink" value="<?php echo isset($company_profile) ? htmlspecialchars($company_profile['linkedin_profile']) : ''; ?>" />
-            </div>
-            <div class="form-group">
-                <label>Twitter Handle</label>
-                <input type="text" name="twitter_handle" placeholder="e.g., @internlink" value="<?php echo isset($company_profile) ? htmlspecialchars($company_profile['twitter_handle']) : ''; ?>" />
-            </div>
-            <div class="form-group">
-                <label>Facebook Page</label>
-                <input type="text" name="facebook_page" placeholder="e.g., www.facebook.com/internlink" value="<?php echo isset($company_profile) ? htmlspecialchars($company_profile['facebook_page']) : ''; ?>" />
-            </div>
-            <div class="form-group">
-                <label>Other Social Link</label>
-                <input type="text" name="other_social_link" placeholder="Other social media link" value="<?php echo isset($company_profile) ? htmlspecialchars($company_profile['other_social_link']) : ''; ?>" />
-            </div>
+        <script>
+            // Dynamic stipend categories data (from PHP)
+            const stipendData = [
+                { range: 'Below 5k', percentage: <?php echo $below5kPercent; ?>, color: '#4caf50' },
+                { range: '5k - 15k', percentage: <?php echo $between5k15kPercent; ?>, color: '#ff9800' },
+                { range: 'Above 15k', percentage: <?php echo $above15kPercent; ?>, color: '#f44336' }
+            ];
 
-            <h3>Uploads</h3>
-            <div class="form-group">
-                <label>Company Logo</label>
-                <input type="file" name="company_logo" />
-                <?php if (isset($company_profile) && $company_profile['company_logo']) { ?>
-                    <p>Current Logo: <img src="../uploads/<?php echo htmlspecialchars($company_profile['company_logo']); ?>" alt="Logo" width="100" /></p>
-                <?php } ?>
-            </div>
-            <div class="form-group">
-                <label>Registration Document</label>
-                <input type="file" name="registration_document" />
-                <?php if (isset($company_profile) && $company_profile['registration_document']) { ?>
-                    <p>Current Document: <a href="../uploads/<?php echo htmlspecialchars($company_profile['registration_document']); ?>" target="_blank">View Document</a></p>
-                <?php } ?>
-            </div>
+            // Function to update the chart dynamically
+            function updateChart(data) {
+                let gradientString = '';
+                let cumulativePercentage = 0;
 
-            <button type="submit" class="save-btn">Save Profile</button>
-        </form>
+                data.forEach(item => {
+                    gradientString += `${item.color} ${cumulativePercentage}% ${cumulativePercentage + item.percentage}%, `;
+                    cumulativePercentage += item.percentage;
+                });
+
+                gradientString = gradientString.slice(0, -2);
+                document.getElementById('pieChart').style.background = `conic-gradient(${gradientString})`;
+
+                const legend = document.getElementById('salary-legend');
+                data.forEach(item => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<span style="color: ${item.color};">&#8226;</span> ${item.range} (${item.percentage.toFixed(2)}%)`;
+                    legend.appendChild(li);
+                });
+            }
+
+            // Update the chart with the stipend data
+            updateChart(stipendData);
+        </script>
+
     </div>
 </section>
 
@@ -396,7 +398,7 @@ $result = $conn->query($sql);
 </script>
 
           
-          <!-- Manage -->
+          <!-- Manage Recruiter -->
           <section id="internships" class="section">
     <div class="content">
         <h2>All Recruiters</h2>

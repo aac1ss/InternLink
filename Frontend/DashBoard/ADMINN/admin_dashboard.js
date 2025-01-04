@@ -150,6 +150,8 @@ document.addEventListener('DOMContentLoaded', () => {
       toggleFormState(false);
   }
 
+
+  
   // Handle "Edit Profile" button click
   if (editBtn) {
       editBtn.addEventListener("click", () => {
