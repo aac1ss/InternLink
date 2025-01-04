@@ -120,6 +120,7 @@ $is_candidate = isset($_SESSION['user_type']) && $_SESSION['user_type'] == 'cand
 $sql = "SELECT * FROM post_internship_form_detail ORDER BY internship_id DESC";
 $result = mysqli_query($conn, $sql);
 
+
 if (!$result) {
     die("SQL Error: " . mysqli_error($conn)); // Handle SQL errors
 }

@@ -75,6 +75,6 @@ mysqli_close($conn);
         <p><?php echo htmlspecialchars($message); ?></p>
     <?php endif; ?>
 
-    <a href="candidateSignup.html">Back to Signup</a>
+    <a href="../../Frontend/Login/Sub_Logins/candidate_login.html">Back to Signup</a>
 </body>
 </html>

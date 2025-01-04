@@ -492,105 +492,129 @@ header {
 
 
 /* -------------------------------------------------------------------- */
-
-/* Post Internship Section */
-.post-internship-container {
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 2rem;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .post-internship-container h1 {
-    text-align: center;
-    color: #333;
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-  }
-  
-  .post-internship-container h2 {
-    color: #007bff;
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
-  }
-  
-  .post-internship-container .form-group {
-    margin-bottom: 1.5rem;
-  }
-  
-  .post-internship-container label {
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-    display: block;
-  }
-
-  
-  .post-internship-container input,
-  .post-internship-container textarea {
-    width: 100%;
-    padding: 0.8rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem;
-    outline: none;
-  }
-  
-  .post-internship-container textarea {
-    resize: vertical;
-  }
-  
-  .post-internship-container .type-toggle,
-  .post-internship-container .stipend-toggle {
-    display: flex;
-    gap: 1rem;
-  }
-  
-  .post-internship-container .toggle-btn,
-  .post-internship-container .type-toggle-btn {
-    padding: 0.6rem 1rem;
-    border: 2px solid #007bff;
-    border-radius: 5px;
+/* Card and Timeline Styles */
+/* Card and Timeline Styles */
+.card {
     background-color: #fff;
-    color: #007bff;
-    cursor: pointer;
-    font-weight: bold;
-    transition: all 0.3s ease;
-  }
-  
-  .post-internship-container .toggle-btn.active,
-  .post-internship-container .type-toggle-btn.active {
-    background-color: #007bff;
-    color: #fff;
-  }
-  
-  .post-internship-container .toggle-btn:hover,
-  .post-internship-container .type-toggle-btn:hover {
-    background-color: #0056b3;
-    color: #fff;
-  }
-  
-  .post-internship-container .submit-btn {
-    display: block;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px;
     width: 80%;
-    margin: 0 auto; /* Center align the button */
-    padding: 1rem;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.2rem;
-    font-weight: bold;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .card-header {
+    padding: 15px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    background-color: #f1f1f1;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    display: flex;
+    justify-content: space-between;
   }
   
-  .post-internship-container .submit-btn:hover {
-    background-color: #0056b3;
+  .card-header h4 {
+    margin: 0;
   }
   
-
+  .card-header p {
+    margin: 0;
+    font-size: 14px;
+  }
+  
+  .card-body {
+    display: none;
+    padding: 15px;
+    background-color: #fff;
+  }
+  
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+  }
+  
+  .timeline-step {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 80%;
+    margin-bottom: 30px;
+  }
+  
+  .timeline-icon {
+    background-color: #ccc;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    left: -40px;
+  }
+  
+  .timeline-content {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+  }
+  
+  .timeline-step::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -10px;
+    width: 10px;
+    height: 100%;
+    background-color: #ccc;
+    z-index: -1;
+  }
+  
+  .timeline-step.completed::before {
+    background-color: #28a745;
+  }
+  
+  .timeline-step.completed .timeline-icon {
+    background-color: #28a745;
+  }
+  
+  .timeline-step.rejected::before {
+    background-color: #dc3545;
+  }
+  
+  .timeline-step.rejected .timeline-icon {
+    background-color: #dc3545;
+  }
+  
+  .timeline-step.pending::before {
+    background-color: #ffc107;
+  }
+  
+  .timeline-step.pending .timeline-icon {
+    background-color: #ffc107;
+  }
+  
+  .timeline-content h3 {
+    margin: 0 0 5px;
+  }
+  
+  .timeline-content p {
+    margin: 0;
+    font-size: 14px;
+  }
+  
+  /* Add transition for smooth opening/closing */
+  .card-body.open {
+    display: block;
+  }
+  
+  .card-body {
+    display: none;
+  }
+  
 /* -------------------------------------------------------------------- */
 
 /* View Status (internship */

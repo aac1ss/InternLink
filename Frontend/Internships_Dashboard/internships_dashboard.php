@@ -133,6 +133,7 @@ if (!$result) {
                <?php
     // Fetch the company logo from the company_profile table
 $r_id = $row['r_id']; // Get r_id from the internship row
+$internship_id= $row['internship_id'];
 $sql_logo = "SELECT company_logo FROM company_profile WHERE r_id = '$r_id'"; // Query based on r_id
 $result_logo = mysqli_query($conn, $sql_logo);
 $company_logo = '';
@@ -203,7 +204,8 @@ $logo_path = '../../Backend/uploads/' . $company_logo;
         <!-- Check if the user is a candidate before displaying the "Apply Now" button -->
         <?php if ($is_candidate): ?>
     <button class="details-btn" onclick="openModal(<?php echo htmlspecialchars(json_encode($row), ENT_QUOTES, 'UTF-8'); ?>)">View Details</button>
-    <button class="apply-btn" onclick="applyForInternship(<?php echo $row['internship_id']; ?>)">Apply Now</button>
+    <button class="apply-btn" onclick="openModalWithDetails(<?php echo htmlspecialchars(json_encode($row), ENT_QUOTES, 'UTF-8'); ?>)">Apply Now</button>
+
 
 
 <?php else: ?>
@@ -264,12 +266,12 @@ if ($conn) {
         <!-- Modal Footer with Apply Button -->
         <div class="modal-footer">
         <form action="../../Backend/Internship/apply_internship.php" method="POST">
-        <input type="hidden" name="internship_title" value="Internship Title Here">
-    <input type="hidden" name="created_at" value="Internship Creation Date Here">
-    <input type="hidden" name="company_name" value="Company Name Here">
-    <button class="apply-btn" type="submit">Apply Now</button>
-</form>
-
+                <input type="hidden" name="internship_title" id="modal-internship-title">
+                <input type="hidden" name="internship_id" id="modal-internship-id">
+                <input type="hidden" name="created_at" id="modal-created-at">
+                <input type="hidden" name="company_name" id="modal-company-name-input">
+                <button class="apply-btn" type="submit">Apply Now</button>
+            </form>
 
         </div>
     </div>

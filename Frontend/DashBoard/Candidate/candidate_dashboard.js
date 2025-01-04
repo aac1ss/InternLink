@@ -70,7 +70,6 @@ document.addEventListener("click", (event) => {
     });
   }
 });
-
 // INTERNSHIP Functionalities
 // Dropdown toggle functionality( IN INTERNSHIPs tab)
 document.querySelectorAll(".dropdown-toggle").forEach((toggle) => {
@@ -86,34 +85,57 @@ document.querySelectorAll(".dropdown-toggle").forEach((toggle) => {
   });
 });
 
-// Ensure the "Post Internship" form displays fully
-document.querySelectorAll(".dropdown-content a[href='#post-internship']").forEach((link) => {
-  link.addEventListener("click", function () {
-    const formSection = document.querySelector("#post-internship");
-    if (formSection) {
-      formSection.style.display = "block"; // Ensure form visibility
-    }
+//-----------------------------------------------------------------------------------
+//internship-type-toggle
+function setType(type) {
+  // Set the value of the hidden input to the selected type
+  const hiddenInput = document.getElementById('type-hidden-input');
+  hiddenInput.value = type.toLowerCase(); // Set to lowercase ('remote', 'hybrid', 'onsite')
+
+  // Update the active class for buttons
+  document.querySelectorAll('.type-toggle-btn').forEach(button => {
+      button.classList.remove('active');
   });
-});
 
-// Toggle visibility for stipend field
-function toggleStipendField(value) {
-  const stipendAmountField = document.getElementById("stipend-amount-container");
-  const paidButton = document.getElementById("btn-paid");
-  const unpaidButton = document.getElementById("btn-unpaid");
+  // Mark the clicked button as active
+  const activeButton = document.getElementById('type-' + type.toLowerCase());
+  activeButton.classList.add('active');
+}
 
-  if (value === "paid") {
-    stipendAmountField.style.display = "block";
-    paidButton.classList.add("active");
-    unpaidButton.classList.remove("active");
-  } else {
-    stipendAmountField.style.display = "none";
-    unpaidButton.classList.add("active");
-    paidButton.classList.remove("active");
+//-----------------------------------------------------------------------------------
+
+// Function to toggle the card body visibility
+function toggleCard(cardHeader) {
+  const cardBody = cardHeader.nextElementSibling;
+  cardBody.classList.toggle("open");
+}
+
+// Function to update the timeline based on the application status
+function updateTimeline(statuses) {
+  const statusClasses = ["pending", "completed", "rejected"];
+
+  // Loop through each step and update its status
+  for (let i = 0; i < statuses.length; i++) {
+    const step = document.getElementById(`step${i + 1}`);
+    const statusElement = document.getElementById(`status${i + 1}`);
+
+    // Remove all status classes
+    step.classList.remove(...statusClasses);
+    
+    // Add the new status class to the step
+    step.classList.add(statuses[i]);
+    
+    // Update the status text
+    statusElement.textContent = statuses[i].charAt(0).toUpperCase() + statuses[i].slice(1);
   }
 }
 
+// Example usage (You can replace with actual dynamic data)
+const exampleStatuses = ["pending", "completed", "rejected"];
+updateTimeline(exampleStatuses);
 
+
+//-----------------------------------------------------------------------------------
 //Edit-Profile
 document.addEventListener('DOMContentLoaded', () => {
   // Check if the URL contains a success parameter
@@ -176,6 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+//-----------------------------------------------------------------------------------
 // View-Status
 document.addEventListener("DOMContentLoaded", () => {
   fetch("../../../Backend/Recruiter_DashBoard/View-Status.php")  // Correct path as necessary
