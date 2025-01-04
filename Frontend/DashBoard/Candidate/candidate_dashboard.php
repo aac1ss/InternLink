@@ -109,7 +109,7 @@ if ($candidate) {
           </a>
         </nav>
         <div class="logout">
-        <a href="/InternLink/Backend/Recruiter_DashBoard/logout.php">
+        <a href="/InternLink/Backend/Candidate_DashBoard/logout.php">
             <img src="../../images/DashBoard Icons/Log Out.svg" alt="Logout" class="nav-icon" /> Logout
           </a>
         </div>

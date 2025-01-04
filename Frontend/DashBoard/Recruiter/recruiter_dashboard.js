@@ -80,6 +80,22 @@ document.querySelectorAll(".dropdown-toggle").forEach((toggle) => {
   });
 });
 
+//internship-type-toggle
+function setType(type) {
+  // Set the value of the hidden input to the selected type
+  const hiddenInput = document.getElementById('type-hidden-input');
+  hiddenInput.value = type.toLowerCase(); // Set to lowercase ('remote', 'hybrid', 'onsite')
+
+  // Update the active class for buttons
+  document.querySelectorAll('.type-toggle-btn').forEach(button => {
+      button.classList.remove('active');
+  });
+
+  // Mark the clicked button as active
+  const activeButton = document.getElementById('type-' + type.toLowerCase());
+  activeButton.classList.add('active');
+}
+
 // Ensure the "Post Internship" form displays fully
 document.querySelectorAll(".dropdown-content a[href='#post-internship']").forEach((link) => {
   link.addEventListener("click", function () {

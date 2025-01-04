@@ -1,35 +1,35 @@
 <?php
-// Start the session to access session variables
 session_start();
-
-// Include the database connection
 include '../../Backend/dbconfig.php';
-
 if (!isset($_SESSION['email'])) {
     header("Location: ../../Frontend/Login/Sub_Logins/candidate_login.html");
     exit;
 }
-
 // Retrieve the logged-in user's email from the session
 $email = $_SESSION['email']; // Assuming email is stored in session
 
 // Query to fetch the candidate details, including the profile picture
-$query = "SELECT c_id, profile_picture FROM candidate_profiles WHERE email = ?";
+$query = "SELECT c_id, full_name, profile_picture FROM candidate_profiles WHERE email = ?";
 $stmt = mysqli_prepare($conn, $query);
 mysqli_stmt_bind_param($stmt, "s", $email);
 mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
 $candidate = mysqli_fetch_assoc($result);
 
-// Check if the candidate's details exist
 if ($candidate) {
     $c_id = $candidate['c_id'];
-    // Use the profile picture from the database or a default if not found
-    $profile_picture = $candidate['profile_picture'] ? 'Backend/uploads/' . $candidate['profile_picture'] : '../../images/default-profile.png';
+    $full_name = $candidate['full_name'] ?? 'Candidate'; // Fallback to 'Candidate' if no name
+    if (!empty($candidate['profile_picture'])) {
+        $profile_picture = '../../Backend/uploads/' . $candidate['profile_picture'];
+    } else {
+        $profile_picture = '../../images/default-profile.png';
+    }
 } else {
-    // Set a default profile picture if no profile found
+    $c_id = 'Unknown';
+    $full_name = 'Guest User';
     $profile_picture = '../../images/default-profile.png';
 }
+
 ?>
 
 
@@ -75,7 +75,7 @@ if ($candidate) {
         <nav>
             <ul class="nav-links">
                 <li><a href="../index.html">Home</a></li>
-                <li><a href="../Dasboard/Candidate/candidate_dashboard.php">Dashboard</a></li>
+                <li><a href="../Dashboard/Candidate/candidate_dashboard.php">Dashboard</a></li>
             </ul>
 
             <!-- Profile Picture -->
@@ -84,19 +84,19 @@ if ($candidate) {
         <?php if (isset($is_candidate) && $is_candidate && isset($candidate_picture) && $candidate_picture): ?>
             <img src="../../../Backend/uploads/<?php echo $candidate_picture; ?>" alt="Profile Picture" class="profile-pic">
         <?php else: ?>
-            <img src="../../images/default-profile.png" alt="Default Profile Picture" class="profile-pic">
+            <img src="<?php echo $profile_picture; ?>" alt="Profile Picture" class="profile-pic">
         <?php endif; ?>
+    </div>
+</header>
+<div class="profile-details-container">
+    <div class="profile-details">
+        <p class="candidate-name"><?php echo "Hi, " . htmlspecialchars($full_name, ENT_QUOTES, 'UTF-8'); ?></p>
     </div>
 </div>
 
-        </nav>
-    </div>
-</header>
 
     
     <?php
-include '../../Backend/dbconfig.php'; // Include the database connection
-
 // Check if the user is logged in as a candidate
 $is_candidate = isset($_SESSION['user_type']) && $_SESSION['user_type'] == 'candidate';
 
@@ -132,18 +132,19 @@ if (!$result) {
             <?php while ($row = mysqli_fetch_assoc($result)): ?> 
                <?php
     // Fetch the company logo from the company_profile table
-    $company_name = $row['company_name']; // Get the company name
-    $sql_logo = "SELECT company_logo FROM company_profile WHERE company_name = '$company_name'"; // New SQL query
-    $result_logo = mysqli_query($conn, $sql_logo);
-    $company_logo = '';
+$r_id = $row['r_id']; // Get r_id from the internship row
+$sql_logo = "SELECT company_logo FROM company_profile WHERE r_id = '$r_id'"; // Query based on r_id
+$result_logo = mysqli_query($conn, $sql_logo);
+$company_logo = '';
 
-    if ($result_logo && mysqli_num_rows($result_logo) > 0) {
-        $logo_row = mysqli_fetch_assoc($result_logo);
-        $company_logo = $logo_row['company_logo']; // Get the company logo file name
-    }
+if ($result_logo && mysqli_num_rows($result_logo) > 0) {
+    $logo_row = mysqli_fetch_assoc($result_logo);
+    $company_logo = $logo_row['company_logo']; // Get the company logo file name
+}
 
-    // Define the path to the uploads folder
-    $logo_path = '../../Backend/uploads/' . $company_logo; // Assuming the logo is saved in the 'uploads' folder
+// Define the path to the uploads folder for the company logo
+$logo_path = '../../Backend/uploads/' . $company_logo;
+
 ?>
 
                 <!-- Internship Card -->
@@ -201,12 +202,15 @@ if (!$result) {
 
         <!-- Check if the user is a candidate before displaying the "Apply Now" button -->
         <?php if ($is_candidate): ?>
-            <button class="details-btn" onclick="openModal(<?php echo htmlspecialchars(json_encode($row), ENT_QUOTES, 'UTF-8'); ?>)">View Details</button>
-            <button class="apply-btn" onclick="applyForInternship(<?php echo $row['internship_id']; ?>)">Apply Now</button>
-        <?php else: ?>
-            <button class="details-btn" onclick="openModal(<?php echo htmlspecialchars(json_encode($row), ENT_QUOTES, 'UTF-8'); ?>)">View Details</button>
-            <!-- Login required sticker already displayed -->
-        <?php endif; ?>
+    <button class="details-btn" onclick="openModal(<?php echo htmlspecialchars(json_encode($row), ENT_QUOTES, 'UTF-8'); ?>)">View Details</button>
+    <button class="apply-btn" onclick="applyForInternship(<?php echo $row['internship_id']; ?>)">Apply Now</button>
+
+
+<?php else: ?>
+    <button class="details-btn" onclick="openModal(<?php echo htmlspecialchars(json_encode($row), ENT_QUOTES, 'UTF-8'); ?>)">View Details</button>
+    <!-- Login required sticker already displayed -->
+<?php endif; ?>
+
     </div>
 </div>
 
@@ -260,8 +264,10 @@ if ($conn) {
         <!-- Modal Footer with Apply Button -->
         <div class="modal-footer">
         <form action="../../Backend/Internship/apply_internship.php" method="POST">
-    <input type="hidden" name="internship_id" value="<?php echo htmlspecialchars($row['internship_id'], ENT_QUOTES, 'UTF-8'); ?>">
-    <button type="submit" class="apply-btn">Apply Now</button>
+        <input type="hidden" name="internship_title" value="Internship Title Here">
+    <input type="hidden" name="created_at" value="Internship Creation Date Here">
+    <input type="hidden" name="company_name" value="Company Name Here">
+    <button class="apply-btn" type="submit">Apply Now</button>
 </form>
 
 

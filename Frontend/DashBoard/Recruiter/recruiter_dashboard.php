@@ -276,7 +276,7 @@ if ($recruiter) {
                   </div>
                   <div class="form-group">
                     <label for="location">Location: <span class="required">*</span></label>
-                    <input type="text" id="location" name="location" placeholder="e.g., Jhamsikhel, Balkumamri, etc." required />
+                    <input type="text" id="location" name="location" placeholder="e.g., Jhamsikhel, Balkuma ri, etc." required />
                   </div>
                   <div class="form-group">
                     <label for="duration">Duration: <span class="required">*</span></label>

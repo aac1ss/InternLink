@@ -5,14 +5,6 @@ session_start();
 // Include the database connection
 include '../../Backend/dbconfig.php';
 
-// Check if the user is logged in as a candidate
-$is_candidate = isset($_SESSION['user_type']) && $_SESSION['user_type'] == 'candidate';
-
-// If not logged in, redirect to the login page
-if (!$is_candidate) {
-    header("Location: ../../Frontend/Login/Sub_Logins/candidate_login.html");
-    exit;
-}
 
 // Retrieve the logged-in user's email from the session
 $email = $_SESSION['email']; // Assuming email is stored in session
