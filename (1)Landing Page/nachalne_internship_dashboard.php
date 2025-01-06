@@ -204,7 +204,7 @@ $logo_path = '../../Backend/uploads/' . $company_logo;
         <!-- Check if the user is a candidate before displaying the "Apply Now" button -->
         <?php if ($is_candidate): ?>
     <button class="details-btn" onclick="openModal(<?php echo htmlspecialchars(json_encode($row), ENT_QUOTES, 'UTF-8'); ?>)">View Details</button>
-  
+    <button class="apply-btn" onclick="openModalWithDetails(<?php echo htmlspecialchars(json_encode($row), ENT_QUOTES, 'UTF-8'); ?>)">Apply Now</button>
 
 
 
@@ -212,7 +212,7 @@ $logo_path = '../../Backend/uploads/' . $company_logo;
     <button class="details-btn" onclick="openModal(<?php echo htmlspecialchars(json_encode($row), ENT_QUOTES, 'UTF-8'); ?>)">View Details</button>
     <!-- Login required sticker already displayed -->
 <?php endif; ?>
-<a href="../../Backend/Internship/apply_internship.php?internship_id=<?php echo urlencode($row['internship_id']); ?>&internship_title=<?php echo urlencode($row['internship_title']); ?>&created_at=<?php echo urlencode($row['created_at']); ?>&company_name=<?php echo urlencode($row['company_name']); ?>" class="apply-now-btn">Apply Now</a>
+
     </div>
 </div>
 
@@ -264,7 +264,16 @@ if ($conn) {
         </div>
 
         <!-- Modal Footer with Apply Button -->
-    
+        <div class="modal-footer">
+        <form action="../../Backend/Internship/apply_internship.php" method="POST">
+                <input type="hidden" name="internship_title" id="modal-internship-title">
+                <input type="hidden" name="internship_id" id="modal-internship-id">
+                <input type="hidden" name="created_at" id="modal-created-at">
+                <input type="hidden" name="company_name" id="modal-company-name-input">
+                <button class="apply-btn" type="submit">Apply Now</button>
+            </form>
+
+        </div>
     </div>
 </div>
 

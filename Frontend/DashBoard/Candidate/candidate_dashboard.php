@@ -117,6 +117,7 @@ if ($candidate) {
       
 
     <!-- Main Content -->
+    
     <main class="main-content">
       <div class="top-bar">
           <h1>Hey there, <?php echo htmlspecialchars($email); ?>!</h1>
@@ -125,34 +126,99 @@ if ($candidate) {
               <span class="user-name"><?php echo htmlspecialchars($email); ?></span> <!-- Displaying Email -->
           </div>
 </div>
-        
+
+<?php
+// Include database connection
+include('../../../Backend/dbconfig.php');
+
+// Get the candidate ID (assuming it's passed as session or URL parameter)
+$c_id = $_SESSION['c_id']; // Or get it from URL if passed: $_GET['c_id']
+
+// Prepare SQL query to fetch the required counts
+$query = "
+    SELECT 
+        (SELECT COUNT(*) FROM internship_applications WHERE c_id = ?) AS total_applied,
+        (SELECT COUNT(*) FROM internship_applications WHERE c_id = ? AND status = 'rejected') AS total_rejected,
+        (SELECT COUNT(*) FROM internship_applications WHERE c_id = ? AND status = 'short-listed') AS total_shortlisted
+";
+
+// Prepare the statement
+$stmt = $conn->prepare($query);
+
+// Bind the parameters to the query
+$stmt->bind_param('iii', $c_id, $c_id, $c_id);
+
+// Execute the query
+$stmt->execute();
+
+// Fetch the result
+$result = $stmt->get_result()->fetch_assoc();
+
+// Assign the values to variables
+$total_applied = $result['total_applied'] ?? 0;
+$total_rejected = $result['total_rejected'] ?? 0;
+$total_shortlisted = $result['total_shortlisted'] ?? 0;
+?>
+
       <!-- Dashboard -->
-        <section id="dashboard" class="section">
-          <div class="content" id="dashboardContent">
-            <section class="stats">
-                <div class="stat-card">
-                    <h2>0</h2>
-                    <p>Total Internship Applied</p>
-                </div>
-                <div class="stat-card">
-                    <h2>55</h2>
-                    <p>Total Applications</p>
-                </div>
-                <div class="stat-card">
-                    <h2>0</h2>
-                    <p>Rejected</p>
-                </div>
-                <div class="stat-card">
-                    <h2>0</h2>
-                    <p>Shortlisted</p>
-                </div>
-            </section>
-            <section class="recent-activities">
-                <div class="recent-applications">
-                    <h3>Recent internship</h3>
-                    <p>No recent applications</p>
-                </div>
-                <div class="recent-details">
+      <section id="dashboard" class="section">
+    <div class="content" id="dashboardContent">
+      
+    <section class="stats">
+        <div class="stat-card" id="total-internships-applied">
+          <h2><?php echo $total_applied; ?></h2>
+          <p>Total Internship Applied</p>
+        </div>
+        <div class="stat-card" id="total-applications">
+          <h2><?php echo $total_applied; ?></h2>
+          <p>Total Applications</p>
+        </div>
+        <div class="stat-card" id="rejected">
+          <h2><?php echo $total_rejected; ?></h2>
+          <p>Rejected</p>
+        </div>
+        <div class="stat-card" id="shortlisted">
+          <h2><?php echo $total_shortlisted; ?></h2>
+          <p>Shortlisted</p>
+        </div>
+      </section>
+     
+     
+      <section class="recent-activities">
+      <div class="recent-applications">
+    <h3>Recent Internships</h3>
+    <?php
+// Example database query to fetch recent internships
+$query = "SELECT company_name, internship_title, deadline, created_at FROM post_internship_form_detail ORDER BY created_at DESC LIMIT 5";
+$result = $conn->query($query); // Execute the query and get the result object
+
+if ($result->num_rows > 0) {
+    $counter = 1;
+    while ($row = $result->fetch_assoc()) {
+        $created_at = new DateTime($row['created_at']);
+        $deadline = new DateTime($row['deadline']);
+        $interval = $created_at->diff($deadline);
+        $days_remaining = $interval->format('%r%a'); // Calculate days remaining
+
+        if ($days_remaining > 0) {
+            $subtractedDateMessage = $days_remaining . " days ";
+        } elseif ($days_remaining == 0) {
+            $subtractedDateMessage = "Deadline is today";
+        } else {
+            $subtractedDateMessage = abs($days_remaining) . " days ago (expired)";
+        }
+
+        // Display the internship details
+        echo '<p>' . $counter . ') ' . $row['company_name'] . ' posted an internship for "' . $row['internship_title'] . '" which ends in ' . $subtractedDateMessage . '.</p>';
+        $counter++;
+    }
+} else {
+    echo '<p>No recent applications</p>';
+}
+?>
+
+</div>
+<div class="recent-details">
                     <h3>Recent Activities</h3>
                     <ul>
                         <li>Account Verified - 1 month ago</li>
@@ -161,7 +227,7 @@ if ($candidate) {
                 </div>
             </section>
           </div>
-        </section>
+      </section>
 
 
 <!-- Candidate Profile -->
@@ -248,14 +314,16 @@ if ($candidate) {
     </div>
 </section>
 
+          <!-- Timeline -->
+  <section id="post-internship-form" class="post-internship-container section">
+          <div class="timeline-title-container">
+    <h1 class="timeline-title">View Your Internship Timeline</h1>
+    </div>
 
-          <!-- Post Internships -->
-          <section id="post-internship-form" class="post-internship-container section">
     <div class="card">
       <div class="card-header" onclick="toggleCard(this)">
-        <h4 class="internship-name">Internship Title</h4>
-        <p class="applied-date">Applied on: <span>2025-01-04</span></p>
-      </div>
+    
+    
       <div class="card-body">
         <div class="timeline">
           <div class="timeline-step" id="step1">
@@ -287,20 +355,19 @@ if ($candidate) {
   </section>
           
           <!-- View Status -->
-          <section id="internships" class="section">
+  <section id="internships" class="section">
     <div class="content">
-        <h2>Your Posted Internships</h2>
+        <h2>Your Applied Internships</h2>
         <table class="internship-table">
             <thead>
                 <tr>
                     <th>Internship ID</th>
                     <th>Position</th>
+                    <th>Company Name</th>
                     <th>Posted Date</th>
                     <th>Deadline</th>
-                    <th>Applications</th>
-                    <th>Duration</th>
+                    <th>Applied Date</th>
                     <th>Status</th>
-                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody id="internship-list">
@@ -311,69 +378,39 @@ if ($candidate) {
 </section>
 
 
+<!-- Manage Applicants Section -->
+<section id="manage-applicants" class="section">
+
+  <div class="content">
+  
+    <h2>Manage Applications</h2>
+    <table class="applicants-table">
+      <thead>
+        <tr>
+          <th>Application ID</th>
+          <th>Company Name</th>
+          <th>Position Applied</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="applicant-table-body">
+        <!-- Data will be populated here dynamically -->
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- Confirmation Modal -->
+<div id="confirmation-modal" class="confirmation-modal">
+  <div class="modal-content">
+    <h3>Are you sure you want to retract this application?</h3>
+    <button id="confirm-retract" class="action-btn reject">Yes, Retract</button>
+    <button id="cancel-retract" class="action-btn">Cancel</button>
+  </div>
+</div>
 
 
-          <!-- Setting Section -->
-              <section id="setting" class="section">
-              <div class="content">
-                <h2>Settings</h2>
-                <form class="settings-form">
-                  <div class="form-group">
-                    <label>Account Email</label>
-                    <input type="email" placeholder="Enter your email" required />
-                  </div>
-                  <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" placeholder="Enter new password" />
-                  </div>
-                  <div class="form-group">
-                    <label>Notification Preferences</label>
-                    <select>
-                      <option>Email Notifications</option>
-                      <option>SMS Notifications</option>
-                      <option>Push Notifications</option>
-                    </select>
-                  </div>
-                  <button type="submit" class="send-btn">Save Changes</button>
-                </form>
-              </div>
-            </section>
-        
-          <!-- Manage Applicants Section -->
-            <section id="manage-applicants" class="section">
-              <div class="content">
-                <h2>Manage Applicants</h2>
-                <table class="applicants-table">
-                  <thead>
-                    <tr>
-                      <th>Company Name</th>
-                      <th>Position Applied</th>
-                      <th>Status</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>John Doe</td>
-                      <td>Software Intern</td>
-                      <td>Under Review</td>
-                      <td>
-                        <button class="action-btn reject">Retract</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Jane Smith</td>
-                      <td>Data Analyst Intern</td>
-                      <td>Interview Scheduled</td>
-                      <td>
-                        <button class="action-btn reject">Retract</button>
-                      </td>
-                    </tr>
-                    <!-- Additional rows as needed -->
-                  </tbody>
-                </table>
-              </div>
-            </section>
 
           <!-- Memebership -->
             <section id="membership" class="section">
@@ -421,6 +458,33 @@ if ($candidate) {
                           <button type="submit" class="pay-btn">Pay Now</button>
                       </form>
                   </div>
+              </div>
+            </section>
+
+
+   <!-- Setting Section -->
+   <section id="setting" class="section">
+              <div class="content">
+                <h2>Settings</h2>
+                <form class="settings-form">
+                  <div class="form-group">
+                    <label>Account Email</label>
+                    <input type="email" placeholder="Enter your email" required />
+                  </div>
+                  <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" placeholder="Enter new password" />
+                  </div>
+                  <div class="form-group">
+                    <label>Notification Preferences</label>
+                    <select>
+                      <option>Email Notifications</option>
+                      <option>SMS Notifications</option>
+                      <option>Push Notifications</option>
+                    </select>
+                  </div>
+                  <button type="submit" class="send-btn">Save Changes</button>
+                </form>
               </div>
             </section>
 

@@ -493,129 +493,354 @@ header {
 
 /* -------------------------------------------------------------------- */
 /* Card and Timeline Styles */
-/* Card and Timeline Styles */
+
 .card {
-    background-color: #fff;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 25px;
+    transition: transform 0.3s ease-in-out;
+    width: 90%;
+    overflow: hidden;
+    margin-left: 80px;
+  }
+  
+  .card:hover {
+    transform: scale(1.02);
+  }
+
+  .no-applications, .error-message {
+    text-align: center;
+    margin: 20px auto;
+    color: #555;
+  }
+  
+  .no-applications h3, .error-message h3 {
+    font-size: 1.5rem;
+    color: #333;
+  }
+  
+  .no-applications a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .no-applications a:hover {
+    text-decoration: underline;
+  }
+  
+
+  .timeline-title-container {
+    text-align: center;
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #f0f0f0;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 20px;
-    width: 80%;
-    overflow: hidden;
-    transition: all 0.3s ease-in-out;
+  }
+  
+  .timeline-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0;
+    position: relative;
+  }
+  
+  .timeline-title::before {
+    content: "";
+    position: absolute;
+    width: 50px;
+    height: 4px;
+    background-color: #007bff;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
   }
   
   .card-header {
-    padding: 15px;
+    background: #f7f7f7;
+    padding: 20px;
     cursor: pointer;
-    background-color: #f1f1f1;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
     display: flex;
+    align-items: center;
     justify-content: space-between;
+    border-bottom: 2px solid #ebebeb;
   }
   
-  .card-header h4 {
+  .company-info {
+    display: flex;
+    align-items: center;
+  }
+ 
+  
+  .company-details h4, .company-details p {
     margin: 0;
   }
   
-  .card-header p {
-    margin: 0;
-    font-size: 14px;
+  .company-details .internship-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .company-details .company-name {
+    font-size: 1rem;
+    color: #555;
+    font-weight: 400;
+    font-style: italic;
+  }
+  .card.under-review {
+    background-color: #ffeb3b; /* Yellow for "Under Review" */
+  }
+  
+  .card.shortlisted {
+    background-color: #4caf50; /* Green for "Shortlisted" */
+  }
+  
+  .card.rejected {
+    background-color: #f44336; /* Red for "Rejected" */
   }
   
   .card-body {
-    display: none;
-    padding: 15px;
-    background-color: #fff;
+    position: relative;
   }
   
-  .timeline {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    padding: 20px;
+  .card-body .contact-email {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: 14px;
+    color: rgb(0, 0, 0);
+    text-decoration:none;
   }
   
   .timeline-step {
-    display: flex;
-    align-items: center;
-    position: relative;
-    width: 80%;
-    margin-bottom: 30px;
-  }
-  
-  .timeline-icon {
-    background-color: #ccc;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    position: absolute;
-    left: -40px;
-  }
-  
-  .timeline-content {
-    background-color: #f9f9f9;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 100%;
-  }
-  
-  .timeline-step::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: -10px;
-    width: 10px;
-    height: 100%;
-    background-color: #ccc;
-    z-index: -1;
-  }
-  
-  .timeline-step.completed::before {
-    background-color: #28a745;
-  }
-  
-  .timeline-step.completed .timeline-icon {
-    background-color: #28a745;
-  }
-  
-  .timeline-step.rejected::before {
-    background-color: #dc3545;
-  }
-  
-  .timeline-step.rejected .timeline-icon {
-    background-color: #dc3545;
-  }
-  
-  .timeline-step.pending::before {
-    background-color: #ffc107;
-  }
-  
-  .timeline-step.pending .timeline-icon {
-    background-color: #ffc107;
+    margin-bottom: 20px;
   }
   
   .timeline-content h3 {
-    margin: 0 0 5px;
+    margin-top: 0;
   }
   
-  .timeline-content p {
-    margin: 0;
-    font-size: 14px;
+  .timeline-icon {
+    margin-right: 10px;
   }
   
-  /* Add transition for smooth opening/closing */
-  .card-body.open {
-    display: block;
+  .completed, .rejected, .shortlisted {
+    background-color: #d1e7dd;
+  }
+  
+  .ongoing {
+    background-color: #fff3cd;
   }
   
   .card-body {
+    padding: 20px;
     display: none;
   }
+  .company-status .status {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+  }
   
-/* -------------------------------------------------------------------- */
+  .status.under-review {
+    background-color: #f0ad4e;
+    color: white;
+  }
+  
+  .status.short-listed {
+    background-color: #5bc0de;
+    color: white;
+  }
+  
+  .status.rejected {
+    background-color: #d9534f;
+    color: white;
+  }
+  
+  .status.completed {
+    background-color: #5cb85c;
+    color: white;
+  }
+  
+/* Overall styling for the timeline */
+
+.timeline {
+    margin-left: 20px;
+    padding-left: 20px;
+    border-left: 4px solid #b1e5fd; /* Blue left border */
+    position: relative;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+  }
+  
+  /* Timeline step styling */
+  .timeline-step {
+    margin: 20px 0;
+    padding-left: 30px; /* More space for the circle */
+    display: flex;
+    align-items: center;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+  
+  /* Timeline icon styling */
+  .timeline-icon {
+    width: 20px;
+    height: 20px;
+    background-color: #a1e1ff;
+    border-radius: 50%;
+    position: absolute;
+    left: -30px;
+    top: 10px;
+    border: 4px solid #94ddfe; /* Lighter border for depth */
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+  
+  /* Timeline icon color changes based on step status */
+  .timeline-icon.completed {
+    background-color: #4CAF50; /* Green for completed steps */
+    border-color: #4CAF50;
+  }
+  
+  .timeline-icon.ongoing {
+    background-color: #FFEB3B; /* Yellow for ongoing steps */
+    border-color: #FFEB3B;
+  }
+  
+  .timeline-icon.shortlisted {
+    background-color: #2196F3; /* Blue for shortlisted steps */
+    border-color: #2196F3;
+  }
+  
+  .timeline-icon.rejected {
+    background-color: #F44336; /* Red for rejected steps */
+    border-color: #F44336;
+  }
+  
+  /* Timeline content (text) styling */
+  .timeline-content {
+    background-color: #eefcff; /* Light blue background */
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  h3 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  p {
+    font-size: 14px;
+    color: #555;
+    margin: 5px 0;
+  }
+  
+  /* Date status styling */
+  .date-status {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #888;
+  }
+  
+  .status-left {
+    font-style: italic;
+    color: #666;
+  }
+  
+  .status-right {
+    font-style: italic;
+    font-weight: normal;
+    color: #888;
+  }
+  
+  /* Step-specific background colors */
+  .timeline-step.completed {
+    background-color: #93ff93; /* Light green for completed steps */
+  }
+  
+  .timeline-step.ongoing {
+    background-color: #ffdf7e; /* Light yellow for ongoing steps */
+  }
+  
+  .timeline-step.shortlisted {
+    background-color: #74d3ff; /* Light blue for shortlisted steps */
+  }
+  
+  .timeline-step.rejected {
+    background-color: #ff747f; /* Light red for rejected steps */
+  }
+  
+  /* Line Styling */
+  .timeline .timeline-line {
+    border-left: 4px solid #a1e1ff; /* Default line color */
+  }
+  
+  .timeline-step.completed .timeline-line {
+    border-left: 4px solid #38fe3f; /* Green line for completed steps */
+  }
+  
+  .timeline-step.ongoing .timeline-line {
+    border-left: 4px solid #ffe922; /* Yellow line for ongoing steps */
+  }
+  
+  .timeline-step.shortlisted .timeline-line {
+    border-left: 4px solid #219bff; /* Blue line for shortlisted steps */
+  }
+  
+  .timeline-step.rejected .timeline-line {
+    border-left: 4px solid #ff3527; /* Red line for rejected steps */
+  }
+  
+  /* Hover effect for timeline steps */
+  .timeline-step:hover .timeline-content {
+    background-color: #ccefff; /* Slightly darker blue on hover */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow */
+    transform: translateX(2px); /* Swipe effect to the right */
+  }
+  
+  /* Hover effect for timeline icon */
+  .timeline-step:hover .timeline-icon {
+    background-color: #2196F3; /* Blue for hovered icon */
+    border-color: #2196F3;
+  }
+  
+  /* Active hover effect for each step */
+  .timeline-step:hover {
+    background-color: rgba(0, 0, 0, 0.05); /* Light background change */
+    transform: translateX(10px); /* Swipe to the right */
+  }
+  
+  /* Styling for each status (completed, ongoing, shortlisted, rejected) */
+  .timeline-step.completed .timeline-content {
+    background-color: #d2ffd2; /* Light green for completed step */
+  }
+  
+  .timeline-step.ongoing .timeline-content {
+    background-color: #ffe0b2; /* Light yellow for ongoing step */
+  }
+  
+  .timeline-step.shortlisted .timeline-content {
+    background-color: #c8e6ff; /* Light blue for shortlisted step */
+  }
+  
+  .timeline-step.rejected .timeline-content {
+    background-color: #ffcccb; /* Light red for rejected step */
+  }
+ /* ------------------------------------------------------------------ */
 
 /* View Status (internship */
 /* Table Styles */
@@ -716,31 +941,33 @@ header {
     border-collapse: collapse;
     margin: 20px 0;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.applicants-table th,
-.applicants-table td {
+  }
+  
+  .applicants-table th,
+  .applicants-table td {
     padding: 15px;
-    text-align: left;
+    border: 1px solid var(--border-color);
+    text-align: center;  /* Center-align the text */
     border-bottom: 1px solid var(--hover-color-sidebar);
-}
-
-.applicants-table th {
+  }
+  
+  .applicants-table th {
     background-color: var(--sidebar-bg);
     color: var(--text-color-white);
+    border: 1px solid var(--border-color);
     font-weight: bold;
-}
-
-.applicants-table tr:nth-child(even) {
+  }
+  
+  .applicants-table tr:nth-child(even) {
     background-color: #f9f9f9;
-}
-
-.applicants-table tr:hover {
+  }
+  
+  .applicants-table tr:hover {
     background-color: #f1f1f1;
-}
-
-/* Action Buttons in Manage Applicants */
-.action-btn {
+  }
+  
+  /* Action Buttons in Manage Applicants */
+  .action-btn {
     padding: 8px 12px;
     margin-right: 5px;
     color: var(--text-color-white);
@@ -748,20 +975,53 @@ header {
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease, opacity 0.2s ease;
-}
-
-.action-btn.approve {
-    background-color: #28a745; /* Green */
-}
-
-.action-btn.reject {
+  }
+  
+  .action-btn.reject {
     background-color: #dc3545; /* Red */
-}
-
-.action-btn:hover {
+  }
+  
+  .action-btn:hover {
     opacity: 0.9;
-}
-
+  }
+  
+/* Modal Styles */
+.confirmation-modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Black with opacity */
+    padding-top: 60px;
+  }
+  
+  .modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+  }
+  
+  .modal button {
+    margin: 10px;
+    padding: 8px 16px;
+    font-size: 16px;
+  }
+  
+  #confirm-retract {
+    background-color: #dc3545; /* Red for confirm */
+  }
+  
+  #cancel-retract {
+    background-color: #6c757d; /* Gray for cancel */
+  }
+  
 
 /* -------------------------------------------------------------------- */
 

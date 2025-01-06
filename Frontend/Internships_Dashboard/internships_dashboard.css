@@ -396,7 +396,7 @@ button:focus {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 15px;
+    margin-top: 10px;
 }
 
 #days-left {
@@ -405,6 +405,7 @@ button:focus {
 }
 
 .details-btn {
+    margin-left:250px;
     background-color: var(--secondary-color);;
     color: white;
     padding: 10px 20px;
@@ -418,6 +419,32 @@ button:focus {
     background-color: var(--secondary-color);
     transform: scale(1.1);
     transition: 0.3s ease-in-out;
+}
+
+
+/* Apply Button */
+.apply-now-btn {
+    text-decoration: none;
+    background-color: #00b3ff;
+    color: white;
+    padding:  10px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s, background-color 0.3s;
+    box-shadow: 0 5px 15px rgba(0, 179, 255, 0.3);
+}
+
+.apply-now-btn:hover {
+    background-color: #0094cc;
+    transform: scale(1.1);
+    transition: 0.3s ease-in-out;
+    box-shadow: 0 8px 25px rgba(0, 179, 255, 0.5);
+}
+
+.apply-now-btn:active {
+    background-color: #0082b3;
+    transform: translateY(0);
 }
 /* Modal Styles */
 .modal {
@@ -547,29 +574,7 @@ button:focus {
     margin-top: 20px;
 }
 
-/* Apply Button */
-.apply-btn {
-    background-color: #00b3ff;
-    color: white;
-    padding: 9px 18px;
-    border-radius: 30px;
-    border: none;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: transform 0.2s, background-color 0.3s;
-    box-shadow: 0 5px 15px rgba(0, 179, 255, 0.3);
-}
 
-.apply-btn:hover {
-    background-color: #0094cc;
-    transform: translateY(-4px); /* Floating effect */
-    box-shadow: 0 8px 25px rgba(0, 179, 255, 0.5);
-}
-
-.apply-btn:active {
-    background-color: #0082b3;
-    transform: translateY(0);
-}
 
 /* Responsiveness */
 @media (max-width: 768px) {

@@ -70,6 +70,11 @@ document.addEventListener("click", (event) => {
     });
   }
 });
+
+
+
+
+
 // INTERNSHIP Functionalities
 // Dropdown toggle functionality( IN INTERNSHIPs tab)
 document.querySelectorAll(".dropdown-toggle").forEach((toggle) => {
@@ -198,51 +203,255 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+
+//-----------------------------------------------------------------------------------
+// Timeline
+document.addEventListener("DOMContentLoaded", () => {
+  fetch("../../../Backend/Candidate_Dashboard/view_application_status.php")
+    .then((response) => response.json())
+    .then((data) => {
+      const container = document.querySelector("#post-internship-form");
+      if (Array.isArray(data) && data.length > 0) {
+        // Populate the timeline if there are applications
+        populateTimeline(data);
+      } else {
+        // Show "Apply for an internship" message if no applications exist
+        container.innerHTML = `
+          <div class="no-applications">
+            <h3>Apply for an internship to show the timeline.</h3>
+            <p>Visit the <a href="../../Internships_Dashboard/internships_dashboard.php">Internships Page</a> to apply now!</p>
+          </div>
+        `;
+      }
+    })
+    .catch((error) => {
+      console.error("Error fetching applications:", error);
+      const container = document.querySelector("#post-internship-form");
+      container.innerHTML = `
+        <div class="error-message">
+          <h3>Something went wrong.</h3>
+          <p>Unable to load applications. Please try again later.</p>
+        </div>
+      `;
+    });
+});
+
+function populateTimeline(applications) {
+  const container = document.querySelector("#post-internship-form");
+  container.innerHTML = ''; // Clear existing content
+
+  applications.forEach((application) => {
+    const card = document.createElement("div");
+    card.classList.add("card");
+
+    // Card header with company details
+    const cardHeader = document.createElement("div");
+    cardHeader.classList.add("card-header");
+    cardHeader.onclick = () => toggleCard(cardHeader);
+
+    // Company Info Section
+    const companyInfo = document.createElement("div");
+    companyInfo.classList.add("company-info");
+
+    const companyDetails = document.createElement("div");
+    companyDetails.classList.add("company-details");
+    companyDetails.innerHTML = `
+      <div class="company-text">
+        <h4 class="internship-name">${application.internship_title}</h4>
+        <p class="company-name">${application.company_name}</p>
+        <p class="deadline">Deadline: <span>${calculateDeadline(application.deadline, application.application_date)} days remaining</span></p>
+      </div>
+    `;
+
+    companyInfo.appendChild(companyDetails);
+    cardHeader.appendChild(companyInfo);
+
+    // Set the background color of the card header based on the latest timeline status
+    const latestStatusColor = getTimelineStatusColor(application.status);
+    cardHeader.style.backgroundColor = latestStatusColor; // Apply color
+
+    card.appendChild(cardHeader);
+
+    // Card body with application timeline
+    const cardBody = document.createElement("div");
+    cardBody.classList.add("card-body");
+
+    const timeline = document.createElement("div");
+    timeline.classList.add("timeline");
+
+    // Format the applied date
+    const appliedDate = new Date(application.application_date);
+    const formattedDate = appliedDate.toISOString().split('T')[0];
+
+    let statusContent = '';
+
+    // Timeline steps based on the status
+    if (application.status === 'under review') {
+      statusContent = `
+        <div class="timeline-step completed">
+          <div class="timeline-icon completed"></div>
+          <div class="timeline-content">
+            <h3>Application Submitted</h3>
+            <p>Status: <span class="complete-status">Complete</span></p>
+            <div class="date-status">
+              <span class="status-left">Application Submitted</span>
+              <span class="status-right">Applied Date: <span class="applied-date">${formattedDate}</span></span>
+            </div>
+          </div>
+        </div>
+        <div class="timeline-step ongoing">
+          <div class="timeline-icon ongoing"></div>
+          <div class="timeline-content">
+            <h3>Under Review</h3>
+            <p>Status: <span class="ongoing-status">Ongoing</span></p>
+          </div>
+        </div>
+      `;
+    } else if (application.status === 'short-listed') {
+      statusContent = `
+        <div class="timeline-step completed">
+          <div class="timeline-icon completed"></div>
+          <div class="timeline-content">
+            <h3>Application Submitted</h3>
+            <p>Status: <span class="complete-status">Complete</span></p>
+            <div class="date-status">
+              <span class="status-left">Application Submitted</span>
+              <span class="status-right">Applied Date: <span class="applied-date">${formattedDate}</span></span>
+            </div>
+          </div>
+        </div>
+        <div class="timeline-step completed">
+          <div class="timeline-icon completed"></div>
+          <div class="timeline-content">
+            <h3>Under Review</h3>
+            <p>Status: <span class="completed-status">Completed</span></p>
+          </div>
+        </div>
+        <div class="timeline-step shortlisted">
+          <div class="timeline-icon shortlisted"></div>
+          <div class="timeline-content">
+            <h3>Selected</h3>
+            <p>Status: <span class="shortlisted-status">Shortlisted</span></p>
+            <p class="contact-email">Contact: <a href="mailto:tryaac1ss@gmail.com">tryaac1ss@gmail.com</a> for further information.</p>
+          </div>
+        </div>
+      `;
+    } else if (application.status === 'rejected') {
+      statusContent = `
+        <div class="timeline-step completed">
+          <div class="timeline-icon completed"></div>
+          <div class="timeline-content">
+            <h3>Application Submitted</h3>
+            <p>Status: <span class="complete-status">Complete</span></p>
+            <div class="date-status">
+              <span class="status-left">Application Submitted</span>
+              <span class="status-right">Applied Date: <span class="applied-date">${formattedDate}</span></span>
+            </div>
+          </div>
+        </div>
+        <div class="timeline-step completed">
+          <div class="timeline-icon completed"></div>
+          <div class="timeline-content">
+            <h3>Under Review</h3>
+            <p>Status: <span class="completed-status">Completed</span></p>
+          </div>
+        </div>
+        <div class="timeline-step rejected">
+          <div class="timeline-icon rejected"></div>
+          <div class="timeline-content">
+            <h3>Rejected</h3>
+            <p>Status: <span class="rejected-status">Keep Pushing Forward</span></p>
+          </div>
+        </div>
+      `;
+    }
+
+    timeline.innerHTML = statusContent;
+    cardBody.appendChild(timeline);
+    card.appendChild(cardBody);
+    container.appendChild(card);
+  });
+}
+
+function toggleCard(cardHeader) {
+  const cardBody = cardHeader.nextElementSibling;
+  cardBody.style.display = cardBody.style.display === "none" ? "block" : "none";
+}
+
+// Function to calculate the remaining days
+function calculateDeadline(deadline, createdAt) {
+  const deadlineDate = new Date(deadline);
+  const createdAtDate = new Date(createdAt);
+  const timeRemaining = deadlineDate - createdAtDate;
+  const daysRemaining = Math.floor(timeRemaining / (1000 * 3600 * 24)); // Convert ms to days
+  return daysRemaining;
+}
+
+  // Function to determine the color of the latest status
+function getTimelineStatusColor(status) {
+  switch (status) {
+    case 'under review':
+      return '#ffe0b2'; // Orange for under review
+    case 'short-listed':
+      return '#d2ffd2'; // Green for shortlisted
+    case 'rejected':
+      return '#ffcccb'; // Red for rejected
+    default:
+      return '#c8e6ff'; // Blue as the default color
+  }
+}
+
+
 //-----------------------------------------------------------------------------------
 // View-Status
 document.addEventListener("DOMContentLoaded", () => {
-  fetch("../../../Backend/Recruiter_DashBoard/View-Status.php")  // Correct path as necessary
-    .then((response) => response.text()) // Get response as text
+  fetch("../../../Backend/Candidate_Dashboard/view_application_status.php")
+    .then((response) => response.json())
     .then((data) => {
-      console.log("Raw response:", data);  // Log the raw response from the PHP script
-      try {
-        const jsonData = JSON.parse(data);  // Try to parse it as JSON
-        if (jsonData.error) {
-          console.error(jsonData.error);  // Handle JSON error
-          return;
-        }
-        populateInternships("#internships tbody", jsonData);  // Populate the table
-      } catch (e) {
-        console.error("Error parsing JSON:", e);  // Log any parsing errors
+      if (Array.isArray(data)) {
+        populateApplications("#internship-list", data);
+      } else {
+        console.error("Error fetching applications:", data.error);
       }
     })
-    .catch((error) => console.error("Error fetching internships:", error));
+    .catch((error) => console.error("Error fetching applications:", error));
 });
 
-function populateInternships(tableSelector, internships) {
+function populateApplications(tableSelector, applications) {
   const tableBody = document.querySelector(tableSelector);
-  tableBody.innerHTML = ''; // Clear any existing data
+  tableBody.innerHTML = ''; // Clear existing content
 
-  internships.forEach((internship) => {
+  applications.forEach((application) => {
     const row = document.createElement("tr");
 
-    // Determine the status class based on the status
-    const statusClass = internship.status === 'on' ? 'status-on' : 'status-off';
+  
 
-    // Add internship details to the row
+    // Determine the color based on the status
+    let statusStyle = "";
+    switch (application.status.toLowerCase()) {
+      case "under review":
+        statusStyle = "background:rgb(255, 202, 41) ; box-shadow: 0 4px 8px rgba(255, 152, 0, 0.3);";
+        break;
+      case "short-listed":
+        statusStyle = "background:rgb(32, 211, 76); color: #fff; box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);";
+        break;
+      case "rejected":
+        statusStyle = "background:rgb(255, 31, 50); color: #fff; box-shadow: 0 4px 8px rgba(211, 47, 47, 0.3);";
+        break;
+      default:
+        statusStyle = "background:rgb(218, 151, 255) ; color: #fff; box-shadow: 0 4px 8px rgba(117, 117, 117, 0.3);";
+    }
+
     row.innerHTML = `
-      <td>${internship.internship_id}</td>
-      <td>${internship.internship_title}</td>
-      <td>${internship.created_at}</td>
-      <td>${internship.deadline}</td>
-      <td>${internship.deadline}</td>
-      <td>${internship.duration} months</td>
-       <td class="status ${statusClass}">${internship.status}</td>
-      <td class="action-buttons">
-        <button class="extend-btn" onclick="extendDeadline(${internship.internship_id})">Extend Deadline</button>
-        <button class="end-btn" onclick="endPosting(${internship.internship_id})">End Posting</button>
-      </td>
-     
+      <td>${application.internship_id}</td>
+      <td>${application.company_name}</td>
+      <td>${application.internship_title}</td>
+      <td>${application.created_at}</td>
+      <td>${application.remaining_days} days</td> <!-- Display Remaining Days -->
+      <td>${application.application_date}</td>
+      <td style="padding: 8px 15px; border-radius: 12px; font-weight: bold; ${statusStyle}">
+        ${application.status}
+      </td> <!-- Display Status with Gradient and Shadow -->
     `;
 
     tableBody.appendChild(row);
@@ -250,64 +459,69 @@ function populateInternships(tableSelector, internships) {
 }
 
 
-
-// Extend Deadline function
-function extendDeadline(internshipId) {
-  const newDeadline = prompt("Enter new deadline (YYYY-MM-DD):");
-
-  if (newDeadline) {
-    // Send POST request to extend the deadline
-    fetch("../../../Backend/Recruiter_DashBoard/View-Status.php", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body: `action=extend_deadline&internship_id=${internshipId}&new_deadline=${newDeadline}`,
-    })
+//-----------------------------------------------------------------------------------
+// Manage Application
+document.addEventListener("DOMContentLoaded", () => {
+  fetch("../../../Backend/Candidate_Dashboard/view_application_status.php")
     .then((response) => response.json())
     .then((data) => {
-      if (data.success) {
-        alert(data.message);
-        location.reload(); // Reload the page to reflect the changes
-      } else {
-        alert(data.error);
-      }
+      populateTable(data);
     })
-    .catch((error) => {
-      console.error("Error extending deadline:", error);
-      alert("Error extending deadline.");
-    });
+    .catch((error) => console.error("Error fetching applications:", error));
+});
+
+function populateTable(applications) {
+  const tableBody = document.querySelector("#applicant-table-body");
+
+  applications.forEach((application) => {
+    const row = document.createElement("tr");
+
+    row.innerHTML = `
+      <td>${application.application_id}</td>
+      <td>${application.company_name}</td>
+      <td>${application.internship_title}</td>
+      <td>${application.status}</td>
+      <td>
+        <button class="action-btn reject" onclick="confirmRetract('${application.application_id}')">Retract</button>
+      </td>
+    `;
+
+    tableBody.appendChild(row);
+  });
+}
+
+function confirmRetract(applicationId) {
+  // Redirect to the retract_application.php with the application_id as a URL parameter
+  const confirmAction = confirm("Are you sure you want to retract this application?");
+  if (confirmAction) {
+    window.location.href = `../../../Backend/Candidate_Dashboard/retract_application.php?application_id=${applicationId}`;
   }
 }
 
-// End Posting function
-function endPosting(internshipId) {
-  if (confirm("Are you sure you want to end this posting?")) {
-    // Send POST request to end the posting
-    fetch("../../../Backend/Recruiter_DashBoard/View-Status.php", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body: `action=end_posting&internship_id=${internshipId}`,
-    })
-    .then((response) => response.json())
-    .then((data) => {
-      if (data.success) {
-        alert(data.message);
-        location.reload(); // Reload the page to reflect the changes
-      } else {
-        alert(data.error);
-      }
-    })
-    .catch((error) => {
-      console.error("Error ending posting:", error);
-      alert("Error ending posting.");
-    });
+window.onload = function() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const message = urlParams.get('message');
+  const error = urlParams.get('error');
+
+  if (message) {
+      alert(message);  // Show success message as an alert
+  } 
+  if (error) {
+      alert(error);  // Show error message as an alert
   }
-}
+
+  // Clear the URL query parameters after showing the alert
+  if (message || error) {
+      history.replaceState(null, '', window.location.pathname);
+  }
+};
 
 
+
+
+
+
+//-----------------------------------------------------------------------------------
 // MEMBERSHIP
 // Popup functionality for membership plans
 function showPaymentPopup(planName, planPrice) {
