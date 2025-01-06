@@ -20,18 +20,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         mysqli_stmt_bind_param($stmt, 's', $email);
         mysqli_stmt_execute($stmt);
         mysqli_stmt_bind_result($stmt, $c_id, $hashed_password);
-        mysqli_stmt_fetch($stmt);
 
-        if (password_verify($password, $hashed_password)) {
-            // Store both c_id and email in the session
-            $_SESSION['c_id'] = $c_id;
-            $_SESSION['email'] = $email;
+        // Check if a row was fetched
+        if (mysqli_stmt_fetch($stmt)) {
+            if (password_verify($password, $hashed_password)) {
+                // Store both c_id and email in the session
+                $_SESSION['c_id'] = $c_id;
+                $_SESSION['email'] = $email;
 
-            // Redirect to the candidate dashboard
-            header("Location: ../../Frontend/DashBoard/Candidate/candidate_dashboard.php");
-            exit;
+                // Redirect to the candidate dashboard
+                header("Location: ../../Frontend/DashBoard/Candidate/candidate_dashboard.php");
+                exit;
+            } else {
+                $message = "Error: Invalid email or password.";
+            }
         } else {
-            $message = "Error: Invalid email or password.";
+            $message = "Error: Email not found.";
         }
 
         mysqli_stmt_close($stmt);
@@ -57,6 +61,6 @@ mysqli_close($conn);
         <p><?php echo htmlspecialchars($message); ?></p>
     <?php endif; ?>
 
-    <a href="candidate_login.html">Back to Login</a>
+    <a href="../../Frontend/Login/Sub_Logins/candidate_login.html">Back to Login</a>
 </body>
 </html>
