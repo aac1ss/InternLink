@@ -31,7 +31,7 @@ if (!$candidate) {
 
 $c_id = $candidate['c_id'];
 
-$sql = "SELECT ia.application_id,ia.internship_id, ia.company_name, ia.internship_title, ia.application_date, ia.status, 
+$sql = "SELECT ia.application_id, ia.internship_id, ia.company_name, ia.internship_title, ia.application_date, ia.status, 
                pfd.deadline, pfd.created_at 
         FROM internship_applications ia
         JOIN post_internship_form_detail pfd ON ia.internship_id = pfd.internship_id
@@ -54,8 +54,14 @@ while ($row = mysqli_fetch_assoc($result)) {
     $deadline = strtotime($row['deadline']);
     $remaining_days = ceil(($deadline - time()) / (60 * 60 * 24)); // Days from now to the deadline
 
-    // Add the application data and remaining days to the response
-    $row['remaining_days'] = $remaining_days;
+    // Check if the deadline has passed
+    if ($remaining_days <= 0) {
+        $row['remaining_days'] = "Expired";
+    } else {
+        $row['remaining_days'] = $remaining_days;
+    }
+
+    // Add the application data to the response
     $applications[] = $row;
 }
 
