@@ -259,7 +259,7 @@ if ($recruiter) {
 
 
           <!-- Post Internships -->
-          <section id="post-internship-form" class="post-internship-container section">
+<section id="post-internship-form" class="post-internship-container section">
             <div>
               <h1>Post an Internship</h1>
               <form action="../../../Backend/Recruiter_DashBoard/Post_Internship.php" method="post" class="internship-post-form">
@@ -340,7 +340,7 @@ if ($recruiter) {
           </section>
           
           <!-- View Status -->
-          <section id="internships" class="section">
+  <section id="internships" class="section">
     <div class="content">
         <h2>Your Posted Internships</h2>
         <table class="internship-table">
@@ -363,11 +363,8 @@ if ($recruiter) {
     </div>
 </section>
 
-
-
-
           <!-- Setting Section -->
-              <section id="setting" class="section">
+  <section id="setting" class="section">
               <div class="content">
                 <h2>Settings</h2>
                 <form class="settings-form">
@@ -390,10 +387,10 @@ if ($recruiter) {
                   <button type="submit" class="send-btn">Save Changes</button>
                 </form>
               </div>
-            </section>
+  </section>
         
           <!-- Manage Applicants Section -->
-            <section id="manage-applicants" class="section">
+  <section id="manage-applicants" class="section">
               <div class="content">
                 <h2>Manage Applicants</h2>
                 <table class="applicants-table">
@@ -402,25 +399,17 @@ if ($recruiter) {
                       <th>Applicant Name</th>
                       <th>Position Applied</th>
                       <th>Status</th>
+                      <th>View Profile</th>
                       <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td>John Doe</td>
-                      <td>Software Intern</td>
-                      <td>Under Review</td>
-                      <td>
-                        <button class="action-btn approve">Approve</button>
-                        <button class="action-btn reject">Reject</button>
-                      </td>
-                    </tr>
-                    <tr>
                       <td>Jane Smith</td>
                       <td>Data Analyst Intern</td>
                       <td>Interview Scheduled</td>
                       <td>
-                        <button class="action-btn approve">Approve</button>
+                        <button class="action-btn approve">Short List</button>
                         <button class="action-btn reject">Reject</button>
                       </td>
                     </tr>
@@ -428,7 +417,7 @@ if ($recruiter) {
                   </tbody>
                 </table>
               </div>
-            </section>
+  </section>
 
           <!-- Memebership -->
             <section id="membership" class="section">
@@ -506,10 +495,6 @@ if ($recruiter) {
            </form>
           </div>
     </section>
-
-
-
-
       </main>
     </div>
 

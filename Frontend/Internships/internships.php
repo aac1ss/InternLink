@@ -10,30 +10,27 @@ include '../../Backend/dbconfig.php';
 $email = $_SESSION['email']; // Assuming email is stored in session
 
 // Query to fetch the candidate details, including the profile picture
-$query = "SELECT c_id, profile_picture FROM candidate_profiles WHERE email = ?";
+$query = "SELECT c_id, full_name, profile_picture FROM candidate_profiles WHERE email = ?";
 $stmt = mysqli_prepare($conn, $query);
 mysqli_stmt_bind_param($stmt, "s", $email);
 mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
 $candidate = mysqli_fetch_assoc($result);
 
-// Check if the candidate's details exist
 if ($candidate) {
     $c_id = $candidate['c_id'];
-    // Use the profile picture from the database or a default if not found
-    $profile_picture = $candidate['profile_picture'] ? '../../Backend/uploads/' . $candidate['profile_picture'] : '../../images/default-profile.png';
+    $full_name = $candidate['full_name'] ?? 'Candidate'; // Fallback to 'Candidate' if no name
+    if (!empty($candidate['profile_picture'])) {
+        $profile_picture = '../../Backend/uploads/' . $candidate['profile_picture'];
+    } else {
+        $profile_picture = '../../images/default-profile.png';
+    }
 } else {
-    // Set a default profile picture if no profile found
+    $c_id = 'Unknown';
+    $full_name = 'Guest User';
     $profile_picture = '../../images/default-profile.png';
 }
 
-// Fetch all internships from the database
-$sql = "SELECT * FROM post_internship_form_detail ORDER BY internship_id DESC";
-$result = mysqli_query($conn, $sql);
-
-if (!$result) {
-    die("SQL Error: " . mysqli_error($conn)); // Handle SQL errors
-}
 ?>
 
 
@@ -135,20 +132,21 @@ if (!$result) {
             <?php while ($row = mysqli_fetch_assoc($result)): ?> 
                <?php
     // Fetch the company logo from the company_profile table
-    $company_name = $row['company_name']; // Get the company name
-    $sql_logo = "SELECT company_logo FROM company_profile WHERE company_name = '$company_name'"; // New SQL query
-    $result_logo = mysqli_query($conn, $sql_logo);
-    $company_logo = '';
+$r_id = $row['r_id']; // Get r_id from the internship row
+$internship_id= $row['internship_id'];
+$sql_logo = "SELECT company_logo FROM company_profile WHERE r_id = '$r_id'"; // Query based on r_id
+$result_logo = mysqli_query($conn, $sql_logo);
+$company_logo = '';
 
-    if ($result_logo && mysqli_num_rows($result_logo) > 0) {
-        $logo_row = mysqli_fetch_assoc($result_logo);
-        $company_logo = $logo_row['company_logo']; // Get the company logo file name
-    }
+if ($result_logo && mysqli_num_rows($result_logo) > 0) {
+    $logo_row = mysqli_fetch_assoc($result_logo);
+    $company_logo = $logo_row['company_logo']; // Get the company logo file name
+}
 
-    // Define the path to the uploads folder
-    $logo_path = '../../Backend/uploads/' . $company_logo; // Assuming the logo is saved in the 'uploads' folder
+// Define the path to the uploads folder for the company logo
+$logo_path = '../../Backend/uploads/' . $company_logo;
+
 ?>
-
                 <!-- Internship Card -->
               <div class="internship-card">
     <!-- Login Required Sticker (only visible if not logged in as a candidate) -->
@@ -268,7 +266,10 @@ if ($conn) {
 
         <!-- Modal Footer with Apply Button -->
         <div class="modal-footer">
-            <button class="apply-btn">Apply Now</button>
+            <a href="../Login/Sub_Logins/candidate_login.html">
+                <button class="apply-btn">Apply Now</button>
+            </a> 
+    
         </div>
     </div>
 </div>
