@@ -139,69 +139,183 @@ function updateTimeline(statuses) {
 const exampleStatuses = ["pending", "completed", "rejected"];
 updateTimeline(exampleStatuses);
 
+//-----------------------------------------------------------------------------------
+// Notification
+document.addEventListener("DOMContentLoaded", () => {
+  // Toggle notifications visibility
+  const toggleButton = document.querySelector("#toggle-notifications");
+  const notificationContent = document.querySelector("#notification-content");
+  
+  toggleButton.addEventListener("click", () => {
+    notificationContent.classList.toggle("visible");
+  });
+
+  // Fetch notifications
+  fetchNotifications();
+
+  function fetchNotifications() {
+    fetch("../../../Backend/Candidate_Dashboard/view_application_status.php")
+      .then((response) => response.json())
+      .then((data) => {
+        const notificationsList = document.querySelector("#notifications-list");
+        notificationsList.innerHTML = ''; // Clear existing notifications
+
+        // Update notification counter in the header
+        updateNotificationCounter(data.length); // Set the notification count
+
+        if (Array.isArray(data) && data.length > 0) {
+          // Sort notifications by applied_date (most recent first)
+          data.sort((a, b) => new Date(b.applied_date) - new Date(a.applied_date));
+
+          data.forEach((application) => {
+            let message = '';
+            let statusClass = '';
+            let icon = '🔔'; // Default icon
+
+            // Determine the status and message
+            if (application.status === 'short-listed') {
+              message = `You have been shortlisted for ${application.internship_title}.`;
+              statusClass = 'success';
+              icon = '✅';
+            } else if (application.status === 'rejected') {
+              message = `You have been rejected for ${application.internship_title}.`;
+              statusClass = 'error';
+              icon = '❌';
+            } else if (application.status === 'under review') {
+              message = `Your application for ${application.internship_title} is under review.`;
+              statusClass = 'info';
+              icon = '⏳';
+            }
+
+            const listItem = document.createElement("li");
+            listItem.classList.add(statusClass);
+
+            // Add notification content
+            listItem.innerHTML = `
+              <span class="icon">${icon}</span>
+              <span class="notification-text">${message}</span>
+              <span class="notification-time">Just now</span>
+            `;
+            notificationsList.appendChild(listItem);
+          });
+        } else {
+          const noNotifications = document.createElement("li");
+          noNotifications.textContent = "No new notifications.";
+          notificationsList.appendChild(noNotifications);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching notifications:", error);
+        const notificationsList = document.querySelector("#notifications-list");
+        notificationsList.innerHTML = `<li>Error loading notifications. Please try again later.</li>`;
+
+        // If an error occurs, set the notification count to 0
+        updateNotificationCounter(0);
+      });
+  }
+
+  // Update the notification counter in the header
+  function updateNotificationCounter(count) {
+    const notificationCounter = document.querySelector("#notification-counter");
+    if (notificationCounter) {
+      // If there are notifications, display the count; otherwise, hide the counter
+      notificationCounter.textContent = count > 0 ? count : '';
+    }
+  }
+});
+
+
+
+
 
 //-----------------------------------------------------------------------------------
 //Edit-Profile
 document.addEventListener('DOMContentLoaded', () => {
-  // Check if the URL contains a success parameter
-  const urlParams = new URLSearchParams(window.location.search);
-  const status = urlParams.get('status');
-
-  if (status === 'success') {
-    // Show success pop-up
-    alert("Profile saved successfully!");
-
-    // Redirect to the dashboard after 1 second
-    setTimeout(() => {
-      window.location.href = "/InternLink/Frontend/DashBoard/Candidate/candidate_dashboard.php";  // Redirect to the dashboard
-    }, 1000);  // 1 second delay before redirect
-  }
-
-  const editBtn = document.getElementById("edit-profile-btn");
   const form = document.getElementById("company-profile-form");
   const inputs = form.querySelectorAll("input, textarea, select");
   const saveBtn = form.querySelector(".btn");
 
-  // Initially disable fields if profile exists
-  if (editBtn) {
-      toggleFormState(false);
-  }
+  // Add dynamic validation to each input field
+  inputs.forEach((field) => {
+    field.addEventListener("input", () => {
+      const value = field.value.trim();
 
-  // Handle "Edit Profile" button click
-  if (editBtn) {
-      editBtn.addEventListener("click", () => {
-          toggleFormState(true); // Enable fields
-          editBtn.style.display = "none"; // Hide "Edit Profile" button
-      });
-  }
+      // Reset field styles
+      field.classList.remove("invalid", "valid");
 
-  // Smooth transitions for enabling/disabling form
-  function toggleFormState(isEditable) {
-      inputs.forEach((input) => {
-          input.disabled = !isEditable;
-          input.style.transition = "background-color 0.3s ease, border 0.3s ease";
-      });
-  }
-
-  // Client-side validation feedback
-  saveBtn.addEventListener("click", (event) => {
-      const requiredFields = form.querySelectorAll("input[required], textarea[required]");
-      let isValid = true;
-
-      requiredFields.forEach((field) => {
-          if (!field.value.trim()) {
-              isValid = false;
-              field.style.border = "2px solid red";
-              setTimeout(() => (field.style.border = ""), 2000);
-          }
-      });
-
-      if (!isValid) {
-          event.preventDefault(); // Prevent form submission if validation fails
-          alert("Please fill out all required fields.");
+      if (field.name === "full_name" && !validateString(value)) {
+        showValidationError(field, "Full Name must contain only letters");
+      } else if (field.name === "phone" && !validatePhone(value)) {
+        showValidationError(field, "Phone number must be exactly 10 digits");
+      } else if (field.name === "dob" && !validateDOB(value)) {
+        showValidationError(field, "You must be at least 10 years old");
+      } else if (field.name === "email" && !validateEmail(value)) {
+        showValidationError(field, "Please enter a valid email address");
+      } else {
+        // If valid, mark the field as valid
+        field.classList.add("valid");
+        field.setAttribute("title", ""); // Clear tooltip
       }
+    });
   });
+
+  // Handle form submission
+  saveBtn.addEventListener("click", (event) => {
+    event.preventDefault(); // Prevent default form submission
+
+    const requiredFields = form.querySelectorAll("input[required], textarea[required]");
+    let isValid = true;
+
+    // Check all required fields
+    requiredFields.forEach((field) => {
+      if (!field.value.trim()) {
+        isValid = false;
+        showValidationError(field, "This field is required");
+      }
+    });
+
+    // If all fields are valid, show success message
+    if (isValid) {
+      alert("Profile updated successfully!");
+      form.submit(); // Submit the form if all validations pass
+    } else {
+      alert("Please fix the highlighted errors before submitting.");
+    }
+  });
+
+  // Validation helper functions
+  function showValidationError(field, message) {
+    field.classList.add("invalid");
+    field.setAttribute("title", message); // Tooltip for error explanation
+  }
+
+  function validateString(value) {
+    const stringRegex = /^[a-zA-Z\s]+$/; // Only letters and spaces
+    return stringRegex.test(value);
+  }
+
+  function validatePhone(phone) {
+    const phoneRegex = /^\d{10}$/; // Exactly 10 digits
+    return phoneRegex.test(phone);
+  }
+
+  function validateDOB(dob) {
+    const today = new Date();
+    const birthDate = new Date(dob);
+    const age = today.getFullYear() - birthDate.getFullYear();
+    const monthDiff = today.getMonth() - birthDate.getMonth();
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    return age >= 10; // Must be at least 10 years old
+  }
+
+  function validateEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
 });
+
 
 
 //-----------------------------------------------------------------------------------
@@ -540,3 +654,9 @@ document
     alert("Payment successful!");
     closePaymentPopup();
   });
+
+
+//-----------------------------------------------------------------------------------
+// Settings
+
+

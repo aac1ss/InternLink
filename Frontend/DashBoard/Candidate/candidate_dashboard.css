@@ -356,7 +356,7 @@ header {
     gap: 15px;
 }
 
-.recent-applications, .recent-details {
+.recent-applications  {
     flex: 1;
     background-color: #fff;
     border: 1px solid #ddd;
@@ -364,20 +364,143 @@ header {
     padding: 20px;
 }
 
-.recent-applications h3, .recent-details h3 {
+.recent-applications h3 {
     margin-bottom: 10px;
     font-size: 28px;
     color: #333;
 }
 
-.recent-applications p, .recent-details ul {
+.recent-applications p {
     font-size: 14px;
     color: #555;
 }
 
-.recent-details ul {
-    list-style: none;
+/* Notification Section */
+.recent-details {
+  position: relative;
+  max-width: 400px;
+  margin: 20px auto;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 }
+
+.notification-header {
+  width: 100%;
+  padding: 15px 20px;
+  background-color: #f4f4f4;
+  color: #333;
+  border: none;
+  font-size: 1.2rem;
+  text-align: left;
+  cursor: pointer;
+  font-weight: bold;
+  border-bottom: 1px solid #ddd;
+  outline: none;
+  transition: background 0.3s ease;
+}
+
+.notification-header:hover {
+  background-color: #eaeaea;
+}
+
+.notification-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+}
+
+.notification-content.visible {
+  max-height: 300px; /* Fixed size for the dropdown */
+}
+.notification-icon {
+  position: relative;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.notification-counter {
+  position: absolute;
+  top: 7px;
+  right: 4px;
+  background-color: #dc3545;
+  color: #f9c23c;
+  font-size: 0.6rem;
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 2px 5px;
+  display: inline-block;
+}
+
+#notifications-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 250px; /* Scrollable height */
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #ccc transparent;
+}
+
+#notifications-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+#notifications-list::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 10px;
+}
+
+#notifications-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 15px;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 0.95rem;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+#notifications-list li:hover {
+  background-color: #f9f9f9;
+  transform: translateX(5px);
+}
+
+#notifications-list li .icon {
+  font-size: 1.2rem;
+  color: #007bff;
+  margin-right: 10px;
+}
+
+#notifications-list li .notification-text {
+  flex-grow: 1;
+  color: #555;
+}
+
+#notifications-list li.success .icon {
+  color: #28a745;
+}
+
+#notifications-list li.warning .icon {
+  color: #ffc107;
+}
+
+#notifications-list li.error .icon {
+  color: #dc3545;
+}
+
+#notifications-list li.info .icon {
+  color: #17a2b8;
+}
+
+#notifications-list li span.notification-time {
+  font-size: 0.8rem;
+  color: #aaa;
+  margin-left: 10px;
+  font-style: italic;
+}
+
 
 
 /* -------------------------------------------------------------------- */
@@ -489,6 +612,44 @@ header {
         border-radius: 10px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
+/* Styling for invalid fields */
+input.invalid,
+textarea.invalid,
+select.invalid {
+  border: 2px solid rgb(249, 0, 0);
+  background-color: #ff8b8b;
+}
+
+input.invalid::placeholder,
+textarea.invalid::placeholder {
+  color: red;
+  font-weight: 400;
+}
+
+/* Styling for valid and filled fields */
+input.valid,
+textarea.valid,
+select.valid {
+  background-color: #6ed1ff; /* Light blue tint */
+  border: 2px solid #007bff; /* Blue border for valid fields */
+  transition: background-color 0.3s ease, border 0.3s ease;
+}
+
+/* Tooltip styling */
+input.invalid:hover::after,
+textarea.invalid:hover::after,
+select.invalid:hover::after {
+  content: attr(title);
+  position: absolute;
+  background: #ffcccb;
+  color: #000;
+  padding: 5px;
+  border-radius: 4px;
+  white-space: nowrap;
+  transform: translateY(-100%);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
 
 
 /* -------------------------------------------------------------------- */
@@ -1178,25 +1339,28 @@ header {
         resize: vertical;
         height: 150px; 
     }
-    .contact-admin-form #send-btn {
-        display: block;
-        width: 80%;
-        margin: 0 auto;
-        padding: 1rem;
-        background-color: #007bff;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        font-size: 1.2rem;
-        font-weight: bold;
-        text-align: center;
-        cursor: pointer;
-        transition: background-color 0.3s;
+  
+
+    .send-btn{
+      display: block;
+      width: 39%;
+      margin-left: 57px;
+      padding: 1rem;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-align: center;
+      cursor: pointer;
+      transition: background-color 0.3s;
     }
     
-    .contact-admin-form #send-btn:hover {
+    .send-btn:hover {
         background-color: #0056b3;
     }
+
     
     /* Add shadow and center the form */
     .contact-admin-form {

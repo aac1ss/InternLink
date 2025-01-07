@@ -122,7 +122,9 @@ if ($candidate) {
       <div class="top-bar">
           <h1>Hey there, <?php echo htmlspecialchars($email); ?>!</h1>
           <div class="user-profile">
-              <span class="notification-icon">🔔</span>
+              <span class="notification-icon">
+                🔔 <span id="notification-counter" class="notification-counter"></span>
+              </span>
               <span class="user-name"><?php echo htmlspecialchars($email); ?></span> <!-- Displaying Email -->
           </div>
 </div>
@@ -216,15 +218,18 @@ if ($result->num_rows > 0) {
     echo '<p>No recent applications</p>';
 }
 ?>
-
 </div>
 <div class="recent-details">
-                    <h3>Recent Activities</h3>
-                    <ul>
-                        <li>Account Verified - 1 month ago</li>
-                        <li>New Account Created - 1 month ago</li>
-                    </ul>
-                </div>
+  <button id="toggle-notifications" class="notification-header">
+    Notifications
+  </button>
+  <div id="notification-content" class="notification-content hidden">
+    <ul id="notifications-list">
+      <!-- Notifications will be dynamically added here -->
+    </ul>
+  </div>
+</div>
+
             </section>
           </div>
       </section>
@@ -246,11 +251,11 @@ if ($result->num_rows > 0) {
             </div>
             <div class="form-group">
                 <label>Phone Number <span class="required">*</span></label>
-                <input type="tel" name="phone_number" placeholder="e.g., (977) 9869696969" required />
+                <input type="tel" name="phone_number" pattern="[0-9]{10}" placeholder="e.g., (977) 9869696969" required />
             </div>
             <div class="form-group">
                 <label>Date of Birth <span class="required">*</span></label>
-                <input type="date" name="date_of_birth" required />
+                <input type="date" name="date_of_birth" max="2015-12-31" required />
             </div>
             <div class="form-group">
                 <label>Address <span class="required">*</span></label>
@@ -464,29 +469,28 @@ if ($result->num_rows > 0) {
 
    <!-- Setting Section -->
    <section id="setting" class="section">
-              <div class="content">
-                <h2>Settings</h2>
-                <form class="settings-form">
-                  <div class="form-group">
-                    <label>Account Email</label>
-                    <input type="email" placeholder="Enter your email" required />
-                  </div>
-                  <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" placeholder="Enter new password" />
-                  </div>
-                  <div class="form-group">
-                    <label>Notification Preferences</label>
-                    <select>
-                      <option>Email Notifications</option>
-                      <option>SMS Notifications</option>
-                      <option>Push Notifications</option>
-                    </select>
-                  </div>
-                  <button type="submit" class="send-btn">Save Changes</button>
-                </form>
-              </div>
-            </section>
+  <div class="content">
+    <h2>Settings</h2>
+    <form class="settings-form" method="POST">
+      <div class="form-group">
+        <label>Account Email</label>
+        <input type="email" name="email" placeholder="Enter your email" value="<?php echo $_SESSION['email']; ?>" required />
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" name="password" placeholder="Enter new password" />
+      </div>
+      <div class="form-group">
+        <label>Notification Preferences</label>
+        <select name="notifications">
+          <option>Email Notifications</option>
+        </select>
+      </div>
+      <button type="submit" class="send-btn">Save Changes</button>
+    </form>
+  </div>
+</section>
+
 
           <!-- Contact Us [Admin] Section -->
 
@@ -512,7 +516,7 @@ if ($result->num_rows > 0) {
         <label for="admin-contact-email">Your Email*</label>
         <input type="email" id="admin-contact-email" placeholder="Enter your email" required />
          </div>
-          <button type="submit" id="send-btn">Send Message</button>
+          <button type="submit" class="send-btn">Send Message</button>
            </form>
           </div>
     </section>
