@@ -118,6 +118,15 @@ header {
     color: #00b3ff;
 }
 
+/* Highlighting valid and invalid fields */
+input.valid, textarea.valid {
+    border-color: blue;
+  }
+  
+  input.invalid, textarea.invalid {
+    border-color: red;
+  }
+
 /* Profile Picture Section */
 .recruiter-dashboard-actions {
     display: flex;
@@ -688,19 +697,97 @@ header {
     background-color: #5a6268; /* Darker gray */
 }
 
+/* -------------------------------------------------------------------------------------- */
 /* Manage Applicants Table */
+
+#manage-applicants {
+    padding: 20px;
+    background-color: #f7f7f7;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#manage-applicants h2 {
+    font-size: 1.8em;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+/* Dropdown Styles */
+.dropdown-container {
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.dropdown-title {
+    background-color: #d7e5ff;
+    padding: 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.view-profile-btn {
+    display: inline-block;
+    padding: 7px 12px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.view-profile-btn:hover {
+    background-color: #0056b3;
+}
+
+.dropdown-content a {
+    padding: 8px 15px;
+    text-decoration: none;
+    color: #d7e5ff;
+    border-radius: 5px;
+}
+.dropdown-title:hover {
+    background-color: #bbd3ff;
+}
+
+.dropdown-content {
+    display: none;
+    padding: 15px;
+    background-color: #fff;
+    animation: slideDown 0.3s ease forwards;
+}
+
+.dropdown-content.open {
+    display: block;
+}
+
+/* Table Styles */
 .applicants-table {
     width: 100%;
     border-collapse: collapse;
-    margin: 20px 0;
+    margin: 15px 0;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .applicants-table th,
 .applicants-table td {
-    padding: 15px;
+    padding: 12px;
     text-align: left;
-    border-bottom: 1px solid var(--hover-color-sidebar);
+    border: 1px solid var(--border-color)
 }
 
 .applicants-table th {
@@ -713,33 +800,140 @@ header {
     background-color: #f9f9f9;
 }
 
-.applicants-table tr:hover {
-    background-color: #f1f1f1;
-}
 
-/* Action Buttons in Manage Applicants */
+
+/* Action Buttons */
 .action-btn {
     padding: 8px 12px;
-    margin-right: 5px;
-    color: var(--text-color-white);
+    font-size: 0.9em;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s ease, opacity 0.2s ease;
+    transition: background-color 0.3s ease;
 }
 
 .action-btn.approve {
-    background-color: #28a745; /* Green */
+    background-color: #28a745;
+    display: inline-block;
+    padding: 7px 12px;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.action-btn.approve:hover {
+    background-color: #218838;
 }
 
 .action-btn.reject {
-    background-color: #dc3545; /* Red */
+    background-color: #dc3545;
+    display: inline-block;
+    padding: 7px 12px;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s ease;
 }
 
-.action-btn:hover {
-    opacity: 0.9;
+.action-btn.reject:hover {
+    background-color: #c82333;
 }
 
+/* Animation */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Action Buttons in Manage Applicants */
+/* Default styles for action buttons */
+.action-btn {
+    padding: 8px 16px;
+    border: 1px solid #ccc;
+    background-color: #4CAF50; /* Green for Shortlist */
+    color: white;
+    cursor: pointer;
+    margin-right: 10px;
+    font-size: 14px;
+    border-radius: 4px;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  .action-btn.reject {
+    background-color: #f44336; /* Red for Reject */
+  }
+  
+  /* Hover effect */
+  .action-btn:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+  }
+  
+  .action-btn.reject:hover {
+    background-color: #e53935;
+  }
+  
+  /* When a button is clicked */
+  .action-btn.locked {
+    cursor: not-allowed;
+    background-color: #bbb; /* Gray out the button */
+    color: #777;
+    border: 1px solid #aaa;
+    box-shadow: none;
+  }
+  
+  /* When a button is selected (highlighted) */
+  .action-btn.selected {
+    border: 2px solid #333;
+    background-color: #333;
+    color: white;
+    font-weight: bold;
+  }
+  
+  /* Disable the other button */
+  .action-btn.disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
+    pointer-events: none; /* Prevent interaction */
+  }
+  
+/* Tint the row based on status */
+tr.under-review {
+  background-color: #FFF9C4; /* Light yellow for Under Review */
+}
+
+tr.shortlisted {
+  background-color: #C8E6C9; /* Light green for Shortlisted */
+}
+
+tr.rejected {
+  background-color: #FFCDD2; /* Light red for Rejected */
+}
+/* Add this to your existing CSS */
+.locked {
+    background-color: #ccc; /* Gray out the button */
+    cursor: not-allowed; /* Change cursor to indicate the button is disabled */
+  }
+  
+  .action-btn:disabled {
+    background-color: #ddd; /* Light gray background when disabled */
+    cursor: not-allowed; /* Pointer cursor when disabled */
+  }
+  
 
 /* -------------------------------------------------------------------- */
 

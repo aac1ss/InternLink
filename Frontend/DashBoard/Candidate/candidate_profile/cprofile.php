@@ -1,5 +1,4 @@
 <?php
-
 include 'getcprofile.php'; // Include the script that fetches profile data
 ?>
 
@@ -12,11 +11,14 @@ include 'getcprofile.php'; // Include the script that fetches profile data
     <link rel="stylesheet" href="cprofile.css">
 </head>
 <body>
+    <!-- Back Button -->
+    <a href="http://localhost/InternLink/Frontend/DashBoard/Recruiter/recruiter_dashboard.php" class="back-btn">Back to Dashboard</a>
+
     <div class="profile-container">
         <!-- Header Section -->
         <header class="profile-header">
             <div class="profile-pic-container">
-                <img src="<?php echo $profile_picture; ?>" alt="Profile Picture" class="profile-pic">
+            <img src="../../../../Backend/uploads/<?php echo $candidate['profile_picture']; ?>" alt="Profile Picture"  width="150" height="150">
             </div>
             <div class="profile-details">
                 <h1 class="candidate-name"><?php echo $full_name; ?></h1>
@@ -60,7 +62,11 @@ include 'getcprofile.php'; // Include the script that fetches profile data
         <section class="resume-section">
             <button id="view-resume" class="resume-btn" onclick="toggleResume()">View Resume</button>
             <div id="resume-container" class="resume-container">
-                <iframe src="<?php echo $resume_file; ?>" width="100%" height="500px"></iframe>
+                <?php if ($resume_file != "No resume available."): ?>
+                    <iframe src="<?php echo $resume_file; ?>" width="100%" height="600px"></iframe>
+                <?php else: ?>
+                    <p>No resume available.</p>
+                <?php endif; ?>
             </div>
         </section>
     </div>

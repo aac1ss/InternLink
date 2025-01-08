@@ -1,5 +1,3 @@
-// cprofile.js
-
 // Toggle resume visibility
 function toggleResume() {
     const resumeContainer = document.getElementById('resume-container');

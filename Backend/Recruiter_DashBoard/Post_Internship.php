@@ -12,19 +12,19 @@ if (!isset($_SESSION['r_id'])) {
 
 $r_id = $_SESSION['r_id'];  // Get recruiter ID from session
 
-// Retrieve form data
-$internship_title = $_POST['internship_title'];
-$company_name = $_POST['company_name'];
-$location = $_POST['location'];
-$duration = $_POST['duration'];
-$type = $_POST['type'];
-$stipend_amount = isset($_POST['stipend_amount']) ? $_POST['stipend_amount'] : null; // Handle optional stipend amount
-$job_description = $_POST['job_description'];
-$responsibility = $_POST['responsibility'];
-$requirements = mysqli_real_escape_string($conn, $_POST['requirements']);
-$skills = $_POST['skills'];
-$perks = $_POST['perks'];
-$additional_info = $_POST['additional_info'];
+// Retrieve and sanitize form data
+$internship_title = isset($_POST['internship_title']) ? mysqli_real_escape_string($conn, $_POST['internship_title']) : '';
+$company_name = isset($_POST['company_name']) ? mysqli_real_escape_string($conn, $_POST['company_name']) : '';
+$location = isset($_POST['location']) ? mysqli_real_escape_string($conn, $_POST['location']) : '';
+$duration = isset($_POST['duration']) ? mysqli_real_escape_string($conn, $_POST['duration']) : '';
+$type = isset($_POST['type']) ? mysqli_real_escape_string($conn, $_POST['type']) : 'remote';  // Default to 'remote'
+$stipend_amount = isset($_POST['stipend_amount']) ? mysqli_real_escape_string($conn, $_POST['stipend_amount']) : null; // Handle optional stipend amount
+$job_description = isset($_POST['job_description']) ? mysqli_real_escape_string($conn, $_POST['job_description']) : '';
+$responsibility = isset($_POST['responsibility']) ? mysqli_real_escape_string($conn, $_POST['responsibility']) : '';
+$requirements = isset($_POST['requirements']) ? mysqli_real_escape_string($conn, $_POST['requirements']) : '';
+$skills = isset($_POST['skills']) ? mysqli_real_escape_string($conn, $_POST['skills']) : '';
+$perks = isset($_POST['perks']) ? mysqli_real_escape_string($conn, $_POST['perks']) : '';
+$additional_info = isset($_POST['additional_info']) ? mysqli_real_escape_string($conn, $_POST['additional_info']) : '';
 
 // Get current date for created_at
 $created_at = date('Y-m-d H:i:s');
