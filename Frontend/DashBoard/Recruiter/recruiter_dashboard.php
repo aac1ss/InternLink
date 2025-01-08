@@ -10,6 +10,7 @@ if (!isset($_SESSION['recruiter_email'])) {
 
 // Retrieve the logged-in recruiter's email from the session
 $email = $_SESSION['recruiter_email'];
+$recruiter_id = $_SESSION['r_id'];
 
 // Include the database configuration file
 include('../../../Backend/dbconfig.php');
@@ -171,11 +172,11 @@ if ($recruiter) {
             <h3>Company Information</h3>
             <div class="form-group">
                 <label>Company Name <span class="required">*</span></label>
-                <input type="text" name="company_name" placeholder="Enter company name" required value="<?php echo isset($company_profile) ? htmlspecialchars($company_profile['company_name']) : ''; ?>" />
+                <input type="text" name="company_name" placeholder="Enter company name" required value="<?php echo isset($company_profile) ? htmlspecialchars($company_profile['company_name']) : ''; ?>" pattern="[A-Za-z\s]+" title="Only letters and spaces allowed" />
             </div>
             <div class="form-group">
                 <label>Industry <span class="required">*</span></label>
-                <input type="text" name="industry" placeholder="e.g., Technology, Finance, Web-Development" required value="<?php echo isset($company_profile) ? htmlspecialchars($company_profile['industry']) : ''; ?>" />
+                <input type="text" name="industry" placeholder="e.g., Technology, Finance, Web-Development" required value="<?php echo isset($company_profile) ? htmlspecialchars($company_profile['industry']) : ''; ?>" pattern="[A-Za-z\s]+" title="Only letters and spaces allowed" />
             </div>
             <div class="form-group">
                 <label>Company Size <span class="required">*</span></label>
@@ -262,7 +263,7 @@ if ($recruiter) {
 <section id="post-internship-form" class="post-internship-container section">
             <div>
               <h1>Post an Internship</h1>
-              <form action="../../../Backend/Recruiter_DashBoard/Post_Internship.php" method="post" class="internship-post-form">
+              <form action="../../../Backend/Recruiter_DashBoard/Post_Internship.php" method="post "  class="internship-post-form ">
                 <!-- Internship Information -->
                 <div class="internship-details">
                   <h2>Internship Information</h2>
@@ -280,7 +281,7 @@ if ($recruiter) {
                   </div>
                   <div class="form-group">
                     <label for="duration">Duration: <span class="required">*</span></label>
-                    <input type="text" id="duration" name="duration" placeholder="e.g., 3 months" required />
+                    <input type="number" id="duration" name="duration" placeholder="e.g., 3 months" required />
                   </div>
                   <div class="form-group">
                     <label>Type: <span class="required">*</span></label>
@@ -337,10 +338,10 @@ if ($recruiter) {
                 </div>
               </form>
             </div>
-          </section>
+</section>
           
           <!-- View Status -->
-  <section id="internships" class="section">
+<section id="internships" class="section">
     <div class="content">
         <h2>Your Posted Internships</h2>
         <table class="internship-table">
@@ -390,34 +391,17 @@ if ($recruiter) {
   </section>
         
           <!-- Manage Applicants Section -->
-  <section id="manage-applicants" class="section">
-              <div class="content">
-                <h2>Manage Applicants</h2>
-                <table class="applicants-table">
-                  <thead>
-                    <tr>
-                      <th>Applicant Name</th>
-                      <th>Position Applied</th>
-                      <th>Status</th>
-                      <th>View Profile</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Jane Smith</td>
-                      <td>Data Analyst Intern</td>
-                      <td>Interview Scheduled</td>
-                      <td>
-                        <button class="action-btn approve">Short List</button>
-                        <button class="action-btn reject">Reject</button>
-                      </td>
-                    </tr>
-                    <!-- Additional rows as needed -->
-                  </tbody>
-                </table>
-              </div>
-  </section>
+          <section id="manage-applicants" class="section">
+    <div class="content">
+        <h2>Manage Applicants</h2>
+        <div id="dropdown-container">
+            <!-- Dynamically populated dropdowns will go here -->
+        </div>
+    </div>
+</section>
+
+
+
 
           <!-- Memebership -->
             <section id="membership" class="section">

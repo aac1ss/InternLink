@@ -1,6 +1,5 @@
 <?php
-// get_profile.php
-include '../../../../Backend/dbconfig.php';  // Include the database configuration
+include '../../../../Backend/dbconfig.php';  
 
 // Check if c_id is passed via GET
 if (isset($_GET['c_id'])) {
@@ -25,8 +24,17 @@ if (isset($_GET['c_id'])) {
         $linkedin_url = $candidate['linkedin_url'];
         $github_url = $candidate['github_url'];
         $portfolio_url = $candidate['portfolio_url'];
-        $resume_file = $candidate['resume_file'];
-        $profile_picture = $candidate['profile_picture'];
+        $resume_file = '../../../../Backend/uploads/' . $candidate['resume_file'];
+        $profile_picture = '../../../../Backend/uploads/' . $candidate['profile_picture'];
+
+        // Check if files exist and handle fallback
+        if (!file_exists($resume_file)) {
+            $resume_file = "No resume available."; // Fallback in case the resume is missing
+        }
+
+        if (!file_exists($profile_picture)) {
+            $profile_picture = "default-profile.png"; // Fallback profile picture
+        }
     } else {
         // If candidate not found, redirect or show error
         echo "Candidate not found!";

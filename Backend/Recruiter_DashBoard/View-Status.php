@@ -30,30 +30,38 @@ if (isset($_POST['action']) && $_POST['action'] === 'extend_deadline') {
     exit;
 }
 
-// Check for a request to end the posting
-if (isset($_POST['action']) && $_POST['action'] === 'end_posting') {
+// Check for a request to delete the internship
+if (isset($_POST['action']) && $_POST['action'] === 'delete_internship') {
     $internship_id = $_POST['internship_id'];
 
-    // SQL query to update the status to "Off"
-    $sql = "UPDATE post_internship_form_detail 
-            SET status = 'Off' 
-            WHERE internship_id = '$internship_id' AND r_id = '$recruiter_id'";
+    // SQL query to delete the internship
+    $sql = "DELETE FROM post_internship_form_detail WHERE internship_id = '$internship_id' AND r_id = '$recruiter_id'";
 
     if (mysqli_query($conn, $sql)) {
-        echo json_encode(["success" => true, "message" => "Posting ended successfully."]);
+        echo json_encode(["success" => true, "message" => "Internship deleted successfully."]);
     } else {
-        echo json_encode(["error" => "Error ending posting: " . mysqli_error($conn)]);
+        echo json_encode(["error" => "Error deleting internship: " . mysqli_error($conn)]);
     }
 
     mysqli_close($conn);
     exit;
 }
 
-// SQL query to fetch internships posted by the logged-in recruiter
-$sql = "SELECT internship_id, internship_title, company_name, location, duration, created_at, deadline, status
-FROM post_internship_form_detail
-WHERE r_id = '$recruiter_id'
-ORDER BY created_at DESC;
+// SQL query to fetch internships along with the number of applicants
+$sql = "
+SELECT 
+    p.internship_id, 
+    p.internship_title, 
+    p.company_name, 
+    p.location, 
+    p.duration, 
+    p.created_at, 
+    p.deadline, 
+    p.status,
+    (SELECT COUNT(*) FROM internship_applications WHERE internship_id = p.internship_id) AS total_applicants
+FROM post_internship_form_detail p
+WHERE p.r_id = '$recruiter_id'
+ORDER BY p.created_at DESC;
 ";
 
 $result = mysqli_query($conn, $sql);

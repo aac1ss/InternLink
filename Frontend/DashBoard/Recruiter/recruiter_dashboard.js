@@ -65,7 +65,12 @@ document.addEventListener("click", (event) => {
   }
 });
 
-// INTERNSHIP Functionalities
+//---------------------------------------------------------------------------------------------------------------------------
+// Post an internship
+
+//validation
+
+
 // Dropdown toggle functionality( IN INTERNSHIPs tab)
 document.querySelectorAll(".dropdown-toggle").forEach((toggle) => {
   toggle.addEventListener("click", function (event) {
@@ -123,7 +128,7 @@ function toggleStipendField(value) {
   }
 }
 
-
+//---------------------------------------------------------------------------------------------------------------------------
 //Edit-Profile
 document.addEventListener('DOMContentLoaded', () => {
   // Check if the URL contains a success parameter
@@ -186,6 +191,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+// ----------------------------------------------------------------------------------------
+
 // View-Status
 document.addEventListener("DOMContentLoaded", () => {
   fetch("../../../Backend/Recruiter_DashBoard/View-Status.php")  // Correct path as necessary
@@ -222,14 +229,13 @@ function populateInternships(tableSelector, internships) {
       <td>${internship.internship_title}</td>
       <td>${internship.created_at}</td>
       <td>${internship.deadline}</td>
-      <td>${internship.deadline}</td>
+      <td class="applications">${internship.total_applicants}</td> <!-- New column for total applicants -->
       <td>${internship.duration} months</td>
-       <td class="status ${statusClass}">${internship.status}</td>
+      <td class="status ${statusClass}">${internship.status}</td>
       <td class="action-buttons">
         <button class="extend-btn" onclick="extendDeadline(${internship.internship_id})">Extend Deadline</button>
         <button class="end-btn" onclick="endPosting(${internship.internship_id})">End Posting</button>
       </td>
-     
     `;
 
     tableBody.appendChild(row);
@@ -269,14 +275,14 @@ function extendDeadline(internshipId) {
 
 // End Posting function
 function endPosting(internshipId) {
-  if (confirm("Are you sure you want to end this posting?")) {
-    // Send POST request to end the posting
+  if (confirm("Are you sure you want to delete this internship?")) {
+    // Send POST request to delete the internship
     fetch("../../../Backend/Recruiter_DashBoard/View-Status.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
       },
-      body: `action=end_posting&internship_id=${internshipId}`,
+      body: `action=delete_internship&internship_id=${internshipId}`,
     })
     .then((response) => response.json())
     .then((data) => {
@@ -288,11 +294,181 @@ function endPosting(internshipId) {
       }
     })
     .catch((error) => {
-      console.error("Error ending posting:", error);
-      alert("Error ending posting.");
+      console.error("Error deleting internship:", error);
+      alert("Error deleting internship.");
     });
   }
 }
+
+
+
+// ----------------------------------------------------------------------------------------
+// Manage Applicants
+document.addEventListener("DOMContentLoaded", () => {
+  fetch('manage_applicants.php') // Fetch applicants data
+    .then(response => response.json())
+    .then(data => {
+      if (data.error) {
+        console.error(data.error);
+        return;
+      }
+
+      const container = document.getElementById("dropdown-container");
+
+      for (const [internshipTitle, applicants] of Object.entries(data)) {
+        // Create dropdown container
+        const dropdown = document.createElement("div");
+        dropdown.classList.add("dropdown-container");
+
+        // Dropdown title
+        const title = document.createElement("div");
+        title.classList.add("dropdown-title");
+        title.innerHTML = `${internshipTitle} <i class="fas fa-chevron-down"></i>`;
+        dropdown.appendChild(title);
+
+        // Dropdown content
+        const content = document.createElement("div");
+        content.classList.add("dropdown-content");
+
+        // Create table for applicants
+        const table = document.createElement("table");
+        table.classList.add("applicants-table");
+        table.innerHTML = `
+          <thead>
+            <tr>
+              <th>Application No</th>
+              <th>Applicant Name</th>
+              <th>Position Applied</th>
+              <th>View Profile</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${applicants.map(applicant => {
+              return `
+                <tr>
+                  <td>${applicant.application_id}</td>
+                  <td>${applicant.full_name}</td>
+                  <td>${applicant.internship_title}</td>
+                  <td>
+                    <a href="../Candidate/candidate_profile/cprofile.php?c_id=${applicant.c_id}" target="_blank" class="view-profile-btn">
+                      View Resume
+                    </a>
+                  </td>
+                  <td class="status-cell" data-status="${applicant.status}">${applicant.status}</td>
+                  <td>
+                    <button class="action-btn approve" data-id="${applicant.application_id}" data-action="Shortlisted">Shortlist</button>
+                    <button class="action-btn reject" data-id="${applicant.application_id}" data-action="Rejected">Reject</button>
+                  </td>
+                </tr>
+              `;
+            }).join("")}
+          </tbody>
+        `;
+        content.appendChild(table);
+        dropdown.appendChild(content);
+        container.appendChild(dropdown);
+
+        // Add event listener for toggling dropdown
+        title.addEventListener("click", () => {
+          content.classList.toggle("open");
+        });
+      }
+
+      // Add event listeners to the action buttons after populating
+      document.querySelectorAll('.action-btn').forEach(button => {
+        button.addEventListener('click', handleAction);
+      });
+
+      // Apply color tint based on status
+      document.querySelectorAll('.status-cell').forEach(cell => {
+        const status = cell.getAttribute('data-status');
+        if (status === "Under Review") {
+          cell.classList.add('under-review');
+        } else if (status === "short-listed") {
+          cell.classList.add('short-listed');
+        } else if (status === "Rejected") {
+          cell.classList.add('rejected');
+        }
+      });
+    })
+    .catch(error => console.error("Error fetching applicants:", error));
+});
+function handleAction(event) {
+  const button = event.target;
+  const applicationId = button.getAttribute('data-id');
+  let status = button.getAttribute('data-action').toLowerCase().replace(/\s+/g, '-'); // Format status as "short-listed" or "rejected"
+  const applicantName = button.closest('tr').querySelector('td:nth-child(2)').textContent;
+
+  // Log status to check its value
+  console.log("Status before sending to backend:", status);
+
+  // Ensure correct status format
+  if (status === 'shortlisted') {
+    status = 'short-listed'; // Fix the status if it's "shortlisted"
+  }
+
+  // Log the corrected status
+  console.log("Corrected status:", status);
+
+  // Ask for confirmation before taking action
+  const confirmed = confirm(`Are you sure you want to ${status} ${applicantName}?`);
+  if (!confirmed) {
+    return; // Do nothing if user cancels the action
+  }
+
+  // Lock the selected button
+  button.classList.add("locked");
+  button.classList.add("selected"); // Highlight the selected button
+
+  // Disable the other button and lock it
+  const row = button.closest('tr');
+  const otherButton = row.querySelector(`.action-btn:not(.${status.toLowerCase()})`);
+
+  if (otherButton) {
+    otherButton.classList.add("locked");
+    otherButton.classList.add("disabled"); // Disable the other button
+    otherButton.disabled = true; // Make the other button unclickable
+  }
+
+  // Send the update request to the server with the exact status value
+  fetch('update_status.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ application_id: applicationId, status: status }) // Send status in the exact format
+  })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        alert(`${applicantName}'s status has been updated to ${status}.`);
+        // Update the status text in the DOM
+        const statusCell = button.closest('tr').querySelector('td:nth-child(5)');
+        statusCell.textContent = status.charAt(0).toUpperCase() + status.slice(1).replace('-', ' '); // Capitalize the first letter and replace hyphen with space
+      } else {
+        alert(data.message);
+        // Re-enable buttons if there's an error
+        button.classList.remove("locked");
+        button.classList.remove("selected");
+        if (otherButton) {
+          otherButton.classList.remove("locked");
+          otherButton.classList.remove("disabled");
+          otherButton.disabled = false; // Re-enable the other button
+        }
+      }
+    })
+    .catch(error => {
+      console.error('Error updating status:', error);
+      button.classList.remove("locked");
+      button.classList.remove("selected");
+      if (otherButton) {
+        otherButton.classList.remove("locked");
+        otherButton.classList.remove("disabled");
+        otherButton.disabled = false; // Re-enable the other button
+      }
+    });
+}
+
 
 
 // MEMBERSHIP
