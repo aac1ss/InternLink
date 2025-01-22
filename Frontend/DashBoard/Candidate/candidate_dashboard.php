@@ -240,6 +240,9 @@ if ($result->num_rows > 0) {
     <div class="content">
         <form id="company-profile-form" class="company-profile-form" action="../../../Backend/Candidate_DashBoard/Post_CandidateProfile.php" method="post" enctype="multipart/form-data">
             <h1>Candidate Profile</h1>
+            <a href="candidate_profile/cprofile_from_profile.php?c_id=<?php echo $_SESSION['c_id']; ?>" style="text-decoration:none;">
+    <h4 id="edit-p">View Profile</h4>
+</a>
             <h3>Personal Information</h3>
             <div class="form-group">
                 <label>Full Name <span class="required">*</span></label>
@@ -469,57 +472,72 @@ if ($result->num_rows > 0) {
 
    <!-- Setting Section -->
    <section id="setting" class="section">
-  <div class="content">
-    <h2>Settings</h2>
-    <form class="settings-form" method="POST">
-      <div class="form-group">
-        <label>Account Email</label>
-        <input type="email" name="email" placeholder="Enter your email" value="<?php echo $_SESSION['email']; ?>" required />
-      </div>
-      <div class="form-group">
-        <label>Password</label>
-        <input type="password" name="password" placeholder="Enter new password" />
-      </div>
-      <div class="form-group">
-        <label>Notification Preferences</label>
-        <select name="notifications">
-          <option>Email Notifications</option>
-        </select>
-      </div>
-      <button type="submit" class="send-btn">Save Changes</button>
-    </form>
-  </div>
+    <div class="content">
+        <h2>Settings</h2>
+        <form class="settings-form" action="../../../Backend/Candidate_DashBoard/update_password.php" method="POST">
+            <?php
+            // Include database connection
+            include('../../../Backend/dbconfig.php');
+
+            // Get the candidate ID from the session
+            $candidate_id = $_SESSION['c_id'];
+
+            // Fetch the candidate's email from the database
+            $query = "SELECT c_email FROM candidates_signup WHERE c_id = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param('i', $candidate_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $candidate = $result->fetch_assoc();
+            $candidate_email = $candidate['c_email'];
+            ?>
+
+            <div class="form-group">
+                <label>Account Email</label>
+                <input type="email" value="<?php echo htmlspecialchars($candidate_email); ?>" placeholder="Enter your email" readonly />
+                <small class="email-note">*Email cannot be changed</small>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" name="new_password" placeholder="Enter new password" required />
+            </div>
+            <div class="form-group">
+                <label>Confirm Password</label>
+                <input type="password" name="confirm_password" placeholder="Confirm new password" required />
+            </div>
+            <button type="submit" class="send-btn">Save Changes</button>
+        </form>
+    </div>
 </section>
 
 
           <!-- Contact Us [Admin] Section -->
-
-      <section id="contact-us" class="section">
-             <div class="content">
-          <form class="contact-admin-form" action="../../../Backend/Candidate_DashBoard/contact_admin.php" method="post">
-         <h1>Contact Admin</h1>
-          <h3>Get in Touch</h3>
-         <div class="form-group">
-        <label for="subject">Subject*</label>
-        <input type="text" id="subject" placeholder="Enter subject" required />
-         </div>
-         <div class="form-group">
-        <label for="message">Message*</label>
-        <textarea id="message" placeholder="Write your message here..." required></textarea>
-          </div>
-         <h3>Your Contact Information</h3>
-         <div class="form-group">
-        <label for="admin-contact-name">Your Name*</label>
-        <input type="text" id="admin-contact-name" placeholder="Enter your name" required />
-         </div>
-         <div class="form-group">
-        <label for="admin-contact-email">Your Email*</label>
-        <input type="email" id="admin-contact-email" placeholder="Enter your email" required />
-         </div>
-          <button type="submit" class="send-btn">Send Message</button>
-           </form>
-          </div>
-    </section>
+          <section id="contact-us" class="section">
+    <div class="content">
+        <form class="contact-admin-form" action="../../../Backend/Candidate_DashBoard/contact_admin.php" method="post">
+            <h1>Contact Admin</h1>
+            <h3>Get in Touch</h3>
+            <div class="form-group">
+                <label for="subject">Subject*</label>
+                <input type="text" id="subject" name="subject" placeholder="Enter subject" required />
+            </div>
+            <div class="form-group">
+                <label for="message">Message*</label>
+                <textarea id="message" name="message" placeholder="Write your message here..." required></textarea>
+            </div>
+            <h3>Your Contact Information</h3>
+            <div class="form-group">
+                <label for="admin-contact-name">Your Name*</label>
+                <input type="text" id="admin-contact-name" name="admin_contact_name" placeholder="Enter your name" required />
+            </div>
+            <div class="form-group">
+                <label for="admin-contact-email">Your Email*</label>
+                <input type="email" id="admin-contact-email" name="admin_contact_email" placeholder="Enter your email" required />
+            </div>
+            <button type="submit" class="send-btn">Send Message</button>
+        </form>
+    </div>
+</section>
 
 
 
@@ -527,16 +545,8 @@ if ($result->num_rows > 0) {
       </main>
     </div>
 
-    <!-- Dummy Footer -->
-    <footer class="dummy-footer">
-      <a
-        href="../Candidate/candidate_dashboard.html"
-        style="text-decoration: none"
-      >
-        <div class="arko">Go to Candidate DashBoard</div>
-      </a>
-      <p>Footer Content</p>
-    </footer>
+    <!-- Footer -->
+    <?php  include('D:\xampp\htdocs\InternLink\Frontend\footer.php'); ?>
 
     <script src="candidate_dashboard.js"></script>
   </body>

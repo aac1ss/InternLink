@@ -53,6 +53,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Redirect back to contact form
-    header("Location: ../../Frontend/DashBoard/Candidate/candidate_dashboard.php");
+    header("Location: ../../Frontend/DashBoard/Recruiter/recruiter_dashboard.php");
     exit();
 }

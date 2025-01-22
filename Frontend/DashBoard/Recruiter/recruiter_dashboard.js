@@ -65,6 +65,23 @@ document.addEventListener("click", (event) => {
   }
 });
 
+//---------------------------------------------------------------------------------------------------------------------------DASHBOARD
+
+// Add this script to your existing JavaScript file or within a <script> tag
+function toggleApplicantList() {
+  const applicantList = document.getElementById('applicant-list');
+  const dropdownHeader = document.querySelector('.dropdown-header');
+
+  // Toggle the visibility of the applicant list
+  applicantList.classList.toggle('collapsed');
+
+  // Change the dropdown arrow
+  if (applicantList.classList.contains('collapsed')) {
+      dropdownHeader.innerHTML = 'Recent Applicants ▼';
+  } else {
+      dropdownHeader.innerHTML = 'Recent Applicants ▲';
+  }
+}
 //---------------------------------------------------------------------------------------------------------------------------
 // Post an internship
 

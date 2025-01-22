@@ -127,41 +127,145 @@ if ($recruiter) {
 </div>
         
       <!-- Dashboard -->
-        <section id="dashboard" class="section">
-          <div class="content" id="dashboardContent">
-            <section class="stats">
-                <div class="stat-card">
-                    <h2>0</h2>
-                    <p>Total Internship Posted</p>
-                </div>
-                <div class="stat-card">
-                    <h2>55</h2>
-                    <p>Total Applicants</p>
-                </div>
-                <div class="stat-card">
-                    <h2>0</h2>
-                    <p>Rejected</p>
-                </div>
-                <div class="stat-card">
-                    <h2>0</h2>
-                    <p>Bookmarks</p>
-                </div>
-            </section>
-            <section class="recent-activities">
-                <div class="recent-applications">
-                    <h3>Recent internship</h3>
-                    <p>No recent applications</p>
-                </div>
-                <div class="recent-details">
-                    <h3>Recent Activities</h3>
-                    <ul>
-                        <li>Account Verified - 1 month ago</li>
-                        <li>New Account Created - 1 month ago</li>
-                    </ul>
-                </div>
-            </section>
-          </div>
+  <section id="dashboard" class="section">
+    <div class="content" id="dashboardContent">
+        <?php
+        // Include database connection
+        include('../../../Backend/dbconfig.php');
+
+        // Get the recruiter ID from the session
+        $recruiter_id = $_SESSION['r_id'];
+
+        // Query to fetch total internships posted by the recruiter
+        $query_total_posted = "SELECT COUNT(*) AS total_posted FROM post_internship_form_detail WHERE r_id = ?";
+        $stmt_total_posted = $conn->prepare($query_total_posted);
+        $stmt_total_posted->bind_param('i', $recruiter_id);
+        $stmt_total_posted->execute();
+        $result_total_posted = $stmt_total_posted->get_result()->fetch_assoc();
+        $total_posted = $result_total_posted['total_posted'] ?? 0;
+
+        // Query to fetch total applicants for the recruiter's internships
+        $query_total_applicants = "
+            SELECT COUNT(*) AS total_applicants 
+            FROM internship_applications ia
+            INNER JOIN post_internship_form_detail p ON ia.internship_id = p.internship_id
+            WHERE p.r_id = ?
+        ";
+        $stmt_total_applicants = $conn->prepare($query_total_applicants);
+        $stmt_total_applicants->bind_param('i', $recruiter_id);
+        $stmt_total_applicants->execute();
+        $result_total_applicants = $stmt_total_applicants->get_result()->fetch_assoc();
+        $total_applicants = $result_total_applicants['total_applicants'] ?? 0;
+
+        // Query to fetch total rejected applicants
+        $query_total_rejected = "
+            SELECT COUNT(*) AS total_rejected 
+            FROM internship_applications ia
+            INNER JOIN post_internship_form_detail p ON ia.internship_id = p.internship_id
+            WHERE p.r_id = ? AND ia.status = 'rejected'
+        ";
+        $stmt_total_rejected = $conn->prepare($query_total_rejected);
+        $stmt_total_rejected->bind_param('i', $recruiter_id);
+        $stmt_total_rejected->execute();
+        $result_total_rejected = $stmt_total_rejected->get_result()->fetch_assoc();
+        $total_rejected = $result_total_rejected['total_rejected'] ?? 0;
+        ?>
+
+        <!-- Statistics Section -->
+        <section class="stats">
+            <div class="stat-card">
+                <h2><?php echo $total_posted; ?></h2>
+                <p>Total Internship Posted</p>
+            </div>
+            <div class="stat-card">
+                <h2><?php echo $total_applicants; ?></h2>
+                <p>Total Applicants</p>
+            </div>
+            <div class="stat-card">
+                <h2><?php echo $total_rejected; ?></h2>
+                <p>Rejected</p>
+            </div>
         </section>
+
+        <section class="recent-activities">
+    <div class="recent-applications">
+        <h3>Recent Internships</h3>
+        <?php
+        // Query to fetch recent internships posted by the recruiter
+        $query_recent_internships = "
+            SELECT company_name, internship_title, deadline, created_at 
+            FROM post_internship_form_detail 
+            WHERE r_id = ? 
+            ORDER BY created_at DESC 
+            LIMIT 5
+        ";
+        $stmt_recent_internships = $conn->prepare($query_recent_internships);
+        $stmt_recent_internships->bind_param('i', $recruiter_id);
+        $stmt_recent_internships->execute();
+        $result_recent_internships = $stmt_recent_internships->get_result();
+
+        if ($result_recent_internships->num_rows > 0) {
+            $counter = 1;
+            while ($row = $result_recent_internships->fetch_assoc()) {
+                $created_at = new DateTime($row['created_at']);
+                $deadline = new DateTime($row['deadline']);
+                $interval = $created_at->diff($deadline);
+                $days_remaining = $interval->format('%r%a'); // Calculate days remaining
+
+                if ($days_remaining > 0) {
+                    $subtractedDateMessage = $days_remaining . " days remaining";
+                } elseif ($days_remaining == 0) {
+                    $subtractedDateMessage = "Deadline is today";
+                } else {
+                    $subtractedDateMessage = abs($days_remaining) . " days ago (expired)";
+                }
+
+                // Display the internship details
+                echo '<p>' . $counter . ') ' . $row['company_name'] . ' posted an internship for "' . $row['internship_title'] . '" which ends in ' . $subtractedDateMessage . '.</p>';
+                $counter++;
+            }
+        } else {
+            echo '<p>No recent internships posted</p>';
+        }
+        ?>
+    </div>
+    <div class="recent-details">
+        <h3 onclick="toggleApplicantList()" class="dropdown-header">
+            Recent Applicants ▼
+        </h3>
+        <div class="applicant-list" id="applicant-list">
+            <?php
+            // Query to fetch recent applicants for the recruiter's internships
+            $query_recent_applicants = "
+                SELECT ia.application_id, ia.c_id, ia.internship_title, cp.full_name 
+                FROM internship_applications ia
+                INNER JOIN post_internship_form_detail p ON ia.internship_id = p.internship_id
+                INNER JOIN candidate_profiles cp ON ia.c_id = cp.c_id
+                WHERE p.r_id = ?
+                ORDER BY ia.application_date DESC
+                LIMIT 5
+            ";
+            $stmt_recent_applicants = $conn->prepare($query_recent_applicants);
+            $stmt_recent_applicants->bind_param('i', $recruiter_id);
+            $stmt_recent_applicants->execute();
+            $result_recent_applicants = $stmt_recent_applicants->get_result();
+
+            if ($result_recent_applicants->num_rows > 0) {
+                $counter = 1; // Initialize counter for numbering
+                while ($row = $result_recent_applicants->fetch_assoc()) {
+                    // Display the applicant's details
+                    echo '<p>' . $counter . ') 📋 ' . $row['full_name'] . ' applied for ' . $row['internship_title'] . '.</p>';
+                    $counter++; // Increment counter
+                }
+            } else {
+                echo '<p>No recent applicants</p>';
+            }
+            ?>
+        </div>
+    </div>
+    </section>
+    </div>
+  </section>
 
 
 <!-- Company Profile -->
@@ -169,6 +273,7 @@ if ($recruiter) {
     <div class="content">
         <form id="company-profile-form" class="company-profile-form" action="../../../Backend/Recruiter_DashBoard/Post_CompanyProfile.php" method="post" enctype="multipart/form-data">
             <h1>Company Profile</h1>
+            <a href="edit-profile.php" style="text-decoration:none;"><h4  id="edit-p">View Profile</h4> </a>
             <h3>Company Information</h3>
             <div class="form-group">
                 <label>Company Name <span class="required">*</span></label>
@@ -364,34 +469,48 @@ if ($recruiter) {
     </div>
 </section>
 
-          <!-- Setting Section -->
-  <section id="setting" class="section">
-              <div class="content">
-                <h2>Settings</h2>
-                <form class="settings-form">
-                  <div class="form-group">
-                    <label>Account Email</label>
-                    <input type="email" placeholder="Enter your email" required />
-                  </div>
-                  <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" placeholder="Enter new password" />
-                  </div>
-                  <div class="form-group">
-                    <label>Notification Preferences</label>
-                    <select>
-                      <option>Email Notifications</option>
-                      <option>SMS Notifications</option>
-                      <option>Push Notifications</option>
-                    </select>
-                  </div>
-                  <button type="submit" class="send-btn">Save Changes</button>
-                </form>
-              </div>
-  </section>
+<!-- Setting -->
+<section id="setting" class="section">
+    <div class="content">
+        <h2>Settings</h2>
+        <form class="settings-form" action="../../../Backend/Recruiter_DashBoard/update_password.php" method="POST">
+            <?php
+            // Include database connection
+            include('../../../Backend/dbconfig.php');
+
+            // Get the recruiter ID from the session
+            $recruiter_id = $_SESSION['r_id'];
+
+            // Fetch the recruiter's email from the database
+            $query = "SELECT r_email FROM recruiters_signup WHERE r_id = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param('i', $recruiter_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $recruiter = $result->fetch_assoc();
+            $recruiter_email = $recruiter['r_email'];
+            ?>
+
+            <div class="form-group">
+                <label>Account Email</label>
+                <input type="email" value="<?php echo htmlspecialchars($recruiter_email); ?>" placeholder="Enter your email" readonly />
+                <small class="email-note">*Email cannot be changed</small>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" name="new_password" placeholder="Enter new password" required />
+            </div>
+            <div class="form-group">
+                <label>Confirm Password</label>
+                <input type="password" name="confirm_password" placeholder="Confirm new password" required />
+            </div>
+            <button type="submit" class="send-btn">Save Changes</button>
+        </form>
+    </div>
+</section>
         
           <!-- Manage Applicants Section -->
-          <section id="manage-applicants" class="section">
+<section id="manage-applicants" class="section">
     <div class="content">
         <h2>Manage Applicants</h2>
         <div id="dropdown-container">
@@ -399,9 +518,6 @@ if ($recruiter) {
         </div>
     </div>
 </section>
-
-
-
 
           <!-- Memebership -->
             <section id="membership" class="section">
@@ -453,45 +569,41 @@ if ($recruiter) {
             </section>
 
           <!-- Contact Us [Admin] Section -->
-      <section id="contact-us" class="section">
-             <div class="content">
-          <form class="contact-admin-form">
-         <h1>Contact Admin</h1>
-          <h3>Get in Touch</h3>
-         <div class="form-group">
-        <label for="subject">Subject*</label>
-        <input type="text" id="subject" placeholder="Enter subject" required />
-         </div>
-         <div class="form-group">
-        <label for="message">Message*</label>
-        <textarea id="message" placeholder="Write your message here..." required></textarea>
-          </div>
-         <h3>Your Contact Information</h3>
-         <div class="form-group">
-        <label for="admin-contact-name">Your Name*</label>
-        <input type="text" id="admin-contact-name" placeholder="Enter your name" required />
-         </div>
-         <div class="form-group">
-        <label for="admin-contact-email">Your Email*</label>
-        <input type="email" id="admin-contact-email" placeholder="Enter your email" required />
-         </div>
-          <button type="submit" class="send-btn">Send Message</button>
-           </form>
-          </div>
-    </section>
+         <section id="contact-us" class="section">
+    <div class="content">
+        <form class="contact-admin-form" action="../../../Backend/Candidate_DashBoard/contact_adminRecruiter.php" method="post">
+            <h1>Contact Admin</h1>
+            <h3>Get in Touch</h3>
+            <div class="form-group">
+                <label for="subject">Subject*</label>
+                <input type="text" id="subject" name="subject" placeholder="Enter subject" required />
+            </div>
+            <div class="form-group">
+                <label for="message">Message*</label>
+                <textarea id="message" name="message" placeholder="Write your message here..." required></textarea>
+            </div>
+            <h3>Your Contact Information</h3>
+            <div class="form-group">
+                <label for="admin-contact-name">Your Name*</label>
+                <input type="text" id="admin-contact-name" name="admin_contact_name" placeholder="Enter your name" required />
+            </div>
+            <div class="form-group">
+                <label for="admin-contact-email">Your Email*</label>
+                <input type="email" id="admin-contact-email" name="admin_contact_email" placeholder="Enter your email" required />
+            </div>
+            <button type="submit" class="send-btn">Send Message</button>
+        </form>
+    </div>
+</section>
+
+
+
+
       </main>
     </div>
 
-    <!-- Dummy Footer -->
-    <footer class="dummy-footer">
-      <a
-        href="../Candidate/candidate_dashboard.html"
-        style="text-decoration: none"
-      >
-        <div class="arko">Go to Candidate DashBoard</div>
-      </a>
-      <p>Footer Content</p>
-    </footer>
+    <!-- Footer -->
+   <?php  include('D:\xampp\htdocs\InternLink\Frontend\footer.php'); ?>
 
     <script src="recruiter_dashboard.js"></script>
   </body>
