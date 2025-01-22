@@ -1,0 +1,166 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #f4f7fc;
+    color: #333;
+    font-size: 16px;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/* Back Button */
+.back-btn {
+    display: inline-block;
+    font-size: 1.2rem;
+    color: #007bff;
+    padding: 10px 20px;
+    background-color: #ffffff;
+    border: 2px solid #007bff;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+    background-color: #007bff;
+    color: #fff;
+    transform: scale(1.05);
+}
+h1, h2 {
+    font-family: 'Roboto', sans-serif;
+    color: #2c3e50;
+}
+
+/* Profile Container */
+.profile-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.profile-header h1 {
+    font-size: 2.5rem;
+    color: #3498db;
+}
+
+.profile-header p {
+    font-size: 1.1rem;
+    color: #7f8c8d;
+}
+
+/* Profile Cards */
+.profile-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    padding: 20px;
+}
+
+.profile-card h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: #2980b9;
+}
+
+.profile-info p {
+    font-size: 1rem;
+    margin-bottom: 12px;
+    color: #34495e;
+}
+
+/* Links */
+a {
+    color: #2980b9;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Profile Info Styling */
+.profile-info p strong {
+    color: #2c3e50;
+}
+
+/* Images and Documents */
+.company-logo {
+    max-width: 150px;
+    height: auto;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.doc-link {
+    background-color: #2980b9;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-align: center;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.doc-link:hover {
+    background-color: #3498db;
+}
+
+/* No Profile Section */
+.no-profile {
+    background-color: #f9e7e7;
+    border: 1px solid #e74c3c;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.no-profile h2 {
+    font-size: 1.8rem;
+    color: #e74c3c;
+}
+
+.no-profile p {
+    font-size: 1.1rem;
+    color: #e74c3c;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .profile-container {
+        padding: 10px;
+    }
+
+    .profile-header h1 {
+        font-size: 2rem;
+    }
+
+    .profile-card h2 {
+        font-size: 1.6rem;
+    }
+
+    .profile-info p {
+        font-size: 0.9rem;
+    }
+
+    .company-logo {
+        max-width: 120px;
+    }
+
+    .doc-link {
+        font-size: 0.9rem;
+        padding: 6px 12px;
+    }
+}

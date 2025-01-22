@@ -11,14 +11,14 @@
     <header>
         <div class="navigation">
             <div class="logo">
-                <img src="../Landing Page/logo.png" alt="InternLink Logo"> <!-- Update with actual logo image -->
-                <h1>InternLink</h1>
+            <img src="../../images/LOGO/PNG/ICON.png" alt="InternLink Logo">
             </div>
             <nav>
                 <ul class="nav-links">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Internships</a></li>
-                    <li><a href="#">About Us</a></li>
+                    <li><a href="../../index.html">Home</a></li>
+                    <li><a href="../../Internships/internship.php">Internships</a></li>
+                    <li><a href="../../company/company.php">Companies</a></li>
+                    <li><a href="../../index.html">About Us</a></li>
                 </ul>
                 <div class="nav-buttons">
                     <a href="../Nav_Login/Login_index.htm"> <button class="login-btn">Login</button></a>                         
@@ -61,7 +61,7 @@
     <footer>
         <div class="footer-content">
             <div class="footer-logo">
-                <img src="../Landing Page/logo.png" alt="InternLink Logo"> <!-- Add your logo here -->
+            <img src="../../images/LOGO/LOGO@2x.png" alt="InternLink Logo"> 
                 <h3>InternLink</h3>
                 <div class="footer-details">
                     <p>Balkumari, Lalitpur</p>

@@ -513,7 +513,12 @@ header {
         border-radius: 8px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
-    
+    #edit-p{
+      text-decoration: none;
+      padding: 10px;
+      margin-left: 600px;
+      color: grey;
+  }
     .company-profile-form .form-group label {
         font-size: 1rem; /* Increase size to match */
         font-weight: bold;

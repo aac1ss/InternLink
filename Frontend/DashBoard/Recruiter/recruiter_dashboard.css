@@ -389,7 +389,47 @@ input.valid, textarea.valid {
 .recent-details ul {
     list-style: none;
 }
+/* Existing CSS (Add these styles to your existing CSS file) */
+.recent-details {
+    margin-top: 20px;
+}
 
+.dropdown-header {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.2em;
+    color: #333;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-header:hover {
+    background-color: #f0f0f0;
+}
+
+.applicant-list {
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #ffffff;
+    display: block; /* Initially visible */
+}
+
+.applicant-list p {
+    margin: 5px 0;
+    color: #555;
+}
+
+/* Hide the applicant list when collapsed */
+.applicant-list.collapsed {
+    display: none;
+}
 
 /* -------------------------------------------------------------------- */
 
@@ -401,7 +441,12 @@ input.valid, textarea.valid {
         border-radius: 8px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
-    
+    #edit-p{
+        text-decoration: none;
+        padding: 10px;
+        margin-left: 600px;
+        color: grey;
+    }
     .company-profile-form .form-group label {
         font-size: 1rem; /* Increase size to match */
         font-weight: bold;
@@ -1123,53 +1168,66 @@ tr.rejected {
  /* -------------------------------------------------------------------- */
    
 /* Settings Section Styling */
-    .settings-form {
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-    }
+    /* Add these styles to your existing CSS file */
+.settings-form {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
 
-    .settings-form .form-group {
-        margin-bottom: 20px;
-    }
+.settings-form .form-group {
+    margin-bottom: 20px;
+}
 
-    .settings-form .form-group label {
-        font-size: 14px;
-        font-weight: bold;
-        margin: 5px 20px;
-        display: block;
-    }
+.settings-form .form-group label {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 5px 20px;
+    display: block;
+}
 
-    .settings-form .form-group input,
-    .settings-form .form-group select {
-        width: 50%;
-        padding: 10px;
-        margin: 0px 20px;
-        font-size: 16px;
-        border: 1px solid var(--border-color);
-        border-radius: 5px;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    }
-    .settings-form .save-btn {
-        display: block;
-        width: 80%;
-        margin: 0 auto;
-        padding: 1rem;
-        background-color: #007bff;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        font-size: 1.2rem;
-        font-weight: bold;
-        text-align: center;
-        cursor: pointer;
-        transition: background-color 0.3s;
-    }
-    
-    .settings-form .save-btn:hover {
-        background-color: #0056b3;
-    }
+.settings-form .form-group input,
+.settings-form .form-group select {
+    width: 50%;
+    padding: 10px;
+    margin: 0px 20px;
+    font-size: 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
 
+.settings-form .form-group input[type="email"] {
+    background-color: #f9f9f9;
+    cursor: not-allowed;
+}
+
+.settings-form .email-note {
+    display: block;
+    margin: 5px 20px;
+    font-size: 0.9em;
+    color: #777;
+}
+
+.settings-form .send-btn {
+    display: block;
+    width: 45%;
+    margin: 1px 34px 0px  ;
+    padding: 1rem;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.settings-form .send-btn:hover {
+    background-color: #0056b3;
+}
 /* -------------------------------------------------------------------- */
 
     /* LOGOUT */

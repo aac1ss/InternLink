@@ -78,6 +78,7 @@ if ($candidate) {
                 <ul class="nav-links">
                     <li><a href="../index.html">Home</a></li>
                     <li><a href="../Internships/internships.php">Internships</a></li>
+                    <li><a href="../company/company.php">Companies</a></li>
                     <li><a href="#about-us">About Us</a></li>
                 </ul>
                 <div class="nav-buttons">
@@ -276,16 +277,7 @@ if ($conn) {
 
 
 <!-- Dummy Footer -->
-<footer class="footer">
-    <div class="footer-left">
-        <a href="#">Privacy Policy</a>
-    </div>
-    <div class="footer-right">
-        <a href="#">User Agreement</a>
-        <p>© 2024 InternLink</p>
-    </div>
-</footer>
-
+<?php include '../footer.php'?>
 <script src="internship.js"></script>
 
 

@@ -60,9 +60,9 @@ $email = $_SESSION['admin_email'];
               </a>
             </div>
           </div>
-          <a href="#manage-applicants">
+          <!-- <a href="#manage-applicants">
             <img src="../../images/DashBoard Icons/Manage Applicants.svg" alt="Manage Applicants" class="nav-icon" /> Manage Applications
-          </a>
+          </a> -->
           <a href="#membership">
             <img src="../../images/DashBoard Icons/membership.svg" alt="Membership" class="nav-icon" /> Membership
           </a>
@@ -321,162 +321,136 @@ $result = $conn->query($sql);
 </section>
 
 
-          <!-- Manage Candidates -->
-          <section id="post-internship-form" class="section">
-    <div class="content">
-        <h2>All Candidates</h2>
-        <table class="internship-table">
-            <thead>
-                <tr>
-                    <th>Candidate ID</th>
-                    <th>Full Name</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <th>Membership</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody id="internship-list">
-                <?php
-                include('D:\xampp\htdocs\InternLink\Backend\dbconfig.php');
+        <!-- Manage Candidates Section (UPDATED) -->
+    <section id="post-internship-form" class="section">
+                <div class="content">
+                    <h2>All Candidates</h2>
+                    <table class="internship-table">
+                        <thead>
+                            <tr>
+                                <th>Candidate ID</th>
+                                <th>Full Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Membership</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            include('D:\xampp\htdocs\InternLink\Backend\dbconfig.php');
+                            $sql = "SELECT * FROM candidate_profiles";
+                            $result = $conn->query($sql);
 
-                // Fetch data from candidate_profiles
-                $sql = "SELECT * FROM candidate_profiles";
-                $result = $conn->query($sql);
+                            if ($result->num_rows > 0) {
+                                while ($row = $result->fetch_assoc()) {
+                                    echo '<tr>';
+                                    echo '<td>' . htmlspecialchars($row['c_id']) . '</td>';
+                                    echo '<td>' . htmlspecialchars($row['full_name']) . '</td>';
+                                    echo '<td>' . htmlspecialchars($row['email']) . '</td>';
+                                    echo '<td>' . htmlspecialchars($row['phone']) . '</td>';
+                                    echo '<td>
+                                        <select class="membership-dropdown">
+                                            <option value="Basic" selected>Basic</option>
+                                            <option value="Standard">Standard</option>
+                                            <option value="Premium">Premium</option>
+                                        </select>
+                                      </td>';
+                                    echo '<td>
+                                        <button class="delete-btn" onclick="confirmCandidateDelete(' . $row['c_id'] . ')">Delete</button>
+                                      </td>';
+                                    echo '</tr>';
+                                }
+                            }
+                            $conn->close();
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+    </section>
 
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        echo '<tr>';
-                        echo '<td>' . htmlspecialchars($row['c_id']) . '</td>';
-                        echo '<td>' . htmlspecialchars($row['full_name']) . '</td>';
-                        echo '<td>' . htmlspecialchars($row['email']) . '</td>';
-                        echo '<td>' . htmlspecialchars($row['phone']) . '</td>';
-                        echo '<td>
-                            <select class="membership-dropdown">
-                                <option value="Basic" selected>Basic</option>
-                                <option value="Standard">Standard</option>
-                                <option value="Premium">Premium</option>
-                            </select>
-                          </td>';
-                        echo '<td>
-                            <button class="delete-btn" onclick="confirmDelete(' . $row['c_id'] . ')">Delete</button>
-                          </td>';
-                        echo '</tr>';
+        <!-- Manage Recruiters Section (UPDATED) -->
+        <section id="internships" class="section">
+                <div class="content">
+                    <h2>All Recruiters</h2>
+                    <table class="internship-table">
+                        <thead>
+                            <tr>
+                                <th>Recruiter ID</th>
+                                <th>Company Name</th>
+                                <th>Industry</th>
+                                <th>Contact Person Name</th>
+                                <th>Email</th>
+                                <th>Phone Number</th>
+                                <th>Membership</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            include('D:\xampp\htdocs\InternLink\Backend\dbconfig.php');
+                            $sql = "SELECT * FROM company_profile";
+                            $result = $conn->query($sql);
+
+                            if ($result->num_rows > 0) {
+                                while ($row = $result->fetch_assoc()) {
+                                    echo '<tr>';
+                                    echo '<td>' . htmlspecialchars($row['r_id']) . '</td>';
+                                    echo '<td>' . htmlspecialchars($row['company_name']) . '</td>';
+                                    echo '<td>' . htmlspecialchars($row['industry']) . '</td>';
+                                    echo '<td>' . htmlspecialchars($row['contact_person_name']) . '</td>';
+                                    echo '<td>' . htmlspecialchars($row['contact_email']) . '</td>';
+                                    echo '<td>' . htmlspecialchars($row['contact_phone_number']) . '</td>';
+                                    echo '<td>
+                                        <select class="membership-dropdown">
+                                            <option value="Basic" selected>Basic</option>
+                                            <option value="Standard">Standard</option>
+                                            <option value="Premium">Premium</option>
+                                        </select>
+                                      </td>';
+                                    echo '<td>
+                                        <button class="delete-btn" onclick="confirmRecruiterDelete(' . $row['r_id'] . ')">Delete</button>
+                                      </td>';
+                                    echo '</tr>';
+                                }
+                            }
+                            $conn->close();
+                            ?>  
+                        </tbody>
+                    </table>
+                </div>
+      </section>
+
+
+      <script>
+                // Candidate deletion
+                function confirmCandidateDelete(candidateId) {
+                    if (confirm("Are you sure you want to delete candidate ID: " + candidateId + "?")) {
+                        if (confirm("This action is permanent! Confirm deletion:")) {
+                            fetch(`delete_candidate.php?c_id=${candidateId}`)
+                            .then(response => response.text())
+                            .then(data => {
+                                alert(data);
+                                location.reload();
+                            });
+                        }
                     }
-                } else {
-                    echo '<tr><td colspan="6">No candidates found</td></tr>';
                 }
 
-                $conn->close();
-                ?>
-            </tbody>
-        </table>
-    </div>
-</section>
-
-<script>
-    // Two-step confirmation for delete
-    function confirmDelete(candidateId) {
-        const confirmFirst = confirm("Are you sure you want to delete candidate ID: " + candidateId + "?");
-        if (confirmFirst) {
-            const confirmSecond = confirm("This action is irreversible. Do you really want to proceed?");
-            if (confirmSecond) {
-                // Send AJAX request to delete the candidate
-                fetch(`delete_candidate.php?c_id=${candidateId}`, {
-                    method: 'GET',
-                })
-                .then(response => response.text())
-                .then(data => {
-                    alert(data);
-                    // Refresh the page or remove the row from the table
-                    location.reload();
-                })
-                .catch(error => console.error('Error:', error));
-            }
-        }
-    }
-</script>
-
-          
-          <!-- Manage Recruiter -->
-          <section id="internships" class="section">
-    <div class="content">
-        <h2>All Recruiters</h2>
-        <table class="internship-table">
-            <thead>
-                <tr>
-                    <th>Recruiter ID</th>
-                    <th>Company Name</th>
-                    <th>Industry</th>
-                    <th>Contact Person Name</th>
-                    <th>Email</th>
-                    <th>Phone Number</th>
-                    <th>Membership</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody id="internship-list">
-                <?php
-                include('D:\xampp\htdocs\InternLink\Backend\dbconfig.php');
-
-
-                $sql = "SELECT * FROM company_profile";
-                $result = $conn->query($sql);
-
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        echo '<tr>';
-                        echo '<td>' . htmlspecialchars($row['r_id']) . '</td>';
-                        echo '<td>' . htmlspecialchars($row['company_name']) . '</td>';
-                        echo '<td>' . htmlspecialchars($row['industry']) . '</td>';
-                        echo '<td>' . htmlspecialchars($row['contact_person_name']) . '</td>';
-                        echo '<td>' . htmlspecialchars($row['contact_email']) . '</td>';
-                        echo '<td>' . htmlspecialchars($row['contact_phone_number']) . '</td>';
-                        echo '<td>
-                            <select class="membership-dropdown">
-                                <option value="Basic" selected>Basic</option>
-                                <option value="Standard">Standard</option>
-                                <option value="Premium">Premium</option>
-                            </select>
-                          </td>';
-                        echo '<td>
-                            <button class="delete-btn" onclick="confirmDelete(' . $row['r_id'] . ')">Delete</button>
-                          </td>';
-                        echo '</tr>';
+                // Recruiter deletion
+                function confirmRecruiterDelete(recruiterId) {
+                    if (confirm("Are you sure you want to delete recruiter ID: " + recruiterId + "?")) {
+                        if (confirm("This action is permanent! Confirm deletion:")) {
+                            fetch(`delete_recruiter.php?r_id=${recruiterId}`)
+                            .then(response => response.text())
+                            .then(data => {
+                                alert(data);
+                                location.reload();
+                            });
+                        }
                     }
-                } else {
-                    echo '<tr><td colspan="8">No recruiters found</td></tr>';
                 }
-
-                $conn->close();
-                ?>  
-            </tbody>
-        </table>
-    </div>
-</section>
-
-<script>
-    // Two-step confirmation for delete
-    function confirmDelete(recruiterId) {
-        const confirmFirst = confirm("Are you sure you want to delete recruiter ID: " + recruiterId + "?");
-        if (confirmFirst) {
-            const confirmSecond = confirm("This action is irreversible. Do you really want to proceed?");
-            if (confirmSecond) {
-                // Send AJAX request to delete the recruiter
-                fetch(`delete_recruiter.php?r_id=${recruiterId}`, {
-                    method: 'GET',
-                })
-                .then(response => response.text())
-                .then(data => {
-                    alert(data);
-                    // Refresh the page to reflect changes
-                    location.reload();
-                })
-                .catch(error => console.error('Error:', error));
-            }
-        }
-    }
-</script>
+      </script>
 
 
 
@@ -505,44 +479,6 @@ $result = $conn->query($sql);
                   </div>
                   <button type="submit" class="send-btn">Save Changes</button>
                 </form>
-              </div>
-            </section>
-        
-          <!-- Manage Applicants Section -->
-            <section id="manage-applicants" class="section">
-              <div class="content">
-                <h2>Manage Applicants</h2>
-                <table class="applicants-table">
-                  <thead>
-                    <tr>
-                      <th>Applicant Name</th>
-                      <th>Position Applied</th>
-                      <th>Status</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>John Doe</td>
-                      <td>Software Intern</td>
-                      <td>Under Review</td>
-                      <td>
-                        <button class="action-btn approve">Approve</button>
-                        <button class="action-btn reject">Reject</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Jane Smith</td>
-                      <td>Data Analyst Intern</td>
-                      <td>Interview Scheduled</td>
-                      <td>
-                        <button class="action-btn approve">Approve</button>
-                        <button class="action-btn reject">Reject</button>
-                      </td>
-                    </tr>
-                    <!-- Additional rows as needed -->
-                  </tbody>
-                </table>
               </div>
             </section>
 
@@ -594,50 +530,12 @@ $result = $conn->query($sql);
                   </div>
               </div>
             </section>
-
-          <!-- Contact Us [Admin] Section -->
-      <section id="contact-us" class="section">
-             <div class="content">
-          <form class="contact-admin-form">
-         <h1>Contact Admin</h1>
-          <h3>Get in Touch</h3>
-         <div class="form-group">
-        <label for="subject">Subject*</label>
-        <input type="text" id="subject" placeholder="Enter subject" required />
-         </div>
-         <div class="form-group">
-        <label for="message">Message*</label>
-        <textarea id="message" placeholder="Write your message here..." required></textarea>
-          </div>
-         <h3>Your Contact Information</h3>
-         <div class="form-group">
-        <label for="admin-contact-name">Your Name*</label>
-        <input type="text" id="admin-contact-name" placeholder="Enter your name" required />
-         </div>
-         <div class="form-group">
-        <label for="admin-contact-email">Your Email*</label>
-        <input type="email" id="admin-contact-email" placeholder="Enter your email" required />
-         </div>
-          <button type="submit" class="send-btn">Send Message</button>
-           </form>
-          </div>
-    </section>
-
-
-
-
       </main>
     </div>
 
     <!-- Dummy Footer -->
-    <footer class="dummy-footer">
-      <a
-        href="../Candidate/candidate_dashboard.html"
-        style="text-decoration: none"
-      >
-        <div class="arko">Go to Candidate DashBoard</div>
-      </a>
-      <p>Footer Content</p>
+    <footer >
+      <?php include 'D:\xampp\htdocs\InternLink\Frontend\footer.php' ?>
     </footer>
 
     <script src="admin_dashboard.js"></script>

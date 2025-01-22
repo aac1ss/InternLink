@@ -213,8 +213,8 @@ button:focus {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Increases shadow for a pop-out effect */
 } 
   .option img {
-    width: 300px;
-    height: 200px;
+    width: 250px;
+    height: 250px;
   }
   
   .option h2 {
