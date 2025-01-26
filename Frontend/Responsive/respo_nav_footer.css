@@ -1,4 +1,8 @@
-
+body, html {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
+}
 /* Base Styles (Desktop Default) */
 header {
     background-color: var(--secondary-color);
@@ -11,6 +15,10 @@ header {
     .secondary-logo {
         display: none; /* Hide the small logo by default */
     }
+}
+header, .navigation, .nav-links, .nav-buttons, .footer-content, .footer-bottom {
+    max-width: 100%;
+    box-sizing: border-box; /* Include padding and border in width calculation */
 }
 
 .navigation {
@@ -145,16 +153,21 @@ button:focus {
     /* Center main nav links */
     .nav-links {
         position: absolute;
-        left: 55%;
+        left: 50%;
         transform: translateX(-50%);
         display: flex;
         gap: 30px;
+        width: 90%; 
     }
 
     .nav-links li {
         margin: 0;
     }
-
+    .nav-buttons {
+        width: 90%; /* Ensure it doesn't exceed the viewport */
+        right: 5%;
+    }
+    
     /* Hamburger on the right */
     .hamburger {
         display: flex;
@@ -240,6 +253,7 @@ button:focus {
 
     .nav-links {
         font-size: 10px;
+        gap: 10px; 
     }
     .nav-links li a {
         font-size: 14px;
@@ -249,6 +263,7 @@ button:focus {
         background: #192438;
         top: 50px;
         width: 100%;
+        right: 0px;
     }
 }
 

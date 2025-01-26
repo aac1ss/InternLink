@@ -11,14 +11,13 @@
     <header>
         <div class="navigation">
             <div class="logo">
-                <img src="logo.png" alt="InternLink Logo"> <!-- Update with actual logo image -->
-                <h1>InternLink</h1>
+                <img src="../../images/LOGO/PNG/ICON.png" alt="InternLink Logo">
             </div>
             <nav>
                 <ul class="nav-links">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Internships</a></li>
-                    <li><a href="#">About Us</a></li>
+                    <li><a href="../../index.html">Home</a></li>
+                    <li><a href="../../Internships/internships.php">Internships</a></li>
+                    <li><a href="../../index.html">About Us</a></li>
                 </ul>
                 <div class="nav-buttons">
                     <button class="login-btn"> <a href="../../Login/Nav_Login/Login_index.htm">Login</a>  </button>                       
@@ -33,24 +32,44 @@
     <!-- Registration Form -->
     <main>
         <div class="form-container">
-            <h2>Create your free InternLink Account </h2>
+            <h2>Create your free InternLink Candidate Account </h2>
 
 
-    <form id="formvalidation" action="../../../Backend/Sign_Up/candidate_signup.php" method="post">
+            <form id="formvalidation" action="../../../Backend/Sign_Up/candidate_signup.php" method="post" novalidate>
+                <div class="form-group">
+                    <label for="user_name">Username*</label>
+                    <input type="text" id="user_name" name="user_name" 
+                           pattern="[a-zA-Z0-9_]{3,20}" 
+                           title="3-20 characters (letters, numbers, underscores)"
+                           required>
+                    <span class="error" id="username-error"></span>
+                </div>
+            
+                <div class="form-group">
+                    <label for="email">Email*</label>
+                    <input type="email" id="email" name="email" 
+                           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                           required>
+                    <span class="error" id="email-error"></span>
+                </div>
+            
+                <div class="form-group">
+                    <label for="password">Password*</label>
+                    <input type="password" id="password" name="password" 
+                           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}"
+                           title="Minimum 8 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 special character"
+                           required>
+                    <div class="password-strength" id="password-strength"></div>
+                    <span class="error" id="password-error"></span>
+                </div>
+            
+                <div class="form-group">
+                    <label for="confirm-password">Confirm Password*</label>
+                    <input type="password" id="confirm-password" name="confirm-password" required>
+                    <span class="error" id="confirm-password-error"></span>
+                </div>
 
-    <label for="user_name">Username*</label>
-    <input type="text" id="user_name" name="user_name" required>
-
-    <label for="email">Email*</label>
-    <input type="email" id="email" name="email" required>
-    
-    <label for="password">Password*</label>
-    <input type="password" id="password" name="password" required>
-    
-    <label for="confirm-password">Confirm Password*</label>
-    <input type="password" id="confirm-password" name="confirm-password" required>
-
-
+                <p class="terms">By clicking 'Create InternLink Account,' you agree to our terms and privacy policy.</p>
     
     <button type="submit" class="sign-up">Sign Up</button>
 
@@ -82,6 +101,126 @@
                 alert("Passwords do not match!");
             }
         });
+
+        document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('formvalidation');
+    const inputs = {
+        username: document.getElementById('user_name'),
+        email: document.getElementById('email'),
+        password: document.getElementById('password'),
+        confirmPassword: document.getElementById('confirm-password')
+    };
+
+    const errorElements = {
+        username: document.getElementById('username-error'),
+        email: document.getElementById('email-error'),
+        password: document.getElementById('password-error'),
+        confirmPassword: document.getElementById('confirm-password-error')
+    };
+
+    // Real-time validation
+    inputs.username.addEventListener('input', validateUsername);
+    inputs.email.addEventListener('input', validateEmail);
+    inputs.password.addEventListener('input', validatePassword);
+    inputs.confirmPassword.addEventListener('input', validateConfirmPassword);
+
+    function validateUsername() {
+        const username = inputs.username.value.trim();
+        const regex = /^[a-zA-Z0-9_]{3,20}$/;
+        
+        if (!regex.test(username)) {
+            showError(errorElements.username, 'Username must be 3-20 characters (letters, numbers, underscores)');
+            return false;
+        }
+        clearError(errorElements.username);
+        return true;
+    }
+
+    function validateEmail() {
+        const email = inputs.email.value.trim();
+        const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        
+        if (!regex.test(email)) {
+            showError(errorElements.email, 'Please enter a valid email address');
+            return false;
+        }
+        clearError(errorElements.email);
+        return true;
+    }
+
+    function validatePassword() {
+        const password = inputs.password.value;
+        const strengthText = document.getElementById('password-strength');
+        
+        // Password complexity check
+        const strongRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+        const mediumRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+        
+        if (!strongRegex.test(password)) {
+            if (mediumRegex.test(password)) {
+                strengthText.textContent = 'Moderate password strength';
+                strengthText.className = 'password-strength moderate';
+            } else {
+                strengthText.textContent = 'Weak password strength';
+                strengthText.className = 'password-strength weak';
+            }
+            showError(errorElements.password, 
+                'Password must contain at least 8 characters with: 1 uppercase, 1 lowercase, 1 number, and 1 special character');
+            return false;
+        }
+        strengthText.textContent = 'Strong password!';
+        strengthText.className = 'password-strength strong';
+        clearError(errorElements.password);
+        return true;
+    }
+
+    function validateConfirmPassword() {
+        const confirmPassword = inputs.confirmPassword.value;
+        
+        if (confirmPassword !== inputs.password.value.trim()) {
+            showError(errorElements.confirmPassword, 'Passwords do not match');
+            return false;
+        }
+        clearError(errorElements.confirmPassword);
+        return true;
+    }
+
+    function showError(element, message) {
+        element.textContent = message;
+        element.classList.add('active');
+        element.previousElementSibling.classList.add('invalid');
+    }
+
+    function clearError(element) {
+        element.textContent = '';
+        element.classList.remove('active');
+        element.previousElementSibling.classList.remove('invalid');
+    }
+
+    form.addEventListener('submit', (e) => {
+        // Validate all fields
+        const isUsernameValid = validateUsername();
+        const isEmailValid = validateEmail();
+        const isPasswordValid = validatePassword();
+        const isConfirmPasswordValid = validateConfirmPassword();
+
+        if (!isUsernameValid || !isEmailValid || 
+            !isPasswordValid || !isConfirmPasswordValid) {
+            e.preventDefault();
+        }
+    });
+});
+
+// Check for success parameter in URL
+document.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    if(urlParams.get('signup') === 'success') {
+        alert('Successfully registered!');
+        // Clear the URL parameter
+        window.history.replaceState({}, document.title, window.location.pathname);
+    }
+});
+
         </script>
         
 

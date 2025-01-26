@@ -86,11 +86,41 @@ if (!$result) {
 </div>
 
 <!-- Modal -->
+<!-- Modal -->
 <div class="modal" id="companyModal">
     <div class="modal-content">
         <span class="modal-close" id="closeModal">&times;</span>
-        <div class="modal-header" id="modalCompanyName"></div>
-        <div class="modal-body" id="modalCompanyDetails"></div>
+        <div class="modal-header">
+            <img id="modalCompanyLogo" src="" alt="Company Logo" class="modal-logo">
+            <h2 id="modalCompanyName"></h2>
+            <p id="modalCompanyIndustry" class="modal-subtitle"></p>
+        </div>
+        <div class="modal-body">
+            <div class="modal-section">
+                <h3>About</h3>
+                <p id="modalCompanyDescription"></p>
+            </div>
+            <div class="modal-section">
+                <h3>Contact Details</h3>
+                <p><strong>Email:</strong> <a id="modalCompanyEmail" href=""></a></p>
+                <p><strong>Phone:</strong> <span id="modalCompanyPhone"></span></p>
+                <p><strong>Address:</strong> <span id="modalCompanyAddress"></span></p>
+            </div>
+            <div class="modal-section">
+                <h3>Social Links</h3>
+                <div class="social-links">
+                    <a id="modalLinkedin" href="" target="_blank" class="social-link">
+                        <img src="../images/social/linkedin.png" alt="LinkedIn">
+                    </a>
+                    <a id="modalTwitter" href="" target="_blank" class="social-link">
+                        <img src="../images/social/twitter.png" alt="Twitter">
+                    </a>
+                    <a id="modalFacebook" href="" target="_blank" class="social-link">
+                        <img src="../images/social/facebook.png" alt="Facebook">
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -105,43 +135,39 @@ if (!$result) {
         echo json_encode($companiesData);
     ?>;
 
-    function openModal(companyId) {
-        const company = companies[companyId];
-        const modal = document.getElementById('companyModal');
-        
-        document.getElementById('modalCompanyName').innerHTML = company.company_name;
-        document.getElementById('modalCompanyDetails').innerHTML = `
-            <p><strong>Industry:</strong> ${company.industry}</p>
-            <p><strong>Company Size:</strong> ${company.company_size}</p>
-            <p><strong>Website:</strong> <a href="${company.website}" target="_blank">${company.website}</a></p>
-            <p><strong>Description:</strong> ${company.company_description}</p>
-            <p><strong>Contact Name:</strong> ${company.contact_person_name}</p>
-            <p><strong>Position:</strong> ${company.contact_position}</p>
-            <p><strong>Email:</strong> <a href="mailto:${company.contact_email}">${company.contact_email}</a></p>
-            <p><strong>Phone:</strong> ${company.contact_phone_number}</p>
-            <p><strong>Address:</strong> ${company.office_address}</p>
-            <p><strong>Social Links:</strong></p>
-            <ul>
-                <li><a href="${company.linkedin_profile}" target="_blank">LinkedIn</a></li>
-                <li><a href="${company.twitter_handle}" target="_blank">Twitter</a></li>
-                <li><a href="${company.facebook_page}" target="_blank">Facebook</a></li>
-                <li><a href="${company.other_social_link}" target="_blank">Other</a></li>
-            </ul>
-        `;
-        
-        modal.style.display = 'block';
+function openModal(companyId) {
+    const company = companies[companyId];
+    const modal = document.getElementById('companyModal');
+
+    // Set modal content
+    document.getElementById('modalCompanyLogo').src = `../../Backend/uploads/${company.company_logo}`;
+    document.getElementById('modalCompanyName').textContent = company.company_name;
+    document.getElementById('modalCompanyIndustry').textContent = company.industry;
+    document.getElementById('modalCompanyDescription').textContent = company.company_description;
+    document.getElementById('modalCompanyEmail').href = `mailto:${company.contact_email}`;
+    document.getElementById('modalCompanyEmail').textContent = company.contact_email;
+    document.getElementById('modalCompanyPhone').textContent = company.contact_phone_number;
+    document.getElementById('modalCompanyAddress').textContent = company.office_address;
+
+    // Set social links
+    document.getElementById('modalLinkedin').href = company.linkedin_profile;
+    document.getElementById('modalTwitter').href = company.twitter_handle;
+    document.getElementById('modalFacebook').href = company.facebook_page;
+
+    // Show modal
+    modal.style.display = 'flex';
+}
+
+document.getElementById('closeModal').onclick = function() {
+    document.getElementById('companyModal').style.display = 'none';
+};
+
+window.onclick = function(event) {
+    const modal = document.getElementById('companyModal');
+    if (event.target === modal) {
+        modal.style.display = 'none';
     }
-
-    document.getElementById('closeModal').onclick = function() {
-        document.getElementById('companyModal').style.display = 'none';
-    };
-
-    window.onclick = function(event) {
-        const modal = document.getElementById('companyModal');
-        if (event.target === modal) {
-            modal.style.display = 'none';
-        }
-    };
+};
 </script>
 
 <?php include '../footer.php'; ?>

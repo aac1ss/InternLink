@@ -436,7 +436,79 @@ h2 {
 
 /* View Status (internship */
 /* Table Styles */
+/* Manage Postings Section */
+#internships {
+    max-height: 600px; /* Adjust the height as needed */
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
+#internships .content {
+    width: 100%;
+}
+
+#internships .internship-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#internships .internship-table th,
+#internships .internship-table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+}
+
+#internships .internship-table th {
+    background-color: var(--sidebar-bg);
+    color: var(--text-color-white);
+    font-weight: bold;
+    position: sticky;
+    top: 0; /* Make the table header sticky */
+    z-index: 1; /* Ensure the header stays above the table rows */
+}
+
+#internships .internship-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+#internships .internship-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+#internships .action-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+#internships .extend-btn,
+#internships .end-btn {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+#internships .extend-btn {
+    background-color: var(--btn-color-new);
+    color: var(--text-color-white);
+}
+
+#internships .end-btn {
+    background-color: var(--button-bg);
+    color: var(--text-color-white);
+}
+
+#internships .extend-btn:hover,
+#internships .end-btn:hover {
+    opacity: 0.8;
+}
 /* Modal Styles */
 .modal {
   display: none; /* Hidden by default */

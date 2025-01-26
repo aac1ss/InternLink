@@ -39,7 +39,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if ($stmt) {
                     mysqli_stmt_bind_param($stmt, 'sss', $username, $email, $hashed_password);
                     if (mysqli_stmt_execute($stmt)) {
-                        $message = "Account created successfully!";
+                        header("Location: ../../Frontend/Register/Sub_Register/candidate_signup.html?signup=success");
+                        exit();
                     } else {
                         $message = "Error: " . mysqli_error($conn);
                     }
