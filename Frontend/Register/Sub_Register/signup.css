@@ -254,7 +254,30 @@ button.sign-up:hover {
     text-decoration: underline;
 }
 
+/* Errors */
+.error {
+    color: #dc3545;
+    font-size: 0.875em;
+    margin-top: 0.25rem;
+    display: none;
+}
 
+.error.active {
+    display: block;
+}
+
+input.invalid {
+    border-color: #dc3545;
+}
+
+.password-strength {
+    font-size: 0.875em;
+    margin-top: 0.25rem;
+}
+
+.password-strength.weak { color: #dc3545; }
+.password-strength.moderate { color: #ffc107; }
+.password-strength.strong { color: #28a745; }
 
 
 /* The Footer part begins here */
