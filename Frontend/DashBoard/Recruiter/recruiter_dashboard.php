@@ -5,6 +5,7 @@ session_start();
 // Check if the user is logged in, if not redirect to login page
 if (!isset($_SESSION['recruiter_email'])) {
     header("Location: ../../Frontend/Login/Sub_Logins/recruiter_login.html");
+    
     exit;
 }
 
@@ -23,11 +24,12 @@ mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
 $recruiter = mysqli_fetch_assoc($result);
 
+
 // Check if the recruiter details were found
 if ($recruiter) {
     $r_id = $recruiter['r_id'];
     // Use the company logo from the database or default if not found
-    $company_logo = $recruiter['company_logo'] ? '../../../Backend/uploads/' . $recruiter['company_logo'] : '../../images/default-profile.png';
+    $company_logo = $recruiter['company_logo'] ? '../../../Backend/uploads/'. $recruiter['company_logo'] : '../../images/default-profile.png';
 } else {
     $company_logo = '../../images/default-profile.png';
 }
@@ -386,7 +388,7 @@ if ($recruiter) {
                     </div>
                     <div class="form-group">
                       <label for="duration">Duration: <span class="required">*</span></label>
-                      <input type="number" id="duration" name="duration" placeholder="e.g., 3 months" required />
+                      <input type="number" id="duration" name="duration" placeholder="e.g., 3 months"  min="1" required />
                     </div>
                     <div class="form-group">
                       <label>Type: <span class="required">*</span></label>
@@ -406,7 +408,7 @@ if ($recruiter) {
                     </div>
                     <div id="stipend-amount-container" class="form-group" style="display: none;">
                       <label for="stipend-amount">Stipend Amount: <span class="required">*</span></label>
-                      <input type="number" id="stipend-amount" name="stipend_amount" placeholder="e.g., Rs 5000 / Month" />
+                      <input type="number" id="stipend-amount" name="stipend_amount" min="0" placeholder="e.g., Rs 5000 / Month" />
                     </div>
                   </div>
                   <!-- Requirements -->

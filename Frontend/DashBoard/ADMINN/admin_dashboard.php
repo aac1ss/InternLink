@@ -55,14 +55,14 @@ $email = $_SESSION['admin_email'];
               <a href="#post-internship-form">
                 <img src="../../images/DashBoard Icons/Post.svg" alt="Post Internship" class="nav-icon" /> Manage Candidates
               </a>
-              <a href="#internships">
+              <a href="#post-internship-form-2">
                 <img src="../../images/DashBoard Icons/Status.svg" alt="View Status" class="nav-icon" /> Manage Recruiters
               </a>
             </div>
           </div>
-          <!-- <a href="#manage-applicants">
-            <img src="../../images/DashBoard Icons/Manage Applicants.svg" alt="Manage Applicants" class="nav-icon" /> Manage Applications
-          </a> -->
+          <a href="#internships">
+            <img src="../../images/DashBoard Icons/Manage Applicants.svg" alt="Manage Applicants" class="nav-icon" /> Manage Postings
+          </a>
           <a href="#membership">
             <img src="../../images/DashBoard Icons/membership.svg" alt="Membership" class="nav-icon" /> Membership
           </a>
@@ -369,8 +369,8 @@ $result = $conn->query($sql);
                 </div>
     </section>
 
-        <!-- Manage Recruiters Section (UPDATED) -->
-        <section id="internships" class="section">
+      <!-- Manage Recruiters Section (UPDATED) -->
+      <section id="post-internship-form-2" class="section">
                 <div class="content">
                     <h2>All Recruiters</h2>
                     <table class="internship-table">
@@ -378,10 +378,8 @@ $result = $conn->query($sql);
                             <tr>
                                 <th>Recruiter ID</th>
                                 <th>Company Name</th>
-                                <th>Industry</th>
-                                <th>Contact Person Name</th>
                                 <th>Email</th>
-                                <th>Phone Number</th>
+                                <th>Phone</th>
                                 <th>Membership</th>
                                 <th>Actions</th>
                             </tr>
@@ -397,8 +395,6 @@ $result = $conn->query($sql);
                                     echo '<tr>';
                                     echo '<td>' . htmlspecialchars($row['r_id']) . '</td>';
                                     echo '<td>' . htmlspecialchars($row['company_name']) . '</td>';
-                                    echo '<td>' . htmlspecialchars($row['industry']) . '</td>';
-                                    echo '<td>' . htmlspecialchars($row['contact_person_name']) . '</td>';
                                     echo '<td>' . htmlspecialchars($row['contact_email']) . '</td>';
                                     echo '<td>' . htmlspecialchars($row['contact_phone_number']) . '</td>';
                                     echo '<td>
@@ -415,12 +411,80 @@ $result = $conn->query($sql);
                                 }
                             }
                             $conn->close();
-                            ?>  
+                            ?>
                         </tbody>
                     </table>
                 </div>
-      </section>
+    </section>
 
+
+
+<!-- Manage Posting Section (UPDATED) -->
+<section id="internships" class="section">
+    <div class="content">
+        <h2>All Internship Postings</h2>
+       
+        <?php
+    // Include database configuration
+    include '../../../Backend/dbconfig.php';
+
+    // Query to fetch required columns from the table
+    $query = "
+   SELECT 
+    p.internship_id, 
+    p.company_name, 
+    p.internship_title, 
+    p.type, 
+    p.stipend_amount, 
+    p.deadline, 
+    p.status 
+    FROM 
+    post_internship_form_detail p
+    WHERE 
+    p.status = 'on'  -- Filter rows where status is 'on'
+    ORDER BY 
+    p.internship_id ASC;  
+    ";
+    $result = mysqli_query($conn, $query);
+
+    if (!$result) {
+    die("Query Failed: " . mysqli_error($conn));
+    }
+    ?>
+       
+        <table class="internship-table">
+            <thead>
+                <tr>
+                    <th>Internship ID</th>
+                    <th>Company Name</th>
+                    <th>Internship Title</th>
+                    <th>Type</th>
+                    <th>Stipend</th>
+                    <th>Deadline</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+                    <tr>
+                        <td><?php echo htmlspecialchars($row['internship_id']); ?></td>
+                        <td><?php echo htmlspecialchars($row['company_name']); ?></td>
+                        <td><?php echo htmlspecialchars($row['internship_title']); ?></td>
+                        <td><?php echo htmlspecialchars($row['type']); ?></td>
+                        <td><?php echo htmlspecialchars($row['stipend_amount']); ?></td>
+                        <td><?php echo htmlspecialchars($row['deadline']); ?></td>
+                        <td><?php echo htmlspecialchars($row['status']); ?></td>
+                        <td class="action-buttons">
+                            <button class="extend-btn" onclick="extendDeadline(<?php echo $row['internship_id']; ?>)">Extend Deadline</button>
+                            <button class="end-btn" onclick="endPosting(<?php echo $row['internship_id']; ?>)">End Posting</button>
+                        </td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </div>
+</section>          
 
       <script>
                 // Candidate deletion
@@ -450,6 +514,82 @@ $result = $conn->query($sql);
                         }
                     }
                 }
+      
+      
+  // Extend Deadline function
+function extendDeadline(internshipId) {
+    const newDeadline = prompt("Enter new deadline (YYYY-MM-DD):");
+
+    if (newDeadline) {
+        fetch("view-status.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: `action=extend_deadline&internship_id=${internshipId}&new_deadline=${newDeadline}`,
+        })
+        .then((response) => {
+            console.log("Raw response:", response); // Log the raw response
+            return response.text(); // First, get the response as text
+        })
+        .then((data) => {
+            console.log("Response data:", data); // Log the response data
+            try {
+                const jsonData = JSON.parse(data); // Try to parse it as JSON
+                if (jsonData.success) {
+                    alert(jsonData.message);
+                    location.reload(); // Reload the page to reflect changes
+                } else {
+                    alert(jsonData.error);
+                }
+            } catch (e) {
+                console.error("Error parsing JSON:", e); // Log parsing errors
+                alert("Invalid response from the server.");
+            }
+        })
+        .catch((error) => {
+            console.error("Error extending deadline:", error);
+            alert("Error extending deadline.");
+        });
+    }
+}
+
+// End Posting function
+function endPosting(internshipId) {
+    if (confirm("Are you sure you want to delete this posting?")) {
+        fetch("view-status.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: `action=end_posting&internship_id=${internshipId}`,
+        })
+        .then((response) => {
+            console.log("Raw response:", response); // Log the raw response
+            return response.text(); // First, get the response as text
+        })
+        .then((data) => {
+            console.log("Response data:", data); // Log the response data
+            try {
+                const jsonData = JSON.parse(data); // Try to parse it as JSON
+                if (jsonData.success) {
+                    alert(jsonData.message);
+                    location.reload(); // Reload the page to reflect changes
+                } else {
+                    alert(jsonData.error);
+                }
+            } catch (e) {
+                console.error("Error parsing JSON:", e); // Log parsing errors
+                alert("Invalid response from the server.");
+            }
+        })
+        .catch((error) => {
+            console.error("Error ending posting:", error);
+            alert("Error ending posting.");
+        });
+    }
+}
+      
       </script>
 
 
@@ -457,7 +597,7 @@ $result = $conn->query($sql);
 
 
           <!-- Setting Section -->
-              <section id="setting" class="section">
+        <section id="setting" class="section">
               <div class="content">
                 <h2>Settings</h2>
                 <form class="settings-form">
@@ -480,7 +620,7 @@ $result = $conn->query($sql);
                   <button type="submit" class="send-btn">Save Changes</button>
                 </form>
               </div>
-            </section>
+        </section>
 
           <!-- Memebership -->
             <section id="membership" class="section">

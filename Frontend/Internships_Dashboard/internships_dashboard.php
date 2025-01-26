@@ -271,15 +271,8 @@ if ($conn) {
 
 <!-- Dummy Footer -->
 <footer class="footer">
-    <div class="footer-left">
-        <a href="#">Privacy Policy</a>
-    </div>
-    <div class="footer-right">
-        <a href="#">User Agreement</a>
-        <p>© 2024 InternLink</p>
-    </div>
+  <?php include '../footer.php'; ?>
 </footer>
-
 <script src="internship_dashboard.js"></script>
 
 

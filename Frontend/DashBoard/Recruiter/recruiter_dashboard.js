@@ -86,7 +86,101 @@ function toggleApplicantList() {
 // Post an internship
 
 //validation
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.querySelector(".internship-post-form");
 
+  // Function to validate a single input
+  const validateInput = (input) => {
+    if (input.checkValidity()) {
+      input.classList.remove("invalid");
+      input.classList.add("valid");
+    } else {
+      input.classList.remove("valid");
+      input.classList.add("invalid");
+    }
+  };
+
+  // Add event listeners to all inputs and textareas
+  form.querySelectorAll("input, textarea").forEach((input) => {
+    input.addEventListener("input", () => {
+      validateInput(input);
+    });
+
+    // Validate on blur (when the user leaves the field)
+    input.addEventListener("blur", () => {
+      validateInput(input);
+    });
+  });
+
+  // Validate the form on submission
+  form.addEventListener("submit", (event) => {
+    let isValid = true;
+
+    form.querySelectorAll("input, textarea").forEach((input) => {
+      validateInput(input);
+      if (!input.checkValidity()) {
+        isValid = false;
+      }
+    });
+
+    if (!isValid) {
+      event.preventDefault(); // Prevent form submission if validation fails
+      alert("Please fill out all required fields correctly.");
+    }
+  });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.querySelector(".internship-post-form");
+
+  // Function to validate a single input
+  const validateInput = (input) => {
+    if (input.checkValidity()) {
+      // Additional validation for numeric fields
+      if (input.type === "number" && input.value < 0) {
+        input.setCustomValidity("Please enter a positive value.");
+        input.classList.remove("valid");
+        input.classList.add("invalid");
+      } else {
+        input.setCustomValidity(""); // Clear custom validity message
+        input.classList.remove("invalid");
+        input.classList.add("valid");
+      }
+    } else {
+      input.classList.remove("valid");
+      input.classList.add("invalid");
+    }
+  };
+
+  // Add event listeners to all inputs and textareas
+  form.querySelectorAll("input, textarea").forEach((input) => {
+    input.addEventListener("input", () => {
+      validateInput(input);
+    });
+
+    // Validate on blur (when the user leaves the field)
+    input.addEventListener("blur", () => {
+      validateInput(input);
+    });
+  });
+
+  // Validate the form on submission
+  form.addEventListener("submit", (event) => {
+    let isValid = true;
+
+    form.querySelectorAll("input, textarea").forEach((input) => {
+      validateInput(input);
+      if (!input.checkValidity()) {
+        isValid = false;
+      }
+    });
+
+    if (!isValid) {
+      event.preventDefault(); // Prevent form submission if validation fails
+      alert("Please fill out all required fields correctly.");
+    }
+  });
+});
 
 // Dropdown toggle functionality( IN INTERNSHIPs tab)
 document.querySelectorAll(".dropdown-toggle").forEach((toggle) => {
@@ -261,11 +355,21 @@ function populateInternships(tableSelector, internships) {
 
 
 
-// Extend Deadline function
+// Extend Deadline function with date validation
 function extendDeadline(internshipId) {
   const newDeadline = prompt("Enter new deadline (YYYY-MM-DD):");
 
   if (newDeadline) {
+    // Get today's date
+    const today = new Date();
+    const todayFormatted = today.toISOString().split('T')[0]; // Format as YYYY-MM-DD
+
+    // Compare the new deadline with today's date
+    if (newDeadline < todayFormatted) {
+      alert("The new deadline cannot be earlier than today's date. Please enter a valid date.");
+      return; // Exit the function if the date is invalid
+    }
+
     // Send POST request to extend the deadline
     fetch("../../../Backend/Recruiter_DashBoard/View-Status.php", {
       method: "POST",

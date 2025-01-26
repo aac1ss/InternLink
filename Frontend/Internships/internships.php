@@ -7,7 +7,7 @@ include '../../Backend/dbconfig.php';
 
 
 // Retrieve the logged-in user's email from the session
-$email = $_SESSION['email']; // Assuming email is stored in session
+// $email = $_SESSION['email']; // Assuming email is stored in session
 
 // Query to fetch the candidate details, including the profile picture
 $query = "SELECT c_id, full_name, profile_picture FROM candidate_profiles WHERE email = ?";
@@ -88,7 +88,7 @@ if ($candidate) {
                     <a href="../Register/Nav_Register/register_index.htm">
                         <button class="register-btn">Register</button>
                     </a>
-                    <button class="admin-btn"><a href="../DashBoard/Adminn/admin.html" id="admin-btn" style="text-decoration: none;"> Admin </a></button>
+                    <button class="admin-btn"><a href="../Login/Sub_Logins/admin_Login_form.php" id="admin-btn" style="text-decoration: none;"> Admin </a></button>
                 </div>
             </nav>
         </div>

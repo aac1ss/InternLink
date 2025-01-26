@@ -647,6 +647,22 @@ input.valid, textarea.valid {
   }
   
 
+  /* Add these styles to your existing CSS */
+.post-internship-container input:valid,
+.post-internship-container textarea:valid {
+  border-color: #007bff; /* Blueish tint for valid inputs */
+}
+
+.post-internship-container input:invalid,
+.post-internship-container textarea:invalid {
+  border-color: #ff0000; /* Red tint for invalid inputs */
+}
+
+.post-internship-container input:focus:invalid,
+.post-internship-container textarea:focus:invalid {
+  border-color: #ff0000; /* Red tint for focused invalid inputs */
+}
+
 /* -------------------------------------------------------------------- */
 
 /* View Status (internship */

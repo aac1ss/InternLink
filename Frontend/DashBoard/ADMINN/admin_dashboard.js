@@ -188,127 +188,19 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// View-Status
-document.addEventListener("DOMContentLoaded", () => {
-  fetch("../../../Backend/Recruiter_DashBoard/View-Status.php")  // Correct path as necessary
-    .then((response) => response.text()) // Get response as text
-    .then((data) => {
-      console.log("Raw response:", data);  // Log the raw response from the PHP script
-      try {
-        const jsonData = JSON.parse(data);  // Try to parse it as JSON
-        if (jsonData.error) {
-          console.error(jsonData.error);  // Handle JSON error
-          return;
-        }
-        populateInternships("#internships tbody", jsonData);  // Populate the table
-      } catch (e) {
-        console.error("Error parsing JSON:", e);  // Log any parsing errors
-      }
-    })
-    .catch((error) => console.error("Error fetching internships:", error));
-});
-
-function populateInternships(tableSelector, internships) {
-  const tableBody = document.querySelector(tableSelector);
-  tableBody.innerHTML = ''; // Clear any existing data
-
-  internships.forEach((internship) => {
-    const row = document.createElement("tr");
-
-    // Determine the status class based on the status
-    const statusClass = internship.status === 'on' ? 'status-on' : 'status-off';
-
-    // Add internship details to the row
-    row.innerHTML = `
-      <td>${internship.internship_id}</td>
-      <td>${internship.internship_title}</td>
-      <td>${internship.created_at}</td>
-      <td>${internship.deadline}</td>
-      <td>${internship.deadline}</td>
-      <td>${internship.duration} months</td>
-       <td class="status ${statusClass}">${internship.status}</td>
-      <td class="action-buttons">
-        <button class="extend-btn" onclick="extendDeadline(${internship.internship_id})">Extend Deadline</button>
-        <button class="end-btn" onclick="endPosting(${internship.internship_id})">End Posting</button>
-      </td>
-     
-    `;
-
-    tableBody.appendChild(row);
-  });
-}
-
-
-
-// Extend Deadline function
-function extendDeadline(internshipId) {
-  const newDeadline = prompt("Enter new deadline (YYYY-MM-DD):");
-
-  if (newDeadline) {
-    // Send POST request to extend the deadline
-    fetch("../../../Backend/Recruiter_DashBoard/View-Status.php", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body: `action=extend_deadline&internship_id=${internshipId}&new_deadline=${newDeadline}`,
-    })
-    .then((response) => response.json())
-    .then((data) => {
-      if (data.success) {
-        alert(data.message);
-        location.reload(); // Reload the page to reflect the changes
-      } else {
-        alert(data.error);
-      }
-    })
-    .catch((error) => {
-      console.error("Error extending deadline:", error);
-      alert("Error extending deadline.");
-    });
-  }
-}
-
-// End Posting function
-function endPosting(internshipId) {
-  if (confirm("Are you sure you want to end this posting?")) {
-    // Send POST request to end the posting
-    fetch("../../../Backend/Recruiter_DashBoard/View-Status.php", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body: `action=end_posting&internship_id=${internshipId}`,
-    })
-    .then((response) => response.json())
-    .then((data) => {
-      if (data.success) {
-        alert(data.message);
-        location.reload(); // Reload the page to reflect the changes
-      } else {
-        alert(data.error);
-      }
-    })
-    .catch((error) => {
-      console.error("Error ending posting:", error);
-      alert("Error ending posting.");
-    });
-  }
-}
-
 
 // MEMBERSHIP
 // Popup functionality for membership plans
-function showPaymentPopup(planName, planPrice) {
+  function showPaymentPopup(planName, planPrice) {
   document.getElementById("payment-popup").style.display = "flex";
   document.getElementById("plan-name").innerText = planName;
   document.getElementById("plan-price").innerText = planPrice;
-}
+  }
 
-function closePaymentPopup() {
+  function closePaymentPopup() {
   document.getElementById("payment-popup").style.display = "none";
-}
-document
+  }
+  document
   .querySelector(".payment-form")
   .addEventListener("submit", function (event) {
     event.preventDefault();
