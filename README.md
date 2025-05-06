@@ -25,6 +25,7 @@
     <li>HTML</li>
     <li>CSS</li>
     <li>JavaScript</li>
+    <li>PHP</li>
     <li>MySQL</li>
 </ul>
 <p>Additionally, we will incorporate various front-end and back-end tools to enhance functionality and user experience.</p>
