@@ -1,12 +1,18 @@
-# Internlink: Linking Talents With Opportunities
+<h1 align="center">Internlink: Linking Talents With Opportunities</h1>
 
-![Internlink Logo](https://github.com/user-attachments/assets/fb62883f-754f-4448-b117-1ebe23f8b0d8)
-
-Internlink is a PHP-based web platform that connects talented students and individuals with valuable internship opportunities. Our mission is to bridge the gap between aspiring talent and potential employers, facilitating a seamless recruitment process benefiting both candidates and companies.
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/fb62883f-754f-4448-b117-1ebe23f8b0d8" alt="Internlink Logo" width="261" />
+</p>
 
 ---
 
-## Key Features:
+## Overview
+
+Internlink is a **PHP-based** web platform designed to connect talented students and individuals with valuable internship opportunities. Our mission is to bridge the gap between aspiring talent and potential employers, facilitating a seamless recruitment process that benefits both candidates and companies.
+
+---
+
+## Key Features
 
 - **User-Friendly Interface:** Easy navigation through all functionalities.
 - **Profile Creation:** Personalized profiles showcasing skills, experiences, and aspirations.
@@ -16,75 +22,28 @@ Internlink is a PHP-based web platform that connects talented students and indiv
 
 ---
 
-## Supporting Economic Growth
-
-Internlink is committed to fostering economic growth, workforce development, and inclusive employment practices. By connecting talented individuals with opportunities, we aim to empower the next generation of professionals.
-
----
-
 ## Technology Stack
 
-- HTML  
-- CSS  
-- JavaScript  
-- PHP  
-- MySQL  
-- phpMyAdmin (for database management)
+| Frontend       | Backend      | Database    | Tools       |
+| -------------- | ------------ | ----------- | ----------- |
+| HTML, CSS, JS  | PHP          | MySQL       | phpMyAdmin  |
 
 ---
 
-## Database Schema Overview
+## Database Schema
 
-The project uses a MySQL database named `Internlink_db` with the following tables:
-
-1. **recruiter_signup**  
-   Stores recruiter credentials and information.
-
-2. **post_internship_form_detail**  
-   Contains internship postings with details such as title, company, location, duration, type, stipend, description, and status.
-
-3. **company_profile**  
-   Holds company-related information linked to recruiters.
-
-4. **candidate_profiles**  
-   Stores candidate personal and professional profile data.
-
-5. **applications**  
-   Tracks internship applications submitted by candidates.
-
-6. **internship_applications**  
-   Manages application statuses with options like 'under review', 'short-listed', and 'rejected'.
-
-7. **admin_signup**  
-   Contains admin user credentials.
-
-8. **candidates_signup**  
-   Candidate signup credentials.
+The database schema is provided in the `internlink_schema.sql` file. Import it via phpMyAdmin to set up your database quickly.
 
 ---
 
-## Installation Instructions
+## Installation & Setup
 
-1. **Requirements:**  
-   - Apache server with PHP support (e.g., XAMPP, WAMP, LAMP)  
-   - MySQL server  
-   - phpMyAdmin for database management
-
-2. **Setup Steps:**  
-   - Place all project files inside the `htdocs` directory of your local server (e.g., `C:\xampp\htdocs\internlink`).  
-   - Create the database `Internlink_db` using phpMyAdmin.  
-   - Import the SQL schema (tables and initial data) into the database.  
-   - Configure database connection details in the project’s PHP config file.  
-   - Start Apache and MySQL services.  
-   - Open your browser and navigate to `http://localhost/internlink` to run the project.
-
----
-
-## Usage
-
-- **Recruiters:** Register, create company profiles, and post internship opportunities.  
-- **Candidates:** Sign up, build profiles, search internships, and apply.  
-- **Admins:** Manage users and oversee platform operations.
+1. Clone or download the repository.
+2. Place all files inside your server's `htdocs` folder.
+3. Import `internlink_schema.sql` in phpMyAdmin.
+4. Configure your database connection in the project.
+5. Start Apache and MySQL servers.
+6. Access the project at `http://localhost/internlink`.
 
 ---
 
@@ -94,5 +53,6 @@ The project uses a MySQL database named `Internlink_db` with the following table
 
 ---
 
-*For questions or support, please contact the project maintainer.*
-
+<p align="center" style="color:gray; font-size:small;">
+  Developed with ❤️ by Internlink Team
+</p>
